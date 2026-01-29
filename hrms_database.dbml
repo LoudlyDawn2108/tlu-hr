@@ -18,7 +18,7 @@ Project HRMS_TLU {
     - Organization Structure (FR-OS)
     - Contract Management (FR-CM)
     - Time & Attendance (FR-TA)
-    - Payroll & Benefits (FR-PB)
+    - Salary Data for External Integration (FR-SD)
     - Recruitment (FR-RC)
     - Performance & Rewards (FR-PR)
     - Training & Development (FR-TD)
@@ -799,7 +799,23 @@ Table business_trip {
 }
 
 // =============================================================================
-// SECTION 7: PAYROLL & BENEFITS (FR-PB)
+// SECTION 7: SALARY DATA FOR EXTERNAL INTEGRATION (FR-SD)
+// =============================================================================
+// NOTE: This system does NOT calculate payroll. These tables store salary-related
+// information that can be fetched by external payroll systems.
+// Payroll calculation (bảng lương) is handled by a separate external system.
+// 
+// Tables kept for external integration:
+// - employee_salary: Current salary grade/step (FR-SD-001 to FR-SD-003)
+// - employee_allowance: Allowance information (FR-SD-004)
+// - dependent: Tax deduction dependents (FR-SD-006)
+// - employee.bank_* fields: Bank account info (FR-SD-007)
+//
+// REMOVED (handled by external system):
+// - payroll_period: Moved to external payroll system
+// - payroll: Moved to external payroll system  
+// - payroll_allowance_detail: Moved to external payroll system
+// - payroll_deduction_detail: Moved to external payroll system
 // =============================================================================
 
 Table employee_salary {
@@ -815,7 +831,7 @@ Table employee_salary {
   promotion_type varchar(50) [note: 'regular, early, appointed']
   is_current boolean [default: true]
   
-  Note: 'FR-PB-001, FR-PB-005: Bac luong hien tai'
+  Note: 'FR-SD-001, FR-SD-002, FR-SD-003: Bac luong hien tai - For external payroll fetch'
 }
 
 Table employee_allowance {
@@ -830,7 +846,7 @@ Table employee_allowance {
   decision_number varchar(100)
   is_current boolean [default: true]
   
-  Note: 'FR-PB-003, FR-PB-004: Phu cap'
+  Note: 'FR-SD-004: Phu cap - For external payroll fetch'
 }
 
 Table payroll_period {

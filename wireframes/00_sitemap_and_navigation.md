@@ -84,7 +84,7 @@
 |    - Công tác             |
 |                           |
 |  [Dollar Icon]            |
-|  Tiền lương               |
+|  Dữ liệu Lương            |
 |    - Tính lương tháng     |
 |    - Lịch sử lương        |
 |    - Thống kê lương       |
@@ -224,7 +224,7 @@ EXPANDED MENU STRUCTURE:
 
 ---
 
-### 2.4 Finance Staff (Phong TCKT) - Payroll Focus View
+### 2.4 Finance Staff (Phong TCKT) - Salary Data View
 
 **User Goal:** Process payroll, manage financial reports, bank exports
 
@@ -328,7 +328,7 @@ TLU HRMS
 │   ├── Công tác
 │   └── Báo cáo Chấm công
 │
-├── Tiền lương (FR-PB)
+├── Dữ liệu Lương (FR-SD)
 │   ├── Wizard Tính lương (4 bước)
 │   ├── Bảng lương Tháng
 │   ├── Phiếu lương
@@ -379,10 +379,10 @@ TLU HRMS
 │
 └── Cấu hình Hệ thống (FR-CF)
     ├── Tham số Lương
-    ├── Tham số Bảo hiếm & Thuế
+    ├── Tham số Bảo hiểm & Thuế (lưu để xuất)
     ├── Danh mục Dùng chung
-    ├── Công thức Tính toán
-    ├── Quy trình Phê duyệt
+    ├── Giờ Giảng và Quy đổi
+    ├── Quy trình Phê duyệt Sẵn có
     └── Phân quyền Người dùng
 ```
 

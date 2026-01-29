@@ -6,7 +6,7 @@
 | ---------- | ---------------------------------------------- |
 | Screen ID  | TL-ENTRY-001                                   |
 | Module     | Teaching Load (FR-TL)                          |
-| Related FR | FR-TL-001 to FR-TL-009, FR-CF-027 to FR-CF-030 |
+| Related FR | FR-TL-001 to FR-TL-009, FR-CF-027 to FR-CF-030, FR-CF-115 to FR-CF-120 |
 
 ---
 
@@ -56,15 +56,7 @@
 |             |  | << < Trang 1/5 > >> | Hiển thị: [20 v] dòng     ||
 |             |  +------------------------------------------------+|
 |             |                                                     |
-|             |  +------------------------------------------------+|
-|             |  | SUMMARY FOOTER - TỔNG HỢP THEO GIẢNG VIÊN       ||
-|             |  +------------------------------------------------+|
-|             |  | Giảng viên      |Chức danh|ĐM  |Thực hiện|Vượt  ||
-|             |  |-----------------|---------|----|---------| -----||
-|             |  | Nguyen Van A    |GVC      |280 |312      |+32[G]||
-|             |  | Tran Thi B      |GV       |270 |245      |-25[R]||
-|             |  | Le Van C        |GVC      |280 |280      |0  [Y]||
-|             |  +------------------------------------------------+|
+|             |  +------------------------------------------------+|\n|             |  | SUMMARY FOOTER - TỔNG HỢP THEO GIẢNG VIÊN       ||\n|             |  +------------------------------------------------+|\n|             |  | Giảng viên      |Chức danh|Chức vụ  |ĐM chuẩn|Giảm|ĐM thực|Thực hiện|Vượt  ||\n|             |  |-----------------|---------|---------|--------|-------|------|---------|------||\n|             |  | Nguyen Van A    |GVC      |Trưởng BM|270     |20%    |216   |250      |+34[G]||\n|             |  | Tran Thi B      |GV       |-        |280     |-      |280   |245      |-35[R]||\n|             |  | Le Van C        |GVC      |Phó khoa |270     |30%    |189   |200      |+11[G]||\n|             |  +------------------------------------------------+|
 |             |                                                     |
 +------------------------------------------------------------------+
 ```
@@ -126,15 +118,15 @@
 | Tên GV    | employee_name          | 150px | No         | Link to profile            |
 | Chức danh | academic_title         | 60px  | No         | Badge (GV, GVC, GVCC)      |
 | Môn học   | subject_name           | 180px | Yes        | Autocomplete from catalog  |
-| Loại      | activity_type          | 60px  | Yes        | LT/TH/DA/TT/CT (FR-CF-069) |
+| Loại      | activity_type          | 60px  | Yes        | LT/TH/DA/TT/CT (FR-CF-106) |
 | Mã lớp    | class_code             | 80px  | Yes        | Freetext                   |
 | SV        | student_count          | 50px  | Yes        | Number input               |
 | Giờ thực  | raw_hours              | 50px  | Yes        | Number input               |
-| Hệ số     | conversion_coefficient | 60px  | Auto       | From FR-CF-070             |
+| Hệ số     | conversion_coefficient | 60px  | Auto       | From FR-CF-107             |
 | Giờ TC    | standard_hours         | 60px  | Calculated | = Gio thuc x He so         |
 | Hành động | actions                | 80px  | -          | Edit, Delete buttons       |
 
-### Conversion Coefficient Logic (FR-CF-070)
+### Conversion Coefficient Logic (FR-CF-107)
 
 ```
 +------------------------------------------------------------------+
@@ -361,7 +353,7 @@
 | ---------------- | ------- | --------- | ------------------------------------- |
 | lecturer_id      | FK      | FR-ER     | Must be active lecturer in department |
 | subject_id       | FK      | Catalog   | Must be valid subject                 |
-| activity_type_id | FK      | FR-CF-069 | Required                              |
+| activity_type_id | FK      | FR-CF-106 | Required                              |
 | class_code       | String  | Input     | Required, max 20 chars                |
 | student_count    | Integer | Input     | 1-200                                 |
 | raw_hours        | Decimal | Input     | 0.5-100                               |
@@ -372,7 +364,7 @@
 
 | Field                  | Formula                      | Source                      |
 | ---------------------- | ---------------------------- | --------------------------- |
-| conversion_coefficient | Lookup                       | FR-CF-070 by activity_type  |
+| conversion_coefficient | Lookup                       | FR-CF-107 by activity_type  |
 | standard_hours         | raw_hours × coefficient      | Calculated                  |
 | quota_hours            | Lookup                       | FR-CF-027 by academic_title |
 | variance               | standard_hours - quota_hours | Calculated                  |
@@ -398,3 +390,137 @@
 - Card-based view instead of grid
 - Each entry as a card
 - Full-screen editing
+
+---
+
+## Teaching Hour Reduction Configuration (Cấu hình Giảm định mức)
+
+**Scope:** FR-CF-115 to FR-CF-120
+
+> **Note:** This screen is accessed from System Configuration module by HR Admin. It allows configuring teaching hour reductions for management positions.
+
+### Reduction Configuration Screen
+
+```
++------------------------------------------------------------------+
+|  CẤU HÌNH GIẢM ĐỊNH MỨC GIỜ GIẢNG CHO CHỨC VỤ QUẢN LÝ             |
+|                                        [Lịch sử] [Lưu thay đổi]   |
++------------------------------------------------------------------+
+|                                                                   |
+|  +-------------------------------------------------------------+  |
+|  | NGUYÊN TẮC ÁP DỤNG                                          |  |
+|  +-------------------------------------------------------------+  |
+|  | (•) Áp dụng mức giảm CAO NHẤT khi kiêm nhiều chức vụ        |  |
+|  | ( ) Cộng dồn mức giảm (không khuyến nghị)                   |  |
+|  +-------------------------------------------------------------+  |
+|                                                                   |
+|  +-------------------------------------------------------------+  |
+|  | DANH SÁCH CHỨC VỤ ĐƯỢC GIẢM ĐỊNH MỨC                        |  |
+|  +-------------------------------------------------------------+  |
+|  |                                                             |  |
+|  | +----+---------------+-------------+--------+--------------+|  |
+|  | | #  | Chức vụ       | Loại giảm   | Mức    | Trạng thái   ||  |
+|  | |----|---------------|-------------|--------|--------------|  |
+|  | | 1  | Hiệu trưởng   | Tỷ lệ %     | 100%   | [Active]     ||  |
+|  | | 2  | Phó Hiệu trưởng| Tỷ lệ %    | 80%    | [Active]     ||  |
+|  | | 3  | Trưởng khoa   | Tỷ lệ %     | 50%    | [Active]     ||  |
+|  | | 4  | Phó Trưởng khoa| Tỷ lệ %    | 30%    | [Active]     ||  |
+|  | | 5  | Trưởng bộ môn | Tỷ lệ %     | 20%    | [Active]     ||  |
+|  | | 6  | Phó Trưởng BM | Tỷ lệ %     | 10%    | [Active]     ||  |
+|  | | 7  | Trưởng phòng  | Tỷ lệ %     | 50%    | [Active]     ||  |
+|  | | 8  | Phó Trưởng phòng| Tỷ lệ %   | 30%    | [Active]     ||  |
+|  | +----+---------------+-------------+--------+--------------+|  |
+|  |                                                             |  |
+|  | [+ Thêm chức vụ]                                            |  |
+|  +-------------------------------------------------------------+  |
+|                                                                   |
++------------------------------------------------------------------+
+```
+
+### Add/Edit Reduction Modal
+
+```
++------------------------------------------------------------------+
+| THÊM/SỬA CẤU HÌNH GIẢM ĐỊNH MỨC                              [X]  |
++------------------------------------------------------------------+
+|                                                                   |
+|  Chức vụ quản lý:                                                 |
+|  +-------------------------------------------------------------+  |
+|  | [Chọn chức vụ...                                         v] |  |
+|  +-------------------------------------------------------------+  |
+|                                                                   |
+|  Loại giảm định mức:                                              |
+|  +-------------------------------------------------------------+  |
+|  | (•) Theo tỷ lệ phần trăm (%)                                |  |
+|  |     Định mức thực tế = Định mức chuẩn × (1 - Tỷ lệ %)       |  |
+|  |                                                             |  |
+|  | ( ) Theo số giờ cố định                                     |  |
+|  |     Định mức thực tế = Định mức chuẩn - Số giờ giảm         |  |
+|  +-------------------------------------------------------------+  |
+|                                                                   |
+|  Mức giảm:                                                        |
+|  +-------------------------------------------------------------+  |
+|  | [ 20                                                      ] |  |
+|  | %                                                           |  |
+|  +-------------------------------------------------------------+  |
+|                                                                   |
+|  Ví dụ: GVC định mức 270 giờ, giảm 20% → Định mức thực tế: 216 giờ|
+|                                                                   |
+|  [✓] Kích hoạt                                                    |
+|                                                                   |
+|  Ngày hiệu lực: [ 01/09/2026     ]                                |
+|  Lý do thay đổi:                                                  |
+|  +-------------------------------------------------------------+  |
+|  | Theo Quyết định số XX về định mức giờ giảng...              |  |
+|  +-------------------------------------------------------------+  |
+|                                                                   |
+|  [Hủy]                                    [Lưu và gửi phê duyệt]  |
++------------------------------------------------------------------+
+```
+
+### Lecturer Summary with Reduction (Tooltip/Popup)
+
+```
++------------------------------------------------------------------+
+| THÔNG TIN GIỜ GIẢNG - Nguyễn Văn A                           [X]  |
++------------------------------------------------------------------+
+|                                                                   |
+|  +-------------------------------------------------------------+  |
+|  | THÔNG TIN CƠ BẢN                                            |  |
+|  +-------------------------------------------------------------+  |
+|  | Họ tên:        Nguyễn Văn A                                 |  |
+|  | Chức danh:     Giảng viên chính (GVC)                       |  |
+|  | Chức vụ:       Trưởng bộ môn CNPM                           |  |
+|  | Đơn vị:        Khoa Công nghệ Thông tin                     |  |
+|  +-------------------------------------------------------------+  |
+|                                                                   |
+|  +-------------------------------------------------------------+  |
+|  | TÍNH TOÁN ĐỊNH MỨC                                          |  |
+|  +-------------------------------------------------------------+  |
+|  | Định mức chuẩn (theo chức danh GVC):     270 giờ/năm        |  |
+|  | Chức vụ quản lý: Trưởng bộ môn           Giảm 20%           |  |
+|  | ─────────────────────────────────────────────────────        |  |
+|  | ĐỊNH MỨC THỰC TẾ:                        216 giờ/năm        |  |
+|  +-------------------------------------------------------------+  |
+|                                                                   |
+|  +-------------------------------------------------------------+  |
+|  | THỰC HIỆN (Học kỳ 1 - 2025-2026)                            |  |
+|  +-------------------------------------------------------------+  |
+|  | Giờ tiêu chuẩn đã nhập:                  125 giờ            |  |
+|  | Dự kiến cả năm (x2):                     250 giờ            |  |
+|  | Giờ vượt định mức:                       +34 giờ            |  |
+|  +-------------------------------------------------------------+  |
+|                                                                   |
+|  [ĐÓNG]                                                           |
++------------------------------------------------------------------+
+```
+
+### Column Specification Update
+
+| Column | Field | Width | Editable | Notes |
+|--------|-------|-------|----------|-------|
+| Chức vụ | management_position | 100px | No | From HR data, shows reduction |
+| ĐM chuẩn | base_quota | 70px | No | From FR-CF-027 by academic_title |
+| % Giảm | reduction_rate | 50px | No | From FR-CF-117 by position |
+| ĐM thực | effective_quota | 70px | Calculated | = ĐM chuẩn × (1 - % Giảm) |
+| Vượt | overtime_hours | 60px | Calculated | = Thực hiện - ĐM thực |

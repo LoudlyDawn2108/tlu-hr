@@ -50,7 +50,7 @@
 
 ## 2. Evaluation Form Designer (Thiết kế Mẫu đánh giá)
 
-**Scope:** FR-CF-063, FR-CF-065 (Templates)
+**Scope:** FR-CF-100 to FR-CF-105 (Evaluation Framework)
 
 ```
 +------------------------------------------------------------------+
