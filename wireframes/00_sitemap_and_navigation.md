@@ -72,16 +72,9 @@
 |    - Quản lý Bộ môn       |
 |                           |
 |  [Document Icon]          |
-|  Hợp đồng & Tuyển dụng    |
+|  Hợp đồng Lao động        |
 |    - Danh sách Hợp đồng   |
 |    - HĐ sắp hết hạn [!5]  |
-|    - Tuyển dụng           |
-|                           |
-|  [Clock Icon]             |
-|  Chấm công & Nghỉ phép    |
-|    - Bảng chấm công       |
-|    - Duyệt nghỉ phép [!8] |
-|    - Công tác             |
 |                           |
 |  [Dollar Icon]            |
 |  Dữ liệu Lương            |
@@ -89,12 +82,7 @@
 |    - Lịch sử lương        |
 |    - Thống kê lương       |
 |                           |
-|  [Book Icon]              |
-|  Giờ giảng & NCKH         |
-|    - Quản lý Giờ giảng    |
-|    - Đề tài NCKH          |
-|    - Công bố Khoa học     |
-|                           |
+
 |  [Award Icon]             |
 |  Đánh giá & Thi đua       |
 |    - Đánh giá Viên chức   |
@@ -112,7 +100,7 @@
 |  Cấu hình Hệ thống        |
 |    - Tham số Lương        |
 |    - Danh mục             |
-|    - Quy trình Phê duyệt  |
+||
 |                           |
 +---------------------------+
 |  [?] Huong dan su dung    |
@@ -137,33 +125,19 @@
 |  [Dashboard Icon]         |
 |  Dashboard                |
 |    - Tổng quan Đơn vị     |
-|    - Cần phê duyệt [!3]   |
+|    - Cần xử lý [!3]       |
 |                           |
 |  [People Icon]            |
 |  Nhân sự Đơn vị           |
 |    - Danh sách CBGV       |
 |    - Thống kê trình độ    |
 |                           |
-|  [Check Icon]             |
-|  Phê duyệt                |
-|    - Nghỉ phép [!2]       |
-|    - Giờ giảng [!1]       |
-|    - Đánh giá             |
-|                           |
-|  [Clock Icon]             |
-|  Chấm công                |
-|    - Bảng chấm công       |
-|    - Tổng hợp tháng       |
-|                           |
-|  [Book Icon]              |
-|  Giờ giảng                |
-|    - Nhập Giờ giảng       |
-|    - Tổng hợp Định mức    |
+|
+
 |                           |
 |  [Chart Icon]             |
 |  Báo cáo Đơn vị           |
 |    - Báo cáo Nhân sự      |
-|    - Báo cáo Giờ giảng    |
 |                           |
 |  [User Icon]              |
 |  Thông tin Cá nhân        |
@@ -214,8 +188,7 @@ EXPANDED MENU STRUCTURE:
   - Hồ sơ Cá nhân
   - Trình độ & Chứng chỉ
   - Hợp đồng
-  - Giờ giảng của tôi
-  - NCKH của tôi
+
   - Kết quả Đánh giá
   - Cài đặt
 
@@ -295,7 +268,7 @@ TLU HRMS
 │   │   ├── Tab: Tổng quan
 │   │   ├── Tab: Trình độ Chuyên môn
 │   │   ├── Tab: Hợp đồng & Vị trí
-│   │   ├── Tab: Giờ giảng & NCKH
+
 │   │   └── Tab: Thu nhập
 │   └── Giảng viên Thỉnh giảng
 │
@@ -313,21 +286,6 @@ TLU HRMS
 │   ├── Phụ lục Hợp đồng
 │   └── In Hợp đồng
 │
-├── Tuyển dụng (FR-RC)
-│   ├── Kế hoạch Tuyển dụng
-│   ├── Vị trí Tuyển dụng
-│   ├── Quản lý Ứng viên
-│   ├── Lịch Phỏng vấn
-│   └── Kết quả Tuyển dụng
-│
-├── Chấm công & Nghỉ phép (FR-TA)
-│   ├── Bảng Chấm công
-│   ├── Đăng ký Nghỉ phép
-│   ├── Duyệt Nghỉ phép
-│   ├── Làm thêm giờ
-│   ├── Công tác
-│   └── Báo cáo Chấm công
-│
 ├── Dữ liệu Lương (FR-SD)
 │   ├── Wizard Tính lương (4 bước)
 │   ├── Bảng lương Tháng
@@ -337,20 +295,7 @@ TLU HRMS
 │   ├── Thuế TNCN
 │   └── Thưởng / Phụ cấp
 │
-├── Giờ giảng (FR-TL)
-│   ├── Định mức Giờ giảng
-│   ├── Nhập Giờ giảng (Grid)
-│   ├── Xác nhận Khối lượng
-│   ├── Giờ vượt Định mức
-│   └── Báo cáo Giờ giảng
-│
-├── Nghiên cứu Khoa học (FR-RM)
-│   ├── Đề tài NCKH
-│   ├── Công bố Khoa học
-│   ├── Hướng dẫn NCS/Cao học
-│   ├── Quy đổi Giờ chuẩn
-│   └── Lý lịch Khoa học
-│
+
 ├── Đánh giá (FR-PR)
 │   ├── Đánh giá Viên chức
 │   ├── Danh hiệu Thi đua
@@ -373,7 +318,6 @@ TLU HRMS
 ├── Self-Service Portal (FR-SS)
 │   ├── Thông tin Cá nhân
 │   ├── Phiếu lương
-│   ├── Đăng ký Nghỉ phép
 │   ├── Lịch làm việc
 │   └── Thông báo
 │
@@ -381,8 +325,7 @@ TLU HRMS
     ├── Tham số Lương
     ├── Tham số Bảo hiểm & Thuế (lưu để xuất)
     ├── Danh mục Dùng chung
-    ├── Giờ Giảng và Quy đổi
-    ├── Quy trình Phê duyệt Sẵn có
+
     └── Phân quyền Người dùng
 ```
 
@@ -454,7 +397,7 @@ Dashboard > Quan ly Nhan su > Ho so 360 > Nguyen Van A
 |  [!] Hợp đồng HD-2024-089 sắp hết hạn (3 ngày)   |
 |      2 phút trước                                |
 |  -------------------------------------------------
-|  [Clock] Đơn nghỉ phép chờ duyệt: Tran Van B     |
+|  [Clock] Đơn nghỉ phép mới: Tran Van B           |
 |      1 giờ trước                                 |
 |  -------------------------------------------------
 |  [Check] Bảng lương T12/2025 đã được duyệt       |

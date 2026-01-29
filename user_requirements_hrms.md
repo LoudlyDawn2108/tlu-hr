@@ -18,23 +18,18 @@
     - 2.1 [Cơ cấu tổ chức cần quản lý](#21-cơ-cấu-tổ-chức-cần-quản-lý)
     - 2.2 [Tài liệu tham chiếu từ TLU](#22-tài-liệu-tham-chiếu-từ-tlu)
     - 2.3 [Phạm vi hệ thống](#23-phạm-vi-hệ-thống)
-    - 2.4 [Phân loại Quy tắc Nghiệp vụ](#24-phân-loại-quy-tắc-nghiệp-vụ-business-rules-classification)
 3. [Các bên liên quan (Stakeholders)](#3-các-bên-liên-quan-stakeholders)
 4. [Yêu cầu chức năng](#4-yêu-cầu-chức-năng)
     - 4.1 [Quản lý Hồ sơ Nhân sự (FR-ER)](#41-module-quản-lý-hồ-sơ-nhân-sự-employee-records-management)
     - 4.2 [Quản lý Trình độ và Chức danh (FR-QM)](#42-module-quản-lý-trình-độ-và-chức-danh-qualifications-management)
     - 4.3 [Quản lý Cơ cấu Tổ chức (FR-OS)](#43-module-quản-lý-cơ-cấu-tổ-chức-organization-structure-management)
     - 4.4 [Quản lý Hợp đồng Lao động (FR-CM)](#44-module-quản-lý-hợp-đồng-lao-động-contract-management)
-    - 4.5 [Chấm công và Quản lý Nghỉ phép (FR-TA)](#45-module-chấm-công-và-quản-lý-nghỉ-phép-time--attendance)
-    - 4.6 [Dữ liệu Lương (FR-SD)](#46-dữ-liệu-lương-và-phụ-cấp-salary-data-for-external-integration)
-    - 4.7 [Tuyển dụng (FR-RC)](#47-module-tuyển-dụng-recruitment)
-    - 4.8 [Đánh giá và Khen thưởng - Kỷ luật (FR-PR)](#48-module-đánh-giá-và-khen-thưởng---kỷ-luật-performance--rewards)
-    - 4.9 [Đào tạo và Phát triển (FR-TD)](#49-module-đào-tạo-và-phát-triển-training--development)
-    - 4.10 [Nghiên cứu Khoa học (FR-RM)](#410-module-nghiên-cứu-khoa-học-research-management)
-    - 4.11 [Quản lý Giờ giảng (FR-TL)](#411-module-quản-lý-giờ-giảng-teaching-load-management)
-    - 4.12 [Báo cáo và Thống kê (FR-RP)](#412-module-báo-cáo-và-thống-kê-reporting--analytics)
-    - 4.13 [Self-Service Portal (FR-SS)](#413-module-self-service-portal-cổng-nhân-viên)
-    - 4.14 [Quản lý Cấu hình Hệ thống (FR-CF)](#414-module-quản-lý-cấu-hình-hệ-thống-system-configuration-management)
+    - 4.5 [Dữ liệu Lương (FR-SD)](#45-dữ-liệu-lương-và-phụ-cấp-salary-data-for-external-integration)
+    - 4.6 [Đánh giá và Khen thưởng - Kỷ luật (FR-PR)](#46-module-đánh-giá-và-khen-thưởng---kỷ-luật-performance--rewards)
+    - 4.7 [Đào tạo và Phát triển (FR-TD)](#47-module-đào-tạo-và-phát-triển-training--development)
+    - 4.8 [Báo cáo và Thống kê (FR-RP)](#48-module-báo-cáo-và-thống-kê-reporting--analytics)
+    - 4.9 [Self-Service Portal (FR-SS)](#49-module-self-service-portal-cổng-nhân-viên)
+    - 4.10 [Quản lý Cấu hình Hệ thống (FR-CF)](#410-module-quản-lý-cấu-hình-hệ-thống-system-configuration-management)
 5. [Yêu cầu phi chức năng](#5-yêu-cầu-phi-chức-năng)
 6. [Mô hình nghiệp vụ](#6-mô-hình-nghiệp-vụ)
 7. [Phụ lục](#7-phụ-lục)
@@ -439,95 +434,6 @@ Hệ thống HRMS sẽ quản lý toàn bộ nhân sự của trường bao gồ
 | **Nghiên cứu sinh**        | NCS được tuyển dụng làm trợ giảng                   |
 | **Cán bộ nước ngoài**      | Giảng viên/chuyên gia nước ngoài                    |
 
-### 2.4 Phân loại Quy tắc Nghiệp vụ (Business Rules Classification)
-
-> [!IMPORTANT]
-> **Nguyên tắc thiết kế hệ thống:**
-> Hệ thống HRMS được thiết kế theo nguyên tắc **không yêu cầu lập trình viên can thiệp** sau khi triển khai. Tất cả các thay đổi về quy định, chính sách đều do Admin thực hiện qua giao diện. Trường đại học sẽ đào tạo đội ngũ Admin nội bộ để vận hành hệ thống.
->
-> **Thiết kế Pre-built Modules:** Thay vì cung cấp công cụ tạo công thức tổng quát (dễ gây lỗi), hệ thống cung cấp các **module tính toán sẵn có** được thiết kế đặc thù cho lĩnh vực công chức/viên chức Việt Nam. Admin chỉ cần thay đổi tham số, không cần hiểu công thức.
-
-#### 2.4.1 Phân loại theo Khả năng Thay đổi
-
-| Loại | Mô tả | Người thay đổi | Ví dụ |
-|------|-------|----------------|-------|
-| **Tham số (Parameters)** | Giá trị số trong module tính toán sẵn có | Admin (Phòng TCCB/TCKT) | Mức lương cơ sở, tỷ lệ BHXH, số ngày phép năm |
-| **Danh mục (Categories)** | Danh sách các mục có thể thêm/sửa/xóa | Admin | Loại hợp đồng, loại nghỉ phép, chức danh, ngạch lương |
-| **Loại tính toán (Calc Type)** | Chọn phương pháp tính trong module | Admin + Phê duyệt | Phụ cấp thâm niên: Tuyến tính / Bậc thang / Bảng tra |
-| **Quy trình (Workflows)** | Luồng phê duyệt có thể cấu hình | Admin + Phê duyệt | Quy trình phê duyệt nghỉ phép, nâng lương |
-| **Logic cố định (Fixed Logic)** | Quy tắc nền tảng không thay đổi | Không thay đổi | Công thức lương cơ bản, thuế TNCN lũy tiến |
-
-> [!NOTE]
-> **Phân cấp Admin:**
-> - **Admin thường (Phòng TCCB/TCKT):** Thay đổi giá trị tham số trong các module, quản lý danh mục
-> - **Admin cấp cao (được đào tạo chuyên sâu):** Thay đổi loại tính toán trong module, cấu hình workflow
-> - **Không cần lập trình viên:** Sau khi triển khai, trường tự vận hành hoàn toàn
->
-> **Điểm khác biệt quan trọng:** Admin **KHÔNG** viết công thức tự do. Thay vào đó, Admin chọn từ các module sẵn có (Lương cơ bản, Phụ cấp thâm niên, Thuế TNCN, v.v.) và nhập tham số.
-
-#### 2.4.2 Quy tắc Cố định (Fixed Business Rules)
-
-Các quy tắc sau đây được xây dựng sẵn trong hệ thống và không thể thay đổi qua cấu hình:
-
-**Quy tắc Toàn vẹn Dữ liệu:**
-
-- Mỗi nhân viên phải có mã cán bộ duy nhất
-- Không thể xóa hồ sơ nhân viên, chỉ có thể đánh dấu inactive
-- Mọi thay đổi hồ sơ phải được ghi log (audit trail)
-- Dữ liệu nhạy cảm (lương, CCCD) phải được mã hóa
-
-**Quy tắc Thời gian:**
-
-- Ngày kết thúc hợp đồng phải sau ngày bắt đầu
-- Không thể tạo hợp đồng với ngày hiệu lực trong quá khứ (trừ nhập liệu ban đầu)
-- Cấu hình mới phải có ngày hiệu lực >= ngày hiện tại
-
-**Quy tắc Trạng thái:**
-
-- Chỉ có thể chuyển trạng thái hợp đồng theo luồng định sẵn (Thử việc → Chính thức → Kết thúc)
-- Không thể phê duyệt đơn nghỉ phép khi đã quá ngày nghỉ
-- Nhân viên đã nghỉ việc không thể đăng nhập hệ thống
-
-**Quy tắc Tính toán Nền tảng:**
-
-- Lương cơ bản = Hệ số × Mức lương cơ sở (cấu trúc cố định, giá trị cấu hình)
-- Tổng thu nhập = Lương cơ bản + Tổng phụ cấp + Thưởng - Các khoản trích (cấu trúc cố định)
-- Số ngày phép còn lại = Số ngày được hưởng - Số ngày đã nghỉ - Số ngày chờ duyệt
-
-#### 2.4.3 Ví dụ Thay đổi Cấu hình Module (Configuration Changes by Admin)
-
-Các ví dụ dưới đây minh họa các thay đổi mà **Admin** có thể thực hiện qua giao diện:
-
-| Module | Loại thay đổi | Admin thực hiện | Ghi chú |
-|--------|---------------|-----------------|---------|
-| **Lương cơ sở** | Tham số | Nhập giá trị mới: 2,340,000 VND, ngày hiệu lực: 01/07/2024 | Khi có Nghị định mới |
-| **Phụ cấp thâm niên** | Loại tính toán | Chọn "Bậc thang" thay vì "Tuyến tính", nhập bảng bậc | Khi đổi cách tính |
-| **Thuế TNCN** | Tham số | Cập nhật ngưỡng bậc thuế theo Luật mới | Khi Luật Thuế thay đổi |
-| **BHXH** | Tham số | Cập nhật tỷ lệ đóng: 8% → 9% | Khi có quy định mới |
-| **Giờ vượt định mức** | Tham số | Cập nhật đơn giá giờ vượt theo chức danh | Khi có quyết định mới |
-
-> [!NOTE]
-> **Quy trình thay đổi cấu hình:**
-> 1. Admin mở module cần thay đổi
-> 2. Sửa tham số hoặc chọn loại tính toán khác
-> 3. Nhập ngày hiệu lực (phải >= ngày hiện tại)
-> 4. Xem trước kết quả với dữ liệu mẫu
-> 5. Gửi phê duyệt (Trưởng P.TCCB hoặc Hiệu trưởng tùy mức độ)
-> 6. Sau phê duyệt, phiên bản mới được kích hoạt từ ngày hiệu lực
->
-> **Điểm quan trọng:** Admin không viết công thức. Công thức được lập trình sẵn trong hệ thống, đảm bảo chính xác và tuân thủ pháp luật.
-
-#### 2.4.4 Ràng buộc Phụ thuộc giữa Cấu hình (Configuration Dependencies)
-
-| Cấu hình A            | Phụ thuộc vào   | Ràng buộc                                    |
-| --------------------- | --------------- | -------------------------------------------- |
-| Bậc lương             | Ngạch lương     | Mỗi ngạch phải có ít nhất 1 bậc              |
-| Hệ số phụ cấp chức vụ | Chức vụ quản lý | Mỗi chức vụ phải có hệ số phụ cấp            |
-| Định mức giờ giảng    | Chức danh/Ngạch | Mỗi ngạch giảng viên phải có định mức        |
-| Tiêu chí đánh giá     | Loại đánh giá   | Mỗi loại đánh giá phải có ít nhất 1 tiêu chí |
-| Ngưỡng phân loại      | Loại đánh giá   | Mỗi loại đánh giá phải có ngưỡng phân loại   |
-| Bước phê duyệt        | Loại quy trình  | Mỗi quy trình phải có ít nhất 1 bước         |
-
 ---
 
 ## 3. Các bên liên quan (Stakeholders)
@@ -539,7 +445,7 @@ Các ví dụ dưới đây minh họa các thay đổi mà **Admin** có thể 
 | **Quản trị viên hệ thống** | Phòng CNTT                   | Toàn quyền quản trị hệ thống, phân quyền          |
 | **Cán bộ Phòng TCCB**      | Phòng Tổ chức Cán bộ         | Quản lý hồ sơ, hợp đồng, chính sách nhân sự       |
 | **Cán bộ Phòng TCKT**      | Phòng Tài chính - Kế toán    | Quản lý lương, thưởng, các khoản thu chi          |
-| **Lãnh đạo trường**        | Hiệu trưởng, Phó Hiệu trưởng | Phê duyệt, báo cáo tổng hợp                       |
+| **Lãnh đạo trường**        | Hiệu trưởng, Phó Hiệu trưởng | Báo cáo tổng hợp                       |
 | **Trưởng đơn vị**          | Trưởng khoa/phòng/viện       | Quản lý nhân sự đơn vị, đánh giá                  |
 | **Cán bộ/Giảng viên**      | Toàn bộ CBGV                 | Xem/cập nhật thông tin cá nhân, đăng ký nghỉ phép |
 
@@ -571,7 +477,7 @@ Quản lý toàn diện thông tin của tất cả cán bộ, giảng viên, nh
 
 | ID            | Yêu cầu                                                                                                                    | Mức độ   |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------- | -------- |
-| **FR-ER-001** | Lưu trữ thông tin cá nhân: họ tên, ngày sinh, giới tính, CCCD/CMT, nơi sinh, quê quán, dân tộc, tôn giáo                   | Bắt buộc |
+| **FR-ER-001** | Lưu trữ thông tin cá nhân: họ tên, ngày sinh, giới tính, CCCD/CMT, nơi sinh, quê quán, dân tộc, tôn giáo, mã số thuế TNCN, số BHXH, số BHYT         | Bắt buộc |
 | **FR-ER-002** | Lưu trữ thông tin liên hệ: địa chỉ thường trú, địa chỉ tạm trú, số điện thoại, email cá nhân, email công việc              | Bắt buộc |
 | **FR-ER-003** | Lưu trữ thông tin gia đình: tình trạng hôn nhân, thông tin vợ/chồng, con cái, người phụ thuộc (để tính giảm trừ thuế TNCN) | Bắt buộc |
 | **FR-ER-004** | Quản lý ảnh chân dung cán bộ (3x4, 4x6)                                                                                    | Bắt buộc |
@@ -584,8 +490,8 @@ Quản lý toàn diện thông tin của tất cả cán bộ, giảng viên, nh
 | **FR-ER-011** | Xuất hồ sơ ra file (PDF, Excel, Word) theo mẫu                                                                             | Bắt buộc |
 | **FR-ER-012** | Lưu trữ lịch sử thay đổi hồ sơ (audit trail)                                                                               | Bắt buộc |
 | **FR-ER-013** | Quản lý thông tin giảng viên mở rộng: lĩnh vực nghiên cứu, hướng nghiên cứu chính, từ khóa chuyên môn                      | Bắt buộc |
-| **FR-ER-014** | Lưu trữ liên kết đến trang cá nhân giảng viên (profile page) trên website khoa                                             | Tùy chọn |
-| **FR-ER-015** | Quản lý phân công giảng viên vào Bộ môn (một GV có thể thuộc nhiều bộ môn)                                                 | Bắt buộc |
+
+| **FR-ER-015** | Quản lý phân công giảng viên vào Bộ môn (một GV chỉ có thể thuộc 1 bộ môn)                                                 | Bắt buộc |
 | **FR-ER-016** | Quản lý chức vụ trong Bộ môn theo danh mục cấu hình (FR-CF-037)                                                            | Bắt buộc |
 | **FR-ER-017** | Hỗ trợ hiển thị thông tin giảng viên theo định dạng: Học hàm + Học vị + Họ tên (VD: PGS.TS. Nguyễn Văn A)                  | Bắt buộc |
 | **FR-ER-018** | Quản lý thông tin giảng viên thỉnh giảng: đơn vị công tác chính, hợp đồng thỉnh giảng                                      | Bắt buộc |
@@ -687,34 +593,7 @@ Quản lý toàn bộ vòng đời hợp đồng lao động theo quy định B�
 | **FR-CM-012** | Tự động đề xuất chuyển đổi loại hợp đồng theo quy tắc được cấu hình (FR-CF-014, FR-CF-016)  | Bắt buộc |
 | **FR-CM-013** | Cảnh báo khi số lần ký HĐ xác định thời hạn đạt giới hạn (theo FR-CF-014)                   | Bắt buộc |
 
-### 4.5 Module Chấm công và Quản lý Nghỉ phép (Time & Attendance)
-
-#### 4.5.1 Mô tả
-
-Theo dõi thời gian làm việc, nghỉ phép của cán bộ nhân viên. Các loại nghỉ phép và quy tắc tính phép được cấu hình linh hoạt.
-
-> [!IMPORTANT]
-> **Nguyên tắc:**
-> - Các loại nghỉ phép được cấu hình qua FR-CF-025
-> - Quy tắc tính phép năm theo quy định của trường
-> - Tích hợp với hệ thống chấm công hiện có
-
-#### 4.5.2 Yêu cầu chi tiết
-
-| ID            | Yêu cầu                                                                        | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------ | -------- |
-| **FR-TA-001** | Quản lý thời gian làm việc hàng ngày của CBVC                                  | Bắt buộc |
-| **FR-TA-002** | Tích hợp dữ liệu từ máy chấm công hiện có                                      | Bắt buộc |
-| **FR-TA-003** | Quản lý các loại nghỉ phép theo danh mục cấu hình (FR-CF-025)                  | Bắt buộc |
-| **FR-TA-004** | Tính số ngày phép còn lại theo quy định                                        | Bắt buộc |
-| **FR-TA-005** | Quy trình duyệt nghỉ phép theo workflow (FR-CF-087)                            | Bắt buộc |
-| **FR-TA-006** | Quản lý nghỉ không lương, nghỉ ốm, nghỉ thai sản theo quy định                 | Bắt buộc |
-| **FR-TA-007** | Tổng hợp công hàng tháng để xuất cho hệ thống tính lương                       | Bắt buộc |
-| **FR-TA-008** | Báo cáo tổng hợp nghỉ phép theo đơn vị, cá nhân                                | Bắt buộc |
-
----
-
-### 4.6 Dữ liệu Lương và Phụ cấp (Salary Data for External Integration)
+### 4.5 Dữ liệu Lương và Phụ cấp (Salary Data for External Integration)
 
 #### 4.6.1 Mô tả
 
@@ -735,109 +614,21 @@ Hệ thống HRMS lưu trữ các thông tin liên quan đến lương để h�
 | **FR-SD-001** | Lưu trữ ngạch lương hiện tại của nhân viên (liên kết với hợp đồng)             | Bắt buộc |
 | **FR-SD-002** | Lưu trữ bậc lương và hệ số hiện tại của nhân viên                              | Bắt buộc |
 | **FR-SD-003** | Lưu trữ lịch sử thay đổi ngạch/bậc lương với ngày hiệu lực                     | Bắt buộc |
-| **FR-SD-004** | Lưu trữ thông tin chức vụ để xác định phụ cấp chức vụ                          | Bắt buộc |
+
 | **FR-SD-005** | Tính số năm thâm niên từ ngày vào ngành                                        | Bắt buộc |
 | **FR-SD-006** | Lưu trữ thông tin người phụ thuộc (họ tên, quan hệ, MST)                       | Bắt buộc |
 | **FR-SD-007** | Lưu trữ thông tin tài khoản ngân hàng để chi lương                             | Bắt buộc |
 | **FR-SD-008** | Cung cấp API/Export dữ liệu lương cho hệ thống bên ngoài                       | Bắt buộc |
-| **FR-SD-009** | Xuất dữ liệu công hàng tháng từ module Chấm công (FR-TA)                       | Bắt buộc |
-| **FR-SD-010** | Xuất dữ liệu giờ vượt từ module Giờ giảng (FR-TL)                              | Bắt buộc |
+
 
 > [!IMPORTANT]
 > **Lưu ý:** Cấu hình lương cơ sở, hệ số lương, phụ cấp, bảo hiểm, thuế TNCN vẫn được quản lý trong **Module Cấu hình Hệ thống (FR-CF)** để cung cấp cho hệ thống tính lương bên ngoài.
 
 ---
 
-### 4.7 Module Tuyển dụng (Recruitment)
+### 4.6 Module Đánh giá và Khen thưởng - Kỷ luật (Performance & Rewards)
 
-#### 4.7.1 Mô tả
-
-Quản lý toàn bộ quy trình tuyển dụng từ kế hoạch, đăng tin, nhận hồ sơ, phỏng vấn đến ký hợp đồng. Hệ thống hỗ trợ hai luồng tuyển dụng khác nhau cho giảng viên (học thuật) và nhân viên hành chính.
-
-> [!IMPORTANT]
-> **Nguyên tắc:**
-> - Quy trình tuyển dụng tuân thủ Nghị định 115/2020/NĐ-CP về tuyển dụng viên chức
-> - Phân biệt quy trình tuyển dụng giảng viên (có giảng thử, xét NCKH) và nhân viên hành chính
-> - Tiêu chí đánh giá phỏng vấn được cấu hình theo vị trí tuyển dụng
-> - Quy trình phê duyệt theo workflow cấu hình (FR-CF-089)
-
-#### 4.7.2 Yêu cầu chi tiết
-
-##### 4.7.2.1 Kế hoạch và Vị trí Tuyển dụng
-
-| ID            | Yêu cầu                                                                        | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------ | -------- |
-| **FR-RC-001** | Tạo kế hoạch tuyển dụng theo năm/kỳ với chỉ tiêu từng đơn vị                   | Bắt buộc |
-| **FR-RC-002** | Quy trình duyệt kế hoạch tuyển dụng (Trưởng đơn vị → Phòng TCCB → BGH)         | Bắt buộc |
-| **FR-RC-003** | Tạo vị trí tuyển dụng với mô tả công việc (JD), yêu cầu ứng viên               | Bắt buộc |
-| **FR-RC-004** | Phân loại vị trí: Giảng viên (Học thuật) hoặc Nhân viên (Hành chính)           | Bắt buộc |
-| **FR-RC-005** | Quản lý thông tin vị trí: khoa/phòng, số lượng, mức lương dự kiến, thời hạn    | Bắt buộc |
-| **FR-RC-006** | Đăng tin tuyển dụng lên website trường (tích hợp hoặc xuất dữ liệu)            | Bắt buộc |
-| **FR-RC-007** | Đóng/mở vị trí tuyển dụng, theo dõi trạng thái (Draft, Open, Closed, Filled)   | Bắt buộc |
-
-##### 4.7.2.2 Quản lý Ứng viên
-
-| ID            | Yêu cầu                                                                        | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------ | -------- |
-| **FR-RC-008** | Nhận hồ sơ ứng viên: thông tin cá nhân, CV, bằng cấp, giấy tờ đính kèm         | Bắt buộc |
-| **FR-RC-009** | Theo dõi ứng viên qua các giai đoạn: Ứng tuyển → Sơ tuyển → Phỏng vấn → Đề nghị HĐ → Đã tuyển | Bắt buộc |
-| **FR-RC-010** | Kanban board hiển thị pipeline ứng viên theo giai đoạn                         | Bắt buộc |
-| **FR-RC-011** | Lọc, tìm kiếm ứng viên theo vị trí, trạng thái, điểm số                        | Bắt buộc |
-| **FR-RC-012** | Gửi email thông báo tự động cho ứng viên theo template (mời PV, từ chối, v.v.) | Bắt buộc |
-| **FR-RC-013** | Lưu trữ lịch sử tương tác với ứng viên (ghi chú, email, cuộc gọi)              | Bắt buộc |
-
-##### 4.7.2.3 Sơ tuyển và Đánh giá Hồ sơ
-
-| ID            | Yêu cầu                                                                        | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------ | -------- |
-| **FR-RC-014** | Kiểm tra bằng cấp tối thiểu theo yêu cầu vị trí                                | Bắt buộc |
-| **FR-RC-015** | **[Giảng viên]** Xác minh bằng ThS/TS với chuyên ngành phù hợp                 | Bắt buộc |
-| **FR-RC-016** | **[Giảng viên]** Đánh giá thành tích NCKH: bài báo, đề tài, sáng chế           | Bắt buộc |
-| **FR-RC-017** | **[Giảng viên]** Kiểm tra chứng chỉ ngoại ngữ (IELTS, TOEFL, VSTEP)            | Bắt buộc |
-| **FR-RC-018** | Chấm điểm sơ tuyển theo tiêu chí cấu hình (FR-CF-042)                          | Bắt buộc |
-| **FR-RC-019** | Lập danh sách ứng viên đạt sơ tuyển để phỏng vấn                               | Bắt buộc |
-
-##### 4.7.2.4 Phỏng vấn và Đánh giá
-
-| ID            | Yêu cầu                                                                        | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------ | -------- |
-| **FR-RC-020** | Lập lịch phỏng vấn, chọn hội đồng phỏng vấn                                    | Bắt buộc |
-| **FR-RC-021** | Kiểm tra xung đột lịch của thành viên hội đồng                                 | Bắt buộc |
-| **FR-RC-022** | Gửi email mời phỏng vấn cho ứng viên và thành viên hội đồng                    | Bắt buộc |
-| **FR-RC-023** | Đánh giá phỏng vấn theo tiêu chí có hệ số (FR-CF-043)                          | Bắt buộc |
-| **FR-RC-024** | Tính điểm phỏng vấn tổng hợp: Σ(Điểm × Hệ số) / Σ(Hệ số)                       | Bắt buộc |
-| **FR-RC-025** | **[Giảng viên]** Phỏng vấn nhiều vòng: Vòng 1 (Chuyên môn), Vòng 2 (Sư phạm)   | Bắt buộc |
-| **FR-RC-026** | **[Giảng viên]** Tổ chức buổi giảng thử (45-60 phút) và đánh giá               | Bắt buộc |
-| **FR-RC-027** | Lưu kết luận hội đồng: Đạt / Không đạt / Cân nhắc                              | Bắt buộc |
-| **FR-RC-028** | Xếp hạng ứng viên theo điểm tổng hợp                                           | Bắt buộc |
-
-##### 4.7.2.5 Đề nghị Tuyển dụng và Tạo Hợp đồng
-
-| ID            | Yêu cầu                                                                        | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------ | -------- |
-| **FR-RC-029** | Tạo đề nghị tuyển dụng cho ứng viên đạt phỏng vấn                              | Bắt buộc |
-| **FR-RC-030** | Quy trình duyệt đề nghị tuyển dụng (FR-CF-089): Trưởng khoa → P.TCCB → BGH     | Bắt buộc |
-| **FR-RC-031** | **[Giảng viên]** Cấp phê duyệt cao hơn: Hiệu trưởng phê duyệt                  | Bắt buộc |
-| **FR-RC-032** | **[Nhân viên]** Cấp phê duyệt: Trưởng phòng TCCB                               | Bắt buộc |
-| **FR-RC-033** | Sau khi duyệt, tự động chuyển sang tạo hợp đồng (FR-CM)                        | Bắt buộc |
-| **FR-RC-034** | Tạo tài khoản hệ thống cho ứng viên trúng tuyển                                | Bắt buộc |
-| **FR-RC-035** | Gửi email offer letter và hướng dẫn onboarding                                 | Bắt buộc |
-
-##### 4.7.2.6 Báo cáo Tuyển dụng
-
-| ID            | Yêu cầu                                                                        | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------ | -------- |
-| **FR-RC-036** | Báo cáo kết quả tuyển dụng theo kỳ                                             | Bắt buộc |
-| **FR-RC-037** | Thống kê tỷ lệ chuyển đổi qua các giai đoạn (funnel report)                    | Bắt buộc |
-| **FR-RC-038** | Báo cáo nguồn ứng viên (website, referral, job site)                           | Tùy chọn |
-| **FR-RC-039** | Báo cáo thời gian tuyển dụng trung bình (time-to-hire)                         | Tùy chọn |
-| **FR-RC-040** | Dashboard tổng quan tuyển dụng theo đơn vị                                     | Bắt buộc |
-
----
-
-### 4.8 Module Đánh giá và Khen thưởng - Kỷ luật (Performance & Rewards)
-
-#### 4.8.1 Mô tả
+#### 4.6.1 Mô tả
 
 Quản lý quy trình đánh giá cán bộ, viên chức hàng năm và quản lý khen thưởng, kỷ luật.
 
@@ -847,7 +638,7 @@ Quản lý quy trình đánh giá cán bộ, viên chức hàng năm và quản 
 > - Phân loại đánh giá theo Nghị định về đánh giá viên chức
 > - Quy trình duyệt đánh giá theo workflow (FR-CF-090)
 
-#### 4.8.2 Yêu cầu chi tiết
+#### 4.6.2 Yêu cầu chi tiết
 
 | ID            | Yêu cầu                                                                        | Mức độ   |
 | ------------- | ------------------------------------------------------------------------------ | -------- |
@@ -857,7 +648,7 @@ Quản lý quy trình đánh giá cán bộ, viên chức hàng năm và quản 
 | **FR-PR-004** | Đánh giá của đơn vị (Trưởng khoa/phòng)                                        | Bắt buộc |
 | **FR-PR-005** | Họp tập thể góp ý, phân loại                                                   | Bắt buộc |
 | **FR-PR-006** | Phân loại: Hoàn thành xuất sắc, Hoàn thành tốt, Hoàn thành, Không hoàn thành   | Bắt buộc |
-| **FR-PR-007** | Quy trình phê duyệt kết quả đánh giá (FR-CF-090)                               | Bắt buộc |
+
 | **FR-PR-008** | Lưu lịch sử đánh giá qua các năm                                               | Bắt buộc |
 | **FR-PR-009** | Quản lý khen thưởng: danh hiệu, bằng khen, giấy khen                           | Bắt buộc |
 | **FR-PR-010** | Quản lý kỷ luật: khiển trách, cảnh cáo, hạ bậc lương, buộc thôi việc           | Bắt buộc |
@@ -866,9 +657,9 @@ Quản lý quy trình đánh giá cán bộ, viên chức hàng năm và quản 
 
 ---
 
-### 4.9 Module Đào tạo và Phát triển (Training & Development)
+### 4.7 Module Đào tạo và Phát triển (Training & Development)
 
-#### 4.9.1 Mô tả
+#### 4.7.1 Mô tả
 
 Quản lý các hoạt động đào tạo, bồi dưỡng cán bộ viên chức.
 
@@ -877,14 +668,13 @@ Quản lý các hoạt động đào tạo, bồi dưỡng cán bộ viên chứ
 > - Loại đào tạo được cấu hình qua FR-CF-045
 > - Theo dõi cam kết bồi hoàn sau đào tạo
 
-#### 4.9.2 Yêu cầu chi tiết
+#### 4.7.2 Yêu cầu chi tiết
 
 | ID            | Yêu cầu                                                                        | Mức độ   |
 | ------------- | ------------------------------------------------------------------------------ | -------- |
 | **FR-TD-001** | Quản lý kế hoạch đào tạo hàng năm                                              | Bắt buộc |
 | **FR-TD-002** | Quản lý các loại đào tạo theo danh mục (FR-CF-045)                             | Bắt buộc |
 | **FR-TD-003** | Đăng ký tham gia đào tạo (cá nhân đề xuất)                                     | Bắt buộc |
-| **FR-TD-004** | Quy trình duyệt cử đi đào tạo                                                  | Bắt buộc |
 | **FR-TD-005** | Quản lý thông tin khóa đào tạo: thời gian, địa điểm, kinh phí                  | Bắt buộc |
 | **FR-TD-006** | Theo dõi tiến trình đào tạo (đang học, hoàn thành, bỏ dở)                      | Bắt buộc |
 | **FR-TD-007** | Quản lý cam kết bồi hoàn sau đào tạo                                           | Bắt buộc |
@@ -894,71 +684,13 @@ Quản lý các hoạt động đào tạo, bồi dưỡng cán bộ viên chứ
 
 ---
 
-### 4.10 Module Nghiên cứu Khoa học (Research Management)
+### 4.8 Module Báo cáo và Thống kê (Reporting & Analytics)
 
-#### 4.10.1 Mô tả
-
-Quản lý hoạt động nghiên cứu khoa học của giảng viên phục vụ tính giờ NCKH và đánh giá.
-
-> [!IMPORTANT]
-> **Nguyên tắc:**
-> - Loại sản phẩm NCKH được cấu hình qua FR-CF-046
-> - Hệ số quy đổi giờ NCKH được cấu hình qua FR-CF-047
-> - Có thể tích hợp với hệ thống quản lý NCKH hiện có
-
-#### 4.10.2 Yêu cầu chi tiết
-
-| ID            | Yêu cầu                                                                        | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------ | -------- |
-| **FR-RM-001** | Quản lý đề tài NCKH các cấp (cơ sở, bộ, nhà nước)                              | Bắt buộc |
-| **FR-RM-002** | Quản lý bài báo khoa học (trong nước, quốc tế, ISI/Scopus)                     | Bắt buộc |
-| **FR-RM-003** | Quản lý sách, giáo trình, bài giảng                                            | Bắt buộc |
-| **FR-RM-004** | Quản lý sáng chế, giải pháp hữu ích                                            | Bắt buộc |
-| **FR-RM-005** | Quản lý hướng dẫn NCS, học viên cao học                                        | Bắt buộc |
-| **FR-RM-006** | Quy đổi sản phẩm NCKH sang giờ chuẩn theo hệ số (FR-CF-047)                    | Bắt buộc |
-| **FR-RM-007** | Xác minh và phê duyệt sản phẩm NCKH                                            | Bắt buộc |
-| **FR-RM-008** | Liên kết với định mức giờ NCKH của giảng viên (FR-TL)                          | Bắt buộc |
-| **FR-RM-009** | Báo cáo thành tích NCKH theo cá nhân, đơn vị                                   | Bắt buộc |
-| **FR-RM-010** | Tích hợp dữ liệu từ hệ thống quản lý NCKH hiện có (nếu có)                     | Tùy chọn |
-
----
-
-### 4.11 Module Quản lý Giờ giảng (Teaching Load Management)
-
-#### 4.11.1 Mô tả
-
-Quản lý khối lượng giảng dạy, quy đổi giờ chuẩn, tính giờ vượt định mức của giảng viên.
-
-> [!IMPORTANT]
-> **Nguyên tắc:**
-> - Loại hoạt động giảng dạy được cấu hình qua FR-CF-106, FR-CF-107
-> - Định mức giờ giảng theo chức danh được cấu hình qua FR-CF-027
-> - Hệ số quy đổi hoạt động khác được cấu hình qua FR-CF-030
-> - Quy trình xác nhận khối lượng được cấu hình qua workflow (FR-CF-092)
-
-#### 4.11.2 Yêu cầu chi tiết
-
-| ID            | Yêu cầu                                                                        | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------ | -------- |
-| **FR-TL-001** | Quản lý định mức giờ giảng theo cấu hình (FR-CF-027)                           | Bắt buộc |
-| **FR-TL-002** | Quy đổi giờ giảng theo loại hoạt động và hệ số cấu hình (FR-CF-106, FR-CF-107) | Bắt buộc |
-| **FR-TL-003** | Theo dõi số giờ giảng thực tế theo học kỳ, năm học                             | Bắt buộc |
-| **FR-TL-004** | Tính giờ vượt định mức                                                         | Bắt buộc |
-| **FR-TL-005** | Quy đổi hoạt động khác theo danh mục và hệ số cấu hình (FR-CF-030)             | Bắt buộc |
-| **FR-TL-006** | Tích hợp với hệ thống đào tạo để lấy dữ liệu phân công giảng dạy               | Tùy chọn |
-| **FR-TL-007** | Báo cáo giờ giảng theo giảng viên, khoa, bộ môn                                | Bắt buộc |
-| **FR-TL-008** | Quy trình xác nhận khối lượng nhiều cấp theo workflow cấu hình (FR-CF-092)     | Bắt buộc |
-| **FR-TL-009** | Tổng hợp và đối chiếu khối lượng thực hiện với định mức                        | Bắt buộc |
-
----
-
-### 4.12 Module Báo cáo và Thống kê (Reporting & Analytics)
-
-#### 4.12.1 Mô tả
+#### 4.8.1 Mô tả
 
 Tạo các báo cáo tổng hợp phục vụ quản lý và báo cáo cơ quan chủ quản.
 
-#### 4.12.2 Yêu cầu chi tiết
+#### 4.8.2 Yêu cầu chi tiết
 
 | ID            | Yêu cầu                                                      | Mức độ   |
 | ------------- | ------------------------------------------------------------ | -------- |
@@ -973,13 +705,13 @@ Tạo các báo cáo tổng hợp phục vụ quản lý và báo cáo cơ quan 
 | **FR-RP-009** | Lập báo cáo theo kỳ (tháng, quý, năm)                        | Bắt buộc |
 | **FR-RP-010** | Cho phép tạo báo cáo tùy chỉnh                               | Tùy chọn |
 
-### 4.13 Module Self-Service Portal (Cổng nhân viên)
+### 4.9 Module Self-Service Portal (Cổng nhân viên)
 
-#### 4.13.1 Mô tả
+#### 4.9.1 Mô tả
 
 Cho phép cán bộ, giảng viên tự phục vụ một số tác vụ cơ bản.
 
-#### 4.13.2 Yêu cầu chi tiết
+#### 4.9.2 Yêu cầu chi tiết
 
 | ID            | Yêu cầu                                                | Mức độ   |
 | ------------- | ------------------------------------------------------ | -------- |
@@ -994,9 +726,9 @@ Cho phép cán bộ, giảng viên tự phục vụ một số tác vụ cơ b�
 | **FR-SS-009** | Cập nhật thông tin đăng ký thuế TNCN (người phụ thuộc) | Bắt buộc |
 | **FR-SS-010** | Nhận thông báo từ Phòng TCCB, Phòng TCKT               | Bắt buộc |
 
-### 4.14 Module Quản lý Cấu hình Hệ thống (System Configuration Management)
+### 4.10 Module Quản lý Cấu hình Hệ thống (System Configuration Management)
 
-#### 4.14.1 Mô tả
+#### 4.10.1 Mô tả
 
 Quản lý các tham số cấu hình của hệ thống liên quan đến lương, phụ cấp, hợp đồng và các quy định nghiệp vụ. Module này cho phép quản trị viên cập nhật các giá trị khi quy định nhà nước hoặc nội bộ thay đổi mà không cần sửa mã nguồn.
 
@@ -1007,9 +739,9 @@ Quản lý các tham số cấu hình của hệ thống liên quan đến lươ
 > - Hệ thống phải lưu lịch sử thay đổi cấu hình để đảm bảo tính toán chính xác theo thời điểm
 > - Mỗi cấu hình phải có ngày hiệu lực để hỗ trợ tính toán hồi cố
 
-#### 4.14.2 Yêu cầu chi tiết
+#### 4.10.2 Yêu cầu chi tiết
 
-##### 4.14.2.1 Cấu hình Lương và Hệ số
+##### 4.10.2.1 Cấu hình Lương và Hệ số
 
 | ID            | Yêu cầu                                                                                      | Mức độ   |
 | ------------- | -------------------------------------------------------------------------------------------- | -------- |
@@ -1019,18 +751,15 @@ Quản lý các tham số cấu hình của hệ thống liên quan đến lươ
 | **FR-CF-004** | Quản lý số bậc và hệ số tương ứng cho mỗi ngạch (VD: Giảng viên có 9 bậc, hệ số 2.34 - 4.98) | Bắt buộc |
 | **FR-CF-005** | Lưu lịch sử thay đổi hệ số lương theo thời gian để tính lương hồi cố                         | Bắt buộc |
 
-##### 4.14.2.2 Cấu hình Phụ cấp
+##### 4.10.2.2 Cấu hình Phụ cấp
 
 | ID            | Yêu cầu                                                                                         | Mức độ   |
 | ------------- | ----------------------------------------------------------------------------------------------- | -------- |
 | **FR-CF-006** | Quản lý danh mục loại phụ cấp (chức vụ, thâm niên, ưu đãi ngành, trách nhiệm, độc hại, khu vực) | Bắt buộc |
-| **FR-CF-007** | Cấu hình công thức tính phụ cấp cho từng loại (hệ số × lương cơ sở, % × lương ngạch bậc, v.v.)  | Bắt buộc |
-| **FR-CF-008** | Quản lý bảng hệ số phụ cấp chức vụ theo từng vị trí (Hiệu trưởng, Phó HT, Trưởng khoa, v.v.)    | Bắt buộc |
-| **FR-CF-009** | Cấu hình quy tắc phụ cấp thâm niên: số năm bắt đầu, tỷ lệ khởi điểm, tỷ lệ tăng thêm mỗi năm    | Bắt buộc |
-| **FR-CF-010** | Quản lý tỷ lệ phụ cấp ưu đãi ngành theo nhóm đối tượng                                          | Bắt buộc |
+
 | **FR-CF-011** | Hỗ trợ tạo loại phụ cấp mới theo yêu cầu nghiệp vụ                                              | Bắt buộc |
 
-##### 4.14.2.3 Cấu hình Hợp đồng
+##### 4.10.2.3 Cấu hình Hợp đồng
 
 | ID            | Yêu cầu                                                                                            | Mức độ   |
 | ------------- | -------------------------------------------------------------------------------------------------- | -------- |
@@ -1040,47 +769,22 @@ Quản lý các tham số cấu hình của hệ thống liên quan đến lươ
 | **FR-CF-015** | Cấu hình thời gian thử việc theo vị trí/chức danh                                                  | Bắt buộc |
 | **FR-CF-016** | Cấu hình quy tắc chuyển đổi loại hợp đồng (từ thử việc → chính thức, từ có thời hạn → vô thời hạn) | Bắt buộc |
 
-##### 4.14.2.4 Cấu hình Bảo hiểm và Thuế
 
-| ID            | Yêu cầu                                                                    | Mức độ   |
-| ------------- | -------------------------------------------------------------------------- | -------- |
-| **FR-CF-017** | Cấu hình tỷ lệ đóng BHXH (phần người lao động và người sử dụng lao động)   | Bắt buộc |
-| **FR-CF-018** | Cấu hình tỷ lệ đóng BHYT, BHTN                                             | Bắt buộc |
-| **FR-CF-019** | Cấu hình mức trần đóng BHXH (nếu có)                                       | Bắt buộc |
-| **FR-CF-020** | Cấu hình bảng thuế TNCN lũy tiến (các bậc thu nhập và thuế suất tương ứng) | Bắt buộc |
-| **FR-CF-021** | Cấu hình mức giảm trừ gia cảnh bản thân và người phụ thuộc                 | Bắt buộc |
 
-##### 4.14.2.5 Cấu hình Nghỉ phép và Chấm công
 
-| ID            | Yêu cầu                                                              | Mức độ   |
-| ------------- | -------------------------------------------------------------------- | -------- |
-| **FR-CF-022** | Cấu hình số ngày phép năm cơ bản và quy tắc cộng thêm theo thâm niên | Bắt buộc |
-| **FR-CF-023** | Quản lý danh mục loại nghỉ phép và số ngày tối đa cho từng loại      | Bắt buộc |
-| **FR-CF-024** | Cấu hình quy tắc chuyển phép năm sang năm sau (nếu cho phép)         | Tùy chọn |
-| **FR-CF-025** | Cấu hình giờ làm việc chuẩn theo ngày/tuần                           | Bắt buộc |
-| **FR-CF-026** | Cấu hình hệ số lương làm thêm giờ (ngày thường, cuối tuần, ngày lễ)  | Bắt buộc |
 
-##### 4.14.2.6 Cấu hình Giờ giảng (Đặc thù Đại học)
-
-| ID            | Yêu cầu                                                                                      | Mức độ   |
-| ------------- | -------------------------------------------------------------------------------------------- | -------- |
-| **FR-CF-027** | Cấu hình định mức giờ giảng chuẩn theo chức danh/học hàm                                     | Bắt buộc |
-| **FR-CF-028** | Cấu hình hệ số quy đổi giờ giảng (lý thuyết, thực hành, hướng dẫn đồ án, hướng dẫn thực tập) | Bắt buộc |
-| **FR-CF-029** | Cấu hình đơn giá giờ giảng vượt định mức theo chức danh                                      | Bắt buộc |
-| **FR-CF-030** | Cấu hình quy đổi hoạt động khác ra giờ giảng (NCKH, hướng dẫn NCS/cao học, chấm thi, v.v.)   | Bắt buộc |
-
-##### 4.14.2.7 Quản lý và Kiểm soát Cấu hình
+##### 4.10.2.6 Quản lý và Kiểm soát Cấu hình
 
 | ID            | Yêu cầu                                                                             | Mức độ   |
 | ------------- | ----------------------------------------------------------------------------------- | -------- |
 | **FR-CF-031** | Phân quyền quản lý cấu hình (chỉ Quản trị viên hoặc Phòng TCCB/TCKT được cấp quyền) | Bắt buộc |
 | **FR-CF-032** | Lưu đầy đủ lịch sử thay đổi cấu hình (ai thay đổi, thời gian, giá trị cũ/mới)       | Bắt buộc |
-| **FR-CF-033** | Yêu cầu phê duyệt khi thay đổi cấu hình quan trọng (lương cơ sở, hệ số lương)       | Bắt buộc |
+
 | **FR-CF-034** | Cảnh báo khi cấu hình sắp hết hiệu lực hoặc cần cập nhật theo quy định mới          | Tùy chọn |
 | **FR-CF-035** | Hỗ trợ import/export cấu hình (Excel, JSON) để sao lưu và chuyển đổi                | Tùy chọn |
 | **FR-CF-036** | Kiểm tra tính hợp lệ của cấu hình trước khi lưu (validate ranges, dependencies)     | Bắt buộc |
 
-##### 4.14.2.8 Quản lý Danh mục Dùng chung (Master Data)
+##### 4.10.2.7 Quản lý Danh mục Dùng chung (Master Data)
 
 | ID            | Yêu cầu                                                                                                   | Mức độ   |
 | ------------- | --------------------------------------------------------------------------------------------------------- | -------- |
@@ -1090,58 +794,31 @@ Quản lý các tham số cấu hình của hệ thống liên quan đến lươ
 | **FR-CF-040** | Hỗ trợ danh mục phân cấp (hierarchical) cho một số loại (VD: Quốc gia → Tỉnh/Thành phố)                   | Tùy chọn |
 | **FR-CF-041** | Không cho phép xóa mục danh mục đang được sử dụng, chỉ cho phép đánh dấu inactive                         | Bắt buộc |
 
-##### 4.14.2.9 Cấu hình Tiêu chí và Danh mục Nghiệp vụ (Business Criteria & Catalogs)
+##### 4.10.2.8 Cấu hình Tiêu chí và Danh mục Nghiệp vụ (Business Criteria & Catalogs)
 
 > [!IMPORTANT]
 > **Nguyên tắc thiết kế:**
-> Các tiêu chí đánh giá và danh mục nghiệp vụ được cấu hình riêng cho từng quy trình (tuyển dụng, đánh giá, đào tạo, NCKH). Admin có thể tùy chỉnh tiêu chí và hệ số theo yêu cầu thực tế của đơn vị.
+> Các tiêu chí đánh giá và danh mục nghiệp vụ được cấu hình riêng cho từng quy trình (đánh giá, đào tạo, NCKH). Admin có thể tùy chỉnh tiêu chí và hệ số theo yêu cầu thực tế của đơn vị.
 
-**A. Tiêu chí Tuyển dụng (Recruitment Criteria)**
-
-| ID            | Yêu cầu                                                                                          | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------------------------ | -------- |
-| **FR-CF-042** | Cấu hình tiêu chí sơ tuyển hồ sơ: danh sách tiêu chí, điểm tối đa, hệ số từng tiêu chí           | Bắt buộc |
-| **FR-CF-043** | Cấu hình tiêu chí đánh giá phỏng vấn: danh sách tiêu chí, điểm tối đa, hệ số từng tiêu chí       | Bắt buộc |
-
-**B. Tiêu chí Đánh giá Nhân sự (Performance Criteria)**
+**A. Tiêu chí Đánh giá Nhân sự (Performance Criteria)**
 
 | ID            | Yêu cầu                                                                                          | Mức độ   |
 | ------------- | ------------------------------------------------------------------------------------------------ | -------- |
-| **FR-CF-044** | Cấu hình tiêu chí đánh giá theo nhóm nhân sự (Giảng viên, Chuyên viên, Phục vụ)                  | Bắt buộc |
+| **FR-CF-042** | Cấu hình tiêu chí đánh giá theo nhóm nhân sự (Giảng viên, Chuyên viên, Phục vụ)                  | Bắt buộc |
 
-**C. Danh mục Đào tạo và Nghiên cứu (Training & Research Catalogs)**
+**B. Danh mục Đào tạo và Nghiên cứu (Training & Research Catalogs)**
 
 | ID            | Yêu cầu                                                                                          | Mức độ   |
 | ------------- | ------------------------------------------------------------------------------------------------ | -------- |
-| **FR-CF-045** | Quản lý danh mục loại đào tạo: trong nước, nước ngoài, ngắn hạn, dài hạn, NCS, cao học           | Bắt buộc |
-| **FR-CF-046** | Quản lý danh mục loại sản phẩm NCKH: bài báo ISI/Scopus, sách, đề tài, sáng chế, v.v.            | Bắt buộc |
-| **FR-CF-047** | Cấu hình hệ số quy đổi sản phẩm NCKH sang giờ chuẩn theo loại sản phẩm                           | Bắt buộc |
+| **FR-CF-043** | Quản lý danh mục loại đào tạo: trong nước, nước ngoài, ngắn hạn, dài hạn, NCS, cao học           | Bắt buộc |
+| **FR-CF-044** | Quản lý danh mục loại sản phẩm NCKH: bài báo ISI/Scopus, sách, đề tài, sáng chế, v.v.            | Bắt buộc |
+| **FR-CF-045** | Cấu hình hệ số quy đổi sản phẩm NCKH sang giờ chuẩn theo loại sản phẩm                           | Bắt buộc |
 
-##### 4.14.2.10 Cấu hình Giờ Giảng Vượt Định mức (Overtime Teaching Hours Configuration)
+##### 4.10.2.9 Cấu hình Tham số Nghiệp vụ (Business Parameter Configuration)
 
 > [!IMPORTANT]
 > **Nguyên tắc thiết kế:**
-> Hệ thống **chỉ tính giờ vượt định mức**, không tính tiền thanh toán. Dữ liệu giờ vượt và đơn giá được xuất cho hệ thống tính lương bên ngoài xử lý.
-
-| ID            | Yêu cầu                                                                                          | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------------------------ | -------- |
-| **FR-CF-048** | Công thức tính giờ vượt: `Giờ vượt = Giờ thực tế - Định mức` (không tính tiền)                   | Bắt buộc |
-| **FR-CF-049** | Tham số cấu hình: Bảng định mức giờ giảng theo chức danh/học hàm (từ FR-CF-027)                  | Bắt buộc |
-| **FR-CF-050** | Tham số cấu hình: Bảng đơn giá giờ vượt theo chức danh (lưu trữ để xuất cho hệ thống bên ngoài)  | Bắt buộc |
-| **FR-CF-051** | Tham số cấu hình: Hệ số quy đổi các loại hoạt động ra giờ chuẩn                                  | Bắt buộc |
-
-> [!NOTE]
-> **Dữ liệu xuất cho Hệ thống Tính lương Bên ngoài:**
-> - Mã cán bộ, họ tên, chức danh
-> - Tổng giờ thực tế, định mức, giờ vượt
-> - Đơn giá giờ vượt (tham khảo)
-> - Hệ thống bên ngoài sẽ tính tiền thanh toán: `Tiền = Giờ vượt × Đơn giá`
-
-##### 4.14.2.11 Cấu hình Tham số Nghiệp vụ (Business Parameter Configuration)
-
-> [!IMPORTANT]
-> **Nguyên tắc thiết kế:**
-> Các cấu hình giờ giảng (4.14.2.10) và tiêu chí nghiệp vụ (4.14.2.9) có các tham số riêng. Admin cấu hình tham số qua giao diện đơn giản. Mỗi thay đổi tham số tạo **phiên bản mới** với ngày hiệu lực.
+> Các tiêu chí nghiệp vụ có các tham số riêng. Admin cấu hình tham số qua giao diện đơn giản. Mỗi thay đổi tham số tạo **phiên bản mới** với ngày hiệu lực.
 
 **A. Giao diện Cấu hình Tham số**
 
@@ -1169,33 +846,7 @@ Quản lý các tham số cấu hình của hệ thống liên quan đến lươ
 | **FR-CF-061** | Cho phép test/preview kết quả với dữ liệu mẫu trước khi lưu                                      | Bắt buộc |
 | **FR-CF-062** | Hiển thị so sánh kết quả cũ vs mới cho một số nhân viên mẫu                                      | Bắt buộc |
 
-> [!NOTE]
-> **Ví dụ: Cấu hình Giờ Giảng Vượt Định mức**
->
-> ```
-> ┌─────────────────────────────────────────────────────────────┐
-> │ Cấu hình: Giờ Giảng Vượt Định mức                          │
-> │ Mô tả: Tính giờ vượt để xuất cho hệ thống tính lương       │
-> ├─────────────────────────────────────────────────────────────┤
-> │                                                             │
-> │ ┌─────────────────────────────────────────────────────────┐ │
-> │ │ Bảng định mức giờ giảng theo chức danh                 │ │
-> │ ├────────────────────────┬────────────────────────────────┤ │
-> │ │ Chức danh              │ Định mức (giờ/năm)             │ │
-> │ ├────────────────────────┼────────────────────────────────┤ │
-> │ │ Giảng viên             │         270                    │ │
-> │ │ Giảng viên chính       │         250                    │ │
-> │ │ Phó Giáo sư            │         230                    │ │
-> │ │ Giáo sư                │         200                    │ │
-> │ └────────────────────────┴────────────────────────────────┘ │
-> │                                                             │
-> │ Ngày hiệu lực:           [01/09/2025]                       │
-> │                                                             │
-> │              [Xem trước kết quả]  [Lưu]                     │
-> └─────────────────────────────────────────────────────────────┘
-> ```
-
-##### 4.14.2.12 Quản lý Phiên bản Cấu hình (Configuration Versioning)
+##### 4.10.2.10 Quản lý Phiên bản Cấu hình (Configuration Versioning)
 
 > [!IMPORTANT]
 > **Nguyên tắc:**
@@ -1221,94 +872,38 @@ Quản lý các tham số cấu hình của hệ thống liên quan đến lươ
 | **FR-CF-068** | Admin chỉ cần sửa các tham số cần thay đổi, các tham số khác giữ nguyên                             | Bắt buộc |
 | **FR-CF-069** | Hiển thị rõ ràng tham số nào đã thay đổi so với phiên bản trước                                     | Bắt buộc |
 
-**C. Phê duyệt và Log**
+**C. Log**
 
 | ID            | Yêu cầu                                                                                          | Mức độ   |
 | ------------- | ------------------------------------------------------------------------------------------------ | -------- |
-| **FR-CF-070** | Yêu cầu phê duyệt trước khi phiên bản mới có hiệu lực (ít nhất Trưởng P.TCCB hoặc tương đương)   | Bắt buộc |
-| **FR-CF-071** | Ghi log chi tiết mọi thay đổi: ai, lúc nào, thay đổi gì, lý do, phê duyệt bởi ai                 | Bắt buộc |
+
+| **FR-CF-071** | Ghi log chi tiết mọi thay đổi: ai, lúc nào, thay đổi gì, lý do            | Bắt buộc |
 
 > [!NOTE]
 > **Ví dụ: Lịch sử Phiên bản Định mức Giờ Giảng**
 >
-> | Version | Hiệu lực từ | Thay đổi                                    | Phê duyệt     |
-> | ------- | ----------- | ------------------------------------------- | ------------- |
-> | v1.0    | 01/01/2020  | Khởi tạo định mức theo Quyết định 64/2008   | Admin         |
-> | v1.1    | 01/09/2023  | Điều chỉnh định mức cho GS: 210 → 200 giờ   | Trưởng P.TCCB |
-> | v2.0    | 01/09/2025  | Cập nhật theo Thông tư mới                  | Trưởng P.TCCB |
+> | Version | Hiệu lực từ | Thay đổi                                    | Lý do thay đổi     |
+> | ------- | ----------- | ------------------------------------------- | ------------------- |
+> | v1.0    | 01/01/2020  | Khởi tạo định mức theo Quyết định 64/2008   |                     |
+> | v1.1    | 01/09/2023  | Điều chỉnh định mức cho GS: 210 → 200 giờ   |                     |
+> | v2.0    | 01/09/2025  | Cập nhật theo Thông tư mới                  |                     |
 
-##### 4.14.2.13 Quy trình Phê duyệt Sẵn có (Pre-defined Approval Workflows)
 
-> [!IMPORTANT]
-> **Nguyên tắc thiết kế:**
-> Thay vì cung cấp công cụ tạo workflow tổng quát (phức tạp, dễ sai), hệ thống cung cấp các **quy trình phê duyệt sẵn có** được thiết kế đặc thù cho Trường Đại học Thủy lợi. Mỗi quy trình có:
->
-> - **Các bước cố định:** Luồng phê duyệt được lập trình sẵn theo quy định của TLU
-> - **Tham số cấu hình:** Admin có thể điều chỉnh người phê duyệt, thời hạn, thông báo
->
-> Admin **KHÔNG** tự tạo workflow mới hoặc thay đổi logic luồng phê duyệt.
 
-**A. Danh sách Quy trình Sẵn có**
-
-| ID            | Yêu cầu                                                                                                      | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------------------------------------ | -------- |
-| **FR-CF-072** | Hệ thống có sẵn 6 quy trình phê duyệt chuẩn cho TLU (xem bảng dưới)                                          | Bắt buộc |
-
-| Quy trình | Các bước (cố định) | Ghi chú |
-|-----------|-------------------|---------|
-| **Nghỉ phép** | Nhân viên → Trưởng đơn vị → P.TCCB | Nghỉ >3 ngày cần thêm bước Hiệu trưởng |
-| **Hợp đồng mới** | Trưởng đơn vị → P.TCCB → Hiệu trưởng | Áp dụng cho tuyển dụng mới |
-| **Gia hạn hợp đồng** | Trưởng đơn vị → P.TCCB → Hiệu trưởng | Trước khi HĐ hết hạn 30 ngày |
-| **Nâng lương thường xuyên** | P.TCCB → Hội đồng lương → Hiệu trưởng | Theo định kỳ nâng bậc |
-| **Đánh giá viên chức** | Tự ĐG → Trưởng đơn vị → P.TCCB → Hội đồng TĐKT | Cuối năm |
-| **Thay đổi cấu hình hệ thống** | Admin → Trưởng P.TCCB/TCKT | Phê duyệt thay đổi tham số |
-
-**B. Cấu hình Quy trình**
-
-| ID            | Yêu cầu                                                                                                      | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------------------------------------ | -------- |
-| **FR-CF-073** | Admin có thể bật/tắt một số bước tùy chọn trong quy trình (VD: bỏ bước Hiệu trưởng cho nghỉ phép ngắn)       | Bắt buộc |
-| **FR-CF-074** | Admin cấu hình người phê duyệt cho mỗi bước: theo vai trò (Trưởng đơn vị) hoặc cá nhân cụ thể                | Bắt buộc |
-| **FR-CF-075** | Admin cấu hình thời hạn xử lý cho mỗi bước (VD: Trưởng đơn vị phải duyệt trong 2 ngày làm việc)              | Bắt buộc |
-| **FR-CF-076** | Hành động tại mỗi bước: Phê duyệt, Từ chối, Yêu cầu bổ sung thông tin                                        | Bắt buộc |
-| **FR-CF-077** | Cấu hình thông báo (email, in-app) cho từng sự kiện: gửi yêu cầu, nhắc nhở, kết quả                          | Bắt buộc |
-| **FR-CF-078** | Hỗ trợ ủy quyền phê duyệt: người A ủy quyền cho người B trong khoảng thời gian nhất định                     | Bắt buộc |
-| **FR-CF-079** | Lưu lịch sử đầy đủ của mỗi quy trình: ai làm gì, lúc nào, kết quả, ghi chú                                   | Bắt buộc |
-
-> [!NOTE]
-> **So sánh: Workflow Engine tổng quát vs Quy trình sẵn có**
->
-> | Tiêu chí | Workflow Engine (KHÔNG dùng) | Quy trình sẵn có (DÙNG) |
-> |----------|------------------------------|-------------------------|
-> | Tự tạo workflow mới | ✓ Có thể | ✗ Không |
-> | Logic song song/điều kiện | ✓ Có thể | ✗ Không (tuần tự cố định) |
-> | Rủi ro cấu hình sai | Cao | Thấp |
-> | Yêu cầu đào tạo Admin | Nhiều | Ít |
-> | Phù hợp quy định TLU | Tự chịu trách nhiệm | Đảm bảo sẵn |
-
-##### 4.14.2.13 Cấu hình Khung Đánh giá (Evaluation Framework)
+##### 4.10.2.11 Cấu hình Khung Đánh giá (Evaluation Framework)
 
 | ID            | Yêu cầu                                                                                                                   | Mức độ   |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------- | -------- |
 | **FR-CF-080** | Cho phép định nghĩa các loại đánh giá (đánh giá viên chức hàng năm, đánh giá CVHT, đánh giá thử việc, v.v.)               | Bắt buộc |
-| **FR-CF-081** | Mỗi loại đánh giá có: tên, mô tả, chu kỳ đánh giá, đối tượng áp dụng, quy trình phê duyệt                                 | Bắt buộc |
+| **FR-CF-081** | Mỗi loại đánh giá có: tên, mô tả, chu kỳ đánh giá, đối tượng áp dụng                 | Bắt buộc |
 | **FR-CF-082** | Mỗi loại đánh giá có danh sách tiêu chí, mỗi tiêu chí có: tên, mô tả, điểm tối đa, trọng số                               | Bắt buộc |
 | **FR-CF-083** | Cấu hình thang điểm và ngưỡng phân loại kết quả (VD: ≥90 = Xuất sắc, ≥70 = Tốt, ≥50 = Hoàn thành, <50 = Không hoàn thành) | Bắt buộc |
 | **FR-CF-084** | Cấu hình liên kết giữa kết quả đánh giá và các chế độ (hệ số thưởng, hệ số phụ cấp, điều kiện nâng lương)                 | Bắt buộc |
 | **FR-CF-085** | Hỗ trợ nhiều nguồn đánh giá: tự đánh giá, cấp trên đánh giá, đồng nghiệp đánh giá, sinh viên đánh giá                     | Tùy chọn |
 
-##### 4.14.2.14 Cấu hình Loại Hoạt động và Quy đổi (Activity Types)
 
-| ID            | Yêu cầu                                                                                                       | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------------------------------------- | -------- |
-| **FR-CF-086** | Cho phép định nghĩa danh mục loại hoạt động giảng dạy (lý thuyết, thực hành, hướng dẫn đồ án, chấm thi, v.v.) | Bắt buộc |
-| **FR-CF-087** | Mỗi loại hoạt động có: mã, tên, đơn vị tính, hệ số quy đổi ra giờ chuẩn                                       | Bắt buộc |
-| **FR-CF-088** | Cho phép định nghĩa danh mục loại sản phẩm NCKH (bài báo quốc tế, bài báo trong nước, sách, patent, v.v.)     | Bắt buộc |
-| **FR-CF-089** | Mỗi loại sản phẩm NCKH có: mã, tên, yêu cầu minh chứng (ISSN, ISBN, v.v.), hệ số quy đổi                      | Bắt buộc |
-| **FR-CF-090** | Cho phép định nghĩa danh mục loại đề tài NCKH (cấp trường, cấp bộ, cấp nhà nước, v.v.)                        | Bắt buộc |
-| **FR-CF-091** | Cấu hình quy tắc quy đổi từ hoạt động/sản phẩm ra giờ chuẩn hoặc điểm NCKH                                    | Bắt buộc |
 
-##### 4.14.2.15 Ràng buộc và Validation
+##### 4.10.2.13 Ràng buộc và Validation
 
 > [!NOTE]
 > Các ràng buộc dữ liệu được xây dựng sẵn trong hệ thống (hardcoded) để đảm bảo tính ổn định và toàn vẹn dữ liệu. Admin không thể thêm ràng buộc tùy chỉnh.
@@ -1319,55 +914,26 @@ Quản lý các tham số cấu hình của hệ thống liên quan đến lươ
 | **FR-CF-093** | Hệ thống kiểm tra dependency giữa các cấu hình trước khi lưu (VD: ngạch phải có bậc, chức vụ phải có phụ cấp) | Bắt buộc |
 | **FR-CF-094** | Cảnh báo khi cấu hình thiếu dependency hoặc có xung đột                                                       | Bắt buộc |
 
-##### 4.14.2.16 Cấu hình Giảm Định mức Giờ giảng cho Chức vụ Quản lý
-
-> [!NOTE]
-> Giảng viên kiêm nhiệm chức vụ quản lý (Trưởng khoa, Phó khoa, Trưởng bộ môn, v.v.) được giảm định mức giờ giảng để có thời gian thực hiện công tác quản lý. Mức giảm được cấu hình theo từng chức vụ.
-
-| ID            | Yêu cầu                                                                                                       | Mức độ   |
-| ------------- | ------------------------------------------------------------------------------------------------------------- | -------- |
-| **FR-CF-095** | Cấu hình danh sách chức vụ quản lý được giảm định mức giờ giảng (Trưởng khoa, Phó khoa, Trưởng bộ môn, Trưởng phòng, Phó phòng, v.v.) | Bắt buộc |
-| **FR-CF-096** | Cấu hình loại giảm định mức: Theo tỷ lệ phần trăm (%) hoặc Theo số giờ cố định                               | Bắt buộc |
-| **FR-CF-097** | Cấu hình mức giảm cụ thể cho từng chức vụ (VD: Trưởng khoa giảm 50%, Phó khoa giảm 30%, Trưởng BM giảm 20%)   | Bắt buộc |
-| **FR-CF-098** | Hệ thống tự động tính định mức thực tế = Định mức chuẩn - Mức giảm khi giảng viên giữ chức vụ quản lý         | Bắt buộc |
-| **FR-CF-099** | Nếu giảng viên kiêm nhiều chức vụ, áp dụng mức giảm cao nhất (không cộng dồn)                                 | Bắt buộc |
-| **FR-CF-100** | Lưu lịch sử thay đổi chức vụ để tính giảm định mức theo từng giai đoạn trong năm học                          | Bắt buộc |
-
-> [!EXAMPLE]
-> **Ví dụ tính định mức thực tế:**
-> - GVC Nguyễn Văn A: Định mức chuẩn = 270 giờ/năm
-> - Chức vụ: Trưởng bộ môn (giảm 20%)
-> - Định mức thực tế = 270 × (1 - 20%) = 216 giờ/năm
-> - Giờ vượt định mức = Giờ thực tế - 216 giờ
-
 > [!NOTE]
 > **Tổng kết Module FR-CF:**
 >
 > | Section | ID Range | Mô tả |
 > |---------|----------|-------|
-> | 4.14.2.1 | FR-CF-001 - 005 | Cấu hình Lương và Hệ số |
-> | 4.14.2.2 | FR-CF-006 - 011 | Cấu hình Phụ cấp |
-> | 4.14.2.3 | FR-CF-012 - 016 | Cấu hình Hợp đồng |
-> | 4.14.2.4 | FR-CF-017 - 021 | Cấu hình Bảo hiểm và Thuế (lưu trữ để xuất) |
-> | 4.14.2.5 | FR-CF-022 - 026 | Cấu hình Nghỉ phép và Chấm công |
-> | 4.14.2.6 | FR-CF-027 - 030 | Cấu hình Giờ giảng |
-> | 4.14.2.7 | FR-CF-031 - 036 | Quản lý và Kiểm soát Cấu hình |
-> | 4.14.2.8 | FR-CF-037 - 041 | Quản lý Danh mục Dùng chung |
-> | 4.14.2.9 | FR-CF-042 - 047 | Tiêu chí và Danh mục Nghiệp vụ |
-> | 4.14.2.10 | FR-CF-048 - 051 | Giờ Giảng Vượt Định mức |
-> | 4.14.2.11 | FR-CF-052 - 062 | Cấu hình Tham số Nghiệp vụ |
-> | 4.14.2.12 | FR-CF-063 - 071 | Quản lý Phiên bản Cấu hình |
-> | 4.14.2.13 | FR-CF-072 - 079 | **Quy trình Phê duyệt Sẵn có** (Pre-defined) |
-> | 4.14.2.14 | FR-CF-080 - 085 | Cấu hình Khung Đánh giá |
-> | 4.14.2.15 | FR-CF-086 - 091 | Cấu hình Loại Hoạt động |
-> | 4.14.2.16 | FR-CF-092 - 094 | Ràng buộc và Validation (hardcoded) |
-> | 4.14.2.17 | FR-CF-095 - 100 | Giảm định mức Giờ giảng cho Chức vụ Quản lý |
->
-> **Tổng cộng: 100 yêu cầu FR-CF** (giảm 20 yêu cầu sau khi loại bỏ các module tính lương)
+> | 4.10.2.1 | FR-CF-001 - 005 | Cấu hình Lương và Hệ số |
+> | 4.10.2.2 | FR-CF-006 - 011 | Cấu hình Phụ cấp |
+> | 4.10.2.3 | FR-CF-012 - 016 | Cấu hình Hợp đồng |
+> | 4.10.2.6 | FR-CF-031 - 036 | Quản lý và Kiểm soát Cấu hình |
+> | 4.10.2.7 | FR-CF-037 - 041 | Quản lý Danh mục Dùng chung |
+> | 4.10.2.8 | FR-CF-042 - 045 | Tiêu chí và Danh mục Nghiệp vụ |
+> | 4.10.2.9 | FR-CF-052 - 062 | Cấu hình Tham số Nghiệp vụ |
+> | 4.10.2.10 | FR-CF-063 - 071 | Quản lý Phiên bản Cấu hình |
+> | 4.10.2.10 | FR-CF-063 - 071 | Quản lý Phiên bản Cấu hình |
+> | 4.10.2.11 | FR-CF-080 - 085 | Cấu hình Khung Đánh giá |
+> | 4.10.2.13 | FR-CF-092 - 094 | Ràng buộc và Validation (hardcoded) |
 >
 > **Điểm khác biệt:**
 > - ✅ Không còn các module tính lương, bảo hiểm, thuế - hệ thống bên ngoài tính toán
-> - ✅ Không còn "Parameterized Formulas" tổng quát - chỉ giữ giờ giảng vượt định mức
+> - ✅ Không còn module Giờ giảng (FR-TL) - dữ liệu giảng dạy quản lý bên ngoài
 > - ✅ Không còn "Workflow Engine" tổng quát - thay bằng quy trình sẵn có cho TLU
 > - ✅ Admin chỉ cần nhập số vào form, không cần hiểu công thức hoặc logic
 > - ✅ Dữ liệu lương được lưu trữ để xuất cho hệ thống tính lương bên ngoài
@@ -1423,7 +989,7 @@ Quản lý các tham số cấu hình của hệ thống liên quan đến lươ
 
 | ID             | Yêu cầu   | Chi tiết                                          |
 | -------------- | --------- | ------------------------------------------------- |
-| **NFR-IN-001** | Chấm công | Tích hợp với máy chấm công hiện có                |
+| **NFR-IN-001** | Dữ liệu bên ngoài | Cung cấp API/export cho hệ thống chấm công bên ngoài |
 | **NFR-IN-002** | Đào tạo   | API tích hợp với hệ thống quản lý đào tạo         |
 | **NFR-IN-003** | Tài chính | Xuất dữ liệu tương thích với phần mềm kế toán     |
 | **NFR-IN-004** | BHXH      | Hỗ trợ xuất file theo chuẩn BHXH điện tử          |
@@ -1444,23 +1010,6 @@ Quản lý các tham số cấu hình của hệ thống liên quan đến lươ
 
 ## 6. Mô hình nghiệp vụ
 
-### 6.1 Quy trình tuyển dụng
-
-```mermaid
-flowchart TD
-    A[Đề xuất tuyển dụng từ đơn vị] --> B[Phê duyệt kế hoạch tuyển dụng]
-    B --> C[Đăng thông báo tuyển dụng]
-    C --> D[Tiếp nhận hồ sơ]
-    D --> E[Sàng lọc hồ sơ]
-    E --> F[Tổ chức thi/phỏng vấn]
-    F --> G[Đánh giá ứng viên]
-    G --> H{Đạt yêu cầu?}
-    H -->|Có| I[Ra quyết định tuyển dụng]
-    H -->|Không| J[Thông báo không trúng tuyển]
-    I --> K[Ký hợp đồng thử việc]
-    K --> L[Tạo hồ sơ nhân sự]
-```
-
 ### 6.2 Quy trình quản lý hợp đồng
 
 ```mermaid
@@ -1479,44 +1028,6 @@ flowchart TD
     K --> G
 ```
 
-### 6.3 Quy trình nghỉ phép
-
-```mermaid
-flowchart TD
-    A[Nhân viên đăng ký nghỉ phép] --> B[Gửi đơn cho quản lý trực tiếp]
-    B --> C{Quản lý phê duyệt?}
-    C -->|Có| D[Chuyển Phòng TCCB]
-    C -->|Không| E[Trả lại nhân viên]
-    D --> F{Phòng TCCB duyệt?}
-    F -->|Có| G[Cập nhật ngày phép]
-    F -->|Không| E
-    G --> H[Thông báo cho nhân viên]
-```
-
-### 6.4 Quy trình tính lương
-
-```mermaid
-flowchart TD
-    A[Cuối tháng] --> B[Import dữ liệu chấm công]
-    B --> C[Tính lương cơ bản]
-    C --> D[Tính các khoản phụ cấp]
-    D --> E[Tính tiền dạy vượt giờ]
-    E --> F[Trích BHXH, BHYT, BHTN]
-    F --> G[Tính thuế TNCN]
-    G --> H[Trừ các khoản khấu trừ]
-    H --> I[Tạo bảng lương]
-    I --> J[Phòng TCKT kiểm tra]
-    J --> K{Duyệt?}
-    K -->|Có| L[Kế toán trưởng duyệt]
-    K -->|Không| M[Điều chỉnh]
-    M --> I
-    L --> N{Duyệt?}
-    N -->|Có| O[Hiệu trưởng duyệt]
-    N -->|Không| M
-    O --> P[Chi lương qua ngân hàng]
-    P --> Q[Gửi phiếu lương cho nhân viên]
-```
-
 ### 6.5 Quy trình đánh giá viên chức
 
 ```mermaid
@@ -1524,13 +1035,9 @@ flowchart TD
     A[Cuối năm] --> B[Thông báo đánh giá]
     B --> C[Nhân viên tự đánh giá]
     C --> D[Quản lý trực tiếp đánh giá]
-    D --> E[Họp đơn vị góp ý]
-    E --> F[Trưởng đơn vị xếp loại]
-    F --> G[Phòng TCCB tổng hợp]
-    G --> H[Hội đồng thi đua-khen thưởng]
-    H --> I[Hiệu trưởng phê duyệt]
-    I --> J[Công bố kết quả]
-    J --> K[Cập nhật hồ sơ]
+    D --> E[Họp đơn vị góp ý & Xếp loại]
+    E --> G[Phòng TCCB tổng hợp]
+    G --> K[Cập nhật hồ sơ & Công bố]
 ```
 
 ---

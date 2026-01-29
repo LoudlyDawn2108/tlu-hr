@@ -30,11 +30,7 @@
 |  [Kết quả]  |  [██████████████░░░░░░] 70% (842/1203)             |
 |  [Thi đua]  |                                                    |
 |             |  +----------------------------------------------+  |
-|             |  | BY STEP:                                     |  |
-|             |  | Tự đánh giá:    [██████████] 95%             |  |
-|             |  | Quản lý duyệt:  [██████░░░░] 60%             |  |
-|             |  | Hội đồng duyệt: [█░░░░░░░░░] 10%             |  |
-|             |  +----------------------------------------------+  |
+
 |             |                                                    |
 |             |  ACTION CENTER                                     |
 |             |  [Gửi nhắc nhở (361 chưa xong)]  [Gia hạn kỳ ĐG]   |
@@ -50,7 +46,7 @@
 
 ## 2. Evaluation Form Designer (Thiết kế Mẫu đánh giá)
 
-**Scope:** FR-CF-100 to FR-CF-105 (Evaluation Framework)
+**Scope:** FR-CF-080 to FR-CF-085 (Evaluation Framework)
 
 ```
 +------------------------------------------------------------------+
@@ -60,12 +56,12 @@
 |  Nhóm tiêu chí 1: Kết quả Công việc (Trọng số: 60%)              |
 |                                                                  |
 |  +-------------------------------------------------------------+ |
-|  | 1.1 Hoàn thành giờ giảng dạy                                | |
-|  |     Target: [Lấy từ Module Giờ giảng FR-TL]                 | |
+|  | 1.1 Hoàn thành công việc chuyên môn                         | |
+|  |     Target: [Theo đánh giá của Trưởng đơn vị]               | |
 |  |     Điểm tối đa: 40                                         | |
 |  |                                                             | |
 |  | 1.2 Kết quả NCKH                                            | |
-|  |     Target: [Lấy từ Module NCKH FR-RM]                      | |
+|  |     Target: [Lấy từ hệ thống NCKH bên ngoài]                      | |
 |  |     Điểm tối đa: 20                                         | |
 |  +-------------------------------------------------------------+ |
 |                                                                  |
@@ -127,10 +123,10 @@
 |  warning: Tỷ lệ Xuất sắc vượt quá quy định (Max 15%)             |
 |                                                                  |
 |  Danh sách đề xuất Khen thưởng (Chiến sĩ thi đua):               |
-|  | Tên          | Điểm | Thành tích nổi bật        | Duyệt       |
+|  | Tên          | Điểm | Thành tích nổi bật        | Trạng thái  |
 |  |--------------|------|---------------------------|-------------|
-|  | Nguyen Van A | 98   | 2 bài Q1, Dạy giỏi        | [x] Yes [ ] |
-|  | Tran Thi B   | 96   | Chủ nhiệm đề tài Bộ       | [x] Yes [ ] |
+|  | Nguyen Van A | 98   | 2 bài Q1, Dạy giỏi        | [x] Selected |
+|  | Tran Thi B   | 96   | Chủ nhiệm đề tài Bộ       | [x] Selected |
 |                                                                  |
 |  [Kết xuất Quyết định Khen thưởng] [Kết xuất Lương Thưởng]       |
 +------------------------------------------------------------------+

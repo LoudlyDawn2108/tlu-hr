@@ -51,17 +51,12 @@
 |             |  |    - Số năm thâm niên (để tính phụ cấp thâm niên)      | |
 |             |  |    - Số tài khoản ngân hàng                            | |
 |             |  |                                                        | |
-|             |  | 2. DỮ LIỆU CHẤM CÔNG (từ FR-TA)                        | |
+|             |  | 2. DỮ LIỆU CHẤM CÔNG (từ hệ thống bên ngoài)           | |
 |             |  |    - Số ngày công thực tế                              | |
 |             |  |    - Số ngày nghỉ phép (có lương, không lương)         | |
 |             |  |    - Số giờ làm thêm                                   | |
 |             |  |                                                        | |
-|             |  | 3. DỮ LIỆU GIỜ GIẢNG (từ FR-TL)                        | |
-|             |  |    - Tổng giờ chuẩn thực hiện                          | |
-|             |  |    - Giờ vượt định mức                                 | |
-|             |  |    - Định mức giờ giảng (sau khi trừ giảm chức vụ)     | |
-|             |  |                                                        | |
-|             |  | 4. THÔNG TIN NGƯỜI PHỤ THUỘC                           | |
+|             |  | 3. THÔNG TIN NGƯỜI PHỤ THUỘC                           | |
 |             |  |    - Số lượng người phụ thuộc                          | |
 |             |  |    - Thông tin chi tiết (cho giảm trừ thuế TNCN)       | |
 |             |  |                                                        | |
@@ -146,7 +141,6 @@
 |  | - Chức vụ: Trưởng bộ môn KHMT                                    |  |
 |  | - Thâm niên: 15 năm                                              |  |
 |  | - Ngày công: 22/22                                               |  |
-|  | - Giờ giảng: 85 giờ chuẩn (vượt 15 giờ)                          |  |
 |  | - Người phụ thuộc: 2                                             |  |
 |  | - STK: 0123456789 - Vietcombank                                  |  |
 |  +------------------------------------------------------------------+  |
@@ -302,7 +296,9 @@
 | `/api/v1/salary-data/config` | GET | Get salary configuration (base salary, rates) |
 | `/api/v1/salary-data/dependents/{employee_id}` | GET | Get dependent information |
 | `/api/v1/salary-data/attendance/{period}` | GET | Get attendance data for period |
-| `/api/v1/salary-data/teaching-load/{period}` | GET | Get teaching load data for period |
+
+> [!NOTE]
+> Dữ liệu giờ giảng được quản lý bởi hệ thống bên ngoài, không thuộc phạm vi HRMS.
 
 ## Sample Response
 
@@ -331,11 +327,6 @@
     "working_days": 22,
     "leave_days": 0,
     "overtime_hours": 0
-  },
-  "teaching_load": {
-    "standard_hours": 85,
-    "quota": 70,
-    "overtime_hours": 15
   }
 }
 ```

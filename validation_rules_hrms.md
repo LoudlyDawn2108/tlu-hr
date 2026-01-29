@@ -18,25 +18,22 @@
 4. [Module Quản lý Trình độ và Chức danh (FR-QM)](#4-module-quản-lý-trình-độ-và-chức-danh-fr-qm)
 5. [Module Quản lý Cơ cấu Tổ chức (FR-OS)](#5-module-quản-lý-cơ-cấu-tổ-chức-fr-os)
 6. [Module Quản lý Hợp đồng Lao động (FR-CM)](#6-module-quản-lý-hợp-đồng-lao-động-fr-cm)
-7. [Module Chấm công và Nghỉ phép (FR-TA)](#7-module-chấm-công-và-nghỉ-phép-fr-ta)
-8. [Dữ liệu Lương (FR-SD)](#8-dữ-liệu-lương-fr-sd---salary-data-for-external-integration)
-9. [Module Quản lý Giờ giảng (FR-TL)](#9-module-quản-lý-giờ-giảng-fr-tl)
-10. [Module Nghiên cứu Khoa học (FR-RM)](#10-module-nghiên-cứu-khoa-học-fr-rm)
-11. [Module Đánh giá và Khen thưởng (FR-PR)](#11-module-đánh-giá-và-khen-thưởng-fr-pr)
-12. [Module Đào tạo và Phát triển (FR-TD)](#12-module-đào-tạo-và-phát-triển-fr-td)
-13. [Module Tuyển dụng (FR-RC)](#13-module-tuyển-dụng-fr-rc)
-14. [Module Self-Service Portal (FR-SS)](#14-module-self-service-portal-fr-ss)
-15. [Module Báo cáo và Thống kê (FR-RP)](#15-module-báo-cáo-và-thống-kê-fr-rp)
-16. [Module Cấu hình Hệ thống (FR-CF)](#16-module-cấu-hình-hệ-thống-fr-cf)
-17. [Bảo mật và Kiểm soát Truy cập](#17-bảo-mật-và-kiểm-soát-truy-cập)
-18. [Danh mục Mã lỗi (Error Code Registry)](#18-danh-mục-mã-lỗi-error-code-registry)
-19. [Quy tắc Validation cho Workflow](#19-quy-tắc-validation-cho-workflow-6-quy-trình-định-sẵn)
-20. [Tổng hợp và Thống kê](#20-tổng-hợp-và-thống-kê)
-21. [Phụ lục A: Ghi chú Triển khai](#phụ-lục-a-ghi-chú-triển-khai)
-22. [Phụ lục B: Regex Patterns](#phụ-lục-b-regex-patterns)
-23. [Phụ lục C: Các Kịch bản Validation Liên Module](#phụ-lục-c-các-kịch-bản-validation-liên-module)
-24. [Phụ lục D: Edge Cases và Xử lý Đặc biệt](#phụ-lục-d-edge-cases-và-xử-lý-đặc-biệt)
-25. [Phụ lục E: Mapping với Database Constraints](#phụ-lục-e-mapping-với-database-constraints)
+7. [Dữ liệu Lương (FR-SD)](#7-dữ-liệu-lương-fr-sd---salary-data-for-external-integration)
+
+8. [Module Đánh giá và Khen thưởng (FR-PR)](#9-module-đánh-giá-và-khen-thưởng-fr-pr)
+9. [Module Đào tạo và Phát triển (FR-TD)](#10-module-đào-tạo-và-phát-triển-fr-td)
+10. [Module Self-Service Portal (FR-SS)](#11-module-self-service-portal-fr-ss)
+11. [Module Báo cáo và Thống kê (FR-RP)](#12-module-báo-cáo-và-thống-kê-fr-rp)
+12. [Module Cấu hình Hệ thống (FR-CF)](#13-module-cấu-hình-hệ-thống-fr-cf)
+13. [Bảo mật và Kiểm soát Truy cập](#14-bảo-mật-và-kiểm-soát-truy-cập)
+14. [Danh mục Mã lỗi (Error Code Registry)](#15-danh-mục-mã-lỗi-error-code-registry)
+15. [Quy tắc Validation cho Workflow](#16-quy-tắc-validation-cho-workflow-6-quy-trình-định-sẵn)
+16. [Tổng hợp và Thống kê](#17-tổng-hợp-và-thống-kê)
+18. [Phụ lục A: Ghi chú Triển khai](#phụ-lục-a-ghi-chú-triển-khai)
+19. [Phụ lục B: Regex Patterns](#phụ-lục-b-regex-patterns)
+20. [Phụ lục C: Các Kịch bản Validation Liên Module](#phụ-lục-c-các-kịch-bản-validation-liên-module)
+21. [Phụ lục D: Edge Cases và Xử lý Đặc biệt](#phụ-lục-d-edge-cases-và-xử-lý-đặc-biệt)
+22. [Phụ lục E: Mapping với Database Constraints](#phụ-lục-e-mapping-với-database-constraints)
 
 ---
 
@@ -295,43 +292,7 @@ Các quy tắc kiểm soát luồng phê duyệt và xử lý công việc.
 
 ---
 
-## 7. Module Chấm công và Nghỉ phép (FR-TA)
-
-### 7.1 Data Validation Rules
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-TA-001 | Ngày bắt đầu nghỉ bắt buộc | LeaveRequest.StartDate | Required | StartDate không được null | "Vui lòng chọn ngày bắt đầu nghỉ." | ERR_TA_001 | Wireframe 05 |
-| VR-TA-002 | Ngày kết thúc nghỉ bắt buộc | LeaveRequest.EndDate | Required | EndDate không được null | "Vui lòng chọn ngày kết thúc nghỉ." | ERR_TA_002 | Wireframe 05 |
-| VR-TA-003 | Loại nghỉ phép bắt buộc | LeaveRequest.LeaveType | Required | LeaveType không được null | "Vui lòng chọn loại nghỉ phép." | ERR_TA_003 | Wireframe 05 |
-| VR-TA-004 | Lý do nghỉ bắt buộc | LeaveRequest.Reason | Required | Reason không được null, tối thiểu 10 ký tự | "Vui lòng nhập lý do nghỉ (ít nhất 10 ký tự)." | ERR_TA_004 | Wireframe 05 |
-| VR-TA-005 | Số giờ làm thêm hợp lệ | Overtime.Hours | Range | Hours > 0 AND Hours ≤ 12 | "Số giờ làm thêm phải từ 0.5 đến 12 giờ." | ERR_TA_005 | Wireframe 09 |
-| VR-TA-006 | Lý do làm thêm bắt buộc | Overtime.Reason | Required | Reason không được null | "Vui lòng nhập lý do làm thêm giờ." | ERR_TA_006 | Wireframe 09 |
-
-### 7.2 Business Rules
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-TA-007 | Ngày kết thúc nghỉ sau ngày bắt đầu | LeaveRequest.StartDate, EndDate | Temporal | EndDate ≥ StartDate | "Ngày kết thúc nghỉ phải bằng hoặc sau ngày bắt đầu." | ERR_TA_007 | Wireframe 05 |
-| VR-TA-008 | Không nghỉ quá số ngày còn lại | LeaveRequest.Days, LeaveBalance | Threshold | RequestedDays ≤ RemainingBalance | "Số ngày nghỉ yêu cầu ([X]) vượt quá số ngày còn lại ([Y])." | ERR_TA_008 | Wireframe 05 |
-| VR-TA-009 | Không phê duyệt đơn đã quá hạn | LeaveRequest.StartDate, Status | Temporal | Nếu StartDate < Today AND Status = Pending thì không cho Approve | "Không thể phê duyệt đơn nghỉ đã quá ngày nghỉ. Vui lòng từ chối hoặc liên hệ quản trị." | ERR_TA_009 | Section 2.4.2 |
-| VR-TA-010 | Công thức số ngày phép năm | LeaveBalance.Annual | Calculation | BaseLeave = 12 + (SeniorityYears ÷ 5) × 1 (tối đa thêm 4 ngày) | N/A (auto-calculated) | N/A | FR-CF-022 |
-| VR-TA-011 | Số ngày phép còn lại | LeaveBalance.Remaining | Calculation | Remaining = Entitlement - Used - Pending | N/A (auto-calculated) | N/A | Section 2.4.2 |
-| VR-TA-012 | Check-out sau Check-in | Attendance.CheckIn, CheckOut | Temporal | CheckOut > CheckIn | "Giờ ra phải sau giờ vào." | ERR_TA_012 | Wireframe 09 |
-| VR-TA-013 | Cảnh báo bất thường chấm công | Attendance.* | Business Logic | Cảnh báo nếu: Thiếu check-in/out, Giờ làm < 4h, Làm việc ngày lễ không có OT | N/A (warning) | N/A | Wireframe 09 |
-| VR-TA-014 | Đăng ký nghỉ trước ngày nghỉ | LeaveRequest.StartDate, CreatedDate | Temporal | StartDate > CreatedDate (trừ trường hợp khẩn cấp) | "Ngày bắt đầu nghỉ phải sau ngày đăng ký." | ERR_TA_014 | Wireframe 05 |
-| VR-TA-015 | Giới hạn làm thêm giờ/tháng | Overtime.Hours | Threshold | Tổng OT trong tháng ≤ 40 giờ | "Đã vượt quá giới hạn làm thêm 40 giờ/tháng." | ERR_TA_015 | FR-TA |
-
-### 7.3 Cross-Entity Rules
-
-| Rule ID | Tên rule | Entities | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|----------|------|-----------|---------------|------------|------------|
-| VR-TA-016 | Loại nghỉ phép tồn tại | LeaveRequest.LeaveTypeId → LeaveType | Referential | LeaveTypeId phải tồn tại trong cấu hình | "Loại nghỉ phép không hợp lệ." | ERR_TA_016 | FR-CF-023 |
-| VR-TA-017 | Nhân viên có hợp đồng active | LeaveRequest.EmployeeId → Contract | Referential | Nhân viên phải có hợp đồng đang hiệu lực | "Nhân viên không có hợp đồng đang hiệu lực." | ERR_TA_017 | FR-TA |
-
----
-
-## 8. Dữ liệu Lương (FR-SD) - Salary Data for External Integration
+## 7. Dữ liệu Lương (FR-SD) - Salary Data for External Integration
 
 > [!NOTE]
 > **Module này KHÔNG tính toán lương.** Chỉ lưu trữ và validate dữ liệu để hệ thống bên ngoài truy xuất.
@@ -363,99 +324,11 @@ Các quy tắc kiểm soát luồng phê duyệt và xử lý công việc.
 
 ---
 
-## 9. Module Quản lý Giờ giảng (FR-TL)
 
-### 9.1 Data Validation Rules
 
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-TL-001 | Môn học bắt buộc | TeachingLoad.SubjectId | Required | SubjectId không được null | "Vui lòng chọn môn học." | ERR_TL_001 | Wireframe 03 |
-| VR-TL-002 | Mã lớp bắt buộc | TeachingLoad.ClassCode | Required | ClassCode không được null | "Vui lòng nhập mã lớp." | ERR_TL_002 | Wireframe 03 |
-| VR-TL-003 | Mã lớp đúng định dạng | TeachingLoad.ClassCode | Format | Alphanumeric, tối đa 20 ký tự | "Mã lớp chỉ chứa chữ và số, tối đa 20 ký tự." | ERR_TL_003 | Wireframe 03 |
-| VR-TL-004 | Số sinh viên bắt buộc | TeachingLoad.StudentCount | Required | StudentCount không được null | "Vui lòng nhập số sinh viên." | ERR_TL_004 | Wireframe 03 |
-| VR-TL-005 | Số sinh viên hợp lệ | TeachingLoad.StudentCount | Range | 1 ≤ StudentCount ≤ 200 | "Số sinh viên phải từ 1 đến 200." | ERR_TL_005 | Wireframe 03 |
-| VR-TL-006 | Số giờ thực bắt buộc | TeachingLoad.RawHours | Required | RawHours không được null | "Vui lòng nhập số giờ thực giảng." | ERR_TL_006 | Wireframe 03 |
-| VR-TL-007 | Số giờ thực hợp lệ | TeachingLoad.RawHours | Range | 0.5 ≤ RawHours ≤ 100 | "Số giờ thực giảng phải từ 0.5 đến 100." | ERR_TL_007 | Wireframe 03 |
-| VR-TL-008 | Loại hoạt động bắt buộc | TeachingLoad.ActivityType | Required | ActivityType không được null | "Vui lòng chọn loại hoạt động giảng dạy." | ERR_TL_008 | Wireframe 03 |
+## 8. Module Đánh giá và Khen thưởng (FR-PR)
 
-### 9.2 Business Rules
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-TL-009 | Công thức giờ tiêu chuẩn | TeachingLoad.StandardHours | Calculation | StandardHours = RawHours × ConversionCoefficient | N/A (auto-calculated) | N/A | Wireframe 03 |
-| VR-TL-010 | Hệ số quy đổi theo loại HĐ | TeachingLoad.ConversionCoefficient | Calculation | Tra cứu từ bảng ActivityType (LT=1.0, TH=0.7, DA=1.5...) | N/A (from config) | N/A | FR-CF-107, FR-CF-028 |
-| VR-TL-011 | Công thức giờ vượt định mức | TeachingLoad.OvertimeHours | Calculation | OvertimeHours = MAX(0, TotalStandardHours - QuotaHours) | N/A (auto-calculated) | N/A | FR-CF-065 |
-| VR-TL-012 | Công thức thanh toán giờ vượt | TeachingLoad.OvertimePayment | Calculation | OvertimePayment = OvertimeHours × UnitPrice (theo chức danh) | N/A (auto-calculated) | N/A | FR-CF-066-067 |
-| VR-TL-013 | Định mức giờ giảng theo chức danh | TeachingLoad.QuotaHours | Calculation | Tra cứu từ bảng AcademicTitle (GV=280, GVC=270, GVCC=260...) | N/A (from config) | N/A | FR-CF-027 |
-
-### 9.3 Cross-Entity Rules
-
-| Rule ID | Tên rule | Entities | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|----------|------|-----------|---------------|------------|------------|
-| VR-TL-014 | Giảng viên tồn tại và active | TeachingLoad.LecturerId → Employee | Referential | LecturerId phải tồn tại, Status = Active, và thuộc đơn vị hiện tại | "Giảng viên không tồn tại hoặc không thuộc đơn vị này." | ERR_TL_014 | Wireframe 03 |
-| VR-TL-015 | Môn học tồn tại | TeachingLoad.SubjectId → Subject | Referential | SubjectId phải tồn tại trong danh mục môn học | "Môn học không tồn tại trong hệ thống." | ERR_TL_015 | Wireframe 03 |
-| VR-TL-016 | Loại hoạt động tồn tại | TeachingLoad.ActivityTypeId → ActivityType | Referential | ActivityTypeId phải tồn tại trong cấu hình | "Loại hoạt động giảng dạy không hợp lệ." | ERR_TL_016 | FR-CF-106 |
-| VR-TL-017 | Định mức giờ tồn tại | Employee.AcademicTitleId → TeachingQuota | Referential | Phải có cấu hình định mức cho chức danh của giảng viên | "Chưa cấu hình định mức giờ giảng cho chức danh này." | ERR_TL_017 | FR-CF-027 |
-| VR-TL-018 | Đơn giá giờ vượt tồn tại | Employee.AcademicTitleId → OvertimeRate | Referential | Phải có cấu hình đơn giá giờ vượt cho chức danh | "Chưa cấu hình đơn giá giờ vượt cho chức danh này." | ERR_TL_018 | FR-CF-066 |
-
-### 9.4 Teaching Hour Reduction Rules (Giảm định mức cho Chức vụ Quản lý)
-
-> **Nguyên tắc:** Giảng viên kiêm nhiệm chức vụ quản lý (Trưởng khoa, Phó khoa, Trưởng bộ môn, v.v.) được giảm định mức giờ giảng.
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-TL-019 | Chức vụ quản lý tồn tại trong cấu hình giảm | ManagementPosition → TeachingReduction | Referential | Nếu giảng viên có chức vụ quản lý, phải có cấu hình giảm định mức cho chức vụ đó | "Chưa cấu hình mức giảm định mức cho chức vụ [X]." | ERR_TL_019 | FR-CF-115, FR-CF-117 |
-| VR-TL-020 | Loại giảm hợp lệ | TeachingReduction.ReductionType | Format | ReductionType ∈ {Percentage, FixedHours} | "Loại giảm định mức không hợp lệ. Chỉ hỗ trợ: Tỷ lệ % hoặc Số giờ cố định." | ERR_TL_020 | FR-CF-116 |
-| VR-TL-021 | Tỷ lệ giảm hợp lệ | TeachingReduction.ReductionRate | Range | Nếu ReductionType = Percentage thì 0 < ReductionRate ≤ 100 | "Tỷ lệ giảm định mức phải từ 0% đến 100%." | ERR_TL_021 | FR-CF-117 |
-| VR-TL-022 | Số giờ giảm hợp lệ | TeachingReduction.ReductionHours | Range | Nếu ReductionType = FixedHours thì ReductionHours > 0 AND ≤ QuotaHours | "Số giờ giảm phải > 0 và không vượt quá định mức chuẩn." | ERR_TL_022 | FR-CF-117 |
-| VR-TL-023 | Công thức định mức thực tế | TeachingLoad.EffectiveQuota | Calculation | EffectiveQuota = QuotaHours × (1 - ReductionRate%) hoặc QuotaHours - ReductionHours | N/A (auto-calculated) | N/A | FR-CF-118 |
-| VR-TL-024 | Áp dụng mức giảm cao nhất khi kiêm nhiều chức vụ | TeachingLoad.EffectiveQuota | Calculation | Nếu có nhiều chức vụ, áp dụng MAX(ReductionRate) hoặc MAX(ReductionHours), không cộng dồn | N/A (auto-calculated) | N/A | FR-CF-119 |
-| VR-TL-025 | Giờ vượt tính theo định mức thực tế | TeachingLoad.OvertimeHours | Calculation | OvertimeHours = MAX(0, TotalStandardHours - EffectiveQuota) | N/A (auto-calculated) | N/A | FR-CF-118 |
-| VR-TL-026 | Tính giảm theo giai đoạn nếu thay đổi chức vụ | TeachingLoad.EffectiveQuota | Calculation | Nếu chức vụ thay đổi trong năm, tính prorate theo số tháng giữ mỗi chức vụ | N/A (auto-calculated) | N/A | FR-CF-120 |
-
-> **Ví dụ tính toán:**
-> - GVC Nguyễn Văn A, định mức chuẩn = 270 giờ/năm
-> - Chức vụ: Trưởng bộ môn (giảm 20%)
-> - Định mức thực tế = 270 × (1 - 20%) = 216 giờ/năm
-> - Nếu tổng giờ thực giảng = 250 giờ → Giờ vượt = 250 - 216 = 34 giờ
-
----
-
-## 10. Module Nghiên cứu Khoa học (FR-RM)
-
-### 10.1 Data Validation Rules
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-RM-001 | Tên đề tài bắt buộc | ResearchProject.Title | Required | Title không được null | "Vui lòng nhập tên đề tài nghiên cứu." | ERR_RM_001 | Wireframe 13 |
-| VR-RM-002 | Chủ nhiệm đề tài bắt buộc | ResearchProject.PrincipalInvestigator | Required | PrincipalInvestigator không được null | "Vui lòng chọn chủ nhiệm đề tài." | ERR_RM_002 | Wireframe 13 |
-| VR-RM-003 | Kinh phí hợp lệ | ResearchProject.Budget | Range | Budget ≥ 0 | "Kinh phí đề tài không được âm." | ERR_RM_003 | Wireframe 13 |
-| VR-RM-004 | DOI đúng định dạng | Publication.DOI | Format | Pattern: `10\.\d{4,}/.*` (nếu có) | "DOI không đúng định dạng chuẩn." | ERR_RM_004 | Wireframe 13 |
-| VR-RM-005 | ISSN đúng định dạng | Publication.ISSN | Format | Pattern: `\d{4}-\d{3}[\dX]` (nếu có) | "ISSN không đúng định dạng (XXXX-XXXX)." | ERR_RM_005 | FR-CF-109 |
-| VR-RM-006 | ISBN đúng định dạng | Publication.ISBN | Format | 10 hoặc 13 chữ số (nếu có) | "ISBN phải có 10 hoặc 13 chữ số." | ERR_RM_006 | FR-CF-109 |
-
-### 10.2 Business Rules
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-RM-007 | ISSN/ISBN bắt buộc theo loại | Publication.ISSN, ISBN | Required | Nếu PublicationType = Journal thì ISSN bắt buộc; nếu = Book thì ISBN bắt buộc | "Bài báo tạp chí phải có ISSN. Sách/chương sách phải có ISBN." | ERR_RM_007 | FR-CF-109 |
-| VR-RM-008 | Xác minh ranking tạp chí | Publication.JournalRanking | Business Logic | Ranking phải được xác minh (Q1, Q2, Q3, Q4, Scopus, WoS) | "Vui lòng xác minh ranking tạp chí từ nguồn chính thức." | ERR_RM_008 | Wireframe 13 |
-| VR-RM-009 | Tỷ lệ đóng góp tác giả | Publication.AuthorContribution | Calculation | Tổng AuthorContribution của tất cả tác giả = 100% | "Tổng tỷ lệ đóng góp của các tác giả phải bằng 100%." | ERR_RM_009 | Wireframe 13 |
-| VR-RM-010 | Quy đổi giờ NCKH | Publication.ResearchHours | Calculation | ResearchHours = BaseHours × AuthorContribution × RankingMultiplier | N/A (auto-calculated) | N/A | FR-CF-111 |
-
-### 10.3 Cross-Entity Rules
-
-| Rule ID | Tên rule | Entities | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|----------|------|-----------|---------------|------------|------------|
-| VR-RM-011 | Cấp đề tài tồn tại | ResearchProject.ProjectLevelId → ProjectLevel | Referential | ProjectLevelId phải tồn tại trong cấu hình | "Cấp đề tài không hợp lệ." | ERR_RM_011 | FR-CF-110 |
-| VR-RM-012 | Loại công bố tồn tại | Publication.PublicationTypeId → PublicationType | Referential | PublicationTypeId phải tồn tại trong cấu hình | "Loại công bố không hợp lệ." | ERR_RM_012 | FR-CF-108 |
-| VR-RM-013 | Chủ nhiệm là giảng viên | ResearchProject.PrincipalInvestigatorId → Employee | Referential | PI phải là nhân viên active với vai trò giảng viên/nghiên cứu viên | "Chủ nhiệm đề tài phải là giảng viên hoặc nghiên cứu viên." | ERR_RM_013 | Wireframe 13 |
-
----
-
-## 11. Module Đánh giá và Khen thưởng (FR-PR)
-
-### 11.1 Data Validation Rules
+### 8.1 Data Validation Rules
 
 | Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|--------------|------|-----------|---------------|------------|------------|
@@ -463,29 +336,29 @@ Các quy tắc kiểm soát luồng phê duyệt và xử lý công việc.
 | VR-PR-002 | Điểm trong thang điểm | EvaluationScore.Score | Range | 0 ≤ Score ≤ MaxScore (theo tiêu chí) | "Điểm phải từ 0 đến [MaxScore] cho tiêu chí này." | ERR_PR_002 | Wireframe 10 |
 | VR-PR-003 | Nhận xét đánh giá tối thiểu | Evaluation.Comment | Length | Comment.Length ≥ 50 ký tự (cho đánh giá bắt buộc) | "Vui lòng nhập nhận xét đánh giá (ít nhất 50 ký tự)." | ERR_PR_003 | Wireframe 10 |
 
-### 11.2 Business Rules
+### 8.2 Business Rules
 
 | Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-PR-004 | Công thức điểm tổng | Evaluation.TotalScore | Calculation | TotalScore = Σ(Score × Weight) / Σ(Weight) | N/A (auto-calculated) | N/A | FR-CF-102 |
-| VR-PR-005 | Phân loại đánh giá | Evaluation.Classification | Calculation | ≥90: Xuất sắc, ≥70: Tốt, ≥50: Hoàn thành, <50: Không hoàn thành | N/A (from config) | N/A | FR-CF-103 |
+| VR-PR-004 | Công thức điểm tổng | Evaluation.TotalScore | Calculation | TotalScore = Σ(Score × Weight) / Σ(Weight) | N/A (auto-calculated) | N/A | FR-CF-082 |
+| VR-PR-005 | Phân loại đánh giá | Evaluation.Classification | Calculation | ≥90: Xuất sắc, ≥70: Tốt, ≥50: Hoàn thành, <50: Không hoàn thành | N/A (from config) | N/A | FR-CF-083 |
 | VR-PR-006 | Giới hạn tỷ lệ Xuất sắc | Evaluation.Classification | Threshold | Số đánh giá "Xuất sắc" ≤ 15% tổng số đánh giá trong đơn vị | "Tỷ lệ xếp loại Xuất sắc đã vượt 15% trong đơn vị. Vui lòng xem xét lại." | ERR_PR_006 | Wireframe 10 |
 | VR-PR-007 | Quy trình đánh giá theo workflow | Evaluation.Status | Approval Flow | Tự đánh giá → Trưởng ĐV → P.TCCB → Hội đồng → Hiệu trưởng | "Đánh giá phải tuân theo quy trình phê duyệt." | ERR_PR_007 | FR-CF-092 |
 | VR-PR-008 | Không sửa sau khi phê duyệt | Evaluation.Status | State Transition | Nếu Status = Approved thì không cho phép UPDATE | "Không thể sửa đánh giá đã được phê duyệt." | ERR_PR_008 | Wireframe 10 |
 
-### 11.3 Cross-Entity Rules
+### 8.3 Cross-Entity Rules
 
 | Rule ID | Tên rule | Entities | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|----------|------|-----------|---------------|------------|------------|
-| VR-PR-009 | Kỳ đánh giá tồn tại | Evaluation.EvaluationCycleId → EvaluationCycle | Referential | EvaluationCycleId phải tồn tại và Status = Active | "Kỳ đánh giá không tồn tại hoặc đã đóng." | ERR_PR_009 | FR-CF-100 |
-| VR-PR-010 | Mẫu đánh giá có tiêu chí | EvaluationType → EvaluationCriteria | Dependency | Mỗi loại đánh giá phải có ít nhất 1 tiêu chí | "Mẫu đánh giá chưa có tiêu chí. Vui lòng cấu hình trước khi sử dụng." | ERR_PR_010 | FR-CF-102, Section 2.4.4 |
-| VR-PR-011 | Mẫu đánh giá có ngưỡng phân loại | EvaluationType → ClassificationThreshold | Dependency | Mỗi loại đánh giá phải có ngưỡng phân loại | "Mẫu đánh giá chưa có ngưỡng phân loại." | ERR_PR_011 | FR-CF-103, Section 2.4.4 |
+| VR-PR-009 | Kỳ đánh giá tồn tại | Evaluation.EvaluationCycleId → EvaluationCycle | Referential | EvaluationCycleId phải tồn tại và Status = Active | "Kỳ đánh giá không tồn tại hoặc đã đóng." | ERR_PR_009 | FR-CF-080 |
+| VR-PR-010 | Mẫu đánh giá có tiêu chí | EvaluationType → EvaluationCriteria | Dependency | Mỗi loại đánh giá phải có ít nhất 1 tiêu chí | "Mẫu đánh giá chưa có tiêu chí. Vui lòng cấu hình trước khi sử dụng." | ERR_PR_010 | FR-CF-082, Section 2.4.4 |
+| VR-PR-011 | Mẫu đánh giá có ngưỡng phân loại | EvaluationType → ClassificationThreshold | Dependency | Mỗi loại đánh giá phải có ngưỡng phân loại | "Mẫu đánh giá chưa có ngưỡng phân loại." | ERR_PR_011 | FR-CF-083, Section 2.4.4 |
 
 ---
 
-## 12. Module Đào tạo và Phát triển (FR-TD)
+## 9. Module Đào tạo và Phát triển (FR-TD)
 
-### 12.1 Data Validation Rules
+### 9.1 Data Validation Rules
 
 | Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|--------------|------|-----------|---------------|------------|------------|
@@ -493,7 +366,7 @@ Các quy tắc kiểm soát luồng phê duyệt và xử lý công việc.
 | VR-TD-002 | Ngày bắt đầu khóa học bắt buộc | TrainingCourse.StartDate | Required | StartDate không được null | "Vui lòng chọn ngày bắt đầu khóa học." | ERR_TD_002 | Wireframe 11 |
 | VR-TD-003 | Sức chứa khóa học hợp lệ | TrainingCourse.Capacity | Range | Capacity > 0 | "Sức chứa khóa học phải lớn hơn 0." | ERR_TD_003 | Wireframe 11 |
 
-### 12.2 Business Rules
+### 9.2 Business Rules
 
 | Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|--------------|------|-----------|---------------|------------|------------|
@@ -505,98 +378,22 @@ Các quy tắc kiểm soát luồng phê duyệt và xử lý công việc.
 
 ---
 
-## 13. Module Tuyển dụng (FR-RC)
+## 10. Module Self-Service Portal (FR-SS)
 
-### 13.1 Data Validation Rules
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-RC-001 | Họ tên ứng viên bắt buộc | Candidate.FullName | Required | FullName không được null | "Vui lòng nhập họ tên ứng viên." | ERR_RC_001 | Wireframe 08 |
-| VR-RC-002 | Email ứng viên bắt buộc | Candidate.Email | Required | Email không được null | "Vui lòng nhập email ứng viên." | ERR_RC_002 | Wireframe 08 |
-| VR-RC-003 | Email ứng viên đúng định dạng | Candidate.Email | Format | Regex email chuẩn | "Email ứng viên không đúng định dạng." | ERR_RC_003 | Wireframe 08 |
-| VR-RC-004 | Điểm đánh giá phỏng vấn hợp lệ | InterviewScore.Score | Range | 0 ≤ Score ≤ 10 | "Điểm đánh giá phải từ 0 đến 10." | ERR_RC_004 | Wireframe 08 |
-| VR-RC-005 | Hệ số tiêu chí phỏng vấn hợp lệ | InterviewCriteria.Weight | Range | Weight > 0 | "Hệ số tiêu chí phải lớn hơn 0." | ERR_RC_005 | Wireframe 08 |
-
-### 13.2 Business Rules
+### 10.1 Business Rules
 
 | Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-RC-006 | Chuyển giai đoạn ứng viên hợp lệ | Candidate.Stage | State Transition | Ứng tuyển → Sơ tuyển → Phỏng vấn → Đề nghị HĐ → Đã tuyển | "Không thể chuyển ứng viên từ [Stage A] sang [Stage B]." | ERR_RC_006 | Wireframe 08 |
-| VR-RC-007 | Ứng viên đạt mới tạo HĐ | Candidate.Stage, InterviewResult | Business Logic | Chỉ tạo Contract khi InterviewResult = Pass | "Chỉ có thể tạo hợp đồng cho ứng viên đã đạt phỏng vấn." | ERR_RC_007 | Wireframe 08 |
-| VR-RC-008 | Điểm phỏng vấn tổng hợp | InterviewScore.TotalScore | Calculation | TotalScore = Σ(Score × Weight) / Σ(Weight) | N/A (auto-calculated) | N/A | Wireframe 08 |
-| VR-RC-009 | Xung đột lịch phỏng vấn | Interview.DateTime, InterviewerId | Temporal | Không có 2 phỏng vấn cùng thời gian cho 1 interviewer | "Người phỏng vấn đã có lịch vào thời gian này." | ERR_RC_009 | Wireframe 08 |
 
-### 13.3 Cross-Entity Rules
-
-| Rule ID | Tên rule | Entities | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|----------|------|-----------|---------------|------------|------------|
-| VR-RC-010 | Vị trí tuyển dụng tồn tại | Candidate.PositionId → RecruitmentPosition | Referential | PositionId phải tồn tại và Status = Open | "Vị trí tuyển dụng không tồn tại hoặc đã đóng." | ERR_RC_010 | Wireframe 08 |
-| VR-RC-011 | Kỳ tuyển dụng tồn tại | Candidate.RecruitmentCycleId → RecruitmentCycle | Referential | RecruitmentCycleId phải tồn tại | "Kỳ tuyển dụng không hợp lệ." | ERR_RC_011 | Wireframe 08 |
-
-### 13.4 Academic Recruitment Rules (Quy tắc Tuyển dụng Giảng viên)
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-RC-012 | Giảng viên phải có bằng ThS trở lên | Candidate.Degree, Position.Type | Business Logic | Nếu Position.Type = Academic thì Candidate.Degree ≥ Master | "Vị trí giảng viên yêu cầu trình độ Thạc sĩ trở lên." | ERR_RC_012 | FR-RC-015 |
-| VR-RC-013 | Chuyên ngành phải phù hợp | Candidate.Major, Position.RequiredMajors | Business Logic | Candidate.Major ∈ Position.RequiredMajors | "Chuyên ngành của ứng viên không phù hợp với yêu cầu vị trí." | ERR_RC_013 | FR-RC-015 |
-| VR-RC-014 | Giảng viên phải có chứng chỉ ngoại ngữ | Candidate.LanguageCert, Position.Type | Business Logic | Nếu Position.Type = Academic thì LanguageCert phải có | "Ứng viên giảng viên phải có chứng chỉ ngoại ngữ (IELTS/TOEFL/VSTEP)." | ERR_RC_014 | FR-RC-017 |
-| VR-RC-015 | IELTS tối thiểu cho giảng viên | Candidate.IELTSScore, Position.MinIELTS | Range | Nếu có IELTS thì IELTSScore ≥ Position.MinIELTS (mặc định 5.5) | "Điểm IELTS chưa đạt yêu cầu tối thiểu [MinIELTS]." | ERR_RC_015 | FR-RC-017 |
-| VR-RC-016 | Giảng viên phải phỏng vấn 2 vòng | Interview.Round, Position.Type | Business Logic | Position.Type = Academic phải có 2 vòng PV (Chuyên môn + Sư phạm) | "Ứng viên giảng viên phải hoàn thành cả 2 vòng phỏng vấn." | ERR_RC_016 | FR-RC-025 |
-| VR-RC-017 | Giảng viên phải qua giảng thử | Candidate.TeachingDemo, Position.Type | Business Logic | Position.Type = Academic phải có TeachingDemo.Status = Completed | "Ứng viên giảng viên phải hoàn thành buổi giảng thử." | ERR_RC_017 | FR-RC-026 |
-| VR-RC-018 | Điểm giảng thử hợp lệ | TeachingDemo.Score | Range | 0 ≤ Score ≤ 10 | "Điểm giảng thử phải từ 0 đến 10." | ERR_RC_018 | FR-RC-026 |
-| VR-RC-019 | Điểm giảng thử tối thiểu | TeachingDemo.Score, Config.MinTeachingDemoScore | Range | Score ≥ Config.MinTeachingDemoScore (mặc định 6.0) | "Điểm giảng thử chưa đạt yêu cầu tối thiểu [MinScore]." | ERR_RC_019 | FR-RC-026 |
-
-### 13.5 Interview Panel Rules (Quy tắc Hội đồng Phỏng vấn)
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-RC-020 | Hội đồng GV tối thiểu 5 người | InterviewPanel.MemberCount, Position.Type | Business Logic | Nếu Position.Type = Academic thì MemberCount ≥ 5 | "Hội đồng phỏng vấn giảng viên phải có ít nhất 5 thành viên." | ERR_RC_020 | FR-RC-020 |
-| VR-RC-021 | Hội đồng HC tối thiểu 3 người | InterviewPanel.MemberCount, Position.Type | Business Logic | Nếu Position.Type = Staff thì MemberCount ≥ 3 | "Hội đồng phỏng vấn nhân viên phải có ít nhất 3 thành viên." | ERR_RC_021 | FR-RC-020 |
-| VR-RC-022 | Chủ tịch HĐ phải có học vị cao | InterviewPanel.Chairman.Degree, Position.Type | Business Logic | Nếu Position.Type = Academic thì Chairman.Degree ≥ PhD hoặc học hàm PGS/GS | "Chủ tịch hội đồng tuyển GV phải có học vị Tiến sĩ hoặc học hàm PGS/GS." | ERR_RC_022 | FR-RC-020 |
-| VR-RC-023 | Thành viên HĐ không trùng ứng viên | InterviewPanel.MemberId, Candidate.Id | Business Logic | MemberId ≠ Candidate.RelatedPersonIds | "Thành viên hội đồng không được có quan hệ với ứng viên." | ERR_RC_023 | FR-RC-020 |
-| VR-RC-024 | Tất cả thành viên phải đánh giá | Interview.PanelMemberScores | Completeness | Tất cả MemberId trong Panel phải có Score | "Còn thành viên hội đồng chưa đánh giá." | ERR_RC_024 | FR-RC-023 |
-
-### 13.6 Approval Workflow Rules (Quy tắc Phê duyệt Tuyển dụng)
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-RC-025 | Đề nghị tuyển GV cần BGH duyệt | HiringProposal.ApprovalLevel, Position.Type | Approval Flow | Nếu Position.Type = Academic thì cần Rector approval | "Đề nghị tuyển giảng viên phải được Hiệu trưởng phê duyệt." | ERR_RC_025 | FR-RC-031 |
-| VR-RC-026 | Đề nghị tuyển NV cần P.TCCB duyệt | HiringProposal.ApprovalLevel, Position.Type | Approval Flow | Nếu Position.Type = Staff thì cần HR Head approval | "Đề nghị tuyển nhân viên phải được Trưởng phòng TCCB phê duyệt." | ERR_RC_026 | FR-RC-032 |
-| VR-RC-027 | Không tuyển vượt chỉ tiêu | Position.HiredCount, Position.Quota | Business Logic | HiredCount ≤ Quota | "Số lượng tuyển đã đạt chỉ tiêu cho vị trí này." | ERR_RC_027 | FR-RC-001 |
-| VR-RC-028 | Kế hoạch TD phải được duyệt | RecruitmentPlan.Status | State | Chỉ đăng tin khi Plan.Status = Approved | "Kế hoạch tuyển dụng chưa được phê duyệt." | ERR_RC_028 | FR-RC-002 |
-
-### 13.7 Research Achievement Rules (Quy tắc NCKH cho Giảng viên)
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-RC-029 | Giảng viên phải có công trình NCKH | Candidate.ResearchCount, Position.RequireResearch | Business Logic | Nếu Position.RequireResearch = true thì ResearchCount > 0 | "Ứng viên giảng viên phải có ít nhất 1 công trình NCKH." | ERR_RC_029 | FR-RC-016 |
-| VR-RC-030 | Bài báo ISI/Scopus ưu tiên | Candidate.ISICount, Position.RequireISI | Business Logic | Nếu Position.RequireISI = true thì ISICount > 0 | "Vị trí này yêu cầu có bài báo ISI/Scopus." | ERR_RC_030 | FR-RC-016 |
-
-### 13.8 Email Notification Rules (Quy tắc Thông báo Email)
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-RC-031 | Email mời PV phải gửi trước 3 ngày | Interview.Date, EmailSentDate | Temporal | Interview.Date - EmailSentDate ≥ 3 days | "Nên gửi email mời phỏng vấn ít nhất 3 ngày trước." | WARN_RC_001 | FR-RC-022 |
-| VR-RC-032 | Email từ chối phải có lý do | RejectionEmail.Reason | Required | Nếu gửi email từ chối thì Reason không được rỗng | "Vui lòng nhập lý do từ chối ứng viên." | ERR_RC_031 | FR-RC-012 |
-
----
-
-## 14. Module Self-Service Portal (FR-SS)
-
-### 14.1 Business Rules
-
-| Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
-|---------|----------|--------------|------|-----------|---------------|------------|------------|
-| VR-SS-001 | Cập nhật thông tin cần phê duyệt | Employee.PersonalInfo | Approval Flow | Thay đổi thông tin cá nhân phải được P.TCCB phê duyệt | "Yêu cầu cập nhật thông tin đã được gửi đi. Vui lòng chờ phê duyệt." | ERR_SS_001 | FR-SS-002 |
 | VR-SS-002 | Người phê duyệt tự động theo cấu trúc | LeaveRequest.ApproverId | Calculation | Approver = Trưởng đơn vị của Employee | N/A (auto-assigned) | N/A | Wireframe 05 |
 | VR-SS-003 | Đăng ký người phụ thuộc cần chứng từ | Dependent.Documentation | Required | Phải có file đính kèm chứng từ | "Vui lòng đính kèm giấy tờ xác nhận người phụ thuộc." | ERR_SS_003 | FR-SS-009 |
 | VR-SS-004 | Xem phiếu lương cần xác thực | PayslipView.Authentication | Permission | Yêu cầu nhập mật khẩu/PIN để xem chi tiết lương | "Vui lòng nhập mật khẩu để xem thông tin lương." | ERR_SS_004 | Wireframe 05 |
 
 ---
 
-## 15. Module Báo cáo và Thống kê (FR-RP)
+## 11. Module Báo cáo và Thống kê (FR-RP)
 
-### 15.1 Data Validation Rules
+### 11.1 Data Validation Rules
 
 | Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|--------------|------|-----------|---------------|------------|------------|
@@ -604,14 +401,14 @@ Các quy tắc kiểm soát luồng phê duyệt và xử lý công việc.
 | VR-RP-002 | Ngày kết thúc báo cáo bắt buộc | Report.EndDate | Required | EndDate không được null | "Vui lòng chọn ngày kết thúc." | ERR_RP_002 | Wireframe 12 |
 | VR-RP-003 | Ngày kết thúc sau ngày bắt đầu | Report.StartDate, EndDate | Temporal | EndDate ≥ StartDate | "Ngày kết thúc phải bằng hoặc sau ngày bắt đầu." | ERR_RP_003 | Wireframe 12 |
 
-### 15.2 Business Rules
+### 11.2 Business Rules
 
 | Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|--------------|------|-----------|---------------|------------|------------|
 | VR-RP-004 | Định dạng xuất báo cáo hợp lệ | Report.ExportFormat | Format | ExportFormat ∈ {Excel, PDF, Word} | "Định dạng xuất không được hỗ trợ." | ERR_RP_004 | FR-RP-008 |
 | VR-RP-005 | Báo cáo lương cần quyền đặc biệt | Report.Type, User.Permission | Permission | Báo cáo lương chỉ hiển thị cho user có quyền ViewSalary | "Bạn không có quyền xem báo cáo lương." | ERR_RP_005 | Wireframe 12 |
 
-### 15.3 Cross-Entity Rules
+### 11.3 Cross-Entity Rules
 
 | Rule ID | Tên rule | Entities | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|----------|------|-----------|---------------|------------|------------|
@@ -619,9 +416,9 @@ Các quy tắc kiểm soát luồng phê duyệt và xử lý công việc.
 
 ---
 
-## 16. Module Cấu hình Hệ thống (FR-CF)
+## 12. Module Cấu hình Hệ thống (FR-CF)
 
-### 16.1 Data Validation Rules
+### 12.1 Data Validation Rules
 
 | Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|--------------|------|-----------|---------------|------------|------------|
@@ -631,18 +428,18 @@ Các quy tắc kiểm soát luồng phê duyệt và xử lý công việc.
 | VR-CF-004 | Mức lương cơ sở dương | BaseSalaryRate.Value | Range | Value > 0 | "Mức lương cơ sở phải lớn hơn 0." | ERR_CF_004 | FR-CF-001 |
 | VR-CF-005 | Ngày hiệu lực bắt buộc | Configuration.EffectiveDate | Required | EffectiveDate không được null | "Vui lòng chọn ngày hiệu lực." | ERR_CF_005 | FR-CF-081 |
 
-### 16.2 Business Rules
+### 12.2 Business Rules
 
 | Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|--------------|------|-----------|---------------|------------|------------|
 | VR-CF-006 | Ngày hiệu lực không trong quá khứ | Configuration.EffectiveDate | Temporal | EffectiveDate ≥ Today | "Ngày hiệu lực không được trong quá khứ." | ERR_CF_006 | Section 2.4.2 |
 | VR-CF-007 | Tạo phiên bản mới khi thay đổi | Configuration.Version | Business Logic | Mỗi thay đổi tạo Version mới, giữ nguyên Version cũ | N/A (system) | N/A | FR-CF-081-085 |
-| VR-CF-008 | Thay đổi quan trọng cần phê duyệt | Configuration.ApprovalRequired | Approval Flow | Thay đổi tham số lương, bảo hiểm cần phê duyệt cấp cao | "Thay đổi này cần được phê duyệt bởi Trưởng P.TCCB/TCKT." | ERR_CF_008 | FR-CF-033, FR-CF-089 |
+
 | VR-CF-009 | Không xóa danh mục đang sử dụng | MasterData.Status, UsageCount | State Transition | Chỉ xóa khi UsageCount = 0, hoặc đánh dấu Inactive | "Không thể xóa danh mục đang được sử dụng. Vui lòng đánh dấu ngừng hoạt động." | ERR_CF_009 | FR-CF-041 |
 | VR-CF-010 | Validate tham số theo định nghĩa | Parameter.Value | Business Logic | Value phải thỏa mãn min, max, required, format của ParameterDefinition | "Giá trị [X] không hợp lệ. [Chi tiết lỗi từ định nghĩa]." | ERR_CF_010 | FR-CF-074, FR-CF-112 |
 | VR-CF-011 | Khoảng năm thâm niên liên tục | SeniorityStep.YearRange | Business Logic | Các khoảng năm phải liên tục, không chồng chéo | "Các khoảng năm phải liên tục và không được chồng chéo." | ERR_CF_011 | Wireframe 06 |
 
-### 16.3 Cross-Entity Rules (Configuration Dependencies)
+### 12.3 Cross-Entity Rules (Configuration Dependencies)
 
 | Rule ID | Tên rule | Entities | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|----------|------|-----------|---------------|------------|------------|
@@ -655,9 +452,9 @@ Các quy tắc kiểm soát luồng phê duyệt và xử lý công việc.
 
 ---
 
-## 17. Bảo mật và Kiểm soát Truy cập
+## 13. Bảo mật và Kiểm soát Truy cập
 
-### 17.1 Authentication Rules
+### 13.1 Authentication Rules
 
 | Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|--------------|------|-----------|---------------|------------|------------|
@@ -665,7 +462,7 @@ Các quy tắc kiểm soát luồng phê duyệt và xử lý công việc.
 | VR-SC-002 | Timeout phiên làm việc | Session.LastActivity | Temporal | Auto-logout nếu LastActivity > 30 phút | "Phiên làm việc đã hết hạn. Vui lòng đăng nhập lại." | ERR_SC_002 | NFR-SC-005 |
 | VR-SC-003 | Khóa tài khoản sau nhiều lần sai | User.FailedLoginCount | Threshold | Khóa tài khoản sau 5 lần đăng nhập sai liên tiếp | "Tài khoản đã bị khóa do đăng nhập sai quá 5 lần. Vui lòng liên hệ quản trị viên." | ERR_SC_003 | NFR-SC-006 |
 
-### 17.2 Authorization Rules
+### 13.2 Authorization Rules
 
 | Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|--------------|------|-----------|---------------|------------|------------|
@@ -673,19 +470,19 @@ Các quy tắc kiểm soát luồng phê duyệt và xử lý công việc.
 | VR-SC-005 | Phân quyền cấp trường dữ liệu | User.Role, Field | Permission | Ẩn/hiện field theo FieldPermission của Role | "Bạn không có quyền xem thông tin này." | ERR_SC_005 | Wireframe 02 |
 | VR-SC-006 | Phân quyền theo đơn vị | User.DepartmentId, Data.DepartmentId | Permission | User chỉ xem/sửa dữ liệu thuộc đơn vị được phân quyền | "Bạn không có quyền truy cập dữ liệu của đơn vị này." | ERR_SC_006 | NFR-SC-001 |
 
-### 17.3 Data Protection Rules
+### 13.3 Data Protection Rules
 
 | Rule ID | Tên rule | Entity.Field | Loại | Điều kiện | Thông báo lỗi | Error Code | Tham chiếu |
 |---------|----------|--------------|------|-----------|---------------|------------|------------|
 | VR-SC-007 | Mã hóa dữ liệu nhạy cảm | Employee.CitizenId, Salary.* | Business Logic | CCCD và dữ liệu lương phải được mã hóa trong database | N/A (system) | N/A | NFR-SC-003, Section 2.4.2 |
 | VR-SC-008 | Audit log cho thao tác quan trọng | AuditLog.* | Business Logic | Ghi log tất cả: Create, Update, Delete, Login, Export | N/A (system) | N/A | NFR-SC-004 |
-| VR-SC-009 | Không export dữ liệu nhạy cảm hàng loạt | Export.DataType | Permission | Export CCCD, lương hàng loạt cần phê duyệt đặc biệt | "Xuất dữ liệu nhạy cảm hàng loạt cần được phê duyệt bởi quản trị viên." | ERR_SC_009 | NFR-SC-003 |
+
 
 ---
 
-## 18. Danh mục Mã lỗi (Error Code Registry)
+## 14. Danh mục Mã lỗi (Error Code Registry)
 
-### 18.1 Cấu trúc Mã lỗi
+### 14.1 Cấu trúc Mã lỗi
 
 ```
 ERR_{MODULE}_{NUMBER}
@@ -696,7 +493,7 @@ Trong đó:
 - NUMBER: Số thứ tự (3 chữ số)
 ```
 
-### 18.2 Danh sách Module Code
+### 14.2 Danh sách Module Code
 
 | Module Code | Module Name | Range |
 |-------------|-------------|-------|
@@ -704,19 +501,16 @@ Trong đó:
 | QM | Qualifications Management | ERR_QM_001 - ERR_QM_016 |
 | OS | Organization Structure | ERR_OS_001 - ERR_OS_014 |
 | CM | Contract Management | ERR_CM_001 - ERR_CM_020 |
-| TA | Time & Attendance | ERR_TA_001 - ERR_TA_017 |
 | SD | Salary Data | ERR_SD_001 - ERR_SD_010 |
-| TL | Teaching Load | ERR_TL_001 - ERR_TL_018 |
-| RM | Research Management | ERR_RM_001 - ERR_RM_013 |
+
 | PR | Performance & Rewards | ERR_PR_001 - ERR_PR_011 |
 | TD | Training & Development | ERR_TD_001 - ERR_TD_008 |
-| RC | Recruitment | ERR_RC_001 - ERR_RC_031, WARN_RC_001 |
 | SS | Self-Service Portal | ERR_SS_001 - ERR_SS_004 |
 | RP | Reporting | ERR_RP_001 - ERR_RP_006 |
 | CF | System Configuration | ERR_CF_001 - ERR_CF_017 |
 | SC | Security | ERR_SC_001 - ERR_SC_009 |
 
-### 18.3 Error Code Master List
+### 14.3 Error Code Master List
 
 | Error Code | Module | Rule ID | Short Description |
 |------------|--------|---------|-------------------|
@@ -752,8 +546,6 @@ Trong đó:
 | ERR_CM_009 | Contract Management | VR-CM-009 | End date before start date |
 | ERR_CM_012 | Contract Management | VR-CM-012 | Fixed-term contract limit exceeded |
 | ERR_CM_018 | Contract Management | VR-CM-018 | Overlapping contract period |
-| ERR_TA_008 | Time & Attendance | VR-TA-008 | Leave days exceed balance |
-| ERR_TA_009 | Time & Attendance | VR-TA-009 | Cannot approve past leave |
 | ERR_SD_001 | Salary Data | VR-SD-001 | Invalid salary data for export |
 | ERR_PR_006 | Performance & Rewards | VR-PR-006 | Excellent rating limit exceeded |
 | ERR_SC_001 | Security | VR-SC-001 | Weak password |
@@ -761,7 +553,7 @@ Trong đó:
 | ERR_SC_003 | Security | VR-SC-003 | Account locked |
 | ERR_SC_004 | Security | VR-SC-004 | Permission denied |
 
-### 18.4 Complete Error Code Master List
+### 14.4 Complete Error Code Master List
 
 #### Employee Records (ERR_ER_xxx)
 
@@ -860,25 +652,6 @@ Trong đó:
 | ERR_CM_019 | VR-CM-019 | Loại hợp đồng không hợp lệ. | Invalid contract type |
 | ERR_CM_020 | VR-CM-020 | Nhân viên không tồn tại hoặc đã nghỉ việc. | Employee not found or resigned |
 
-#### Time & Attendance (ERR_TA_xxx)
-
-| Error Code | Rule ID | Vietnamese Message | English Description |
-|------------|---------|-------------------|---------------------|
-| ERR_TA_001 | VR-TA-001 | Vui lòng chọn ngày bắt đầu nghỉ. | Leave start date required |
-| ERR_TA_002 | VR-TA-002 | Vui lòng chọn ngày kết thúc nghỉ. | Leave end date required |
-| ERR_TA_003 | VR-TA-003 | Vui lòng chọn loại nghỉ phép. | Leave type required |
-| ERR_TA_004 | VR-TA-004 | Vui lòng nhập lý do nghỉ (ít nhất 10 ký tự). | Leave reason required |
-| ERR_TA_005 | VR-TA-005 | Số giờ làm thêm phải từ 0.5 đến 12 giờ. | Invalid overtime hours |
-| ERR_TA_006 | VR-TA-006 | Vui lòng nhập lý do làm thêm giờ. | Overtime reason required |
-| ERR_TA_007 | VR-TA-007 | Ngày kết thúc nghỉ phải bằng hoặc sau ngày bắt đầu. | Leave end date before start |
-| ERR_TA_008 | VR-TA-008 | Số ngày nghỉ yêu cầu ([X]) vượt quá số ngày còn lại ([Y]). | Leave days exceed balance |
-| ERR_TA_009 | VR-TA-009 | Không thể phê duyệt đơn nghỉ đã quá ngày nghỉ. Vui lòng từ chối hoặc liên hệ quản trị. | Cannot approve past leave |
-| ERR_TA_012 | VR-TA-012 | Giờ ra phải sau giờ vào. | Check-out before check-in |
-| ERR_TA_014 | VR-TA-014 | Ngày bắt đầu nghỉ phải sau ngày đăng ký. | Leave date before registration |
-| ERR_TA_015 | VR-TA-015 | Đã vượt quá giới hạn làm thêm 40 giờ/tháng. | Monthly overtime limit exceeded |
-| ERR_TA_016 | VR-TA-016 | Loại nghỉ phép không hợp lệ. | Invalid leave type |
-| ERR_TA_017 | VR-TA-017 | Nhân viên không có hợp đồng đang hiệu lực. | No active contract |
-
 #### Salary Data (ERR_SD_xxx)
 
 | Error Code | Rule ID | Vietnamese Message | English Description |
@@ -893,44 +666,7 @@ Trong đó:
 | ERR_SD_009 | VR-SD-009 | Bậc lương không thuộc ngạch đã chọn. | Step not in selected grade |
 | ERR_SD_010 | VR-SD-010 | Mã số thuế người phụ thuộc không hợp lệ. | Invalid dependent tax ID |
 
-#### Teaching Load (ERR_TL_xxx)
 
-| Error Code | Rule ID | Vietnamese Message | English Description |
-|------------|---------|-------------------|---------------------|
-| ERR_TL_001 | VR-TL-001 | Vui lòng chọn môn học. | Subject required |
-| ERR_TL_002 | VR-TL-002 | Vui lòng nhập mã lớp. | Class code required |
-| ERR_TL_003 | VR-TL-003 | Mã lớp chỉ chứa chữ và số, tối đa 20 ký tự. | Invalid class code format |
-| ERR_TL_004 | VR-TL-004 | Vui lòng nhập số sinh viên. | Student count required |
-| ERR_TL_005 | VR-TL-005 | Số sinh viên phải từ 1 đến 200. | Invalid student count range |
-| ERR_TL_006 | VR-TL-006 | Vui lòng nhập số giờ thực giảng. | Raw hours required |
-| ERR_TL_007 | VR-TL-007 | Số giờ thực giảng phải từ 0.5 đến 100. | Invalid raw hours range |
-| ERR_TL_008 | VR-TL-008 | Vui lòng chọn loại hoạt động giảng dạy. | Activity type required |
-| ERR_TL_014 | VR-TL-014 | Giảng viên không tồn tại hoặc không thuộc đơn vị này. | Lecturer not found |
-| ERR_TL_015 | VR-TL-015 | Môn học không tồn tại trong hệ thống. | Subject not found |
-| ERR_TL_016 | VR-TL-016 | Loại hoạt động giảng dạy không hợp lệ. | Invalid activity type |
-| ERR_TL_017 | VR-TL-017 | Chưa cấu hình định mức giờ giảng cho chức danh này. | Teaching quota not configured |
-| ERR_TL_018 | VR-TL-018 | Chưa cấu hình đơn giá giờ vượt cho chức danh này. | Overtime rate not configured |
-| ERR_TL_019 | VR-TL-019 | Chưa cấu hình mức giảm định mức cho chức vụ [X]. | Reduction not configured for position |
-| ERR_TL_020 | VR-TL-020 | Loại giảm định mức không hợp lệ. Chỉ hỗ trợ: Tỷ lệ % hoặc Số giờ cố định. | Invalid reduction type |
-| ERR_TL_021 | VR-TL-021 | Tỷ lệ giảm định mức phải từ 0% đến 100%. | Reduction rate out of range |
-| ERR_TL_022 | VR-TL-022 | Số giờ giảm phải > 0 và không vượt quá định mức chuẩn. | Reduction hours out of range |
-
-#### Research Management (ERR_RM_xxx)
-
-| Error Code | Rule ID | Vietnamese Message | English Description |
-|------------|---------|-------------------|---------------------|
-| ERR_RM_001 | VR-RM-001 | Vui lòng nhập tên đề tài nghiên cứu. | Research title required |
-| ERR_RM_002 | VR-RM-002 | Vui lòng chọn chủ nhiệm đề tài. | Principal investigator required |
-| ERR_RM_003 | VR-RM-003 | Kinh phí đề tài không được âm. | Budget must be non-negative |
-| ERR_RM_004 | VR-RM-004 | DOI không đúng định dạng chuẩn. | Invalid DOI format |
-| ERR_RM_005 | VR-RM-005 | ISSN không đúng định dạng (XXXX-XXXX). | Invalid ISSN format |
-| ERR_RM_006 | VR-RM-006 | ISBN phải có 10 hoặc 13 chữ số. | Invalid ISBN format |
-| ERR_RM_007 | VR-RM-007 | Bài báo tạp chí phải có ISSN. Sách/chương sách phải có ISBN. | ISSN/ISBN required by type |
-| ERR_RM_008 | VR-RM-008 | Vui lòng xác minh ranking tạp chí từ nguồn chính thức. | Journal ranking verification needed |
-| ERR_RM_009 | VR-RM-009 | Tổng tỷ lệ đóng góp của các tác giả phải bằng 100%. | Author contributions must sum to 100% |
-| ERR_RM_011 | VR-RM-011 | Cấp đề tài không hợp lệ. | Invalid project level |
-| ERR_RM_012 | VR-RM-012 | Loại công bố không hợp lệ. | Invalid publication type |
-| ERR_RM_013 | VR-RM-013 | Chủ nhiệm đề tài phải là giảng viên hoặc nghiên cứu viên. | PI must be lecturer/researcher |
 
 #### Performance & Rewards (ERR_PR_xxx)
 
@@ -940,8 +676,7 @@ Trong đó:
 | ERR_PR_002 | VR-PR-002 | Điểm phải từ 0 đến [MaxScore] cho tiêu chí này. | Score out of range |
 | ERR_PR_003 | VR-PR-003 | Vui lòng nhập nhận xét đánh giá (ít nhất 50 ký tự). | Comment too short |
 | ERR_PR_006 | VR-PR-006 | Tỷ lệ xếp loại Xuất sắc đã vượt 15% trong đơn vị. Vui lòng xem xét lại. | Excellent rating limit exceeded |
-| ERR_PR_007 | VR-PR-007 | Đánh giá phải tuân theo quy trình phê duyệt. | Evaluation workflow required |
-| ERR_PR_008 | VR-PR-008 | Không thể sửa đánh giá đã được phê duyệt. | Cannot modify approved evaluation |
+| ERR_PR_007 
 | ERR_PR_009 | VR-PR-009 | Kỳ đánh giá không tồn tại hoặc đã đóng. | Invalid evaluation cycle |
 | ERR_PR_010 | VR-PR-010 | Mẫu đánh giá chưa có tiêu chí. Vui lòng cấu hình trước khi sử dụng. | No criteria configured |
 | ERR_PR_011 | VR-PR-011 | Mẫu đánh giá chưa có ngưỡng phân loại. | No classification thresholds |
@@ -957,41 +692,7 @@ Trong đó:
 | ERR_TD_007 | VR-TD-007 | Kết quả đào tạo không hợp lệ. | Invalid training result |
 | ERR_TD_008 | VR-TD-008 | Ngày kết thúc khóa học phải sau ngày bắt đầu. | Course end date before start |
 
-#### Recruitment (ERR_RC_xxx)
 
-| Error Code | Rule ID | Vietnamese Message | English Description |
-|------------|---------|-------------------|---------------------|
-| ERR_RC_001 | VR-RC-001 | Vui lòng nhập họ tên ứng viên. | Candidate name required |
-| ERR_RC_002 | VR-RC-002 | Vui lòng nhập email ứng viên. | Candidate email required |
-| ERR_RC_003 | VR-RC-003 | Email ứng viên không đúng định dạng. | Invalid candidate email |
-| ERR_RC_004 | VR-RC-004 | Điểm đánh giá phải từ 0 đến 10. | Interview score out of range |
-| ERR_RC_005 | VR-RC-005 | Hệ số tiêu chí phải lớn hơn 0. | Invalid criteria weight |
-| ERR_RC_006 | VR-RC-006 | Không thể chuyển ứng viên từ [Stage A] sang [Stage B]. | Invalid candidate stage transition |
-| ERR_RC_007 | VR-RC-007 | Chỉ có thể tạo hợp đồng cho ứng viên đã đạt phỏng vấn. | Contract requires passed interview |
-| ERR_RC_009 | VR-RC-009 | Người phỏng vấn đã có lịch vào thời gian này. | Interview schedule conflict |
-| ERR_RC_010 | VR-RC-010 | Vị trí tuyển dụng không tồn tại hoặc đã đóng. | Invalid recruitment position |
-| ERR_RC_011 | VR-RC-011 | Kỳ tuyển dụng không hợp lệ. | Invalid recruitment cycle |
-| ERR_RC_012 | VR-RC-012 | Vị trí giảng viên yêu cầu trình độ Thạc sĩ trở lên. | Academic position requires Master's |
-| ERR_RC_013 | VR-RC-013 | Chuyên ngành của ứng viên không phù hợp với yêu cầu vị trí. | Major mismatch |
-| ERR_RC_014 | VR-RC-014 | Ứng viên giảng viên phải có chứng chỉ ngoại ngữ. | Language certificate required |
-| ERR_RC_015 | VR-RC-015 | Điểm IELTS chưa đạt yêu cầu tối thiểu. | IELTS score below minimum |
-| ERR_RC_016 | VR-RC-016 | Ứng viên giảng viên phải hoàn thành cả 2 vòng phỏng vấn. | Two interview rounds required |
-| ERR_RC_017 | VR-RC-017 | Ứng viên giảng viên phải hoàn thành buổi giảng thử. | Teaching demo required |
-| ERR_RC_018 | VR-RC-018 | Điểm giảng thử phải từ 0 đến 10. | Teaching demo score out of range |
-| ERR_RC_019 | VR-RC-019 | Điểm giảng thử chưa đạt yêu cầu tối thiểu. | Teaching demo score below minimum |
-| ERR_RC_020 | VR-RC-020 | Hội đồng phỏng vấn giảng viên phải có ít nhất 5 thành viên. | Academic panel requires 5+ members |
-| ERR_RC_021 | VR-RC-021 | Hội đồng phỏng vấn nhân viên phải có ít nhất 3 thành viên. | Staff panel requires 3+ members |
-| ERR_RC_022 | VR-RC-022 | Chủ tịch hội đồng tuyển GV phải có học vị TS hoặc học hàm PGS/GS. | Panel chair requires PhD/Prof |
-| ERR_RC_023 | VR-RC-023 | Thành viên hội đồng không được có quan hệ với ứng viên. | Panel member conflict of interest |
-| ERR_RC_024 | VR-RC-024 | Còn thành viên hội đồng chưa đánh giá. | Incomplete panel evaluation |
-| ERR_RC_025 | VR-RC-025 | Đề nghị tuyển giảng viên phải được Hiệu trưởng phê duyệt. | Academic hire requires Rector approval |
-| ERR_RC_026 | VR-RC-026 | Đề nghị tuyển nhân viên phải được Trưởng phòng TCCB phê duyệt. | Staff hire requires HR Head approval |
-| ERR_RC_027 | VR-RC-027 | Số lượng tuyển đã đạt chỉ tiêu cho vị trí này. | Position quota reached |
-| ERR_RC_028 | VR-RC-028 | Kế hoạch tuyển dụng chưa được phê duyệt. | Recruitment plan not approved |
-| ERR_RC_029 | VR-RC-029 | Ứng viên giảng viên phải có ít nhất 1 công trình NCKH. | Research achievement required |
-| ERR_RC_030 | VR-RC-030 | Vị trí này yêu cầu có bài báo ISI/Scopus. | ISI/Scopus publication required |
-| ERR_RC_031 | VR-RC-032 | Vui lòng nhập lý do từ chối ứng viên. | Rejection reason required |
-| WARN_RC_001 | VR-RC-031 | Nên gửi email mời phỏng vấn ít nhất 3 ngày trước. | Interview invitation timing warning |
 
 #### Self-Service Portal (ERR_SS_xxx)
 
@@ -1047,86 +748,13 @@ Trong đó:
 
 ---
 
-## 19. Quy tắc Validation cho Workflow (6 Quy trình Định sẵn)
 
-### 19.1 Workflow 1: Nghỉ phép (Leave Request)
-
-**Scope:** FR-CF-092
-
-| Rule ID | Bước | Điều kiện | Thông báo lỗi | Error Code |
-|---------|------|-----------|---------------|------------|
-| VR-WF-001 | Gửi đơn | Người gửi phải có hợp đồng đang hiệu lực | "Bạn không có hợp đồng đang hiệu lực để đăng ký nghỉ phép." | ERR_WF_001 |
-| VR-WF-002 | Gửi đơn | Số ngày nghỉ ≤ Số ngày phép còn lại | "Số ngày nghỉ yêu cầu vượt quá số ngày phép còn lại." | ERR_WF_002 |
-| VR-WF-003 | Trưởng ĐV | Người duyệt phải là Trưởng đơn vị của nhân viên | "Bạn không có quyền phê duyệt đơn của nhân viên đơn vị khác." | ERR_WF_003 |
-| VR-WF-004 | Trưởng ĐV | Thời hạn xử lý ≤ Timeout cấu hình (mặc định 24h) | "Đơn đã quá hạn xử lý. Vui lòng kiểm tra và xử lý ngay." | ERR_WF_004 |
-| VR-WF-005 | P.TCCB | Người duyệt phải thuộc Phòng TCCB | "Bạn không có quyền phê duyệt ở bước này." | ERR_WF_005 |
-| VR-WF-006 | Hiệu trưởng | Bước này chỉ kích hoạt khi số ngày nghỉ > 3 | N/A (conditional step) | N/A |
-| VR-WF-007 | Hoàn thành | Không thể hủy đơn đã được phê duyệt hoàn tất | "Không thể hủy đơn nghỉ đã được phê duyệt." | ERR_WF_007 |
-
-### 19.2 Workflow 2: Hợp đồng mới (New Contract)
-
-**Scope:** FR-CF-092
-
-| Rule ID | Bước | Điều kiện | Thông báo lỗi | Error Code |
-|---------|------|-----------|---------------|------------|
-| VR-WF-008 | Tạo HĐ | Ứng viên phải đạt phỏng vấn (nếu từ tuyển dụng) | "Chỉ tạo hợp đồng cho ứng viên đã đạt phỏng vấn." | ERR_WF_008 |
-| VR-WF-009 | Trưởng ĐV | Đề xuất phải có đầy đủ thông tin bắt buộc | "Đề xuất hợp đồng chưa đầy đủ thông tin." | ERR_WF_009 |
-| VR-WF-010 | P.TCCB | Kiểm tra định biên trước khi duyệt | "Vị trí đã đủ định biên. Không thể phê duyệt hợp đồng mới." | ERR_WF_010 |
-| VR-WF-011 | Hiệu trưởng | Hợp đồng phải có mức lương trong khung cho phép | "Mức lương đề xuất ngoài khung quy định." | ERR_WF_011 |
-| VR-WF-012 | Ký HĐ | Số hợp đồng phải được sinh tự động và duy nhất | "Lỗi sinh số hợp đồng. Vui lòng thử lại." | ERR_WF_012 |
-
-### 19.3 Workflow 3: Gia hạn Hợp đồng (Contract Renewal)
-
-**Scope:** FR-CF-092
-
-| Rule ID | Bước | Điều kiện | Thông báo lỗi | Error Code |
-|---------|------|-----------|---------------|------------|
-| VR-WF-013 | Khởi tạo | Hợp đồng hiện tại sẽ hết hạn trong 30 ngày | "Chỉ gia hạn hợp đồng sắp hết hạn (trong vòng 30 ngày)." | ERR_WF_013 |
-| VR-WF-014 | Khởi tạo | Nếu đã ký 2 lần HĐ có thời hạn, phải chuyển sang không thời hạn | "Phải chuyển sang HĐ không xác định thời hạn theo quy định." | ERR_WF_014 |
-| VR-WF-015 | Trưởng ĐV | Đánh giá hiệu suất của nhân viên phải ≥ "Hoàn thành" | "Không gia hạn cho nhân viên chưa hoàn thành nhiệm vụ." | ERR_WF_015 |
-| VR-WF-016 | P.TCCB | Kiểm tra vi phạm kỷ luật trong kỳ | "Nhân viên có vi phạm kỷ luật. Cần xem xét kỹ trước khi gia hạn." | ERR_WF_016 |
-
-### 19.4 Workflow 4: Nâng lương (Salary Increase)
-
-**Scope:** FR-CF-092
-
-| Rule ID | Bước | Điều kiện | Thông báo lỗi | Error Code |
-|---------|------|-----------|---------------|------------|
-| VR-WF-017 | Đề xuất | Nhân viên đủ thời gian giữ bậc (thường 3 năm) | "Chưa đủ thời gian giữ bậc để đề xuất nâng lương." | ERR_WF_017 |
-| VR-WF-018 | Đề xuất | Đánh giá 2 năm liên tiếp phải ≥ "Hoàn thành" | "Không đủ điều kiện đánh giá để nâng lương." | ERR_WF_018 |
-| VR-WF-019 | P.TCCB | Không có kỷ luật trong 3 năm gần nhất | "Nhân viên có kỷ luật trong 3 năm gần đây." | ERR_WF_019 |
-| VR-WF-020 | Hội đồng | Danh sách nâng lương phải được Hội đồng lương phê duyệt | "Chưa có biên bản họp Hội đồng lương." | ERR_WF_020 |
-| VR-WF-021 | Hiệu trưởng | Quyết định nâng lương phải có căn cứ pháp lý | "Thiếu căn cứ pháp lý cho quyết định nâng lương." | ERR_WF_021 |
-
-### 19.5 Workflow 5: Đánh giá Viên chức (Staff Evaluation)
-
-**Scope:** FR-CF-092
-
-| Rule ID | Bước | Điều kiện | Thông báo lỗi | Error Code |
-|---------|------|-----------|---------------|------------|
-| VR-WF-022 | Tự đánh giá | Phải hoàn thành tất cả tiêu chí bắt buộc | "Vui lòng hoàn thành tất cả tiêu chí đánh giá." | ERR_WF_022 |
-| VR-WF-023 | Tự đánh giá | Nhận xét tự đánh giá ≥ 50 ký tự | "Nhận xét tự đánh giá quá ngắn." | ERR_WF_023 |
-| VR-WF-024 | Trưởng ĐV | Phải có nhận xét về từng tiêu chí | "Vui lòng nhận xét đầy đủ các tiêu chí." | ERR_WF_024 |
-| VR-WF-025 | P.TCCB | Tổng hợp đánh giá đơn vị phải đúng tỷ lệ quy định | "Tỷ lệ xếp loại Xuất sắc vượt 15% quy định." | ERR_WF_025 |
-| VR-WF-026 | Hội đồng | Biên bản họp Hội đồng phải được đính kèm | "Thiếu biên bản họp Hội đồng đánh giá." | ERR_WF_026 |
-
-### 19.6 Workflow 6: Thay đổi Cấu hình (Configuration Change)
-
-**Scope:** FR-CF-092
-
-| Rule ID | Bước | Điều kiện | Thông báo lỗi | Error Code |
-|---------|------|-----------|---------------|------------|
-| VR-WF-027 | Đề xuất | Ngày hiệu lực phải ≥ Ngày hiện tại | "Ngày hiệu lực phải từ hôm nay trở đi." | ERR_WF_027 |
-| VR-WF-028 | Đề xuất | Phải có lý do thay đổi | "Vui lòng nhập lý do thay đổi cấu hình." | ERR_WF_028 |
-| VR-WF-029 | Admin | Phải xem trước tác động trước khi gửi duyệt | "Vui lòng xem trước kết quả mẫu trước khi gửi phê duyệt." | ERR_WF_029 |
-| VR-WF-030 | Trưởng P.TCCB/TCKT | Thay đổi ảnh hưởng ≥ 100 nhân viên cần phê duyệt cấp cao hơn | "Thay đổi ảnh hưởng lớn cần được Hiệu trưởng phê duyệt." | ERR_WF_030 |
-| VR-WF-031 | Kích hoạt | Không rollback được sau khi phiên bản mới có hiệu lực | "Không thể hoàn tác sau khi cấu hình đã có hiệu lực." | ERR_WF_031 |
 
 ---
 
-## 20. Tổng hợp và Thống kê
+## 15. Tổng hợp và Thống kê
 
-### 20.1 Thống kê theo Module
+### 15.1 Thống kê theo Module
 
 | Module | Data Validation | Business Rules | Cross-Entity | Workflow | Total |
 |--------|-----------------|----------------|--------------|----------|-------|
@@ -1134,21 +762,17 @@ Trong đó:
 | Qualifications (FR-QM) | 9 | 3 | 4 | 0 | **16** |
 | Organization (FR-OS) | 6 | 4 | 4 | 0 | **14** |
 | Contract Management (FR-CM) | 8 | 10 | 2 | 0 | **20** |
-| Time & Attendance (FR-TA) | 6 | 9 | 2 | 0 | **17** |
 | Salary Data (FR-SD) | 5 | 2 | 3 | 0 | **10** |
-| Teaching Load (FR-TL) | 8 | 9 | 5 | 0 | **26** |
-| Research Management (FR-RM) | 6 | 4 | 3 | 0 | **13** |
+
 | Performance & Rewards (FR-PR) | 3 | 5 | 3 | 0 | **11** |
 | Training & Development (FR-TD) | 3 | 5 | 0 | 0 | **8** |
-| Recruitment (FR-RC) | 8 | 19 | 2 | 3 | **32** |
 | Self-Service Portal (FR-SS) | 0 | 4 | 0 | 0 | **4** |
 | Reporting (FR-RP) | 3 | 2 | 1 | 0 | **6** |
 | System Configuration (FR-CF) | 5 | 6 | 6 | 0 | **17** |
 | Security | 3 | 3 | 3 | 0 | **9** |
-| Workflow (6 quy trình) | 0 | 0 | 0 | 31 | **31** |
-| **TOTAL** | **90** | **96** | **45** | **31** | **264** |
+| **TOTAL** | **-** | **-** | **-** | **0** | **189** |
 
-### 20.2 Thống kê theo Loại Constraint
+### 15.2 Thống kê theo Loại Constraint
 
 | Constraint Type | Count | Percentage |
 |-----------------|-------|------------|
@@ -1164,10 +788,9 @@ Trong đó:
 | Referential | 32 | 12.8% |
 | Dependency | 10 | 4.0% |
 | Permission | 5 | 2.0% |
-| Workflow (Approval Flow) | 31 | 12.4% |
-| **TOTAL** | **250** | **100%** |
+| **TOTAL** | **214** | **100%** |
 
-### 20.3 Rule ID Quick Reference
+### 15.3 Rule ID Quick Reference
 
 | Module | Rule ID Range |
 |--------|---------------|
@@ -1175,18 +798,16 @@ Trong đó:
 | Qualifications | VR-QM-001 to VR-QM-016 |
 | Organization Structure | VR-OS-001 to VR-OS-014 |
 | Contract Management | VR-CM-001 to VR-CM-020 |
-| Time & Attendance | VR-TA-001 to VR-TA-017 |
+
 | Salary Data | VR-SD-001 to VR-SD-010 |
-| Teaching Load | VR-TL-001 to VR-TL-026 |
-| Research Management | VR-RM-001 to VR-RM-013 |
+
 | Performance & Rewards | VR-PR-001 to VR-PR-011 |
 | Training & Development | VR-TD-001 to VR-TD-008 |
-| Recruitment | VR-RC-001 to VR-RC-032 |
+
 | Self-Service Portal | VR-SS-001 to VR-SS-004 |
 | Reporting | VR-RP-001 to VR-RP-006 |
 | System Configuration | VR-CF-001 to VR-CF-017 |
 | Security | VR-SC-001 to VR-SC-009 |
-| Workflows (6 quy trình) | VR-WF-001 to VR-WF-031 |
 
 ---
 
@@ -1268,80 +889,67 @@ Tất cả các Business Rules có ảnh hưởng đến dữ liệu quan trọn
 
 ## Phụ lục C: Các Kịch bản Validation Liên Module
 
-### C.1 Kịch bản 1: Tạo Nhân viên Mới từ Tuyển dụng
+### C.1 Kịch bản 1: Tạo Nhân viên Mới và Hợp đồng
 
-**Các module liên quan:** FR-RC → FR-ER → FR-CM → FR-QM
+**Các module liên quan:** FR-ER → FR-CM → FR-QM
 
 ```
-1. [FR-RC] Ứng viên phải đạt phỏng vấn (VR-RC-007)
-   ↓
-2. [FR-ER] Tạo hồ sơ nhân viên mới
+1. [FR-ER] Tạo hồ sơ nhân viên mới
    - Validate tất cả thông tin cá nhân (VR-ER-003 to VR-ER-022)
    - Sinh mã cán bộ tự động (VR-ER-002)
    ↓
-3. [FR-QM] Import bằng cấp từ hồ sơ ứng viên
+2. [FR-QM] Import bằng cấp từ hồ sơ ứng viên
    - Validate trình độ giảng viên (VR-QM-011)
    ↓
-4. [FR-CM] Tạo hợp đồng mới
+3. [FR-CM] Tạo hợp đồng mới
    - Validate loại hợp đồng, thời hạn (VR-CM-001 to VR-CM-020)
    ↓
-5. [FR-CF] Kiểm tra định biên (VR-OS-008)
+4. [FR-CF] Kiểm tra định biên (VR-OS-008)
    ↓
-6. [Workflow] Phê duyệt hợp đồng (VR-WF-008 to VR-WF-012)
+5. [Workflow] Phê duyệt hợp đồng (VR-WF-008 to VR-WF-012)
 ```
 
 **Lỗi có thể xảy ra:**
 | Bước | Lỗi | Error Code | Xử lý |
 |------|-----|------------|-------|
-| 1 | Ứng viên chưa phỏng vấn | ERR_RC_007 | Chặn tạo hồ sơ |
-| 2 | Email trùng | ERR_ER_014 | Kiểm tra lại email |
-| 3 | Chưa có bằng Thạc sĩ | ERR_QM_011 | Cảnh báo, yêu cầu bổ sung |
-| 5 | Hết định biên | ERR_OS_008 | Chặn tạo hợp đồng |
+| 1 | Email trùng | ERR_ER_014 | Kiểm tra lại email |
+| 2 | Chưa có bằng Thạc sĩ | ERR_QM_011 | Cảnh báo, yêu cầu bổ sung |
+| 4 | Hết định biên | ERR_OS_008 | Chặn tạo hợp đồng |
 
 ### C.2 Kịch bản 2: Xuất Dữ liệu Lương cho Hệ thống Bên ngoài
 
-**Các module liên quan:** FR-TA → FR-TL → FR-SD → FR-CF → External Payroll System
+**Các module liên quan:** FR-SD → FR-CF → External Payroll System
 
 > [!NOTE]
 > Hệ thống HRMS chỉ cung cấp dữ liệu cho hệ thống tính lương bên ngoài, không tự tính lương.
+> Dữ liệu giờ giảng được quản lý bởi hệ thống bên ngoài, không thuộc phạm vi HRMS.
 
 ```
-1. [FR-TA] Tổng hợp chấm công
-   - Kiểm tra thiếu check-in/out (VR-TA-013)
-   - Tính ngày nghỉ đã dùng
-   ↓
-2. [FR-TL] Tổng hợp giờ giảng
-   - Tra cứu hệ số quy đổi (VR-TL-010)
-   - Tra cứu định mức (VR-TL-013)
-   - Tính giờ vượt (VR-TL-011)
-   ↓
-3. [FR-SD] Lấy thông tin lương của nhân viên
+1. [FR-SD] Lấy thông tin lương của nhân viên
    - Ngạch/bậc lương hiện tại (VR-SD-001, VR-SD-002)
    - Hệ số lương (VR-SD-003)
    - Thông tin người phụ thuộc (VR-SD-010)
    ↓
-4. [FR-CF] Lấy tham số cấu hình
+2. [FR-CF] Lấy tham số cấu hình
    - Mức lương cơ sở (VR-CF-004)
    - Tỷ lệ bảo hiểm (VR-CF-003)
    - Hệ số phụ cấp chức vụ
    - Ngưỡng thuế TNCN
    ↓
-5. [API/Export] Xuất dữ liệu cho hệ thống tính lương bên ngoài
+3. [API/Export] Xuất dữ liệu cho hệ thống tính lương bên ngoài
    - Format: JSON/CSV
-   - Bao gồm: Thông tin NV, ngạch/bậc, ngày công, giờ vượt, người phụ thuộc
+   - Bao gồm: Thông tin NV, ngạch/bậc, người phụ thuộc, hệ số phụ cấp
 ```
 
 **Lỗi có thể xảy ra:**
 | Bước | Lỗi | Error Code | Xử lý |
 |------|-----|------------|-------|
-| 1 | Thiếu dữ liệu chấm công | N/A | Cảnh báo, yêu cầu bổ sung |
-| 2 | Chưa cấu hình định mức | ERR_TL_017 | Cảnh báo trong dữ liệu xuất |
-| 3 | Chưa có ngạch/bậc lương | ERR_SD_001 | Chặn xuất dữ liệu |
-| 4 | Chưa cấu hình lương cơ sở | ERR_CF_004 | Cảnh báo trong dữ liệu xuất |
+| 1 | Chưa có ngạch/bậc lương | ERR_SD_001 | Chặn xuất dữ liệu |
+| 2 | Chưa cấu hình lương cơ sở | ERR_CF_004 | Cảnh báo trong dữ liệu xuất |
 
 ### C.3 Kịch bản 3: Gia hạn Hợp đồng Hàng loạt
 
-**Các module liên quan:** FR-CM → FR-PR → FR-TA → FR-CF
+**Các module liên quan:** FR-CM → FR-PR → FR-CF
 
 ```
 1. [FR-CM] Danh sách HĐ sắp hết hạn (30 ngày)
@@ -1349,46 +957,36 @@ Tất cả các Business Rules có ảnh hưởng đến dữ liệu quan trọn
    ↓
 2. [FR-PR] Kiểm tra kết quả đánh giá
    - Đánh giá phải ≥ "Hoàn thành" (VR-WF-015)
+   - Không có kỷ luật trong kỳ (VR-WF-016)
    ↓
-3. [FR-TA] Kiểm tra kỷ luật
-   - Không có vi phạm trong kỳ (VR-WF-016)
-   ↓
-4. [FR-CM] Xác định loại HĐ mới
+3. [FR-CM] Xác định loại HĐ mới
    - Nếu đã 2 lần có thời hạn → Không thời hạn (VR-CM-012)
    ↓
-5. [FR-CF] Kiểm tra định biên (nếu đổi vị trí)
+4. [FR-CF] Kiểm tra định biên (nếu đổi vị trí)
    ↓
-6. [Workflow] Phê duyệt hàng loạt (VR-WF-013 to VR-WF-016)
+5. [Workflow] Phê duyệt hàng loạt (VR-WF-013 to VR-WF-016)
 ```
 
 ### C.4 Kịch bản 4: Đánh giá Viên chức Cuối năm
 
-**Các module liên quan:** FR-PR → FR-TL → FR-RM → FR-TA → FR-CF
+**Các module liên quan:** FR-PR → FR-CF
 
 ```
 1. [FR-CF] Mở kỳ đánh giá
    - Kiểm tra mẫu đánh giá có tiêu chí (VR-PR-010)
    - Kiểm tra có ngưỡng phân loại (VR-PR-011)
    ↓
-2. [FR-TL] Lấy dữ liệu giờ giảng
-   - Tỷ lệ hoàn thành định mức
-   ↓
-3. [FR-RM] Lấy dữ liệu NCKH
-   - Số công bố, đề tài trong năm
-   ↓
-4. [FR-TA] Lấy dữ liệu chuyên cần
-   - Số ngày nghỉ, vi phạm giờ giấc
-   ↓
-5. [FR-PR] Tự đánh giá
+
+2. [FR-PR] Tự đánh giá
    - Hoàn thành tất cả tiêu chí (VR-WF-022)
    ↓
-6. [FR-PR] Đánh giá của Trưởng ĐV
+3. [FR-PR] Đánh giá của Trưởng ĐV
    - Nhận xét đầy đủ (VR-WF-024)
    ↓
-7. [FR-PR] Tổng hợp đơn vị
+4. [FR-PR] Tổng hợp đơn vị
    - Kiểm tra tỷ lệ Xuất sắc ≤ 15% (VR-PR-006)
    ↓
-8. [Workflow] Hội đồng + Hiệu trưởng phê duyệt
+5. [Workflow] Hội đồng + Hiệu trưởng phê duyệt
 ```
 
 ---
@@ -1464,8 +1062,6 @@ Tất cả các Business Rules có ảnh hưởng đến dữ liệu quan trọn
 | VR-ER-028 | employees | academic_title_id | academic_titles.id | fk_employee_title |
 | VR-CM-019 | contracts | contract_type_id | contract_types.id | fk_contract_type |
 | VR-CM-020 | contracts | employee_id | employees.id | fk_contract_employee |
-| VR-TL-014 | teaching_loads | lecturer_id | employees.id | fk_teaching_lecturer |
-| VR-TL-015 | teaching_loads | subject_id | subjects.id | fk_teaching_subject |
 
 ### E.3 Check Constraints
 
@@ -1474,8 +1070,6 @@ Tất cả các Business Rules có ảnh hưởng đến dữ liệu quan trọn
 | VR-ER-006 | employees | date_of_birth | age(date_of_birth) BETWEEN 18 AND 70 | chk_employee_age |
 | VR-ER-022 | employees | dependent_count | dependent_count >= 0 | chk_dependent_count |
 | VR-CM-008 | contracts | salary_coefficient | salary_coefficient BETWEEN 1.0 AND 10.0 | chk_salary_coefficient |
-| VR-TL-005 | teaching_loads | student_count | student_count BETWEEN 1 AND 200 | chk_student_count |
-| VR-TL-007 | teaching_loads | raw_hours | raw_hours BETWEEN 0.5 AND 100 | chk_raw_hours |
 | VR-CF-003 | insurance_rates | rate | rate BETWEEN 0 AND 100 | chk_insurance_rate |
 
 ### E.4 Trigger-based Validations

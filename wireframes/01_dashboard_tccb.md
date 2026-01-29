@@ -5,7 +5,7 @@
 |------|--------|
 | Screen ID | DASH-TCCB-001 |
 | Module | Dashboard |
-| Related FR | FR-RP-007, FR-CM-005, FR-TA-004 |
+| Related FR | FR-RP-007, FR-CM-005 |
 
 ---
 
@@ -26,40 +26,40 @@
 +-------------|----------------------------------------------------+
 |             |                                                     |
 |  Dashboard  |  +---------------+  +---------------+  +-----------+|
-|  > Trung    |  | TỔNG NHÂN SỰ  |  | CẦN PHÊ DUYỆT |  | CẢNH BÁO  ||
-|    tâm ĐH   |  |     1,203     |  |      12       |  |     8     ||
-|             |  | [People Icon] |  | [Clock Icon]  |  | [! Icon]  ||
-|  Nhân sự    |  | +2.1% vs Q3   |  |  Xem tất cả > |  | Chi tiết >||
+|  > Trung    |  | TỔNG NHÂN SỰ  |  | CẢNH BÁO      |  |           ||
+|    tâm ĐH   |  |     1,203     |  |     8         |  |           ||
+|             |  | [People Icon] |  | [! Icon]      |  |           ||
+|  Nhân sự    |  | +2.1% vs Q3   |  | Chi tiết >    |  |           ||
 |             |  +---------------+  +---------------+  +-----------+|
 |  Tổ chức    |                                                     |
 |             |  +------------------------------------------------+|
 |  Hợp đồng   |  |  ACTION CARDS - VIỆC CẦN LÀM HÔM NAY            ||
 |             |  +------------------------------------------------+|
-|  Chấm công  |  |                                                 ||
+|  Lương      |  |                                                 ||
 |             |  |  +-------------------+  +---------------------+ ||
-|  Lương      |  |  | [!] HỢP ĐỒNG     |  | [Clock] NGHỈ PHÉP   | ||
-|             |  |  | SẮP HẾT HẠN      |  | CHỜ DUYỆT           | ||
+|  | [!] HỢP ĐỒNG     |  | [Star] ĐÁNH GIÁ     | ||
+|             |  |  | SẮP HẾT HẠN      |  | VIÊN CHỨC           | ||
 |             |  |  |                  |  |                     | ||
-|  Giờ giảng  |  |  | 5 hợp đồng       |  | 8 đơn               | ||
-|             |  |  | trong 30 ngày    |  | chờ xử lý           | ||
+|             |  |  | 5 hợp đồng       |  | Kỳ đánh giá 2025    | ||
+|             |  |  | trong 30 ngày    |  | Còn 15 ngày         | ||
 |             |  |  |                  |  |                     | ||
-|             |  |  | [RED] 2 Quá hạn  |  | [YELLOW] 3 > 2 ngày | ||
-|             |  |  | [YELLOW] 3 < 7d  |  | [GREEN] 5 mới       | ||
+|             |  |  | [RED] 2 Quá hạn  |  | 847/1203 đã hoàn    | ||
+|             |  |  | [YELLOW] 3 < 7d  |  | thành (70%)         | ||
 |             |  |  |                  |  |                     | ||
-|             |  |  | [Xử lý ngay]     |  | [Duyệt ngay]        | ||
+|             |  |  | [Xử lý ngay]     |  | [Xem chi tiết]      | ||
 |             |  |  +-------------------+  +---------------------+ ||
 |             |  |                                                 ||
 |             |  |  +-------------------+  +---------------------+ ||
-|             |  |  | [Star] ĐÁNH GIÁ  |  | [User+] TUYỂN DỤNG  | ||
-|             |  |  | VIÊN CHỨC        |  | ĐANG MỞ             | ||
+|             |  |  | [Book] ĐÀO TẠO   |  | [Trophy] KHEN THƯỞNG| ||
+|             |  |  | PHÁT TRIỂN       |  |                     | ||
 |             |  |  |                  |  |                     | ||
-|             |  |  | Kỳ đánh giá 2025 |  | 3 vị trí            | ||
-|             |  |  | Còn 15 ngày      |  | 45 ứng viên         | ||
+|             |  |  | Năm 2025         |  | 5 hồ sơ             | ||
+|             |  |  | 45 khóa đào tạo  |  | được đề xuất        | ||
 |             |  |  |                  |  |                     | ||
-|             |  |  | 847/1203 đã hoàn |  | 12 cần phỏng vấn    | ||
-|             |  |  | thành (70%)      |  |                     | ||
+|             |  |  | 128 lượt đăng ký |  | 2 khẩn cấp          | ||
+|             |  |  | tham gia         |  |                     | ||
 |             |  |  |                  |  |                     | ||
-|             |  |  | [Xem chi tiết]   |  | [Xem ứng viên]      | ||
+|             |  |  | [Xem chi tiết]   |  | [Xem hồ sơ]         | ||
 |             |  |  +-------------------+  +---------------------+ ||
 |             |  +------------------------------------------------+|
 |             |                                                     |
@@ -105,9 +105,9 @@
 
 | Card | Metric | Data Source | Click Action |
 |------|--------|-------------|--------------|
-| Tổng Nhân sự | Count of active employees | FR-ER | Navigate to Personnel List |
-| Cần Phê duyệt | Pending approvals count | FR-TA, FR-CM | Navigate to Approval Queue |
-| Cảnh báo | Active alerts count | System | Open Alert Panel |
+| Tong Nhan su | Count of active employees | FR-ER | Navigate to Personnel List |
+
+| Canh bao | Active alerts count | System | Open Alert Panel |
 
 ---
 
@@ -148,41 +148,7 @@
 
 ---
 
-### 3. Action Cards - Leave Approvals (FR-TA-004)
-
-**Visual Layout:**
-```
-+---------------------------------------+
-|  [Clock] NGHỈ PHÉP CHỜ DUYỆT          |
-+---------------------------------------+
-|                                       |
-|  8 đơn chờ xử lý                      |
-|                                       |
-|  +-----------------------------------+|
-|  | [YELLOW] Chờ > 2 ngày         3   ||
-|  | [GREEN] Đơn mới               5   ||
-|  +-----------------------------------+|
-|                                       |
-|  Mới nhất:                            |
-|  +-----------------------------------+|
-|  | Pham D | Phép năm | 3 ngày | 2h  ||
-|  | Hoang E| Việc riêng| 1 ngày | 5h  ||
-|  +-----------------------------------+|
-|                                       |
-|  [DUYỆT NGAY]  [XEM TẤT CẢ >]         |
-+---------------------------------------+
-```
-
-**Priority Indicators:**
-| Priority | Color | Condition |
-|----------|-------|-----------|
-| High | Yellow | Pending > 2 days |
-| Normal | Green | Pending < 2 days |
-| Urgent | Red | Start date within 24h |
-
----
-
-### 4. Quick Search Component
+### 3. Quick Search Component
 
 ```
 +--------------------------------------------------+
@@ -263,14 +229,6 @@
 | Contract Number | FR-CM-002 | HD-YYYY-NNN |
 | Days Remaining | Calculated | +/-N days |
 | Contract Type | FR-CF-012 | Category name |
-
-### Leave Approval Card
-| Field | Source | Format |
-|-------|--------|--------|
-| Employee Name | FR-ER-001 | Full name |
-| Leave Type | FR-CF-023 | Category name |
-| Duration | FR-TA | N days |
-| Pending Time | Calculated | N hours/days |
 
 ---
 
