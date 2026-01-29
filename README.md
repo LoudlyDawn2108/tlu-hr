@@ -66,7 +66,6 @@ Dự án **Phân tích và Thiết kế Hệ thống Quản lý Nhân sự (HRMS
 |------|-------|
 | [BAO_CAO_CHUONG_1.md](BAO_CAO_CHUONG_1.md) | 📄 Báo cáo Chương 1 đầy đủ (~850 dòng) |
 | [user_requirements_mvp.md](user_requirements_mvp.md) | 📋 Yêu cầu MVP: 119 STRQ → 62 FEAT |
-| [user_requirements_hrms.md](user_requirements_hrms.md) | 📚 Yêu cầu đầy đủ (bản gốc ~1400 dòng) |
 
 ---
 
@@ -74,7 +73,7 @@ Dự án **Phân tích và Thiết kế Hệ thống Quản lý Nhân sự (HRMS
 
 | Tiêu chí | Giá trị |
 |----------|---------|
-| Tổng số STRQ | **119** |
+| Tổng số STRQ | **118** |
 | Tổng số FEAT | **62** |
 | Số Module (MVP) | **8** |
 | Số Use Case | **10** |
