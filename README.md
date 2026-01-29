@@ -91,15 +91,15 @@ Dự án **Phân tích và Thiết kế Hệ thống Quản lý Nhân sự (HRMS
 
 ---
 
-## 👨‍💻 Đội phát triển
+## 👥 Đội phát triển
 
 | Team | Vai trò | Số lượng |
 |------|---------|----------|
-| Team 1 | BA/PM | 3 |
-| Team 2 | SA/Design | 3 |
-| Team 3 | Developer | 5 |
+| Team 1 | BA/PM | 2 |
+| Team 2 | SA/Design | 4 |
+| Team 3 | Developer | 4 |
 | Team 4 | Tester | 2 |
-| Team 5 | DevOps | 1 |
+| Team 5 | DevOps | 2 |
 | **Tổng** | | **14** |
 
 ---

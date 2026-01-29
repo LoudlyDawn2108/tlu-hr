@@ -776,11 +776,11 @@ Xây dựng hệ thống quản lý nhân sự tập trung, hiện đại, đáp
 
 | Team | Vai trò | Số lượng | Nhiệm vụ chính |
 |------|---------|----------|----------------|
-| Team 1 | BA/PM | 3 | Phân tích yêu cầu, quản lý dự án |
-| Team 2 | SA/Design | 3 | Thiết kế hệ thống, UI/UX |
-| Team 3 | Dev | 5 | Phát triển Backend, Frontend |
+| Team 1 | BA/PM | 2 | Phân tích yêu cầu, quản lý dự án |
+| Team 2 | SA/Design | 4 | Thiết kế hệ thống, UI/UX |
+| Team 3 | Dev | 4 | Phát triển Fullstack (FE & BE) theo module |
 | Team 4 | Test | 2 | Kiểm thử |
-| Team 5 | Deploy | 1 | Triển khai, CI/CD |
+| Team 5 | Deploy | 2 | Triển khai, CI/CD |
 | | **Tổng** | **14** | |
 
 ### 1.2.2. Phạm vi công việc
