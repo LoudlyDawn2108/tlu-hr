@@ -118,7 +118,7 @@
 
 ---
 
-### 2.3. Quản lý Cơ cấu Tổ chức
+### 2.4. Quản lý Cơ cấu Tổ chức
 
 | STT | Đối tượng | Phương pháp | Mã STRQ | Yêu cầu (STRQ) | Ánh xạ FEAT |
 |-----|-----------|-------------|---------|----------------|-------------|
@@ -251,7 +251,7 @@
 | FEAT-ER-11 | Xuất hồ sơ | Xuất PDF, Excel, Word | STRQ-ER-33 → 35 |
 | FEAT-ER-12 | Hiển thị học hàm/học vị | Format: PGS.TS. Nguyễn Văn A | STRQ-ER-36 |
 
-### 3.2. Module Trình độ, Chức danh (FEAT-QM)
+### 3.3. Module Trình độ, Chức danh (FEAT-QM)
 
 | Mã FEAT | Tên tính năng | Mô tả | STRQ liên quan |
 |---------|--------------|-------|----------------|

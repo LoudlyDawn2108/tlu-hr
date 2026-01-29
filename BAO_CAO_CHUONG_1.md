@@ -285,7 +285,7 @@ Xây dựng hệ thống quản lý nhân sự tập trung, hiện đại, đáp
 | Bậc lương (PB) | 12 | 6 |
 | Báo cáo (RP) | 4 | 2 |
 | Self-Service (SS) | 5 | 3 |
-| **Tổng cộng** | **119** | **62** |
+| **Tổng cộng** | **118** | **62** |
 
 ---
 
