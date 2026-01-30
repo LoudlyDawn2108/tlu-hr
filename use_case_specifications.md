@@ -212,29 +212,103 @@
 
 ### Alternative Flow 2: Quản lý Loại Phụ cấp
 1.  Admin chọn tab "Phụ cấp".
-2.  Hệ thống hiển thị danh sách các loại phụ cấp.
-3.  Admin nhấn "Thêm mới".
-4.  Admin nhập: `Tên phụ cấp`, `Loại tính` (Hệ số lương cơ sở / Số tiền cố định / % Lương), `Công thức`.
-5.  Admin nhấn "Lưu".
+2.  Hệ thống hiển thị danh sách các loại phụ cấp (chỉ hiển thị các mục Active với người dùng thường).
+3.  **Với Cán bộ Phòng TCCB/Quản trị viên:** Có thể xem và quản lý cả các mục Inactive (được đánh dấu riêng).
+4.  Admin nhấn "Thêm mới".
+5.  Admin nhập: `Tên phụ cấp`, `Loại tính` (Hệ số lương cơ sở / Số tiền cố định / % Lương), `Công thức`.
+6.  Admin nhấn "Lưu".
+
+### Alternative Flow 3: Đánh dấu Active/Inactive
+1.  Tại tab "Hệ số lương" hoặc "Phụ cấp", Admin chọn một mục cần thay đổi trạng thái.
+2.  Admin nhấn nút "Đánh dấu Inactive" hoặc "Kích hoạt lại".
+3.  Hệ thống hiển thị xác nhận và yêu cầu nhập `Lý do` (bắt buộc đối với việc inactive).
+4.  Admin xác nhận.
+5.  Hệ thống cập nhật trạng thái và ghi log thay đổi.
+
+### Exception Flows
+*   **E1: Ngày hiệu lực không hợp lệ (Mức lương cơ sở)**
+    *   Tại bước 5 của Main Flow, nếu `Ngày hiệu lực` <= ngày hiện tại, hệ thống hiển thị thông báo "Ngày hiệu lực phải lớn hơn ngày hiện tại".
+*   **E2: Đã tồn tại mức lương cơ sở đang hoạt động**
+    *   Tại bước 7 của Main Flow, nếu đã có mức lương cơ sở đang Active, hệ thống tự động đánh dấu mức cũ là Inactive và kích hoạt mức mới.
+
+### Business Rules
+1.  **Mức lương cơ sở:** Chỉ được tồn tại **01 mức lương cơ sở đang Active** tại một thời điểm. Khi thêm mới, mức cũ tự động chuyển sang Inactive.
+2.  **Ngày hiệu lực:** Ngày hiệu lực của mức lương cơ sở mới phải **lớn hơn ngày hiện tại**.
+3.  **Trạng thái Active/Inactive:**
+    *   Các mục **Inactive** sẽ **không hiển thị** trong danh sách dropdown/form nhập liệu đối với người dùng thường (Cán bộ TCCB nhập liệu).
+    *   **Cán bộ Phòng TCCB** và **Quản trị viên** có quyền xem và quản lý các mục Inactive (có đánh dấu riêng biệt).
+4.  **Lưu lịch sử:** Mọi thay đổi về hệ số lương, phụ cấp đều được ghi log với lý do (CFG-006).
 
 ---
 
 ## 6. UC-CFG-002: Cấu hình Hợp đồng
 
-**Mô tả:** Quản trị viên cấu hình các loại hợp đồng và quy tắc thời hạn, số lần ký tối đa.
-**Actors:** Quản trị viên hệ thống.
+**Mô tả:** Quản trị viên cấu hình các loại hợp đồng lao động với tham số riêng cho từng loại, bao gồm thời hạn, số lần ký tối đa và các quy tắc chuyển đổi.
+**Actors:** Quản trị viên hệ thống, Cán bộ Phòng TCCB (có quyền xem/sửa các loại hợp đồng inactive).
 **Liên quan đến Requirements:** CFG-010 đến CFG-014
 
-### Main Flow
+### Main Flow (Quản lý loại Hợp đồng Xác định thời hạn)
 1.  Admin chọn menu "Quản lý Cấu hình" -> "Hợp đồng".
-2.  Hệ thống hiển thị danh sách loại hợp đồng.
-3.  Admin chọn một loại (VD: Hợp đồng xác định thời hạn) để sửa.
-4.  Admin cập nhật tham số:
-    *   `Thời hạn tối thiểu` (tháng).
-    *   `Thời hạn tối đa` (tháng).
-    *   `Số lần ký tối đa` (trước khi phải chuyển loại).
-5.  Admin nhấn "Lưu".
-6.  Hệ thống cập nhật quy tắc validate cho module Hợp đồng.
+2.  Hệ thống hiển thị danh sách loại hợp đồng (chỉ hiển thị các loại Active với người dùng thường).
+3.  **Với Cán bộ Phòng TCCB/Quản trị viên:** Có thể xem và quản lý cả các loại Inactive (được đánh dấu riêng).
+4.  Admin chọn loại "Hợp đồng xác định thời hạn" để cấu hình.
+5.  Hệ thống hiển thị các tham số đặc thù của loại này:
+    *   `Thời hạn tối thiểu` (tháng) - VD: 12 tháng
+    *   `Thời hạn tối đa` (tháng) - VD: 36 tháng
+    *   `Số lần ký tối đa` (trước khi phải chuyển loại) - VD: 2 lần
+    *   `Gia hạn tối đa` (số lần gia hạn) - VD: 1 lần
+    *   `Thời hạn tối đa gia hạn` (tháng) - VD: 24 tháng
+6.  Admin cập nhật các tham số và nhấn "Lưu".
+7.  Hệ thống validate dữ liệu và cập nhật quy tắc.
+
+### Alternative Flow 1: Cấu hình Hợp đồng Thử việc
+1.  Admin chọn loại "Hợp đồng thử việc".
+2.  Hệ thống hiển thị các tham số đặc thù:
+    *   `Thời hạn tối đa` (tháng) - VD: 2-3 tháng theo Luật Lao động
+    *   `Số lần ký tối đa` - VD: 01 lần duy nhất
+    *   `Không được gia hạn` - Luôn checked và disabled
+    *   `Loại HĐ chuyển đổi sau thử việc` - Chọn từ danh sách: Hợp đồng xác định thời hạn / Hợp đồng không xác định thời hạn
+3.  Admin cập nhật và nhấn "Lưu".
+
+### Alternative Flow 2: Cấu hình Hợp đồng Không xác định thời hạn
+1.  Admin chọn loại "Hợp đồng không xác định thời hạn".
+2.  Hệ thống hiển thị các tham số đặc thù:
+    *   `Không giới hạn thời hạn` - Luôn checked và disabled
+    *   `Không giới hạn số lần ký` - Luôn checked và disabled
+    *   `Có thể chuyển đổi từ` - Chọn: Hợp đồng xác định thời hạn (sau khi hết lần ký tối đa)
+    *   `Điều kiện chuyển đổi` - VD: "Sau khi hết lần ký HĐ xác định thời hạn"
+3.  Admin cập nhật và nhấn "Lưu".
+
+### Alternative Flow 3: Cấu hình Hợp đồng Cộng tác viên / Visiting
+1.  Admin chọn loại "Hợp đồng cộng tác viên / Visiting".
+2.  Hệ thống hiển thị các tham số đặc thù:
+    *   `Thời hạn theo niên học` - Checkbox: Tự động tính theo năm học (VD: 01/09 - 31/08)
+    *   `Thời hạn tối thiểu` (tháng) - VD: 1 tháng
+    *   `Thời hạn tối đa` (tháng) - VD: 12 tháng (1 niên học)
+    *   `Số lần ký tối đa` - VD: Không giới hạn hoặc theo niên học
+    *   `Cho phép gia hạn` - Checkbox
+3.  Admin cập nhật và nhấn "Lưu".
+
+### Alternative Flow 4: Đánh dấu Active/Inactive
+1.  Tại danh sách loại hợp đồng, Admin chọn một loại cần thay đổi trạng thái.
+2.  Admin nhấn nút "Đánh dấu Inactive" hoặc "Kích hoạt lại".
+3.  Hệ thống hiển thị xác nhận và yêu cầu nhập `Lý do` (bắt buộc đối với việc inactive).
+4.  Admin xác nhận.
+5.  Hệ thống cập nhật trạng thái và ghi log thay đổi.
+
+### Exception Flows
+*   **E1: Thời hạn không hợp lệ**
+    *   Nếu `Thời hạn tối thiểu` > `Thời hạn tối đa`, hệ thống hiển thị thông báo lỗi.
+*   **E2: Loại hợp đồng đang được sử dụng**
+    *   Nếu cố gắng inactive một loại hợp đồng đang có nhân sự sử dụng, hệ thống hiển thị cảnh báo "Không thể inactive - Đang có X nhân sự sử dụng loại hợp đồng này".
+
+### Business Rules
+1.  **Tham số theo loại hợp đồng:** Mỗi loại hợp đồng có bộ tham số riêng biệt, phù hợp với đặc thù của loại đó.
+2.  **Trạng thái Active/Inactive:**
+    *   Các loại hợp đồng **Inactive** sẽ **không hiển thị** trong dropdown chọn loại hợp đồng khi tạo/gia hạn hợp đồng cho nhân sự.
+    *   **Cán bộ Phòng TCCB** và **Quản trị viên** có quyền xem và quản lý các loại hợp đồng Inactive.
+3.  **Validation:** Hệ thống sử dụng các tham số cấu hình để validate khi tạo/gia hạn hợp đồng trong UC-HRM-003.
+4.  **Lưu lịch sử:** Mọi thay đổi cấu hình đều được ghi log với lý do.
 
 ---
 
@@ -419,11 +493,11 @@
 ## 9. UC-CFG-007: Cấu hình Loại Khóa đào tạo (Training Type Configuration)
 
 **Mô tả:** Quản trị viên cấu hình các loại khóa đào tạo như trong nước, ngoài nước, ngắn hạn, dài hạn để phân loại các khóa đào tạo trong hệ thống.
-**Actors:** Quản trị viên hệ thống.
+**Actors:** Quản trị viên hệ thống, Cán bộ Phòng TCCB (có quyền xem/sửa các loại đào tạo bị inactive).
 **Liên quan đến Requirements:** Needs #25, #27, #30
 
 ### Preconditions
-*   Người dùng đăng nhập với vai trò Quản trị viên.
+*   Người dùng đăng nhập với vai trò Quản trị viên hoặc Cán bộ Phòng TCCB.
 
 ### Postconditions
 *   Danh mục loại đào tạo được cập nhật.
@@ -431,20 +505,20 @@
 
 ### Main Flow (Xem danh sách Loại đào tạo)
 1.  Admin chọn menu "Quản lý Cấu hình" -> "Loại khóa đào tạo".
-2.  Hệ thống hiển thị danh sách các loại đào tạo:
-    *   Mã loại (tự động), Tên loại, Mô tả, Trạng thái (Active/Inactive), Thứ tự hiển thị
-3.  Admin có thể sử dụng chức năng tìm kiếm, lọc.
+2.  Hệ thống hiển thị danh sách các loại đào tạo, **chỉ hiển thị các loại Active với người dùng thường**.
+3.  **Với Cán bộ Phòng TCCB/Quản trị viên:** Có thể xem và quản lý cả các loại Inactive (được đánh dấu riêng).
+4.  Admin có thể sử dụng chức năng tìm kiếm, lọc.
 
 ### Alternative Flow 1: Thêm mới Loại đào tạo
 1.  Tại danh sách, Admin nhấn "Thêm mới".
 2.  Hệ thống hiển thị form nhập liệu:
-    *   Tên loại (VD: "Đào tạo trong nước", "Đào tạo nước ngoài")
+    *   Tên loại (VD: "Đào tạo trong nước", "Đào tạo nước ngoài", "Đào tạo ngắn hạn", "Đào tạo dài hạn")
     *   Mô tả
     *   Thứ tự hiển thị
 3.  Admin nhập thông tin.
 4.  Nhấn "Lưu".
 5.  Hệ thống:
-    *   Tạo mã loại tự động.
+    *   Tạo mã loại tự động (VD: DT001).
     *   Lưu dữ liệu với trạng thái Active.
     *   Hiển thị thông báo thành công.
 
@@ -454,13 +528,24 @@
 3.  Admin điều chỉnh Tên, Mô tả, Thứ tự hiển thị.
 4.  Nhập lý do sửa (bắt buộc theo Need #30).
 5.  Nhấn "Lưu".
-6.  Hệ thống lưu thay đổi và ghi log.
+6.  Hệ thống lưu thay đổi và ghi log lịch sử với lý do.
 
-### Alternative Flow 3: Đánh dấu Inactive
-1.  Tại danh sách, Admin chọn một loại và nhấn "Inactive".
-2.  Hệ thống kiểm tra xem loại này có đang được sử dụng không.
-3.  Nếu không sử dụng, chuyển sang trạng thái Inactive.
-4.  Nếu đang sử dụng, hiển thị cảnh báo và không cho phép inactive.
+### Alternative Flow 3: Đánh dấu Active/Inactive
+1.  Tại danh sách, Admin chọn một loại cần thay đổi trạng thái.
+2.  Admin nhấn nút "Đánh dấu Inactive" hoặc "Kích hoạt lại".
+3.  Hệ thống hiển thị xác nhận và yêu cầu nhập `Lý do` (bắt buộc đối với việc inactive).
+4.  Admin xác nhận.
+5.  Hệ thống kiểm tra:
+    *   Nếu không sử dụng trong khóa đào tạo nào → Cập nhật trạng thái.
+    *   Nếu đang sử dụng → Hiển thị cảnh báo "Không thể inactive - Đang có khóa đào tạo sử dụng loại này".
+6.  Hệ thống ghi log thay đổi.
+
+### Alternative Flow 4: Sắp xếp Thứ tự Hiển thị
+1.  Admin nhấn "Sắp xếp thứ tự".
+2.  Hệ thống hiển thị danh sách có thể kéo thả (drag & drop).
+3.  Admin điều chỉnh thứ tự các loại.
+4.  Nhấn "Lưu thứ tự".
+5.  Hệ thống cập nhật thứ tự hiển thị.
 
 ### Exception Flows
 *   **E1: Tên loại trùng**
@@ -469,6 +554,16 @@
 *   **E2: Không thể xóa**
     *   Nếu Admin nhấn "Xóa" loại đang sử dụng.
     *   Hệ thống báo "Không thể xóa mục đang được sử dụng. Vui lòng chọn 'Inactive' thay thế." (theo Need #28).
+*   **E3: Thiếu thông tin bắt buộc**
+    *   Nếu không nhập Tên loại.
+    *   Hệ thống báo lỗi validate và không cho lưu.
+
+### Business Rules
+1.  **Trạng thái Active/Inactive:**
+    *   Các loại đào tạo **Inactive** sẽ **không hiển thị** trong dropdown chọn loại đào tạo khi tạo khóa đào tạo (UC-HRM-007).
+    *   **Cán bộ Phòng TCCB** và **Quản trị viên** có quyền xem và quản lý các loại đào tạo Inactive.
+2.  **Lưu lịch sử:** Mọi thay đổi đều được ghi log với lý do (Need #30).
+3.  **Sử dụng:** Loại đào tạo được sử dụng trong UC-HRM-007 (Quản lý Đào tạo).
 
 ---
 
@@ -495,6 +590,8 @@
 5.  Cán bộ TCCB chọn một hồ sơ từ kết quả để xem chi tiết hoặc thực hiện các hành động khác.
 
 ### Alternative Flow 1: Sử dụng Bộ lọc Nâng cao (Advanced Filter)
+**Lưu ý:** Đây là tính năng riêng biệt với tìm kiếm bằng từ khóa, cho phép lọc đa tiêu chí đồng thời.
+
 1.  Tại màn hình danh sách, Cán bộ TCCB nhấn "Bộ lọc nâng cao".
 2.  Hệ thống hiển thị panel lọc với nhiều tiêu chí:
     *   **Đơn vị:** Dropdown chọn Khoa/Phòng/Ban (cho phép chọn nhiều)
@@ -508,6 +605,12 @@
 4.  Nhấn "Áp dụng bộ lọc".
 5.  Hệ thống hiển thị kết quả lọc đa tiêu chí.
 6.  Có thể lưu bộ lọc để sử dụng lại hoặc xuất kết quả lọc ra Excel.
+
+### Alternative Flow 1A: Kết hợp Tìm kiếm + Bộ lọc Nâng cao
+1.  Cán bộ TCCB có thể **kết hợp** cả 2 tính năng:
+    *   Bước 1: Sử dụng Bộ lọc Nâng cao để lọc theo Đơn vị, Trình độ...
+    *   Bước 2: Trong kết quả đã lọc, nhập từ khóa vào ô tìm kiếm để tìm kiếm thêm
+2.  Hệ thống áp dụng cả 2 điều kiện: Kết quả phải thỏa mãn Bộ lọc Nâng cao VÀ chứa từ khóa tìm kiếm.
 
 ### Alternative Flow 1: Thêm mới Hồ sơ (Add Profile)
 1.  Tại màn hình danh sách, Cán bộ TCCB nhấn "Thêm mới".
