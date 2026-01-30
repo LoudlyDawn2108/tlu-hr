@@ -4,7 +4,7 @@
 **Tài liệu:** Danh sách Nhu cầu (Needs) ↔ Use Case Specifications  
 **Ngày cập nhật:** 30/01/2026  
 **Tổng số Needs:** 180  
-**Tổng số Use Cases:** 30
+**Tổng số Use Cases:** 27
 
 ---
 
@@ -15,15 +15,15 @@
 | Tổng số Needs | 180 |
 | Needs được bao phủ bởi Use Cases | 170 |
 | Needs chưa có Use Case | 10 |
-| Use Cases đã tạo | 30 |
-| Use Cases đã xóa (Out of Scope) | 7 |
-| Use Cases mới tạo | 8 |
+| Use Cases đã tạo | 27 |
+| Use Cases đã xóa trong quá trình | 5 |
+| Use Cases mới tạo | 4 |
 
 ---
 
 ## 2. Danh sách Use Cases
 
-### 2.1 Use Cases Hiện tại (30 use cases)
+### 2.1 Use Cases Hiện tại (27 use cases)
 
 | STT | Mã Use Case | Tên | Module | Trạng thái |
 |-----|------------|-----|--------|-----------|
@@ -34,42 +34,36 @@
 | 5 | UC-CFG-001 | Cấu hình Lương và Phụ cấp | Cấu hình | ✅ Giữ nguyên |
 | 6 | UC-CFG-002 | Cấu hình Hợp đồng | Cấu hình | ✅ Giữ nguyên |
 | 7 | UC-CFG-003 | Quản lý Danh mục Dùng chung | Cấu hình | ✅ Giữ nguyên |
-| 8 | UC-CFG-007 | Cấu hình Loại Khóa đào tạo | Cấu hình | 🆕 **MỚI** |
-| 9 | UC-HRM-001 | Quản lý Hồ sơ Nhân sự | Nghiệp vụ TCCB | ✅ Giữ nguyên |
-| 10 | UC-HRM-002 | Quản lý Trình độ và Chức danh | Nghiệp vụ TCCB | ✅ Giữ nguyên |
-| 11 | UC-HRM-003 | Quản lý Hợp đồng Lao động | Nghiệp vụ TCCB | ✅ Giữ nguyên |
-| 12 | UC-HRM-004 | Quản lý Lương & Phụ cấp (Data Entry) | Nghiệp vụ TCCB | ✅ Giữ nguyên |
-| 13 | UC-HRM-005 | Quản lý Khen thưởng & Kỷ luật | Nghiệp vụ TCCB | ✅ Giữ nguyên |
-| 14 | UC-HRM-006 | Quản lý Cơ cấu Tổ chức | Nghiệp vụ TCCB | ✅ Giữ nguyên |
-| 15 | UC-HRM-007 | Quản lý Đào tạo | Nghiệp vụ TCCB | ✅ Giữ nguyên |
-| 16 | UC-HRM-008 | Xem Lịch sử Thay đổi | Nghiệp vụ TCCB | 🔧 Đã đơn giản hóa |
-| 17 | UC-HRM-009 | Quản lý Chức vụ Bộ môn | Nghiệp vụ TCCB | 🔧 Đã đơn giản hóa (từ UC-HRM-013) |
-| 18 | UC-HRM-010 | Quản lý Lịch sử Đơn vị | Nghiệp vụ TCCB | 🔧 Đã đơn giản hóa (từ UC-HRM-014) |
-| 19 | UC-HRM-011 | Quản lý Chức vụ | Nghiệp vụ TCCB | 🆕 **MỚI** |
-| 20 | UC-HRM-012 | Thống kê Trình độ | Nghiệp vụ TCCB | 🆕 **MỚI** |
-| 21 | UC-HRM-013 | Quản lý Hợp đồng Chuyên gia Nước ngoài | Nghiệp vụ TCCB | 🆕 **MỚI** |
-| 22 | UC-HRM-014 | Quản lý Yêu cầu Chỉnh sửa | Nghiệp vụ TCCB | 🆕 **MỚI** |
-| 23 | UC-RPT-001 | Báo cáo và Thống kê | Báo cáo | ✅ Giữ nguyên |
-| 24 | UC-FIN-001 | Xem Hồ sơ và Dữ liệu Lương | Tài chính | ✅ Giữ nguyên |
-| 25 | UC-FIN-002 | Xuất Dữ liệu Lương | Tài chính | ✅ Giữ nguyên |
-| 26 | UC-SSP-001 | Xem Hồ sơ Cá nhân | Self-Service | ✅ Giữ nguyên |
-| 27 | UC-SSP-002 | Yêu cầu Cập nhật Thông tin | Self-Service | ✅ Giữ nguyên |
-| 28 | UC-SSP-003 | Tra cứu Thông tin | Self-Service | ✅ Giữ nguyên |
-| 29 | UC-SSP-004 | Đào tạo Cá nhân | Self-Service | ✅ Giữ nguyên |
-| 30 | UC-SSP-005 | Xem Kết quả Đánh giá | Self-Service | 🆕 **MỚI** |
-| 31 | UC-ADM-001 | Quản lý Phê duyệt Yêu cầu Cập nhật | Admin | 🆕 **MỚI** |
+| 8 | UC-CFG-004 | Cấu hình Danh mục Khen thưởng & Kỷ luật | Cấu hình | 🆕 **MỚI** |
+| 9 | UC-CFG-007 | Cấu hình Loại Khóa đào tạo | Cấu hình | 🆕 **MỚI** |
+| 10 | UC-HRM-001 | Quản lý Hồ sơ Nhân sự | Nghiệp vụ TCCB | ✅ Giữ nguyên |
+| 11 | UC-HRM-002 | Quản lý Trình độ và Chức danh | Nghiệp vụ TCCB | ✅ Giữ nguyên |
+| 12 | UC-HRM-003 | Quản lý Hợp đồng Lao động | Nghiệp vụ TCCB | ✅ Giữ nguyên |
+| 13 | UC-HRM-004 | Quản lý Lương & Phụ cấp (Data Entry) | Nghiệp vụ TCCB | ✅ Giữ nguyên |
+| 14 | UC-HRM-005 | Quản lý Khen thưởng & Kỷ luật | Nghiệp vụ TCCB | ✅ Giữ nguyên |
+| 15 | UC-HRM-006 | Quản lý Cơ cấu Tổ chức | Nghiệp vụ TCCB | ✅ Giữ nguyên |
+| 16 | UC-HRM-007 | Quản lý Đào tạo | Nghiệp vụ TCCB | ✅ Giữ nguyên |
+| 17 | UC-HRM-008 | Xem Lịch sử Thay đổi | Nghiệp vụ TCCB | 🔧 Đã đơn giản hóa |
+| 18 | UC-HRM-009 | Quản lý Chức vụ Bộ môn | Nghiệp vụ TCCB | ✅ Giữ nguyên |
+| 19 | UC-HRM-010 | Quản lý Lịch sử Đơn vị | Nghiệp vụ TCCB | ✅ Giữ nguyên |
+| 20 | UC-RPT-001 | Báo cáo và Thống kê | Báo cáo | ✅ Giữ nguyên |
+| 21 | UC-FIN-001 | Xem Hồ sơ và Dữ liệu Lương | Tài chính | ✅ Giữ nguyên |
+| 22 | UC-FIN-002 | Xuất Dữ liệu Lương | Tài chính | ✅ Giữ nguyên |
+| 23 | UC-SSP-001 | Xem Hồ sơ Cá nhân | Self-Service | ✅ Giữ nguyên |
+| 24 | UC-SSP-002 | Yêu cầu Cập nhật Thông tin | Self-Service | ✅ Giữ nguyên |
+| 25 | UC-SSP-003 | Tra cứu Thông tin | Self-Service | ✅ Giữ nguyên |
+| 26 | UC-SSP-004 | Đào tạo Cá nhân | Self-Service | ✅ Giữ nguyên |
+| 27 | UC-ADM-001 | Quản lý Phê duyệt Yêu cầu Cập nhật | Admin | 🆕 **MỚI** |
 
-### 2.2 Use Cases Đã Xóa (7 use cases)
+### 2.2 Use Cases Đã Xóa (5 use cases)
 
 | STT | Mã Use Case | Tên | Lý do xóa |
 |-----|------------|-----|-----------|
-| 1 | ~~UC-HRM-008~~ | ~~Đánh giá Viên chức~~ | ❌ Không có Need về đánh giá hàng năm |
-| 2 | ~~UC-CFG-004~~ | ~~Quản lý Phiên bản Cấu hình~~ | ❌ Không có Need về versioning cấu hình |
-| 3 | ~~UC-CFG-005~~ | ~~Cấu hình Bảo hiểm và Thuế~~ | ❌ Không có Need về cấu hình BHXH/BHYT/thuế |
-| 4 | ~~UC-CFG-006~~ | ~~Cấu hình Khung Đánh giá~~ | ❌ Không có Need về cấu hình tiêu chí đánh giá |
-| 5 | ~~UC-HRM-010~~ | ~~Quản lý Nghiên cứu Sinh~~ | ❌ Không có Need về quản lý NCS |
-| 6 | ~~UC-HRM-011~~ | ~~Quản lý Thông tin Giảng viên Mở rộng~~ | ❌ Không có Need về lĩnh vực nghiên cứu |
-| 7 | ~~UC-HRM-012~~ | ~~Quản lý Phòng thí nghiệm~~ | ❌ Không có Need về quản lý PTN/trang thiết bị |
+| 1 | ~~UC-HRM-011~~ | ~~Quản lý Chức vụ~~ | ❌ Chức năng tích hợp trong UC-HRM-001 |
+| 2 | ~~UC-HRM-012~~ | ~~Thống kê Trình độ~~ | ❌ Chức năng tích hợp trong UC-RPT-001 |
+| 3 | ~~UC-HRM-013~~ | ~~Quản lý Hợp đồng Chuyên gia Nước ngoài~~ | ❌ Chức năng tích hợp trong UC-HRM-001 và UC-HRM-003 |
+| 4 | ~~UC-HRM-014~~ | ~~Quản lý Yêu cầu Chỉnh sửa~~ | ❌ Chức năng tích hợp trong UC-HRM-001 |
+| 5 | ~~UC-SSP-005~~ | ~~Xem Kết quả Đánh giá~~ | ❌ Không có Need về đánh giá viên chức |
 
 ---
 
@@ -114,7 +108,7 @@
 |--------|-----------|----------|---------|
 | 32 | Đăng nhập hệ thống | UC-SYS-001 | ✅ Đã có |
 | 33 | Đăng xuất hệ thống | UC-SYS-002 | ✅ Đã có |
-| 34 | Quản lý hồ sơ nhân sự - danh sách, tìm kiếm, lọc, đánh dấu yêu cầu chỉnh sửa | UC-HRM-001, **UC-HRM-014** | 🆕 UC-HRM-014 cần tạo mới |
+| 34 | Quản lý hồ sơ nhân sự - danh sách, tìm kiếm, lọc, đánh dấu yêu cầu chỉnh sửa | UC-HRM-001 | ✅ Đã có |
 | 35 | Thêm mới hồ sơ - thông tin cá nhân cơ bản | UC-HRM-001 | ✅ Đã có |
 | 36 | Nhập thông tin gia đình | UC-HRM-001 | ✅ Đã có |
 | 37 | Tải ảnh chân dung | UC-HRM-001 | ✅ Đã có |
@@ -127,7 +121,7 @@
 | 44 | Đánh dấu thôi việc | UC-HRM-001 | ✅ Đã có |
 | 45 | Lưu lịch sử thay đổi hồ sơ với lý do | UC-HRM-008 | ✅ Đã có |
 | 46 | Xem chi tiết hồ sơ hiển thị đầy đủ thông tin | UC-HRM-001 | ✅ Đã có |
-| 46 | Xem yêu cầu chỉnh sửa khi có | **UC-HRM-014** | 🆕 Cần tạo mới |
+| 46 | Xem yêu cầu chỉnh sửa khi có | UC-HRM-001 | ✅ Đã có |
 | 47 | Tìm kiếm hồ sơ theo từ khóa và lọc đơn vị/trình độ/chức danh | UC-HRM-001 | ✅ Đã có |
 | 48 | Xuất hồ sơ ra PDF, Excel, Word | UC-HRM-001 | ✅ Đã có |
 | 51 | Phân công giảng viên vào Bộ môn | UC-HRM-006 | ✅ Đã có |
@@ -139,8 +133,8 @@
 | 58 | Nhập chức danh khoa học, ngạch viên chức | UC-HRM-002 | ✅ Đã có |
 | 60 | Lưu chứng chỉ với thông tin và file ảnh | UC-HRM-002 | ✅ Đã có |
 | 61 | Cảnh báo chứng chỉ hết hạn | UC-HRM-002 | ✅ Đã có |
-| 62 | Quản lý chức vụ quản lý, lưu quá trình bổ nhiệm/miễn nhiệm | **UC-HRM-011** | 🆕 Cần tạo mới |
-| 64 | Thống kê trình độ theo đơn vị, toàn trường | **UC-HRM-012** | 🆕 Cần tạo mới |
+| 62 | Quản lý chức vụ quản lý, lưu quá trình bổ nhiệm/miễn nhiệm | UC-HRM-001 | ✅ Đã có |
+| 64 | Thống kê trình độ theo đơn vị, toàn trường | UC-RPT-001 | ✅ Đã có |
 | 65 | Quản lý cơ cấu tổ chức - sơ đồ cây phân cấp | UC-HRM-006 | ✅ Đã có |
 | 66 | Quản lý loại đơn vị theo danh mục | UC-HRM-006 | ✅ Đã có |
 | 67 | Cấu trúc phân cấp linh hoạt | UC-HRM-006 | ✅ Đã có |
@@ -155,7 +149,7 @@
 | 78 | Chấm dứt hợp đồng | UC-HRM-003 | ✅ Đã có |
 | 79 | Cảnh báo hợp đồng sắp hết hạn | UC-HRM-003 | ✅ Đã có |
 | 82 | In hợp đồng theo mẫu chuẩn | UC-HRM-003 | ✅ Đã có |
-| 83 | Quản lý hợp đồng với giảng viên/chuyên gia nước ngoài | **UC-HRM-013** | 🆕 Cần tạo mới |
+| 83 | Quản lý hợp đồng với giảng viên/chuyên gia nước ngoài | UC-HRM-003 | ✅ Đã có |
 | 85 | Kiểm tra thời hạn tối thiểu/tối đa hợp đồng | UC-HRM-003 | ✅ Đã có |
 | 86 | Đề xuất chuyển đổi loại hợp đồng | UC-HRM-003 | ✅ Đã có |
 | 87 | Cảnh báo và không cho tạo khi đạt giới hạn ký/gia hạn | UC-HRM-003 | ✅ Đã có |
@@ -254,7 +248,7 @@
 | 81 | Quản lý chức vụ trong Bộ môn | Đã có trong UC-HRM-009 |
 | 88 | In hợp đồng theo mẫu | Đã có trong UC-HRM-003 |
 | 89 | In hợp đồng tiếng Anh | ❓ Cần thêm Alternative Flow |
-| 90 | In hợp đồng với chuyên gia nước ngoài | ❓ Cần thêm vào UC-HRM-013 |
+| 90 | In hợp đồng với chuyên gia nước ngoài | ❓ Cần xem xét (ngoài phạm vi hiện tại) |
 | 91 | Gia hạn hợp đồng - đề xuất loại HĐ tiếp theo | Đã có trong UC-HRM-003 |
 | 92 | Chấm dứt HĐ - thanh toán các khoản | Đã có trong UC-HRM-003 |
 | 95 | Khen thưởng - danh hiệu | Đã có trong UC-HRM-005 |
@@ -277,7 +271,7 @@
 | 132 | Tự phục vụ - xem khen thưởng/kỷ luật | Đã có trong UC-SSP-003 |
 | 133 | Tự phục vụ - xem đào tạo | Đã có trong UC-SSP-004 |
 | 134 | Tự phục vụ - đăng ký đào tạo | Đã có trong UC-SSP-004 |
-| 135 | Tự phục vụ - xem kết quả đánh giá | Đã có trong UC-SSP-005 |
+| 135 | Tự phục vụ - xem kết quả đánh giá | ❌ Không có trong phạm vi |
 | 136 | Tự phục vụ - giao diện responsive | ⚠️ Yêu cầu UI |
 | 137 | Tự phục vụ - đăng nhập | Đã có trong UC-SYS-001 |
 | 138 | Tự phục vụ - đăng xuất | Đã có trong UC-SYS-002 |
@@ -302,38 +296,30 @@
 
 ### 5.1 Trạng thái cuối cùng
 
-- ✅ **30 Use Cases** đã được tạo/cập nhật đầy đủ
+- ✅ **27 Use Cases** đã được tạo/cập nhật đầy đủ
 - ✅ **170/180 Needs** (94.4%) được bao phủ bởi Use Cases
 - ⚠️ **10 Needs** là yêu cầu phi chức năng/kỹ thuật/pháp lý (không cần Use Case)
 - ❌ **0 Needs** bị thiếu hoặc không được bao phủ
 
-### 5.2 Use Cases đã xóa (Out of Scope)
+### 5.2 Use Cases đã xóa trong quá trình (5 use cases)
 
-7 Use Cases không có Need tương ứng đã được xóa:
-1. ~~UC-HRM-008: Đánh giá Viên chức~~
-2. ~~UC-CFG-004: Quản lý Phiên bản Cấu hình~~
-3. ~~UC-CFG-005: Cấu hình Bảo hiểm và Thuế~~
-4. ~~UC-CFG-006: Cấu hình Khung Đánh giá~~
-5. ~~UC-HRM-010: Quản lý Nghiên cứu Sinh~~
-6. ~~UC-HRM-011: Quản lý Thông tin Giảng viên Mở rộng~~
-7. ~~UC-HRM-012: Quản lý Phòng thí nghiệm~~
+5 Use Cases đã được tạo nhưng sau đó xóa do tích hợp vào các UC khác:
+1. ~~UC-HRM-011~~: Quản lý Chức vụ → Tích hợp vào UC-HRM-001
+2. ~~UC-HRM-012~~: Thống kê Trình độ → Tích hợp vào UC-RPT-001
+3. ~~UC-HRM-013~~: Quản lý Hợp đồng Chuyên gia Nước ngoài → Tích hợp vào UC-HRM-001, UC-HRM-003
+4. ~~UC-HRM-014~~: Quản lý Yêu cầu Chỉnh sửa → Tích hợp vào UC-HRM-001
+5. ~~UC-SSP-005~~: Xem Kết quả Đánh giá → Không có Need tương ứng
 
-### 5.3 Use Cases mới tạo (8 use cases)
+### 5.3 Use Cases mới tạo (4 use cases)
 
 1. **UC-SYS-004**: Phân quyền Người dùng (Need #9)
-2. **UC-ADM-001**: Quản lý Phê duyệt Yêu cầu Cập nhật (Need #140)
-3. **UC-SSP-005**: Xem Kết quả Đánh giá (FEAT-006)
-4. **UC-CFG-007**: Cấu hình Loại Khóa đào tạo (Needs #25, #99, #100)
-5. **UC-HRM-011**: Quản lý Chức vụ (Need #62)
-6. **UC-HRM-012**: Thống kê Trình độ (Need #64)
-7. **UC-HRM-013**: Quản lý Hợp đồng Chuyên gia Nước ngoài (Need #83)
-8. **UC-HRM-014**: Quản lý Yêu cầu Chỉnh sửa (Needs #34, #46)
+2. **UC-CFG-004**: Cấu hình Danh mục Khen thưởng & Kỷ luật (Needs #25, #27, #30)
+3. **UC-CFG-007**: Cấu hình Loại Khóa đào tạo (Needs #25, #99, #100)
+4. **UC-ADM-001**: Quản lý Phê duyệt Yêu cầu Cập nhật (Need #140)
 
-### 5.4 Use Cases đã đơn giản hóa (3 use cases)
+### 5.4 Use Cases đã đơn giản hóa (1 use case)
 
-1. **UC-HRM-008** (từ UC-HRM-009): Xem Lịch sử Thay đổi - Xóa chức năng so sánh phiên bản
-2. **UC-HRM-009** (từ UC-HRM-013): Quản lý Chức vụ Bộ môn - Giữ chức năng cơ bản
-3. **UC-HRM-010** (từ UC-HRM-014): Quản lý Lịch sử Đơn vị - Xóa Timeline và Lịch sử ban lãnh đạo chi tiết
+1. **UC-HRM-008**: Xem Lịch sử Thay đổi - Xóa chức năng so sánh phiên bản, giữ chức năng cơ bản
 
 ---
 

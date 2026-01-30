@@ -240,22 +240,94 @@
 
 ## 7. UC-CFG-003: Quản lý Danh mục Dùng chung (Master Data)
 
-**Mô tả:** Quản lý các danh mục chuẩn như Tỉnh/Thành phố, Dân tộc, Học hàm, Học vị, Chức vụ.
-**Actors:** Quản trị viên hệ thống.
-**Liên quan đến Requirements:** CFG-017 đến CFG-020
+**Mô tả:** Quản lý 9 danh mục chuẩn dùng chung cho toàn hệ thống:
+1. **Quốc gia → Thành phố → Xã/Phường** (phân cấp 3 cấp, có ảnh hưởng trực tiếp đến luồng chính)
+2. **Dân tộc**
+3. **Tôn giáo**
+4. **Trình độ học vấn**
+5. **Chức danh khoa học** (GS, PGS)
+6. **Ngạch viên chức**
+7. **Chức vụ** (cấu hình riêng theo từng loại đơn vị)
+8. **Danh hiệu**
+9. **Loại đơn vị** (phân cấp: Hội đồng trường/Đảng ủy → Ban Giám hiệu/Hội đồng KH&ĐT → Khoa đào tạo/Phòng ban chức năng → Bộ môn/Phòng thí nghiệm, có ảnh hưởng trực tiếp đến luồng chính)
 
-### Main Flow
+**Actors:** Quản trị viên hệ thống, Cán bộ Phòng TCCB (có quyền thêm/sửa các danh mục bị inactive).
+**Liên quan đến Requirements:** CFG-017 đến CFG-020, Needs #26-30
+
+### Main Flow (Quản lý Danh mục cơ bản)
 1.  Admin chọn menu "Quản lý Cấu hình" -> "Danh mục dùng chung".
-2.  Admin chọn loại danh mục cần quản lý (VD: Chức vụ).
-3.  Hệ thống hiển thị danh sách các mục (Items).
-4.  Admin nhấn "Thêm mới" hoặc chọn "Sửa" một mục.
-5.  Admin nhập `Mã`, `Tên`, `Mô tả`, `Thứ tự hiển thị`.
-6.  Admin nhấn "Lưu".
+2.  Hệ thống hiển thị danh sách 9 loại danh mục.
+3.  Admin chọn một loại danh mục cần quản lý (VD: Dân tộc).
+4.  Hệ thống hiển thị danh sách các mục (Items), **chỉ hiển thị các mục Active với người dùng thường**.
+5.  **Với Cán bộ Phòng TCCB/Quản trị viên:** Có thể xem và quản lý cả các mục Inactive (được đánh dấu riêng).
+6.  Admin nhấn "Thêm mới" hoặc chọn "Sửa" một mục.
+7.  Admin nhập: `Mã` (tự động/tùy chọn), `Tên`, `Mô tả`, `Thứ tự hiển thị`.
+8.  Admin nhấn "Lưu".
+9.  Hệ thống lưu và ghi log (nếu có lý do sửa theo Need #30).
 
-### Exception Flow
+### Alternative Flow 1: Quản lý Phân cấp Địa phương (Quốc gia → Thành phố → Xã/Phường)
+1.  Admin chọn loại danh mục "Quốc gia → Thành phố → Xã/Phường" (Danh mục #1).
+2.  Hệ thống hiển thị dạng **Tree View** (cây phân cấp 3 cấp).
+3.  **Cấp 1 - Quốc gia:** Hiển thị danh sách các quốc gia (VD: Việt Nam, Lào, Campuchia...).
+4.  Admin chọn một quốc gia (VD: Việt Nam) và nhấn "Thêm Thành phố".
+5.  **Cấp 2 - Thành phố:** Nhập tên thành phố/trực thuộc quốc gia đã chọn (VD: Hà Nội, TP.HCM).
+6.  Admin chọn một thành phố và nhấn "Thêm Xã/Phường".
+7.  **Cấp 3 - Xã/Phường:** Nhập tên xã/phường/trực thuộc thành phố đã chọn (VD: Phường Bách Khoa, Quận Hai Bà Trưng).
+8.  Có thể **kéo thả (Drag & Drop)** để thay đổi vị trí hoặc chuyển đơn vị cấp dưới sang đơn vị cấp trên khác.
+9.  **Ảnh hưởng trực tiếp:** Phân cấp này được sử dụng trực tiếp trong hồ sơ nhân sự (mục Nơi sinh, Quê quán, Địa chỉ thường trú/tạm trú).
+
+### Alternative Flow 2: Quản lý Phân cấp Loại đơn vị
+1.  Admin chọn loại danh mục "Loại đơn vị" (Danh mục #9).
+2.  Hệ thống hiển thị dạng **Tree View** (cây phân cấp đơn vị).
+3.  **Cấp 1:** Hội đồng trường/Đảng ủy
+4.  **Cấp 2:** Ban Giám hiệu/Hội đồng Khoa học và Đào tạo (trực thuộc cấp 1)
+5.  **Cấp 3:** Khoa đào tạo/Phòng ban chức năng (trực thuộc cấp 2)
+6.  **Cấp 4:** Bộ môn/Phòng thí nghiệm (trực thuộc cấp 3)
+7.  Admin có thể thêm, sửa, xóa các cấp theo cấu trúc phân cấp.
+8.  **Ảnh hưởng trực tiếp:** Phân cấp này được sử dụng trong quản lý cơ cấu tổ chức (UC-HRM-006) để xây dựng sơ đồ tổ chức.
+
+### Alternative Flow 3: Cấu hình Chức vụ theo Loại đơn vị (Danh mục #7)
+**Lưu ý:** Chức vụ được cấu hình riêng biệt cho từng loại đơn vị để đảm bảo tính nhất quán.
+
+1.  Admin chọn loại danh mục "Chức vụ" (Danh mục #7).
+2.  Hệ thống hiển thị danh sách các **Loại đơn vị** đã cấu hình (từ Danh mục #9).
+3.  Admin chọn một loại đơn vị (VD: "Khoa").
+4.  Hệ thống hiển thị danh sách chức vụ đã cấu hình cho loại đơn vị này (VD: Trưởng khoa, Phó trưởng khoa).
+5.  Admin nhấn "Thêm chức vụ cho loại đơn vị này".
+6.  Nhập: `Tên chức vụ`, `Mã`, `Mô tả`, `Số lượng tối đa` (VD: Trưởng khoa = 1, Phó trưởng khoa = 0-2).
+7.  **Tương ứng với loại đơn vị:**
+    *   Nếu chọn "Phòng ban chức năng" → Chức vụ: Trưởng phòng, Phó trưởng phòng
+    *   Nếu chọn "Bộ môn" → Chức vụ: Trưởng bộ môn, Phó trưởng bộ môn
+    *   Nếu chọn "Hội đồng trường" → Chức vụ: Chủ tịch HĐT, Phó Chủ tịch HĐT
+8.  **Sử dụng:** Chức vụ được cấu hình sẽ tự động hiển thị dưới dạng "thẻ" khi phân công nhân sự vào đơn vị (liên kết UC-HRM-006, UC-HRM-009).
+
+### Alternative Flow 4: Sắp xếp Thứ tự Hiển thị
+1.  Tại danh sách danh mục, Admin nhấn "Sắp xếp thứ tự".
+2.  Hệ thống hiển thị danh sách có thể kéo thả (drag & drop).
+3.  Admin điều chỉnh thứ tự các mục.
+4.  Nhấn "Lưu thứ tự".
+5.  Thứ tự này sẽ ảnh hưởng đến thứ tự hiển thị trong dropdown khi người dùng chọn.
+
+### Alternative Flow 5: Đánh dấu Active/Inactive
+1.  Tại danh sách, Admin chọn một mục và nhấn "Đánh dấu Inactive" (hoặc "Active" nếu đang inactive).
+2.  Hệ thống kiểm tra:
+    *   Nếu mục đang được sử dụng trong hồ sơ nhân sự → Hiển thị cảnh báo và không cho phép inactive.
+    *   Nếu không sử dụng → Chuyển trạng thái.
+3.  Hệ thống cập nhật trạng thái và ghi log.
+4.  **Quyền hạn:**
+    *   **Người dùng thường:** Chỉ thấy các mục Active (hiển thị mặc định).
+    *   **Cán bộ Phòng TCCB/Quản trị viên:** Có thể xem và quản lý cả các mục Inactive (có filter/bộ lọc riêng để hiển thị), có quyền thêm/sửa cả mục inactive.
+
+### Exception Flows
 *   **E1: Xóa mục đang sử dụng**
     *   Admin nhấn "Xóa" một mục đang được gán cho nhân sự.
-    *   Hệ thống thông báo: "Không thể xóa mục đang được sử dụng. Vui lòng chọn 'Ngừng hoạt động' (Inactive) thay thế." (CFG-019).
+    *   Hệ thống thông báo: "Không thể xóa mục đang được sử dụng. Vui lòng chọn 'Ngừng hoạt động' (Inactive) thay thế." (Need #28).
+*   **E2: Không thể inactive mục đang sử dụng**
+    *   Nếu mục danh mục đang được gán cho ít nhất 1 nhân sự.
+    *   Hệ thống báo: "Không thể inactive mục đang được sử dụng trong hồ sơ nhân sự. Vui lòng chuyển tất cả nhân sự sang mục khác trước."
+*   **E3: Mã danh mục trùng**
+    *   Nếu nhập mã đã tồn tại trong cùng loại danh mục.
+    *   Hệ thống báo lỗi và yêu cầu nhập mã khác.
 
 ---
 
