@@ -553,3 +553,644 @@
 5.  Hệ thống ghi nhận đăng ký (có thể cần duyệt tùy cấu hình khóa học).
 6.  Trạng thái chuyển thành "Đã đăng ký".
 
+---
+
+## 21. UC-HRM-008: Xem Lịch sử Thay đổi (View Change History)
+
+**Mô tả:** Cho phép cán bộ TCCB xem audit trail (lịch sử thay đổi) của hồ sơ nhân sự, bao gồm ai thay đổi, thay đổi gì, và khi nào.
+**Actors:** Cán bộ TCCB.
+**Liên quan đến Requirements:** FR-ER-012
+
+### Preconditions
+*   Cán bộ TCCB đã đăng nhập hệ thống.
+*   Hồ sơ nhân sự đã có lịch sử thay đổi.
+
+### Main Flow (Xem Lịch sử Hồ sơ)
+1.  Cán bộ TCCB truy cập hồ sơ nhân sự (UC-HRM-001).
+2.  Chọn tab "Lịch sử thay đổi" (Audit Trail).
+3.  Hệ thống hiển thị danh sách các thay đổi theo thời gian giảm dần:
+    *   Ngày giờ thay đổi
+    *   Người thực hiện
+    *   Loại thay đổi (Thêm mới, Cập nhật, Xóa)
+    *   Phần dữ liệu bị thay đổi
+4.  Cán bộ TCCB chọn một bản ghi để xem chi tiết.
+5.  Hệ thống hiển thị:
+    *   Giá trị cũ (trước khi thay đổi)
+    *   Giá trị mới (sau khi thay đổi)
+    *   Lý do thay đổi (nếu có)
+
+### Alternative Flow 1: Xuất Lịch sử
+1.  Cán bộ TCCB nhấn "Xuất lịch sử".
+2.  Chọn khoảng thời gian.
+3.  Hệ thống xuất file Excel/PDF chứa toàn bộ lịch sử thay đổi của hồ sơ.
+
+## 22. UC-HRM-009: Quản lý Chức vụ Bộ môn (Department Position Management)
+
+**Mô tả:** Quản lý các chức vụ trong bộ môn theo danh mục cấu hình (Trưởng bộ môn, Phó trưởng bộ môn, Tổ trưởng...) và phân công cán bộ vào các chức vụ này.
+**Actors:** Cán bộ TCCB.
+**Liên quan đến Requirements:** FR-ER-016, FR-CF-037
+
+### Preconditions
+*   Danh mục chức vụ bộ môn đã được cấu hình trong FR-CF-037.
+*   Bộ môn đã được tạo trong cây tổ chức.
+
+### Main Flow (Phân công Chức vụ Bộ môn)
+1.  Cán bộ TCCB chọn menu "Cơ cấu Tổ chức" -> "Bộ môn".
+2.  Chọn một bộ môn từ cây tổ chức.
+3.  Chọn tab "Chức vụ".
+4.  Hệ thống hiển thị danh sách chức vụ cần có (theo cấu hình):
+    *   Trưởng bộ môn (1 người)
+    *   Phó trưởng bộ môn (0-2 người)
+    *   Tổ trưởng chuyên môn (nếu có)
+5.  Cán bộ TCCB chọn chức vụ "Trưởng bộ môn" và nhấn "Phân công".
+6.  Tìm kiếm và chọn giảng viên từ danh sách cán bộ thuộc bộ môn.
+7.  Nhập `Ngày bắt đầu` và `Quyết định bổ nhiệm` (số QĐ, ngày QĐ, upload file).
+8.  Nhấn "Lưu".
+9.  Hệ thống cập nhật và ghi nhận lịch sử bổ nhiệm.
+
+### Alternative Flow 1: Miễn nhiệm Chức vụ
+1.  Tại tab "Chức vụ", chọn chức vụ đang có người đảm nhiệm.
+2.  Nhấn "Miễn nhiệm".
+3.  Nhập:
+    *   `Ngày miễn nhiệm`
+    *   `Lý do` (Hết nhiệm kỳ/Chuyển công tác/Nghỉ hưu/Khác)
+    *   `Quyết định miễn nhiệm`
+4.  Xác nhận.
+5.  Hệ thống cập nhật trạng thái chức vụ thành "Trống" và lưu lịch sử.
+
+### Alternative Flow 2: Xem Lịch sử Lãnh đạo Bộ môn
+1.  Tại chi tiết bộ môn, chọn "Lịch sử lãnh đạo".
+2.  Hệ thống hiển thị timeline các đời Trưởng/Phó bộ môn:
+    *   Tên cán bộ
+    *   Chức vụ
+    *   Thời gian đảm nhiệm (từ ngày - đến ngày)
+    *   Quyết định bổ nhiệm/miễn nhiệm
+3.  Có thể export lịch sử ra PDF.
+
+### Exception Flows
+*   **E1: Một người giữ nhiều chức vụ chính**
+    *   Hệ thống cảnh báo nếu cán bộ đang giữ chức vụ chính ở bộ môn khác.
+    *   Yêu cầu xác nhận hoặc điều chuyển chức vụ cũ trước khi bổ nhiệm mới.
+*   **E2: Không phải giảng viên**
+    *   Chỉ giảng viên mới được phân công vào chức vụ bộ môn.
+    *   Hệ thống kiểm tra và từ chối nếu cán bộ không phải giảng viên.
+
+---
+
+## 23. UC-HRM-010: Quản lý Lịch sử Đơn vị (Organization History)
+
+**Mô tả:** Quản lý lịch sử thành lập, sáp nhập, giải thể các đơn vị trong trường. Theo dõi sự thay đổi cơ cấu tổ chức qua các thời kỳ.
+**Actors:** Cán bộ TCCB.
+**Liên quan đến Requirements:** FR-OS-005, FR-OS-006
+
+### Preconditions
+*   Cán bộ TCCB đã đăng nhập hệ thống.
+
+### Main Flow (Ghi nhận Thành lập Đơn vị)
+1.  Cán bộ TCCB chọn menu "Cơ cấu Tổ chức" -> "Lịch sử đơn vị".
+2.  Nhấn "Thêm sự kiện mới".
+3.  Chọn loại sự kiện: `Thành lập`.
+4.  Chọn đơn vị từ danh sách (hoặc nhập tên đơn vị mới nếu chưa có).
+5.  Nhập thông tin:
+    *   `Ngày thành lập`
+    *   `Quyết định thành lập` (số QĐ, ngày QĐ, cơ quan ban hành)
+    *   Upload file quyết định
+    *   `Mô tả` (nhiệm vụ, chức năng ban đầu)
+6.  Nhấn "Lưu".
+
+### Alternative Flow 1: Ghi nhận Sáp nhập Đơn vị
+1.  Chọn loại sự kiện: `Sáp nhập`.
+2.  Chọn đơn vị bị sáp nhập (có thể chọn nhiều đơn vị).
+3.  Chọn đơn vị tiếp nhận sau sáp nhập.
+4.  Nhập:
+    *   `Ngày sáp nhập`
+    *   `Quyết định sáp nhập`
+    *   `Phương án xử lý nhân sự` (chuyển sang đơn vị mới/điều chuyển)
+5.  Hệ thống tự động cập nhật trạng thái đơn vị bị sáp nhập thành "Đã sáp nhập" và ghi nhận liên kết.
+
+### Alternative Flow 2: Ghi nhận Giải thể Đơn vị
+1.  Chọn loại sự kiện: `Giải thể`.
+2.  Chọn đơn vị cần giải thể.
+3.  Nhập:
+    *   `Ngày giải thể`
+    *   `Quyết định giải thể`
+    *   `Lý do` (sáp nhập/không hiệu quả/quyết định cơ cấu lại)
+    *   `Phương án xử lý nhân sự`
+4.  Xác nhận.
+5.  Hệ thống cập nhật trạng thái đơn vị thành "Đã giải thể" và đóng mã đơn vị (không cho phép phân công nhân sự mới).
+
+### Exception Flows
+*   **E1: Đơn vị có nhân sự đang hoạt động**
+    *   Khi giải thể đơn vị, nếu còn nhân sự đang thuộc đơn vị.
+    *   Hệ thống cảnh báo và yêu cầu hoàn thành điều chuyển nhân sự trước khi giải thể.
+*   **E2: Đơn vị đã tồn tại**
+    *   Không cho phép thêm sự kiện thành lập cho đơn vị đã có lịch sử thành lập.
+    *   Hệ thống thông báo đã tồn tại sự kiện thành lập.
+
+---
+
+---
+
+**Module:** 3.6 Quản lý Phê duyệt và Admin
+
+## 24. UC-ADM-001: Quản lý Phê duyệt Yêu cầu Cập nhật (Approve Profile Update Requests)
+
+**Mô tả:** Cho phép cán bộ TCCB xem và phê duyệt/từ chối các yêu cầu cập nhật thông tin cá nhân do Cán bộ/Giảng viên gửi lên từ cổng Self-Service.
+**Actors:** Cán bộ TCCB.
+**Liên quan đến Requirements:** Need #140
+
+### Preconditions
+*   Cán bộ TCCB đã đăng nhập hệ thống.
+*   Có yêu cầu cập nhật đang ở trạng thái "Chờ duyệt".
+
+### Postconditions
+*   Yêu cầu được chuyển sang trạng thái "Đã duyệt" hoặc "Từ chối".
+*   Nếu được duyệt, thông tin hồ sơ cá nhân được cập nhật.
+*   Thông báo kết quả được gửi đến CBGV.
+
+### Main Flow (Xem danh sách Yêu cầu)
+1.  Cán bộ TCCB chọn menu "Quản lý Yêu cầu".
+2.  Hệ thống hiển thị danh sách các yêu cầu đang chờ duyệt:
+    *   Mã nhân sự, Họ tên, Ngày gửi, Loại yêu cầu (SĐT, Địa chỉ, Bằng cấp...)
+    *   Mô tả thay đổi
+3.  Cán bộ TCCB chọn một yêu cầu để xem chi tiết.
+4.  Hệ thống hiển thị:
+    *   Giá trị cũ
+    *   Giá trị mới đề nghị
+    *   Minh chứng đính kèm (nếu có)
+
+### Alternative Flow 1: Phê duyệt Yêu cầu
+1.  Sau khi xem chi tiết, Cán bộ TCCB nhấn "Phê duyệt".
+2.  Hệ thống hiển thị form xác nhận.
+3.  Cán bộ TCCB nhập ghi chú (nếu cần).
+4.  Nhấn "Xác nhận".
+5.  Hệ thống:
+    *   Cập nhật trạng thái yêu cầu thành "Đã duyệt".
+    *   Cập nhật thông tin vào hồ sơ nhân sự.
+    *   Ghi log thay đổi.
+    *   Gửi thông báo đến CBGV.
+
+### Alternative Flow 2: Từ chối Yêu cầu
+1.  Sau khi xem chi tiết, Cán bộ TCCB nhấn "Từ chối".
+2.  Hệ thống yêu cầu nhập lý do từ chối (bắt buộc).
+3.  Cán bộ TCCB nhập lý do.
+4.  Nhấn "Xác nhận".
+5.  Hệ thống:
+    *   Cập nhật trạng thái yêu cầu thành "Từ chối".
+    *   Lưu lý do từ chối.
+    *   Gửi thông báo đến CBGV kèm lý do.
+
+### Alternative Flow 3: Xem Lịch sử Yêu cầu
+1.  Cán bộ TCCB chọn tab "Lịch sử".
+2.  Hệ thống hiển thị các yêu cầu đã xử lý (Đã duyệt/Từ chối).
+3.  Có thể lọc theo khoảng thời gian, trạng thái, nhân sự.
+
+### Exception Flows
+*   **E1: Yêu cầu đã bị xử lý bởi người khác**
+    *   Nếu cán bộ TCCB khác đã phê duyệt/từ chối trong lúc đang xem.
+    *   Hệ thống thông báo "Yêu cầu đã được xử lý" và refresh danh sách.
+*   **E2: Thiếu lý do từ chối**
+    *   Nếu từ chối mà không nhập lý do.
+    *   Hệ thống báo lỗi và không cho phép xác nhận.
+
+---
+
+**Module:** 3.7 Cấu hình bổ sung
+
+## 25. UC-CFG-004: Cấu hình Danh mục Khen thưởng & Kỷ luật (Reward & Discipline Category Configuration)
+
+**Mô tả:** Quản trị viên cấu hình các danh mục dùng cho việc ghi nhận khen thưởng và kỷ luật nhân sự, bao gồm các hình thức khen thưởng (danh hiệu, bằng khen, giấy khen, tiền thưởng) và các hình thức kỷ luật (khiển trách, cảnh cáo, sa thải).
+**Actors:** Quản trị viên hệ thống.
+**Liên quan đến Requirements:** Needs #25, #27, #30
+
+### Preconditions
+*   Người dùng đăng nhập với vai trò Quản trị viên.
+
+### Postconditions
+*   Danh mục khen thưởng/kỷ luật được cập nhật.
+*   Thay đổi được ghi log với lý do.
+
+### Main Flow (Xem danh sách Danh mục Khen thưởng)
+1.  Admin chọn menu "Quản lý Cấu hình" -> "Khen thưởng & Kỷ luật".
+2.  Hệ thống hiển thị tab "Danh mục Khen thưởng" với danh sách:
+    *   Mã danh mục (tự động), Tên danh mục, Mô tả, Trạng thái (Active/Inactive), Thứ tự hiển thị
+    *   Các danh mục mặc định: Danh hiệu (VD: Chiến sĩ thi đua), Bằng khen, Giấy khen, Tiền thưởng...
+3.  Admin có thể chuyển sang tab "Danh mục Kỷ luật" để xem danh sách tương tự.
+
+### Alternative Flow 1: Thêm mới Danh mục Khen thưởng
+1.  Tại tab "Khen thưởng", Admin nhấn "Thêm mới".
+2.  Hệ thống hiển thị form nhập liệu:
+    *   **Tên danh mục:** (VD: "Bằng khen cấp Bộ", "Danh hiệu Lao động tiên tiến")
+    *   **Loại:** Khen thưởng
+    *   **Mô tả:** Chi tiết về danh mục
+    *   **Thứ tự hiển thị:** Số thứ tự sắp xếp
+3.  Admin nhập thông tin.
+4.  Nhấn "Lưu".
+5.  Hệ thống:
+    *   Tạo mã danh mục tự động (VD: KT001).
+    *   Lưu dữ liệu với trạng thái Active.
+    *   Hiển thị thông báo thành công.
+
+### Alternative Flow 2: Thêm mới Danh mục Kỷ luật
+1.  Tại tab "Kỷ luật", Admin nhấn "Thêm mới".
+2.  Hệ thống hiển thị form nhập liệu:
+    *   **Tên danh mục:** (VD: "Khiển trách", "Cảnh cáo", "Sa thải")
+    *   **Loại:** Kỷ luật
+    *   **Mức độ:** Nhẹ/Trung bình/Nghiêm trọng
+    *   **Mô tả:** Chi tiết về hình thức kỷ luật
+    *   **Thứ tự hiển thị:** Số thứ tự sắp xếp
+3.  Admin nhập thông tin.
+4.  Nhấn "Lưu".
+5.  Hệ thống:
+    *   Tạo mã danh mục tự động (VD: KL001).
+    *   Lưu dữ liệu với trạng thái Active.
+    *   Hiển thị thông báo thành công.
+
+### Alternative Flow 3: Sửa Danh mục
+1.  Tại danh sách, Admin chọn một danh mục và nhấn "Sửa".
+2.  Hệ thống hiển thị form với thông tin hiện tại.
+3.  Admin điều chỉnh Tên, Mô tả, Thứ tự hiển thị.
+4.  Nhập lý do sửa (bắt buộc theo Need #30).
+5.  Nhấn "Lưu".
+6.  Hệ thống lưu thay đổi và ghi log lịch sử với lý do.
+
+### Alternative Flow 4: Đánh dấu Inactive
+1.  Tại danh sách, Admin chọn một danh mục và nhấn "Inactive".
+2.  Hệ thống kiểm tra xem danh mục này có đang được sử dụng trong hồ sơ khen thưởng/kỷ luật không.
+3.  Nếu không sử dụng, chuyển sang trạng thái Inactive.
+4.  Nếu đang sử dụng, hiển thị cảnh báo và không cho phép inactive.
+
+### Alternative Flow 5: Sắp xếp Thứ tự Hiển thị
+1.  Admin nhấn "Sắp xếp thứ tự".
+2.  Hệ thống hiển thị danh sách có thể kéo thả (drag & drop) để sắp xếp.
+3.  Admin điều chỉnh thứ tự các danh mục.
+4.  Nhấn "Lưu thứ tự".
+5.  Hệ thống cập nhật thứ tự hiển thị.
+
+### Exception Flows
+*   **E1: Tên danh mục trùng**
+    *   Nếu tên danh mục đã tồn tại trong cùng loại (Khen thưởng/Kỷ luật).
+    *   Hệ thống báo lỗi và yêu cầu nhập tên khác.
+*   **E2: Không thể xóa**
+    *   Nếu Admin nhấn "Xóa" danh mục đang sử dụng.
+    *   Hệ thống báo "Không thể xóa mục đang được sử dụng trong hồ sơ. Vui lòng chọn 'Inactive' thay thế." (theo Need #28).
+*   **E3: Thiếu thông tin bắt buộc**
+    *   Nếu không nhập Tên danh mục.
+    *   Hệ thống báo lỗi validate và không cho lưu.
+
+---
+
+## 26. UC-CFG-007: Cấu hình Loại Khóa đào tạo (Training Type Configuration)
+
+**Mô tả:** Quản trị viên cấu hình các loại khóa đào tạo như trong nước, ngoài nước, ngắn hạn, dài hạn để phân loại các khóa đào tạo trong hệ thống.
+**Actors:** Quản trị viên hệ thống.
+**Liên quan đến Requirements:** Needs #25, #27, #30
+
+### Preconditions
+*   Người dùng đăng nhập với vai trò Quản trị viên.
+
+### Postconditions
+*   Danh mục loại đào tạo được cập nhật.
+*   Thay đổi được ghi log với lý do.
+
+### Main Flow (Xem danh sách Loại đào tạo)
+1.  Admin chọn menu "Quản lý Cấu hình" -> "Loại khóa đào tạo".
+2.  Hệ thống hiển thị danh sách các loại đào tạo:
+    *   Mã loại (tự động), Tên loại, Mô tả, Trạng thái (Active/Inactive), Thứ tự hiển thị
+3.  Admin có thể sử dụng chức năng tìm kiếm, lọc.
+
+### Alternative Flow 1: Thêm mới Loại đào tạo
+1.  Tại danh sách, Admin nhấn "Thêm mới".
+2.  Hệ thống hiển thị form nhập liệu:
+    *   Tên loại (VD: "Đào tạo trong nước", "Đào tạo nước ngoài")
+    *   Mô tả
+    *   Thứ tự hiển thị
+3.  Admin nhập thông tin.
+4.  Nhấn "Lưu".
+5.  Hệ thống:
+    *   Tạo mã loại tự động.
+    *   Lưu dữ liệu với trạng thái Active.
+    *   Hiển thị thông báo thành công.
+
+### Alternative Flow 2: Sửa Loại đào tạo
+1.  Tại danh sách, Admin chọn một loại và nhấn "Sửa".
+2.  Hệ thống hiển thị form với thông tin hiện tại.
+3.  Admin điều chỉnh Tên, Mô tả, Thứ tự hiển thị.
+4.  Nhập lý do sửa (bắt buộc theo Need #30).
+5.  Nhấn "Lưu".
+6.  Hệ thống lưu thay đổi và ghi log.
+
+### Alternative Flow 3: Đánh dấu Inactive
+1.  Tại danh sách, Admin chọn một loại và nhấn "Inactive".
+2.  Hệ thống kiểm tra xem loại này có đang được sử dụng không.
+3.  Nếu không sử dụng, chuyển sang trạng thái Inactive.
+4.  Nếu đang sử dụng, hiển thị cảnh báo và không cho phép inactive.
+
+### Exception Flows
+*   **E1: Tên loại trùng**
+    *   Nếu tên loại đã tồn tại.
+    *   Hệ thống báo lỗi và yêu cầu nhập tên khác.
+*   **E2: Không thể xóa**
+    *   Nếu Admin nhấn "Xóa" loại đang sử dụng.
+    *   Hệ thống báo "Không thể xóa mục đang được sử dụng. Vui lòng chọn 'Inactive' thay thế." (theo Need #28).
+
+---
+
+**Module:** 3.8 Nghiệp vụ Tổ chức Cán bộ (bổ sung)
+
+## 26. UC-HRM-011: Quản lý Chức vụ (Position Management)
+
+**Mô tả:** Quản lý việc bổ nhiệm, miễn nhiệm chức vụ quản lý trong các đơn vị và lưu trữ lịch sử các quyết định bổ nhiệm/miễn nhiệm.
+**Actors:** Cán bộ TCCB.
+**Liên quan đến Requirements:** Need #62
+
+### Preconditions
+*   Cán bộ TCCB đã đăng nhập hệ thống.
+*   Hồ sơ nhân sự đã tồn tại.
+*   Chức vụ cần bổ nhiệm đã được định nghĩa trong danh mục.
+
+### Postconditions
+*   Quyết định bổ nhiệm/miễn nhiệm được lưu trữ.
+*   Lịch sử chức vụ của nhân sự được cập nhật.
+*   Thông báo chức vụ trống được gửi (nếu có cấu hình).
+
+### Main Flow (Bổ nhiệm Chức vụ)
+1.  Cán bộ TCCB chọn menu "Quản lý Chức vụ".
+2.  Hệ thống hiển thị danh sách chức vụ đang cần bổ nhiệm (nếu có cảnh báo trống).
+3.  Cán bộ TCCB nhấn "Bổ nhiệm".
+4.  Chọn nhân sự từ danh sách:
+    *   Tìm kiếm theo mã, họ tên
+    *   Kiểm tra điều kiện (trình độ, thâm niên nếu có quy định)
+5.  Nhập thông tin bổ nhiệm:
+    *   Số quyết định bổ nhiệm
+    *   Ngày quyết định
+    *   Ngày hiệu lực
+    *   Upload file quyết định (PDF)
+6.  Nhấn "Lưu".
+7.  Hệ thống:
+    *   Cập nhật chức vụ hiện tại cho nhân sự.
+    *   Lưu vào lịch sử chức vụ.
+    *   Thông báo đến nhân sự được bổ nhiệm.
+
+### Alternative Flow 1: Miễn nhiệm Chức vụ
+1.  Tại danh sách chức vụ, chọn chức vụ đang có người đảm nhiệm.
+2.  Nhấn "Miễn nhiệm".
+3.  Nhập thông tin:
+    *   Số quyết định miễn nhiệm
+    *   Ngày quyết định
+    *   Ngày hiệu lực miễn nhiệm
+    *   Lý do (Hết nhiệm kỳ, Chuyển công tác, Nghỉ hưu, Khác)
+    *   Upload file quyết định
+4.  Xác nhận.
+5.  Hệ thống:
+    *   Cập nhật ngày kết thúc trong lịch sử chức vụ.
+    *   Cập nhật trạng thái chức vụ thành "Trống".
+    *   Gửi thông báo cần bổ nhiệm mới.
+
+### Alternative Flow 2: Xem Lịch sử Chức vụ của Nhân sự
+1.  Cán bộ TCCB truy cập hồ sơ nhân sự.
+2.  Chọn tab "Lịch sử chức vụ".
+3.  Hệ thống hiển thị:
+    *   Danh sách các chức vụ đã đảm nhiệm
+    *   Thời gian đảm nhiệm (từ ngày - đến ngày)
+    *   Quyết định bổ nhiệm/miễn nhiệm tương ứng
+4.  Có thể xuất lịch sử ra PDF.
+
+### Exception Flows
+*   **E1: Nhân sự không đủ điều kiện**
+    *   Nếu nhân sự không đáp ứng yêu cầu chức vụ (theo quy định).
+    *   Hệ thống cảnh báo nhưng vẫn cho phép bổ nhiệm với xác nhận.
+*   **E2: Chức vụ đã có người đảm nhiệm**
+    *   Nếu bổ nhiệm chức vụ đang có người.
+    *   Hệ thống yêu cầu miễn nhiệm người cũ trước hoặc chọn chức vụ khác.
+
+---
+
+## 27. UC-HRM-012: Thống kê Trình độ (Education Statistics)
+
+**Mô tả:** Thống kê trình độ học vấn của nhân sự theo đơn vị và toàn trường.
+**Actors:** Cán bộ TCCB.
+**Liên quan đến Requirements:** Need #64
+
+### Preconditions
+*   Cán bộ TCCB đã đăng nhập hệ thống.
+
+### Main Flow (Thống kê theo Đơn vị)
+1.  Cán bộ TCCB chọn menu "Thống kê" -> "Trình độ".
+2.  Hệ thống hiển thị bộ lọc:
+    *   Chọn đơn vị (Khoa/Phòng/Ban) hoặc "Toàn trường"
+    *   Chọn thời điểm thống kê (Hiện tại/Ngày cụ thể)
+3.  Cán bộ TCCB chọn đơn vị và nhấn "Thống kê".
+4.  Hệ thống hiển thị báo cáo:
+    *   Tổng số nhân sự trong đơn vị
+    *   Phân loại theo trình độ:
+        *   Tiến sĩ: X người (Y%)
+        *   Thạc sĩ: X người (Y%)
+        *   Đại học: X người (Y%)
+        *   Cao đẳng: X người (Y%)
+        *   Khác: X người (Y%)
+    *   Phân loại theo học hàm:
+        *   Giáo sư: X người
+        *   Phó Giáo sư: X người
+    *   Biểu đồ cột/bánh xe trực quan
+5.  Có thể xuất báo cáo ra Excel/PDF.
+
+### Alternative Flow 1: So sánh giữa các Đơn vị
+1.  Chọn chức năng "So sánh đơn vị".
+2.  Chọn nhiều đơn vị cần so sánh (tối thiểu 2).
+3.  Hệ thống hiển thị bảng so sánh:
+    *   Các đơn vị theo cột
+    *   Các tiêu chí trình độ theo hàng
+4.  Biểu đồ so sánh trực quan.
+
+### Alternative Flow 2: Xem Chi tiết theo Cá nhân
+1.  Tại báo cáo thống kê, nhấn vào số liệu (VD: "Tiến sĩ: 15 người").
+2.  Hệ thống hiển thị danh sách 15 người có trình độ Tiến sĩ.
+3.  Hiển thị thông tin: Mã NS, Họ tên, Đơn vị, Chuyên ngành, Năm tốt nghiệp.
+4.  Có thể xuất danh sách ra Excel.
+
+### Exception Flows
+*   **E1: Không có dữ liệu**
+    *   Nếu đơn vị chưa có nhân sự hoặc chưa cập nhật trình độ.
+    *   Hệ thống hiển thị "Chưa có dữ liệu" và gợi ý cập nhật.
+
+---
+
+## 28. UC-HRM-013: Quản lý Hợp đồng Chuyên gia Nước ngoài (Foreign Expert Contract Management)
+
+**Mô tả:** Quản lý hợp đồng lao động với giảng viên/chuyên gia nước ngoài, bao gồm các thông tin đặc thù như quốc tịch, visa, work permit.
+**Actors:** Cán bộ TCCB.
+**Liên quan đến Requirements:** Need #83
+
+### Preconditions
+*   Cán bộ TCCB đã đăng nhập hệ thống.
+*   Hồ sơ nhân sự nước ngoài đã được tạo.
+
+### Main Flow (Tạo hợp đồng với Chuyên gia nước ngoài)
+1.  Cán bộ TCCB truy cập hồ sơ nhân sự nước ngoài.
+2.  Chọn tab "Hợp đồng".
+3.  Nhấn "Thêm HĐ mới".
+4.  Chọn loại hợp đồng: "Chuyên gia nước ngoài".
+5.  Hệ thống hiển thị form với các trường bổ sung:
+    *   **Thông tin cá nhân:**
+        *   Quốc tịch
+        *   Số hộ chiếu
+        *   Ngày hết hạn hộ chiếu
+    *   **Thông visa:**
+        *   Loại visa (Lao động/Thăm thân/...) 
+        *   Số visa
+        *   Ngày cấp, Ngày hết hạn
+    *   **Work Permit:**
+        *   Số giấy phép lao động
+        *   Ngày cấp, Ngày hết hạn
+        *   Cơ quan cấp
+    *   **Thông tin công việc:**
+        *   Vị trí công việc (Position)
+        *   Thời hạn hợp đồng (tháng)
+        *   Mức lương/thu nhập (USD/VND)
+        *   Phụ cấp (nhà ở, đi lại, bảo hiểm...)
+6.  Upload scan hợp đồng, work permit, visa.
+7.  Nhấn "Lưu".
+8.  Hệ thống:
+    *   Lưu hợp đồng.
+    *   Tính toán ngày cảnh báo hết hạn work permit (trước 30 ngày).
+    *   Tính toán ngày cảnh báo hết hạn visa (trước 15 ngày).
+
+### Alternative Flow 1: Cảnh báo hết hạn Work Permit/Visa
+1.  Hệ thống tự động kiểm tra hàng tuần các hợp đồng sắp hết hạn.
+2.  Nếu phát hiện work permit/visa sắp hết hạn:
+    *   Gửi email cảnh báo đến cán bộ TCCB.
+    *   Hiển thị cảnh báo trên Dashboard.
+    *   Gắn nhãn "Sắp hết hạn" trên danh sách hợp đồng.
+3.  Cán bộ TCCB xem danh sách cảnh báo và xử lý gia hạn.
+
+### Alternative Flow 2: Gia hạn Work Permit/Visa
+1.  Tại hợp đồng đang hiệu lực, chọn "Cập nhật giấy tờ".
+2.  Cập nhật thông tin work permit/visa mới.
+3.  Upload giấy tờ mới.
+4.  Nhập ngày hiệu lực.
+5.  Lưu và ghi lịch sử thay đổi.
+
+### Alternative Flow 3: Báo cáo Chuyên gia nước ngoài
+1.  Cán bộ TCCB chọn "Báo cáo" -> "Chuyên gia nước ngoài".
+2.  Chọn tiêu chí: Theo quốc tịch, Theo đơn vị, Theo tình trạng visa.
+3.  Hệ thống hiển thị:
+    *   Tổng số chuyên gia nước ngoài đang làm việc
+    *   Phân bố theo quốc tịch
+    *   Danh sách sắp hết hạn visa/work permit
+4.  Xuất báo cáo ra Excel/PDF gửi Ban Giám hiệu.
+
+### Exception Flows
+*   **E1: Work permit hết hạn**
+    *   Nếu work permit đã hết hạn mà chưa gia hạn.
+    *   Hệ thống đánh dấu "Không hợp lệ" và cảnh báo khẩn cấp.
+*   **E2: Thiếu thông tin bắt buộc**
+    *   Nếu chưa nhập số passport, work permit.
+    *   Hệ thống báo lỗi validate và không cho lưu.
+
+---
+
+**Module:** 3.9 Cổng Tự phục vụ (bổ sung)
+
+## 29. UC-SSP-005: Xem Kết quả Đánh giá (View Evaluation Results)
+
+**Mô tả:** Cho phép Cán bộ/Giảng viên xem kết quả đánh giá viên chức hàng năm của bản thân qua cổng Self-Service (nếu có đánh giá từ hệ thống bên ngoài).
+**Actors:** Cán bộ/Giảng viên.
+**Liên quan đến Requirements:** Referenced trong FEAT-006
+
+### Preconditions
+*   CBGV đã đăng nhập vào Portal.
+*   Có dữ liệu đánh giá từ hệ thống đánh giá (nếu đã tích hợp).
+
+### Main Flow (Xem kết quả đánh giá năm hiện tại)
+1.  CBGV chọn menu "Kết quả đánh giá" trong Self-Service Portal.
+2.  Hệ thống hiển thị kết quả đánh giá năm gần nhất:
+    *   Năm đánh giá
+    *   Điểm số tổng (nếu có)
+    *   Xếp loại (Hoàn thành xuất sắc/Tốt/Hoàn thành/Không hoàn thành)
+    *   Nhận xét chung của đơn vị
+3.  CBGV có thể xem chi tiết các tiêu chí đánh giá.
+
+### Alternative Flow 1: Xem Lịch sử Đánh giá
+1.  Tại màn hình kết quả, chọn "Lịch sử".
+2.  Hệ thống hiển thị danh sách các năm đã có đánh giá.
+3.  Chọn năm cụ thể để xem chi tiết.
+4.  Có thể so sánh kết quả giữa các năm.
+
+### Alternative Flow 2: Download Quyết định đánh giá
+1.  Tại chi tiết đánh giá, nhấn "Download quyết định".
+2.  Hệ thống tải về file PDF quyết định đánh giá (nếu đã upload).
+
+### Exception Flows
+*   **E1: Chưa có dữ liệu đánh giá**
+    *   Nếu chưa có đánh giá cho năm hiện tại.
+    *   Hệ thống hiển thị "Chưa có kết quả đánh giá".
+*   **E2: Chưa công bố kết quả**
+    *   Nếu đánh giá đang trong quá trình nhưng chưa công bố.
+    *   Hệ thống hiển thị "Kết quả đang được xử lý".
+
+---
+
+**Module:** 3.10 Quản lý Hồ sơ (bổ sung)
+
+## 30. UC-HRM-014: Quản lý Yêu cầu Chỉnh sửa (Edit Request Management)
+
+**Mô tả:** Quản lý việc đánh dấu hồ sơ cần chỉnh sửa và theo dõi các yêu cầu chỉnh sửa từ nhân sự.
+**Actors:** Cán bộ TCCB.
+**Liên quan đến Requirements:** Needs #34, #43, #140
+
+### Preconditions
+*   Cán bộ TCCB đã đăng nhập hệ thống.
+
+### Main Flow (Đánh dấu Yêu cầu Chỉnh sửa)
+1.  Cán bộ TCCB đang xem danh sách hồ sơ nhân sự.
+2.  Chọn một hồ sơ và nhấn "Yêu cầu chỉnh sửa" (Need #34).
+3.  Hệ thống hiển thị form:
+    *   Các mục cần chỉnh sửa (checkbox list: SĐT, Địa chỉ, Email, Bằng cấp...)
+    *   Mô tả chi tiết yêu cầu
+    *   Mức độ ưu tiên (Bình thường/Khẩn)
+4.  Cán bộ TCCB chọn các mục và nhập mô tả.
+5.  Nhấn "Gửi yêu cầu".
+6.  Hệ thống:
+    *   Gửi thông báo đến nhân sự qua email/SMS.
+    *   Đánh dấu hồ sơ với icon "Yêu cầu chỉnh sửa".
+    *   Lưu vào danh sách yêu cầu chờ xử lý.
+
+### Alternative Flow 1: Xem Yêu cầu Chỉnh sửa trong Hồ sơ
+1.  Khi xem chi tiết hồ sơ có yêu cầu chỉnh sửa (Need #46).
+2.  Hệ thống hiển thị banner cảnh báo: "Hồ sơ đang có yêu cầu chỉnh sửa".
+3.  Chọn "Xem chi tiết" để xem:
+    *   Các mục cần chỉnh sửa
+    *   Lý do chỉnh sửa
+    *   Ngày yêu cầu
+4.  Sau khi cán bộ TCCB cập nhật thông tin, nhấn "Hoàn thành yêu cầu".
+5.  Hệ thống cập nhật trạng thái và thông báo đến nhân sự.
+
+### Alternative Flow 2: Quản lý Danh sách Yêu cầu Chỉnh sửa
+1.  Cán bộ TCCB chọn menu "Yêu cầu chỉnh sửa".
+2.  Hệ thống hiển thị danh sách:
+    *   Đang chờ (chưa cập nhật)
+    *   Đã hoàn thành (đã cập nhật)
+3.  Có thể lọc theo: Đơn vị, Mức độ ưu tiên, Ngày yêu cầu.
+4.  Nhấn vào yêu cầu để xem chi tiết hồ sơ.
+
+### Alternative Flow 3: Hủy Yêu cầu Chỉnh sửa
+1.  Tại danh sách yêu cầu đang chờ, chọn "Hủy yêu cầu".
+2.  Nhập lý do hủy.
+3.  Xác nhận.
+4.  Hệ thống cập nhật trạng thái và thông báo đến nhân sự.
+
+### Exception Flows
+*   **E1: Hồ sơ đã thôi việc**
+    *   Nếu hồ sơ đã đánh dấu thôi việc.
+    *   Hệ thống cảnh báo và không cho phép gửi yêu cầu chỉnh sửa.
+*   **E2: Yêu cầu đã được xử lý**
+    *   Nếu nhân sự đã cập nhật thông tin qua Self-Service trước khi TCCB xử lý.
+    *   Hệ thống chuyển sang trạng thái "Đã cập nhật bởi nhân sự".
+
+---
+
+**Tổng số Use Cases:** 31 use cases
+
+**Kết thúc Tài liệu Đặc tả Use Case**
+

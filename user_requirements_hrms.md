@@ -447,7 +447,7 @@ Hệ thống HRMS sẽ quản lý toàn bộ nhân sự của trường bao gồ
 | **Cán bộ Phòng TCKT**      | Phòng Tài chính - Kế toán    | Quản lý lương, thưởng, các khoản thu chi          |
 | **Lãnh đạo trường**        | Hiệu trưởng, Phó Hiệu trưởng | Báo cáo tổng hợp                       |
 | **Trưởng đơn vị**          | Trưởng khoa/phòng/viện       | Quản lý nhân sự đơn vị, đánh giá                  |
-| **Cán bộ/Giảng viên**      | Toàn bộ CBGV                 | Xem/cập nhật thông tin cá nhân, đăng ký nghỉ phép |
+| **Cán bộ/Giảng viên**      | Toàn bộ CBGV                 | Xem/cập nhật thông tin cá nhân |
 
 ### 3.2 Các bên liên quan khác
 
@@ -718,13 +718,11 @@ Cho phép cán bộ, giảng viên tự phục vụ một số tác vụ cơ b�
 | **FR-SS-001** | Xem thông tin cá nhân                                  | Bắt buộc |
 | **FR-SS-002** | Đề nghị cập nhật thông tin cá nhân                     | Bắt buộc |
 | **FR-SS-003** | Xem phiếu lương hàng tháng                             | Bắt buộc |
-| **FR-SS-004** | Đăng ký nghỉ phép online                               | Bắt buộc |
-| **FR-SS-005** | Xem số ngày phép còn lại                               | Bắt buộc |
-| **FR-SS-006** | Xem lịch sử hợp đồng                                   | Bắt buộc |
-| **FR-SS-007** | Xem kết quả đánh giá                                   | Bắt buộc |
-| **FR-SS-008** | Xem thông tin đào tạo, bồi dưỡng                       | Bắt buộc |
-| **FR-SS-009** | Cập nhật thông tin đăng ký thuế TNCN (người phụ thuộc) | Bắt buộc |
-| **FR-SS-010** | Nhận thông báo từ Phòng TCCB, Phòng TCKT               | Bắt buộc |
+| **FR-SS-004** | Xem lịch sử hợp đồng                                   | Bắt buộc |
+| **FR-SS-005** | Xem kết quả đánh giá                                   | Bắt buộc |
+| **FR-SS-006** | Xem thông tin đào tạo, bồi dưỡng                       | Bắt buộc |
+| **FR-SS-007** | Cập nhật thông tin đăng ký thuế TNCN (người phụ thuộc) | Bắt buộc |
+| **FR-SS-008** | Nhận thông báo từ Phòng TCCB, Phòng TCKT               | Bắt buộc |
 
 ### 4.10 Module Quản lý Cấu hình Hệ thống (System Configuration Management)
 
