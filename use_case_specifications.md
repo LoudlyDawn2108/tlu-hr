@@ -418,9 +418,24 @@
 ### Main Flow (Tìm kiếm và Xem danh sách)
 1.  Cán bộ TCCB chọn menu "Quản lý Hồ sơ".
 2.  Hệ thống hiển thị danh sách hồ sơ nhân viên (Mã, Họ tên, Đơn vị, Chức vụ...).
-3.  Cán bộ TCCB nhập từ khóa vào ô tìm kiếm hoặc sử dụng bộ lọc nâng cao.
-4.  Hệ thống hiển thị kết quả lọc.
-5.  Cán bộ TCCB chọn một hồ sơ để xem chi tiết hoặc thực hiện các hành động khác.
+3.  Cán bộ TCCB **nhập từ khóa** vào ô tìm kiếm (Tên, Mã, CCCD, Email, SĐT).
+4.  Hệ thống hiển thị kết quả tìm kiếm theo từ khóa (real-time hoặc sau khi nhấn Enter).
+5.  Cán bộ TCCB chọn một hồ sơ từ kết quả để xem chi tiết hoặc thực hiện các hành động khác.
+
+### Alternative Flow 1: Sử dụng Bộ lọc Nâng cao (Advanced Filter)
+1.  Tại màn hình danh sách, Cán bộ TCCB nhấn "Bộ lọc nâng cao".
+2.  Hệ thống hiển thị panel lọc với nhiều tiêu chí:
+    *   **Đơn vị:** Dropdown chọn Khoa/Phòng/Ban (cho phép chọn nhiều)
+    *   **Trình độ:** Tiến sĩ, Thạc sĩ, Đại học, Cao đẳng...
+    *   **Chức danh:** GS, PGS, Chuyên viên...
+    *   **Chức vụ:** Trưởng khoa, Phó khoa...
+    *   **Trạng thái:** Đang làm việc, Thôi việc, Nghỉ phép...
+    *   **Ngày sinh:** Từ ngày - Đến ngày
+    *   **Giới tính:** Nam, Nữ
+3.  Cán bộ TCCB chọn các tiêu chí lọc.
+4.  Nhấn "Áp dụng bộ lọc".
+5.  Hệ thống hiển thị kết quả lọc đa tiêu chí.
+6.  Có thể lưu bộ lọc để sử dụng lại hoặc xuất kết quả lọc ra Excel.
 
 ### Alternative Flow 1: Thêm mới Hồ sơ (Add Profile)
 1.  Tại màn hình danh sách, Cán bộ TCCB nhấn "Thêm mới".
@@ -434,19 +449,92 @@
 9.  Hệ thống tự động sinh **Mã cán bộ** (HRM-009).
 10. Hệ thống lưu hồ sơ và thông báo thành công.
 
-### Alternative Flow 2: Cập nhật Hồ sơ (Edit Profile)
-1.  Cán bộ TCCB chọn "Sửa" trên hồ sơ nhân viên.
-2.  Hệ thống hiển thị form thông tin hiện tại.
-3.  Cán bộ TCCB thay đổi thông tin cần thiết.
-4.  Cán bộ TCCB nhập "Lý do sửa" (nếu cấu hình yêu cầu bắt buộc).
-5.  Cán bộ TCCB nhấn "Lưu".
-6.  Hệ thống lưu thay đổi và ghi log lịch sử (HRM-010).
+### Alternative Flow 2: Thêm mới Hồ sơ (Add Profile)
+1.  Tại màn hình danh sách, Cán bộ TCCB nhấn "Thêm mới".
+2.  Hệ thống hiển thị form nhập liệu chia thành các tabs/bước.
+3.  Cán bộ TCCB nhập **Thông tin chung**: Họ tên, Ngày sinh, Giới tính, CCCD, MST, BHXH, Email, SĐT (HRM-003).
+4.  **[MỞ RỘNG - Nếu là người nước ngoài]** Cán bộ TCCB tick chọn "Người nước ngoài", hệ thống hiển thị thêm các trường:
+    *   **Số Visa:** Nhập số visa còn hiệu lực
+    *   **Ngày hết hạn Visa:** Ngày visa hết hạn
+    *   **Số Hộ chiếu:** Passport number
+    *   **Ngày hết hạn Hộ chiếu:** Ngày passport hết hạn
+    *   **Số giấy phép lao động:** Work permit number
+    *   **Ngày hết hạn giấy phép lao động:** Work permit expiration
+    *   **Upload PDF giấy phép lao động:** Tải lên bản scan giấy phép lao động (bắt buộc)
+5.  Cán bộ TCCB nhập **Thông tin gia đình**: Vợ/chồng, con, người phụ thuộc (HRM-004).
+6.  Cán bộ TCCB nhập **Thông tin ngân hàng**: Tên NH, STK (HRM-006).
+7.  Cán bộ TCCB nhập **Quá trình công tác** trước khi về trường (HRM-007) và **Thông tin Đảng/Đoàn** (HRM-008).
+8.  Cán bộ TCCB upload ảnh chân dung (HRM-005).
+9.  **BẮT BUỘC - Cập nhật thông tin trước khi lưu:**
+    *   Cán bộ TCCB chuyển sang tab **"Trình độ & Chức danh"** và nhập thông tin (liên kết UC-HRM-002)
+    *   Cán bộ TCCB chuyển sang tab **"Lương & Phụ cấp"** và nhập thông tin (liên kết UC-HRM-004)
+    *   Cán bộ TCCB chuyển sang tab **"Hợp đồng"** và tạo hợp đồng mới (liên kết UC-HRM-003)
+    *   *[TÙY CHỌN]* Cán bộ TCCB có thể chuyển sang tab **"Khen thưởng/Kỷ luật"** nếu cần (liên kết UC-HRM-005)
+10. Hệ thống kiểm tra tính đầy đủ của các thông tin bắt buộc:
+    *   Kiểm tra đã có Trình độ & Chức danh chưa
+    *   Kiểm tra đã có Lương & Phụ cấp chưa
+    *   Kiểm tra đã có Hợp đồng chưa
+    *   Nếu thiếu thông tin bắt buộc → Hiển thị cảnh báo và không cho phép lưu.
+11. Cán bộ TCCB nhấn "Lưu".
+12. Hệ thống tự động sinh **Mã cán bộ** (HRM-009).
+13. Hệ thống lưu hồ sơ và thông báo thành công.
 
 ### Alternative Flow 3: Đánh dấu Thôi việc
 1.  Cán bộ TCCB chọn chức năng "Đánh dấu thôi việc" (HRM-011).
 2.  Hệ thống yêu cầu xác nhận và nhập ngày/lý do thôi việc.
 3.  Cán bộ TCCB xác nhận.
 4.  Hệ thống cập nhật trạng thái nhân sự sang "Thôi việc" (Inactive).
+
+### Alternative Flow 4: In Hồ sơ (Print Profile)
+1.  Tại danh sách hoặc chi tiết hồ sơ, Cán bộ TCCB chọn hồ sơ cần in.
+2.  Nhấn nút "In hồ sơ" (hoặc icon print).
+3.  Hệ thống hiển thị dialog chọn mẫu in:
+    *   **Mẫu mặc định (PDF):** Lý lịch trích ngang chuẩn
+    *   **Mẫu đầy đủ (PDF):** Toàn bộ thông tin hồ sơ
+    *   **Mẫu tóm tắt (PDF):** Thông tin cơ bản
+4.  Admin chọn mẫu mặc định là PDF.
+5.  Nhấn "Xem trước" hoặc "Tải xuống".
+6.  Hệ thống tạo file PDF theo mẫu đã chọn:
+    *   Bao gồm thông tin cá nhân, ảnh chân dung, thông tin công việc
+    *   Định dạng theo mẫu chuẩn của trường
+7.  File PDF được tải xuống máy hoặc mở trong tab mới để in.
+
+### Alternative Flow 5: Xem Chi tiết Hồ sơ (View Detailed Profile)
+1.  Tại danh sách, Cán bộ TCCB nhấn vào tên/mã nhân viên (hoặc nhấn "Xem chi tiết").
+2.  Hệ thống hiển thị màn hình **Chi tiết hồ sơ** ở chế độ **read-only** (chỉ xem, không sửa).
+3.  Hệ thống hiển thị đầy đủ thông tin theo các tab:
+    *   **Tab "Thông tin chung":** Lý lịch, liên hệ, gia đình, ảnh chân dung
+    *   **Tab "Trình độ & Chức danh":** Bằng cấp, chứng chỉ, học hàm/học vị
+    *   **Tab "Lương & Phụ cấp":** Ngạch, bậc, hệ số, phụ cấp hiện tại
+    *   **Tab "Hợp đồng":** Lịch sử các hợp đồng đã ký
+    *   **Tab "Khen thưởng/Kỷ luật":** Các quyết định khen thưởng, kỷ luật
+    *   **Tab "Công tác":** Quá trình công tác, điều chuyển
+    *   **Tab "Lịch sử":** Lịch sử thay đổi hồ sơ (audit trail)
+4.  Tại mỗi tab, Cán bộ TCCB có thể nhấn nút **"Chỉnh sửa"** để chuyển sang chế độ sửa thông tin tương ứng.
+5.  Có thể nhấn "In hồ sơ" hoặc "Xuất Excel" từ màn hình chi tiết.
+
+### Alternative Flow 6: Chỉnh sửa qua Tab (Edit via Tabs)
+1.  Tại màn hình **Chi tiết hồ sơ** (Alternative Flow 5), Cán bộ TCCB chọn tab cần cập nhật.
+2.  Nhấn nút **"Chỉnh sửa"** hoặc **"Cập nhật"** tại tab đó.
+3.  Hệ thống chuyển hướng đến use case tương ứng:
+    *   Tab "Trình độ" → Chuyển đến UC-HRM-002 (Quản lý Trình độ)
+    *   Tab "Lương & Phụ cấp" → Chuyển đến UC-HRM-004 (Quản lý Lương)
+    *   Tab "Hợp đồng" → Chuyển đến UC-HRM-003 (Quản lý Hợp đồng)
+    *   Tab "Khen thưởng" → Chuyển đến UC-HRM-005 (Quản lý Khen thưởng)
+4.  Sau khi cập nhật xong tại use case con, hệ thống tự động quay lại màn hình Chi tiết hồ sơ.
+5.  Thông tin được cập nhật hiển thị ngay trên tab tương ứng.
+
+### Exception Flows
+*   **E1: Thiếu thông tin bắt buộc khi lưu**
+    *   Nếu chưa nhập đủ thông tin Trình độ, Lương, hoặc Hợp đồng (bắt buộc).
+    *   Hệ thống hiển thị cảnh báo: "Vui lòng cập nhật đầy đủ thông tin [tên tab còn thiếu] trước khi lưu hồ sơ."
+    *   Highlight các tab còn thiếu thông tin.
+*   **E2: Thông tin người nước ngoài không đầy đủ**
+    *   Nếu tick chọn "Người nước ngoài" nhưng chưa nhập Visa, Hộ chiếu, hoặc Giấy phép lao động.
+    *   Hệ thống báo lỗi: "Vui lòng nhập đầy đủ thông tin Visa, Hộ chiếu và Giấy phép lao động."
+*   **E3: Giấy phép lao động đã hết hạn**
+    *   Nếu ngày hết hạn giấy phép lao động < ngày hiện tại.
+    *   Hệ thống cảnh báo: "Giấy phép lao động đã hết hạn. Vui lòng cập nhật giấy phép mới."
 
 ---
 
@@ -482,34 +570,92 @@
 
 ## 12. UC-HRM-003: Quản lý Hợp đồng Lao động
 
-**Mô tả:** Quản lý vòng đời hợp đồng lao động: Tạo mới, Gia hạn, Chấm dứt và In hợp đồng.
+**Mô tả:** Quản lý vòng đời hợp đồng lao động: Tạo mới, Gia hạn, Chấm dứt hợp đồng với quản lý trạng thái và ràng buộc nghiệp vụ.
 **Actors:** Cán bộ TCCB.
 **Liên quan đến Requirements:** HRM-020 đến HRM-028 (Needs 76-87)
+
+### Preconditions
+*   Cán bộ TCCB đã đăng nhập hệ thống.
+*   Hồ sơ nhân sự đã được tạo (UC-HRM-001).
+
+### Postconditions
+*   Hợp đồng được tạo mới, gia hạn hoặc chấm dứt.
+*   Trạng thái hợp đồng được tự động tính toán và cập nhật.
+
+### Trạng thái Hợp đồng (Contract Status)
+Hệ thống tự động tính toán trạng thái dựa trên ngày hiện tại:
+
+*   **Đang hiệu lực (Active):** Ngày hiệu lực ≤ Ngày hiện tại ≤ Ngày hết hạn
+*   **Chưa hiệu lực (Not yet active):** Ngày hiện tại < Ngày hiệu lực
+*   **Hết hiệu lực (Expired):** Ngày hiện tại > Ngày hết hạn
 
 ### Main Flow (Tạo mới Hợp đồng)
 1.  Cán bộ TCCB chọn tab "Hợp đồng" trong hồ sơ nhân sự.
 2.  Nhấn "Thêm mới HĐ".
-3.  Chọn `Loại hợp đồng` (Xác định thời hạn, Không xác định thời hạn...).
-4.  Hệ thống kiểm tra số lần ký tối đa cho loại HĐ này (HRM-026). Nếu vượt quá, yêu cầu chuyển loại HĐ.
-5.  Nhập Số HĐ, Ngày ký, Ngày hiệu lực, Ngày hết hạn.
-6.  Hệ thống validate thời hạn Min/Max của loại HĐ (HRM-024).
-7.  Nhấn "Lưu".
+3.  Hệ thống kiểm tra **Business Rule BR-001**: Chỉ cho phép tạo hợp đồng mới nếu nhân viên không có hợp đồng "Đang hiệu lực". Nếu có, hiển thị cảnh báo và yêu cầu chấm dứt hợp đồng hiện tại trước.
+4.  Chọn `Loại hợp đồng` (Xác định thời hạn, Không xác định thời hạn...).
+5.  Hệ thống kiểm tra số lần ký tối đa cho loại HĐ này (HRM-026). Nếu vượt quá, yêu cầu chuyển loại HĐ.
+6.  Nhập thông tin hợp đồng:
+    *   `Số HĐ`
+    *   `Ngày ký`
+    *   `Ngày hiệu lực`
+    *   `Ngày hết hạn`
+    *   `Nội dung hợp đồng` (rich text editor - nhập điều khoản, mô tả công việc, quyền lợi...)
+    *   `Upload PDF bản hợp đồng giấy` (tải lên bản scan/file gốc đã ký)
+7.  Hệ thống validate thời hạn Min/Max của loại HĐ (HRM-024).
+8.  Hệ thống kiểm tra **Business Rule BR-002**: Hợp đồng mới không được trùng lặp thời gian với hợp đồng đã tồn tại (Ngày hiệu lực phải > Ngày hết hạn của hợp đồng cũ hoặc hợp đồng cũ đã chấm dứt).
+9.  Nhấn "Lưu".
+10. Hệ thống tự động tính trạng thái hợp đồng dựa trên Ngày hiệu lực và Ngày hết hạn.
+11. Hệ thống lưu hợp đồng và thông báo thành công.
 
-### Alternative Flow 1: Gia hạn Hợp đồng
-1.  Cán bộ TCCB chọn hợp đồng sắp hết hạn, nhấn "Gia hạn".
-2.  Hệ thống đề xuất Loại hợp đồng tiếp theo dựa trên quy tắc (VD: Sau 2 lần HĐ 12 tháng -> HĐ Không xác định thời hạn) (HRM-025).
-3.  Cán bộ TCCB xác nhận hoặc điều chỉnh thông tin gia hạn.
-4.  Lưu hợp đồng mới.
+### Alternative Flow 1: Gia hạn Hợp đồng (Renewal)
+1.  Cán bộ TCCB chọn hợp đồng, nhấn "Gia hạn".
+2.  Hệ thống kiểm tra **Business Rule BR-003**: Chỉ cho phép gia hạn khi thời gian còn lại của hợp đồng hiện tại **≤ 30 ngày** (tính từ ngày hiện tại đến Ngày hết hạn). Nếu > 30 ngày, hiển thị thông báo "Chỉ được gia hạn khi còn tối đa 30 ngày trước ngày hết hạn".
+3.  Hệ thống đề xuất Loại hợp đồng tiếp theo dựa trên quy tắc (VD: Sau 2 lần HĐ 12 tháng -> HĐ Không xác định thời hạn) (HRM-025).
+4.  Hệ thống tự động điền thông tin từ hợp đồng cũ (có thể chỉnh sửa):
+    *   `Ngày hiệu lực` = Ngày hết hạn của HĐ cũ + 1 ngày
+    *   Giữ nguyên `Nội dung hợp đồng` (có thể sửa)
+    *   Yêu cầu upload `PDF bản hợp đồng giấy` mới
+5.  Cán bộ TCCB xác nhận hoặc điều chỉnh thông tin gia hạn.
+6.  Nhấn "Lưu".
+7.  Hệ thống tự động chấm dứt hợp đồng cũ và kích hoạt hợp đồng mới.
 
 ### Alternative Flow 2: Chấm dứt Hợp đồng
 1.  Cán bộ TCCB chọn Hợp đồng đang hiệu lực, nhấn "Chấm dứt".
 2.  Nhập Ngày chấm dứt, Lý do, Thông tin thanh toán/bồi thường (HRM-022).
 3.  Xác nhận.
-4.  Hệ thống cập nhật trạng thái Hợp đồng là "Đã chấm dứt".
+4.  Hệ thống cập nhật trạng thái Hợp đồng là "Hết hiệu lực" và ghi nhận Ngày chấm dứt thực tế.
 
-### Alternative Flow 3: In Hợp đồng
-1.  Cán bộ TCCB chọn Hợp đồng, nhấn "In".
-2.  Hệ thống xuất file PDF theo mẫu quy định (HRM-028).
+### Business Rules (Quy tắc Nghiệp vụ)
+
+**BR-001: Chỉ 1 hợp đồng hiệu lực tại một thời điểm**
+*   Mỗi nhân viên chỉ được có tối đa 1 hợp đồng ở trạng thái "Đang hiệu lực".
+*   Không thể tạo hợp đồng mới nếu đã tồn tại hợp đồng đang hiệu lực.
+
+**BR-002: Không trùng lặp thời gian hợp đồng**
+*   Hợp đồng mới không được có thời gian hiệu lực trùng lặp với hợp đồng cũ chưa chấm dứt.
+*   Ngày hiệu lực của hợp đồng mới phải sau Ngày hết hạn của hợp đồng cũ (nếu hợp đồng cũ chưa hết hạn thì phải chấm dứt trước).
+
+**BR-003: Gia hạn chỉ khi còn ≤ 30 ngày**
+*   Chỉ cho phép thực hiện gia hạn hợp đồng khi thời gian từ ngày hiện tại đến Ngày hết hạn còn tối đa 30 ngày.
+*   Nếu còn > 30 ngày, hệ thống từ chối và hiển thị thông báo lỗi.
+
+### Exception Flows
+*   **E1: Vi phạm Business Rule BR-001 (Đã có hợp đồng hiệu lực)**
+    *   Tại bước 3 Main Flow, nếu nhân viên đã có hợp đồng "Đang hiệu lực".
+    *   Hệ thống hiển thị: "Không thể tạo hợp đồng mới. Nhân viên đang có hợp đồng hiệu lực đến [Ngày hết hạn]. Vui lòng chấm dứt hợp đồng hiện tại trước."
+
+*   **E2: Vi phạm Business Rule BR-002 (Trùng lặp thời gian)**
+    *   Tại bước 8 Main Flow, nếu Ngày hiệu lực của hợp đồng mới ≤ Ngày hết hạn của hợp đồng cũ chưa chấm dứt.
+    *   Hệ thống hiển thị: "Ngày hiệu lực của hợp đồng mới không hợp lệ. Vui lòng chọn ngày sau [Ngày hết hạn HĐ cũ] hoặc chấm dứt hợp đồng cũ trước."
+
+*   **E3: Vi phạm Business Rule BR-003 (Gia hạn quá sớm)**
+    *   Tại bước 2 Alternative Flow 1, nếu số ngày còn lại > 30.
+    *   Hệ thống hiển thị: "Chưa đến thời hạn gia hạn. Chỉ được gia hạn khi còn tối đa 30 ngày trước ngày hết hạn (hiện còn [X] ngày)."
+
+*   **E4: Thiếu file PDF hợp đồng giấy**
+    *   Nếu Cán bộ TCCB không upload PDF bản hợp đồng đã ký.
+    *   Hệ thống hiển thị cảnh báo: "Vui lòng upload bản PDF hợp đồng đã ký để hoàn tất lưu trữ."
 
 ---
 
@@ -566,18 +712,84 @@
 
 ### Main Flow (Quản lý Cây đơn vị)
 1.  Cán bộ TCCB chọn menu "Cơ cấu Tổ chức" ở menu chính.
-2.  Hệ thống hiển thị sơ đồ cây (Tree View).
+2.  Hệ thống hiển thị sơ đồ cây (Tree View) với màu sắc trạng thái đơn vị:
+    *   **Xanh lá (Hoạt động):** Đơn vị đang hoạt động bình thường
+    *   **Cam (Sáp nhập):** Đơn vị đang trong quá trình sáp nhập
+    *   **Đỏ (Giải thể):** Đơn vị đã giải thể
 3.  Cán bộ TCCB chọn một nút (đơn vị) để xem chi tiết.
-4.  Có thể thực hiện: Thêm đơn vị con, Sửa thông tin, Giải thể (HRM-038).
+4.  Hệ thống hiển thị thông tin đơn vị:
+    *   **Thông tin cơ bản:** Tên đơn vị, Mã đơn vị, Loại đơn vị
+    *   **Thông tin liên hệ:** Địa chỉ, Địa chỉ văn phòng, Email, Số điện thoại, Website
+    *   **Trạng thái:** Hiển thị trạng thái hiện tại với màu sắc tương ứng
+    *   **Các chức vụ:** Hiển thị dưới dạng thẻ (cards) theo cấu hình loại đơn vị từ UC-CFG-003
+5.  Cán bộ TCCB có thể thực hiện: Sửa thông tin đơn vị, Phân công nhân sự.
 
 ### Alternative Flow 1: Phân công Nhân sự (Điều chuyển)
 1.  Cán bộ TCCB chọn đơn vị đích trên cây tổ chức.
 2.  Nhấn "Thêm nhân sự" -> "Phân công / Điều chuyển".
-3.  Tìm kiếm nhân sự từ danh sách hoặc từ đơn vị khác.
-4.  Thiết lập `Chức vụ` tại đơn vị mới.
+3.  Hệ thống hiển thị các chức vụ của đơn vị dưới dạng thẻ (cards) dựa trên cấu hình loại đơn vị (UC-CFG-003).
+4.  Tìm kiếm nhân sự từ danh sách hoặc từ đơn vị khác.
 5.  Chọn là `Chức vụ chính` hay `Kiêm nhiệm` (HRM-040).
 6.  Nếu là giảng viên, hệ thống ràng buộc chỉ thuộc 1 Bộ môn (HRM-042).
-7.  Lưu thông tin.
+7.  **Lưu ý:** Việc phân công vào chức vụ cụ thể được thực hiện tại UC-HRM-009.
+8.  Lưu thông tin.
+
+### Alternative Flow 2: Xem danh sách Nhân sự đơn vị
+1.  Tại màn hình chi tiết đơn vị, Cán bộ TCCB chuyển sang tab "Nhân sự".
+2.  Hệ thống hiển thị danh sách nhân sự đang công tác tại đơn vị:
+    *   Họ tên, Mã cán bộ
+    *   Chức vụ (nếu đã được phân công tại UC-HRM-009)
+    *   Loại phân công: Chính / Kiêm nhiệm
+3.  Có thể lọc theo: Đang công tác, Đã chuyển đi, Tất cả.
+
+### Alternative Flow 3: Xem Lịch sử phân công
+1.  Tại tab "Nhân sự", Cán bộ TCCB chọn một nhân sự.
+2.  Nhấn "Xem lịch sử".
+3.  Hệ thống hiển thị lịch sử phân công của nhân sự tại đơn vị:
+    *   Ngày bắt đầu, Ngày kết thúc
+    *   Chức vụ tại thời điểm đó
+    *   Lý do chuyển đi (nếu có)
+
+### Alternative Flow 4: Quản lý Trạng thái Đơn vị (Unit Status Management)
+1.  Tại màn hình chi tiết đơn vị, Cán bộ TCCB nhấn "Thay đổi trạng thái".
+2.  Hệ thống hiển thị các trạng thái có thể chuyển đổi:
+    *   **Hoạt động (Xanh lá):** Đơn vị đang hoạt động bình thường
+    *   **Sáp nhập (Cam):** Đơn vị đang trong quá trình sáp nhập vào đơn vị khác
+    *   **Giải thể (Đỏ):** Đơn vị đã hoặc sắp bị giải thể
+3.  Cán bộ TCCB chọn trạng thái mới.
+4.  Nhập thông tin bổ sung:
+    *   Ngày hiệu lực của trạng thái
+    *   Lý do thay đổi (bắt buộc)
+    *   Nếu Sáp nhập: Chọn đơn vị sáp nhập vào
+    *   Nếu Giải thể: Chọn đơn vị tiếp nhận nhân sự (nếu có)
+5.  Nhấn "Lưu".
+6.  Hệ thống cập nhật trạng thái đơn vị và ghi lại lịch sử thay đổi.
+7.  Trạng thái được hiển thị trên cây tổ chức với màu sắc tương ứng.
+
+### Alternative Flow 5: Quản lý Thông tin Đơn vị (Unit Information Management)
+1.  Tại màn hình chi tiết đơn vị, Cán bộ TCCB nhấn "Sửa thông tin".
+2.  Hệ thống hiển thị form chỉnh sửa với các trường:
+    *   **Thông tin cơ bản:** Tên đơn vị, Mã đơn vị
+    *   **Thông tin liên hệ:**
+        *   Địa chỉ: Địa chỉ trụ sở chính
+        *   Địa chỉ văn phòng: Địa chỉ văn phòng làm việc (nếu khác trụ sở)
+        *   Email: Email liên hệ chính thức
+        *   Số điện thoại: Số điện thoại liên hệ
+        *   Website: Trang web đơn vị (nếu có)
+3.  Cán bộ TCCB chỉnh sửa thông tin.
+4.  Nhập lý do chỉnh sửa (bắt buộc).
+5.  Nhấn "Lưu".
+6.  Hệ thống cập nhật thông tin và ghi log thay đổi.
+
+### Alternative Flow 6: Xem Lịch sử Đơn vị (Unit History)
+1.  Tại màn hình chi tiết đơn vị, Cán bộ TCCB nhấn "Lịch sử".
+2.  Hệ thống hiển thị timeline các sự kiện:
+    *   Ngày thành lập/Thành lập lại
+    *   Các lần thay đổi thông tin (tên, mã, địa chỉ...)
+    *   Các lần sáp nhập (vào đơn vị khác hoặc tiếp nhận đơn vị khác)
+    *   Ngày giải thể (nếu có)
+3.  Mỗi sự kiện hiển thị: Ngày, Loại sự kiện, Nội dung chi tiết.
+4.  **Lưu ý:** Để xem chi tiết đầy đủ các sự kiện lịch sử, hệ thống cung cấp liên kết đến UC-HRM-010.
 
 ---
 
@@ -590,15 +802,29 @@
 ### Main Flow (Tạo Khóa đào tạo)
 1.  Cán bộ TCCB chọn menu "Đào tạo & Phát triển".
 2.  Nhấn "Tạo khóa học mới".
-3.  Nhập thông tin: Tên khóa, Loại (Trong/Ngoài nước), Thời gian, Địa điểm, Kinh phí.
-4.  Thiết lập `Mở đăng ký` (Có/Không, Thời hạn đăng ký) (HRM-048).
+3.  Nhập thông tin: Tên khóa, Loại (Trong/Ngoài nước), Thời gian, Địa điểm, Kinh phí, Cam kết sau đào tạo, Chứng chỉ sau đào tạo (Tên chứng chỉ, Loại chứng chỉ).
+4.  Thiết lập `Mở đăng ký` (Có/Không, Thời gian mở đăng ký từ ngày - đến ngày, Giới hạn số người tham gia) (HRM-048).
 5.  Lưu khóa học.
 
 ### Alternative Flow 1: Ghi nhận Kết quả
 1.  Cán bộ TCCB chọn Khóa học -> Tab "Danh sách học viên".
 2.  Cập nhật trạng thái cho học viên: `Đang học` -> `Hoàn thành` (hoặc `Không đạt`).
-3.  Nếu `Hoàn thành`, nhập thông tin chứng chỉ/kết quả.
-4.  Hệ thống tự động cập nhật thông tin này vào hồ sơ cá nhân của nhân sự (HRM-050).
+3.  Hệ thống tự động cập nhật chứng chỉ (đã cấu hình tại bước 3 Main Flow) vào hồ sơ cá nhân của nhân sự khi trạng thái là `Hoàn thành` (HRM-050).
+
+### Alternative Flow 2: Đăng ký khóa học (CB/GV)
+1.  Cán bộ/Giảng viên truy cập Cổng tự phục vụ -> "Đăng ký đào tạo".
+2.  Xem danh sách khóa học đang mở đăng ký.
+3.  Chọn khóa học và nhấn "Đăng ký".
+4.  Hệ thống kiểm tra giới hạn số người và thời hạn đăng ký.
+5.  Nếu hợp lệ, lưu đăng ký và chuyển trạng thái thành `Chờ duyệt`.
+
+### Exception Flows
+*   **E1: Hết hạn đăng ký**
+    *   Nếu thời gian hiện tại nằm ngoài khoảng "Thời gian mở đăng ký".
+    *   Hệ thống ẩn nút "Đăng ký" và hiển thị thông báo "Đã hết hạn đăng ký".
+*   **E2: Đủ số lượng người tham gia**
+    *   Nếu số người đã đăng ký đạt "Giới hạn số người tham gia".
+    *   Hệ thống hiển thị thông báo "Khóa học đã đủ số lượng đăng ký" và không cho đăng ký thêm.
 
 ---
 
