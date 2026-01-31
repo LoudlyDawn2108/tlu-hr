@@ -329,183 +329,60 @@ Các mốc quan trọng (Milestones) cho tài liệu yêu cầu:
 
 #### 1.3.1. Đăng nhập hệ thống (UC-SYS-001)
 
-
-**Mô tả:** Cho phép người dùng xác thực và truy cập vào hệ thống dựa trên thông tin tài khoản được cấp.
-**Actors:** Quản trị viên, Cán bộ TCCB, Cán bộ TCKT, Lãnh đạo trường, Cán bộ/Giảng viên.
-**Liên quan đến Requirements:** SYS-001, SYS-002
-
-**Điều kiện tiên quyết:**
-*   Người dùng đã được cấp tài khoản.
-*   Hệ thống đang hoạt động bình thường.
-
-**Điều kiện sau:**
-*   Thành công: Người dùng được chuyển đến trang chủ (Dashboard) tương ứng với vai trò của mình.
-*   Thất bại: Người dùng vẫn ở lại màn hình đăng nhập và nhận thông báo lỗi.
-
-### UC-SYS-001-01: Đăng nhập
-**Luồng chính:**
-1.  Người dùng truy cập vào địa chỉ web của hệ thống.
-2.  Hệ thống hiển thị màn hình Đăng nhập.
-3.  Người dùng nhập `Tên đăng nhập` và `Mật khẩu`.
-4.  Người dùng nhấn nút "Đăng nhập".
-5.  Hệ thống kiểm tra tính hợp lệ của dữ liệu nhập (không được để trống).
-6.  Hệ thống xác thực thông tin tài khoản với cơ sở dữ liệu.
-7.  Hệ thống kiểm tra trạng thái tài khoản (Active/Locked).
-8.  Hệ thống xác định vai trò của người dùng.
-9.  Hệ thống chuyển hướng người dùng đến Dashboard tương ứng.
-
-**Luồng thay thế:**
-*   **A1: Đăng nhập khi đã có session**
-    *   Nếu người dùng truy cập trang đăng nhập khi đã có session hợp lệ, hệ thống tự động chuyển hướng vào Dashboard.
-
-**Luồng ngoại lệ:**
-*   **E1: Sai Tên đăng nhập hoặc Mật khẩu**
-    *   Tại bước 6, nếu thông tin không khớp, hệ thống hiển thị thông báo "Tên đăng nhập hoặc mật khẩu không đúng".
-*   **E2: Tài khoản bị khóa**
-    *   Tại bước 7, nếu tài khoản bị khóa, hệ thống hiển thị thông báo "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Quản trị viên".
+| Thuộc tính | Nội dung |
+|------------|----------|
+| **Mô tả** | Cho phép người dùng xác thực và truy cập vào hệ thống dựa trên thông tin tài khoản được cấp |
+| **Actors** | Quản trị viên, Cán bộ TCCB, Cán bộ TCKT, Lãnh đạo trường, Cán bộ/Giảng viên |
+| **Requirements** | SYS-001, SYS-002 |
+| **Điều kiện tiên quyết** | - Người dùng đã được cấp tài khoản<br>- Hệ thống đang hoạt động bình thường |
+| **Điều kiện sau** | **Thành công:** Chuyển đến Dashboard tương ứng với vai trò<br>**Thất bại:** Ở lại màn hình đăng nhập, hiển thị lỗi |
+| **Luồng chính** | 1. Người dùng truy cập vào địa chỉ web của hệ thống<br>2. Hệ thống hiển thị màn hình Đăng nhập<br>3. Người dùng nhập Tên đăng nhập và Mật khẩu<br>4. Người dùng nhấn nút "Đăng nhập"<br>5. Hệ thống kiểm tra tính hợp lệ của dữ liệu nhập<br>6. Hệ thống xác thực thông tin tài khoản với CSDL<br>7. Hệ thống kiểm tra trạng thái tài khoản (Active/Locked)<br>8. Hệ thống xác định vai trò của người dùng<br>9. Hệ thống chuyển hướng người dùng đến Dashboard |
+| **Luồng thay thế** | **A1:** Nếu người dùng đã có session hợp lệ → hệ thống tự động chuyển vào Dashboard |
+| **Luồng ngoại lệ** | **E1:** Sai Tên đăng nhập hoặc Mật khẩu → hiển thị "Tên đăng nhập hoặc mật khẩu không đúng"<br>**E2:** Tài khoản bị khóa → hiển thị "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Quản trị viên" |
 
 ---
 
 #### 1.3.2. Đăng xuất (UC-SYS-002)
 
-
-**Mô tả:** Cho phép người dùng thoát khỏi phiên làm việc hiện tại một cách an toàn. Cũng bao gồm việc tự động đăng xuất khi hết phiên.
-**Actors:** Tất cả người dùng đã đăng nhập.
-**Liên quan đến Requirements:** SYS-003, SYS-004
-
-**Điều kiện tiên quyết:**
-*   Người dùng đang trong phiên đăng nhập hợp lệ.
-
-**Điều kiện sau:**
-*   Phiên làm việc bị hủy bỏ.
-*   Người dùng được chuyển về màn hình Đăng nhập.
-
-### UC-SYS-002-01: Đăng xuất thủ công
-1.  Người dùng nhấn vào Avatar hoặc Tên tài khoản ở góc màn hình.
-2.  Hệ thống hiển thị menu cá nhân.
-3.  Người dùng chọn "Đăng xuất".
-4.  Hệ thống hủy session hiện tại.
-5.  Hệ thống chuyển hướng về trang Đăng nhập.
-
-### UC-SYS-002-02: Tự động đăng xuất - Auto Logout
-1.  Hệ thống giám sát thời gian không hoạt động (idle time) của người dùng.
-2.  Nếu thời gian idle vượt quá **30 phút**.
-3.  Hệ thống tự động hủy session.
-4.  Hệ thống hiển thị thông báo "Phiên làm việc đã hết hạn" và chuyển về trang Đăng nhập.
+| Thuộc tính | Nội dung |
+|------------|----------|
+| **Mô tả** | Cho phép người dùng thoát khỏi phiên làm việc hiện tại một cách an toàn. Cũng bao gồm việc tự động đăng xuất khi hết phiên |
+| **Actors** | Tất cả người dùng đã đăng nhập |
+| **Requirements** | SYS-003, SYS-004 |
+| **Điều kiện tiên quyết** | - Người dùng đang trong phiên đăng nhập hợp lệ |
+| **Điều kiện sau** | - Phiên làm việc bị hủy bỏ<br>- Người dùng được chuyển về màn hình Đăng nhập |
+| **Luồng chính** | 1. Người dùng nhấn vào Avatar/Tên tài khoản ở góc màn hình<br>2. Hệ thống hiển thị menu cá nhân<br>3. Người dùng chọn "Đăng xuất"<br>4. Hệ thống hủy session hiện tại<br>5. Hệ thống chuyển hướng về trang Đăng nhập |
+| **Luồng thay thế** | **A1 - Tự động đăng xuất:**<br>1. Hệ thống giám sát thời gian idle<br>2. Nếu idle vượt quá 30 phút<br>3. Hệ thống tự động hủy session<br>4. Hiển thị "Phiên làm việc đã hết hạn" và chuyển về trang Đăng nhập |
 
 ---
 
 #### 1.3.3. Quản lý người dùng (UC-SYS-003)
 
-
-**Mô tả:** Cho phép Quản trị viên thêm mới, tìm kiếm, cập nhật thông tin, reset mật khẩu và khóa/mở khóa tài khoản người dùng.
-**Actors:** Quản trị viên hệ thống (System Admin).
-**Liên quan đến Requirements:** SYS-005, SYS-006, SYS-007, SYS-008
-
-**Điều kiện tiên quyết:**
-*   Người dùng đã đăng nhập với vai trò Quản trị viên hệ thống.
-
-**Điều kiện sau:**
-*   Thông tin người dùng được cập nhật trong cơ sở dữ liệu.
-
-### UC-SYS-003-01: Xem và Tìm kiếm
-1.  Admin chọn menu "Quản trị hệ thống" -> "Quản lý người dùng".
-2.  Hệ thống hiển thị danh sách người dùng (phân trang).
-3.  Admin nhập từ khóa vào ô tìm kiếm (Username, Họ tên, Email).
-4.  Hệ thống lọc và hiển thị danh sách kết quả tương ứng.
-
-### UC-SYS-003-02: Thêm mới người dùng (Add User)
-1.  Tại màn hình danh sách, Admin nhấn nút "Thêm mới".
-2.  Hệ thống hiển thị form thêm người dùng.
-3.  Admin nhập thông tin: `Tên đăng nhập`, `Mật khẩu`, `Họ tên`, `Email`.
-4.  Admin chọn `Vai trò` (Role) cho người dùng (SYS-008).
-5.  Admin nhấn "Lưu".
-6.  Hệ thống validate dữ liệu (Username duy nhất, Email đúng định dạng, Password đủ mạnh - SYS-002).
-7.  Hệ thống lưu thông tin và hiển thị thông báo "Thêm mới thành công".
-
-### UC-SYS-003-03: Sửa thông tin tài khoản (Edit User)
-1.  Tại danh sách, Admin nhấn icon "Sửa" trên một dòng user.
-2.  Hệ thống hiển thị form cập nhật (Username không được sửa).
-3.  Admin thay đổi `Họ tên`, `Email`, hoặc `Vai trò`.
-4.  Admin nhấn "Lưu".
-5.  Hệ thống lưu thay đổi và thông báo thành công.
-
-### UC-SYS-003-04: Reset Mật khẩu (Reset Password)
-1.  Tại form sửa user, Admin nhấn nút "Reset Mật khẩu".
-2.  Admin nhập mật khẩu mới (hoặc hệ thống sinh ngẫu nhiên).
-3.  Admin xác nhận.
-4.  Hệ thống cập nhật mật khẩu mới (đã mã hóa) và thông báo thành công.
-
-### UC-SYS-003-05: Khóa/Mở khóa tài khoản (Lock/Unlock)
-1.  Tại danh sách, Admin nhấn icon "Khóa" (hoặc "Mở khóa") trên dòng user.
-2.  Hệ thống hiển thị popup xác nhận.
-3.  Admin xác nhận.
-4.  Hệ thống cập nhật trạng thái `Active` / `Locked` và load lại danh sách.
-
-**Luồng ngoại lệ:**
-*   **E1: Dữ liệu không hợp lệ (Validation Error)**
-    *   Nếu Username trùng, Email sai định dạng, hoặc Password < 8 ký tự (SYS-002).
-    *   Hệ thống hiển thị lỗi cụ thể ngay tại trường dữ liệu tương ứng.
-*   **E2: Không thể khóa chính mình**
-    *   Nếu Admin cố gắng khóa tài khoản đang đăng nhập của chính mình.
-    *   Hệ thống từ chối và thông báo "Không thể khóa tài khoản đang sử dụng".
+| Thuộc tính | Nội dung |
+|------------|----------|
+| **Mô tả** | Cho phép Quản trị viên thêm mới, tìm kiếm, cập nhật thông tin, reset mật khẩu và khóa/mở khóa tài khoản người dùng |
+| **Actors** | Quản trị viên hệ thống (System Admin) |
+| **Requirements** | SYS-005, SYS-006, SYS-007, SYS-008 |
+| **Điều kiện tiên quyết** | - Người dùng đã đăng nhập với vai trò Quản trị viên hệ thống |
+| **Điều kiện sau** | - Thông tin người dùng được cập nhật trong cơ sở dữ liệu |
+| **Luồng chính** | 1. Admin chọn menu "Quản trị hệ thống" -> "Quản lý người dùng"<br>2. Hệ thống hiển thị danh sách người dùng (phân trang)<br>3. Admin nhập từ khóa vào ô tìm kiếm (Username, Họ tên, Email)<br>4. Hệ thống lọc và hiển thị danh sách kết quả tương ứng |
+| **Luồng thay thế** | **A1 - Thêm mới:**<br>1. Admin nhấn "Thêm mới"<br>2. Nhập: Tên đăng nhập, Mật khẩu, Họ tên, Email, Vai trò<br>3. Nhấn "Lưu"<br>4. Hệ thống validate và lưu<br><br>**A2 - Sửa thông tin:**<br>1. Admin nhấn icon "Sửa"<br>2. Thay đổi Họ tên, Email hoặc Vai trò<br>3. Nhấn "Lưu"<br><br>**A3 - Reset Mật khẩu:**<br>1. Nhấn "Reset Mật khẩu"<br>2. Nhập mật khẩu mới<br>3. Xác nhận<br><br>**A4 - Khóa/Mở khóa:**<br>1. Nhấn icon "Khóa"/"Mở khóa"<br>2. Xác nhận<br>3. Hệ thống cập nhật trạng thái |
+| **Luồng ngoại lệ** | **E1:** Dữ liệu không hợp lệ (Username trùng, Email sai, Password < 8 ký tự) → hiển thị lỗi<br>**E2:** Không thể khóa chính mình → thông báo "Không thể khóa tài khoản đang sử dụng" |
 
 ---
 
 #### 1.3.4. Phân quyền người dùng (UC-SYS-004)
 
-
-**Mô tả:** Cho phép Quản trị viên phân quyền cho người dùng dựa trên vai trò (Role). Hệ thống hỗ trợ các vai trò: Nhân sự phòng Tổ chức Cán bộ (TCCB), Nhân sự phòng Tài chính - Kế toán (TCKT), và các vai trò khác.
-**Actors:** Quản trị viên hệ thống.
-**Liên quan đến Requirements:** Need #9, Need #156
-
-**Điều kiện tiên quyết:**
-*   Người dùng đã đăng nhập với vai trò Quản trị viên hệ thống.
-*   Tài khoản người dùng cần phân quyền đã được tạo (UC-SYS-003).
-
-**Điều kiện sau:**
-*   Vai trò được gán cho người dùng.
-*   Quyền hạn tương ứng với vai trò được kích hoạt cho người dùng.
-
-### UC-SYS-004-01: Xem và Phân quyền
-1.  Admin chọn menu "Quản trị hệ thống" -> "Phân quyền người dùng".
-2.  Hệ thống hiển thị danh sách người dùng với cột "Vai trò hiện tại".
-3.  Admin chọn một người dùng và nhấn "Phân quyền".
-4.  Hệ thống hiển thị form phân quyền với các vai trò:
-    *   **Quản trị viên** (Admin)
-    *   **Nhân sự phòng Tổ chức Cán bộ** (HR - TCCB)
-    *   **Nhân sự phòng Tài chính - Kế toán** (Finance - TCKT)
-    *   **Cán bộ/Giảng viên** (Employee/Faculty)
-    *   **Lãnh đạo trường** (Manager)
-5.  Admin chọn vai trò phù hợp từ dropdown.
-6.  Admin nhấn "Lưu".
-7.  Hệ thống cập nhật vai trò cho người dùng.
-8.  Hệ thống kích hoạt các quyền hạn tương ứng với vai trò.
-9.  Hệ thống ghi log thay đổi vai trò.
-
-**Luồng thay thế:** Phân quyền cho nhiều người dùng
-1.  Tại danh sách người dùng, Admin chọn nhiều user bằng checkbox.
-2.  Admin chọn "Phân quyền".
-3.  Chọn vai trò từ dropdown.
-4.  Xác nhận.
-5.  Hệ thống cập nhật vai trò cho tất cả user được chọn.
-
-### Luồng ngoại lệ
-*   **E1: Không thể phân quyền cho chính mình**
-    *   Nếu Admin cố gắng thay đổi vai trò của chính mình.
-    *   Hệ thống từ chối và thông báo "Không thể thay đổi vai trò của chính mình".
-*   **E2: Tài khoản bị khóa**
-    *   Nếu tài khoản user đang bị khóa.
-    *   Hệ thống cảnh báo và yêu cầu mở khóa trước khi phân quyền.
-
-### UC-SYS-004-02: Xem Chi tiết Quyền hạn
-1.  Tại form phân quyền, Admin nhấn "Xem chi tiết quyền".
-2.  Hệ thống hiển thị danh sách các quyền hạn của vai trò đó:
-    *   Xem hồ sơ nhân sự
-    *   Sửa hồ sơ nhân sự
-    *   Xem dữ liệu lương
-    *   Xuất báo cáo
-    *   ...
+| Thuộc tính | Nội dung |
+|------------|----------|
+| **Mô tả** | Cho phép Quản trị viên phân quyền cho người dùng dựa trên vai trò (Role). Hệ thống hỗ trợ các vai trò: TCCB, TCKT, và các vai trò khác |
+| **Actors** | Quản trị viên hệ thống |
+| **Requirements** | Need #9, Need #156 |
+| **Điều kiện tiên quyết** | - Người dùng đã đăng nhập với vai trò Quản trị viên<br>- Tài khoản người dùng cần phân quyền đã được tạo (UC-SYS-003) |
+| **Điều kiện sau** | - Vai trò được gán cho người dùng<br>- Quyền hạn tương ứng với vai trò được kích hoạt |
+| **Luồng chính** | 1. Admin chọn menu "Quản trị hệ thống" -> "Phân quyền người dùng"<br>2. Hệ thống hiển thị danh sách người dùng với cột "Vai trò hiện tại"<br>3. Admin chọn một người dùng và nhấn "Phân quyền"<br>4. Hệ thống hiển thị form với các vai trò: Admin, TCCB, TCKT, Cán bộ/Giảng viên, Lãnh đạo<br>5. Admin chọn vai trò từ dropdown<br>6. Admin nhấn "Lưu"<br>7. Hệ thống cập nhật vai trò và kích hoạt quyền hạn<br>8. Hệ thống ghi log thay đổi |
+| **Luồng thay thế** | **A1 - Phân quyền nhiều user:**<br>1. Chọn nhiều user bằng checkbox<br>2. Chọn "Phân quyền"<br>3. Chọn vai trò và xác nhận<br><br>**A2 - Xem chi tiết quyền:**<br>1. Nhấn "Xem chi tiết quyền"<br>2. Hiển thị danh sách quyền hạn của vai trò |
+| **Luồng ngoại lệ** | **E1:** Không thể phân quyền cho chính mình → từ chối<br>**E2:** Tài khoản bị khóa → yêu cầu mở khóa trước |
 
 ---
 
@@ -513,69 +390,69 @@ Các mốc quan trọng (Milestones) cho tài liệu yêu cầu:
 
 #### 1.3.5. Cấu hình lương và phụ cấp (UC-CFG-001)
 
+| Thuộc tính | Nội dung |
+|------------|----------|
+| **Mô tả** | Quản trị viên thiết lập mức lương cơ sở, hệ số lương theo ngạch/bậc và các loại phụ cấp |
+| **Actors** | Quản trị viên hệ thống |
+| **Requirements** | CFG-001 đến CFG-009 |
+| **Điều kiện tiên quyết** | - Người dùng đăng nhập với vai trò Quản trị viên |
 
-**Mô tả:** Quản trị viên thiết lập mức lương cơ sở, hệ số lương theo ngạch/bậc và các loại phụ cấp.
-**Actors:** Quản trị viên hệ thống.
-**Liên quan đến Requirements:** CFG-001 đến CFG-009
+**Luồng chính (UC-CFG-001-01: Thêm mới Mức lương cơ sở):**
 
-**Điều kiện tiên quyết:**
-*   Người dùng đăng nhập với vai trò Quản trị viên.
+| Bước | Mô tả |
+|------|-------|
+| 1 | Admin chọn menu "Quản lý Cấu hình" -> "Lương & Phụ cấp" |
+| 2 | Admin chọn tab "Mức lương cơ sở" |
+| 3 | Hệ thống hiển thị danh sách lịch sử mức lương cơ sở (Mức lương, Ngày hiệu lực) |
+| 4 | Admin nhấn "Thêm mới" |
+| 5 | Admin nhập `Mức lương` (VNĐ) và `Ngày hiệu lực` |
+| 6 | Admin nhấn "Lưu" |
+| 7 | Hệ thống lưu dữ liệu và áp dụng cho các tính toán từ ngày hiệu lực đó |
 
-### UC-CFG-001-01: Thêm mới Mức lương cơ sở
-1.  Admin chọn menu "Quản lý Cấu hình" -> "Lương & Phụ cấp".
-2.  Admin chọn tab "Mức lương cơ sở".
-3.  Hệ thống hiển thị danh sách lịch sử mức lương cơ sở (Mức lương, Ngày hiệu lực).
-4.  Admin nhấn "Thêm mới".
-5.  Admin nhập `Mức lương` (VNĐ) và `Ngày hiệu lực`.
-6.  Admin nhấn "Lưu".
-7.  Hệ thống lưu dữ liệu và áp dụng cho các tính toán từ ngày hiệu lực đó.
+**Luồng thay thế (UC-CFG-001-02: Thêm mới/Sửa Hệ số Ngạch/Bậc):**
+
+| Bước | Mô tả |
+|------|-------|
+| 1 | Admin chọn tab "Hệ số lương" |
+| 2 | Hệ thống hiển thị danh sách Ngạch (Giảng viên, Chuyên viên...) |
+| 3 | Admin chọn một Ngạch để xem chi tiết các Bậc |
+| 4 | Admin có thể Thêm bậc mới hoặc Sửa hệ số của một bậc |
+| 5 | Hệ thống lưu lịch sử thay đổi |
+
+**Luồng thay thế (UC-CFG-001-03: Thêm mới/Sửa Loại Phụ cấp):**
+
+| Bước | Mô tả |
+|------|-------|
+| 1 | Admin chọn tab "Phụ cấp" |
+| 2 | Admin nhấn "Thêm mới" hoặc "Sửa" một mục |
+| 3 | Admin nhập/sửa: `Tên phụ cấp`, `Loại tính` (Hệ số lương cơ sở / Số tiền cố định / % Lương), `Công thức` |
+| 4 | Admin nhấn "Lưu" |
+
+**Luồng thay thế (UC-CFG-001-04: Đánh dấu Active/Inactive):**
+
+| Bước | Mô tả |
+|------|-------|
+| 1 | Tại tab "Hệ số lương" hoặc "Phụ cấp", Admin chọn một mục cần thay đổi trạng thái |
+| 2 | Admin nhấn nút "Đánh dấu Inactive" hoặc "Kích hoạt lại" |
+| 3 | Hệ thống hiển thị xác nhận và yêu cầu nhập `Lý do` (bắt buộc đối với việc inactive) |
+| 4 | Admin xác nhận |
+| 5 | Hệ thống cập nhật trạng thái và ghi log thay đổi |
 
 **Luồng ngoại lệ:**
-*   **E1: Ngày hiệu lực không hợp lệ (Mức lương cơ sở)**
-    *   Tại bước 5 của Main Flow, nếu `Ngày hiệu lực` <= ngày hiện tại, hệ thống hiển thị thông báo "Ngày hiệu lực phải lớn hơn ngày hiện tại".
-*   **E2: Đã tồn tại mức lương cơ sở đang hoạt động**
-    *   Tại bước 7 của Main Flow, nếu đã có mức lương cơ sở đang Active, hệ thống tự động đánh dấu mức cũ là Inactive và kích hoạt mức mới.
 
-### UC-CFG-001-02: Thêm mới Hệ số Ngạch/Bậc
-1.  Admin chọn tab "Hệ số lương".
-2.  Hệ thống hiển thị danh sách Ngạch (Giảng viên, Chuyên viên...).
-3.  Admin chọn một Ngạch để xem chi tiết các Bậc.
-4.  Admin có thể Thêm bậc mới.
-5.  Hệ thống lưu lịch sử thay đổi.
-
-### UC-CFG-001-03: Thêm mới Loại Phụ cấp
-1.  Admin chọn tab "Phụ cấp".
-2.  Admin nhấn "Thêm mới".
-3.  Admin nhập: `Tên phụ cấp`, `Loại tính` (Hệ số lương cơ sở / Số tiền cố định / % Lương), `Công thức`.
-4.  Admin nhấn "Lưu".
-
-### UC-CFG-001-02: Sửa Hệ số Ngạch/Bậc
-1.  Admin chọn tab "Hệ số lương".
-2.  Hệ thống hiển thị danh sách Ngạch (Giảng viên, Chuyên viên...).
-3.  Admin chọn một Ngạch để xem chi tiết các Bậc.
-4.  Admin có thể Sửa hệ số của một bậc.
-5.  Hệ thống lưu lịch sử thay đổi.
-
-### UC-CFG-001-03: Sửa Loại Phụ cấp
-1.  Admin chọn tab "Phụ cấp".
-2.  Admin nhấn "sửa" một mục.
-3.  Admin sửa: `Tên phụ cấp`, `Loại tính` (Hệ số lương cơ sở / Số tiền cố định / % Lương), `Công thức`.
-4.  Admin nhấn "Lưu".
-
-### UC-CFG-001-04: Đánh dấu Active/Inactive
-1.  Tại tab "Hệ số lương" hoặc "Phụ cấp", Admin chọn một mục cần thay đổi trạng thái.
-2.  Admin nhấn nút "Đánh dấu Inactive" hoặc "Kích hoạt lại".
-3.  Hệ thống hiển thị xác nhận và yêu cầu nhập `Lý do` (bắt buộc đối với việc inactive).
-4.  Admin xác nhận.
-5.  Hệ thống cập nhật trạng thái và ghi log thay đổi.
+| Mã | Điều kiện | Mô tả |
+|----|-----------|-------|
+| E1 | Ngày hiệu lực không hợp lệ | Nếu `Ngày hiệu lực` <= ngày hiện tại, hệ thống hiển thị thông báo "Ngày hiệu lực phải lớn hơn ngày hiện tại" |
+| E2 | Đã tồn tại mức lương cơ sở đang hoạt động | Hệ thống tự động đánh dấu mức cũ là Inactive và kích hoạt mức mới |
 
 **Quy tắc nghiệp vụ:**
-1.  **Mức lương cơ sở:** Chỉ được tồn tại **01 mức lương cơ sở đang Active** tại một thời điểm. Khi thêm mới, mức cũ tự động chuyển sang Inactive.
-2.  **Ngày hiệu lực:** Ngày hiệu lực của mức lương cơ sở mới phải **lớn hơn ngày hiện tại**.
-3.  **Trạng thái Active/Inactive:**
-    *   Các mục **Inactive** sẽ **không hiển thị** trong danh sách dropdown/form nhập liệu đối với người dùng thường (Cán bộ TCCB nhập liệu).
-    *   **Cán bộ Phòng TCCB** và **Quản trị viên** có quyền xem và quản lý các mục Inactive (có đánh dấu riêng biệt).
-4.  **Lưu lịch sử:** Mọi thay đổi về hệ số lương, phụ cấp đều được ghi log với lý do (CFG-006).
+
+| STT | Quy tắc |
+|-----|---------|
+| 1 | **Mức lương cơ sở:** Chỉ được tồn tại 01 mức đang Active tại một thời điểm |
+| 2 | **Ngày hiệu lực:** Phải lớn hơn ngày hiện tại |
+| 3 | **Trạng thái Active/Inactive:** Các mục Inactive không hiển thị trong dropdown cho người dùng thường |
+| 4 | **Lưu lịch sử:** Mọi thay đổi đều được ghi log với lý do (CFG-006) |
 
 ---
 
