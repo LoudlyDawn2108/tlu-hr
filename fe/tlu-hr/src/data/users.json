@@ -1,0 +1,24 @@
+[
+  {
+    "id": "user-001",
+    "username": "admin",
+    "password": "Admin123",
+    "fullName": "Quản trị viên hệ thống",
+    "email": "admin@tlu.edu.vn",
+    "role": "system_admin",
+    "status": "active",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "user-002",
+    "username": "tccb",
+    "password": "Tccb1234",
+    "fullName": "Cán bộ Phòng TCCB",
+    "email": "tccb@tlu.edu.vn",
+    "role": "tccb_officer",
+    "status": "active",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z"
+  }
+]

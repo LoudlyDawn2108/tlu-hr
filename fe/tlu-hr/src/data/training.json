@@ -1,0 +1,68 @@
+[
+  {
+    "id": "train-001",
+    "name": "Đào tạo nâng cao năng lực quản lý dự án",
+    "type": "domestic",
+    "description": "Khóa đào tạo về quản lý dự án chuyên nghiệp theo chuẩn PMP, bao gồm lập kế hoạch, giám sát và kiểm soát dự án",
+    "startDate": "2025-03-01",
+    "endDate": "2025-03-15",
+    "location": "Hà Nội",
+    "status": "completed",
+    "maxParticipants": 30
+  },
+  {
+    "id": "train-002",
+    "name": "Chương trình nghiên cứu tại Đại học Stanford",
+    "type": "international",
+    "description": "Chương trình trao đổi nghiên cứu sinh và học thuật tại Đại học Stanford, tập trung vào công nghệ AI và Machine Learning",
+    "startDate": "2025-09-01",
+    "endDate": "2026-08-31",
+    "location": "Stanford, California, USA",
+    "status": "planned",
+    "maxParticipants": 5
+  },
+  {
+    "id": "train-003",
+    "name": "Khóa học kỹ năng giảng dạy đại học hiện đại",
+    "type": "short_term",
+    "description": "Đào tạo các phương pháp giảng dạy tích cực, ứng dụng công nghệ trong giảng dạy và đánh giá kết quả học tập",
+    "startDate": "2025-06-10",
+    "endDate": "2025-06-20",
+    "location": "Đại học Thủy lợi",
+    "status": "open",
+    "maxParticipants": 50
+  },
+  {
+    "id": "train-004",
+    "name": "Đào tạo tiến sĩ chuyên ngành Kinh tế học",
+    "type": "long_term",
+    "description": "Chương trình đào tạo trình độ tiến sĩ về Kinh tế học, bao gồm các môn lý thuyết kinh tế cao cấp và phương pháp nghiên cứu",
+    "startDate": "2024-09-01",
+    "endDate": "2027-08-31",
+    "location": "Đại học Kinh tế Quốc dân",
+    "status": "in_progress",
+    "maxParticipants": 15
+  },
+  {
+    "id": "train-005",
+    "name": "Hội thảo quốc tế về Quản lý tài nguyên nước",
+    "type": "international",
+    "description": "Hội thảo trao đổi kinh nghiệm quốc tế về quản lý tài nguyên nước bền vững và ứng phó biến đổi khí hậu",
+    "startDate": "2025-11-15",
+    "endDate": "2025-11-20",
+    "location": "Singapore",
+    "status": "planned",
+    "maxParticipants": 20
+  },
+  {
+    "id": "train-006",
+    "name": "Khóa học An toàn thông tin và bảo mật dữ liệu",
+    "type": "short_term",
+    "description": "Đào tạo các kỹ năng bảo mật hệ thống thông tin, phòng chống tấn công mạng và tuân thủ quy định bảo vệ dữ liệu",
+    "startDate": "2025-04-05",
+    "endDate": "2025-04-12",
+    "location": "Trung tâm CNTT - Đại học Thủy lợi",
+    "status": "completed",
+    "maxParticipants": 25
+  }
+]

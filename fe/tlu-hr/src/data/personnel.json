@@ -1,0 +1,401 @@
+[
+  {
+    "id": "pers-001",
+    "employeeCode": "CB001",
+    "fullName": "Nguyễn Văn An",
+    "dateOfBirth": "1985-03-15",
+    "gender": "male",
+    "idCardNumber": "001085123456",
+    "placeOfBirth": "Hà Nội",
+    "hometown": "Hà Nội",
+    "ethnicity": "Kinh",
+    "religion": "Không",
+    "taxCode": "1234567890",
+    "socialInsuranceNumber": "SI001085",
+    "healthInsuranceNumber": "HI001085",
+    "permanentAddress": {
+      "country": "Việt Nam",
+      "province": "Hà Nội",
+      "district": "Đống Đa",
+      "ward": "Trung Liệt",
+      "streetAddress": "123 Tây Sơn"
+    },
+    "temporaryAddress": null,
+    "phoneNumber": "0912345678",
+    "personalEmail": "nguyenvanan@gmail.com",
+    "workEmail": "an.nv@tlu.edu.vn",
+    "portraitPhoto": null,
+    "maritalStatus": "married",
+    "spouse": {
+      "id": "fam-001",
+      "fullName": "Trần Thị Bình",
+      "dateOfBirth": "1987-07-20",
+      "relationship": "Vợ",
+      "occupation": "Giáo viên",
+      "phoneNumber": "0987654321"
+    },
+    "children": [
+      {
+        "id": "fam-002",
+        "fullName": "Nguyễn Văn Cường",
+        "dateOfBirth": "2010-05-10",
+        "relationship": "Con",
+        "occupation": "Học sinh",
+        "phoneNumber": null
+      }
+    ],
+    "dependents": [],
+    "bankInfo": {
+      "bankName": "Vietcombank",
+      "accountNumber": "1234567890",
+      "branch": "Hà Nội"
+    },
+    "previousWorkExperience": [],
+    "partyInfo": {
+      "joinDate": "2005-06-15",
+      "officialDate": "2006-06-15",
+      "branch": "Chi bộ Khoa CNTT"
+    },
+    "unionInfo": {
+      "joinDate": "2003-09-01",
+      "cardNumber": "CD001",
+      "branch": "Công đoàn Trường"
+    },
+    "education": [
+      {
+        "id": "edu-001",
+        "level": "Đại học",
+        "degreeName": "Kỹ sư Công nghệ thông tin",
+        "major": "Công nghệ phần mềm",
+        "school": "Đại học Bách Khoa Hà Nội",
+        "graduationYear": 2007,
+        "grade": "Giỏi",
+        "documents": []
+      },
+      {
+        "id": "edu-002",
+        "level": "Thạc sĩ",
+        "degreeName": "Thạc sĩ Khoa học máy tính",
+        "major": "Hệ thống thông tin",
+        "school": "Đại học Bách Khoa Hà Nội",
+        "graduationYear": 2010,
+        "grade": "Xuất sắc",
+        "documents": []
+      }
+    ],
+    "academicTitle": "none",
+    "degree": "ths",
+    "civilServiceGrade": "Chuyên viên chính",
+    "title": "Trưởng bộ môn",
+    "honors": null,
+    "certificates": [],
+    "salaryScale": {
+      "id": "sal-001",
+      "scaleType": "specialist",
+      "grade": 5,
+      "coefficient": 4.4,
+      "effectiveDate": "2023-01-01",
+      "history": []
+    },
+    "allowances": [],
+    "contracts": [],
+    "currentContract": null,
+    "rewards": [],
+    "disciplines": [],
+    "trainingHistory": [],
+    "unitAssignments": [
+      {
+        "unitId": "unit-006",
+        "unitName": "Bộ môn Công nghệ phần mềm",
+        "positionId": "pos-001",
+        "positionName": "Trưởng bộ môn",
+        "startDate": "2015-09-01",
+        "endDate": null,
+        "isPrimary": true,
+        "isConcurrent": false
+      }
+    ],
+    "currentUnit": {
+      "unitId": "unit-006",
+      "unitName": "Bộ môn Công nghệ phần mềm",
+      "positionId": "pos-001",
+      "positionName": "Trưởng bộ môn",
+      "startDate": "2015-09-01",
+      "endDate": null,
+      "isPrimary": true,
+      "isConcurrent": false
+    },
+    "status": "active",
+    "joinDate": "2007-09-01",
+    "leaveDate": null,
+    "leaveReason": null,
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "createdBy": "user-001",
+    "updatedBy": "user-001",
+    "changeHistory": [],
+    "pendingUpdateRequest": null
+  },
+  {
+    "id": "pers-002",
+    "employeeCode": "CB002",
+    "fullName": "Trần Thị Bình",
+    "dateOfBirth": "1988-08-22",
+    "gender": "female",
+    "idCardNumber": "001088234567",
+    "placeOfBirth": "Hải Phòng",
+    "hometown": "Hải Phòng",
+    "ethnicity": "Kinh",
+    "religion": "Không",
+    "taxCode": "2345678901",
+    "socialInsuranceNumber": "SI002088",
+    "healthInsuranceNumber": "HI002088",
+    "permanentAddress": {
+      "country": "Việt Nam",
+      "province": "Hà Nội",
+      "district": "Cầu Giấy",
+      "ward": "Dịch Vọng",
+      "streetAddress": "456 Xuân Thủy"
+    },
+    "temporaryAddress": null,
+    "phoneNumber": "0923456789",
+    "personalEmail": "tranthibinh@gmail.com",
+    "workEmail": "binh.tt@tlu.edu.vn",
+    "portraitPhoto": null,
+    "maritalStatus": "single",
+    "spouse": null,
+    "children": [],
+    "dependents": [],
+    "bankInfo": {
+      "bankName": "Vietinbank",
+      "accountNumber": "2345678901",
+      "branch": "Hà Nội"
+    },
+    "previousWorkExperience": [],
+    "partyInfo": null,
+    "unionInfo": {
+      "joinDate": "2010-09-01",
+      "cardNumber": "CD002",
+      "branch": "Công đoàn Khoa CNTT"
+    },
+    "education": [
+      {
+        "id": "edu-003",
+        "level": "Đại học",
+        "degreeName": "Kỹ sư Công nghệ thông tin",
+        "major": "Mạng máy tính",
+        "school": "Đại học Thủy lợi",
+        "graduationYear": 2010,
+        "grade": "Khá",
+        "documents": []
+      }
+    ],
+    "academicTitle": "none",
+    "degree": "ks",
+    "civilServiceGrade": "Chuyên viên",
+    "title": "Giảng viên",
+    "honors": null,
+    "certificates": [],
+    "salaryScale": {
+      "id": "sal-002",
+      "scaleType": "lecturer",
+      "grade": 3,
+      "coefficient": 3.0,
+      "effectiveDate": "2023-01-01",
+      "history": []
+    },
+    "allowances": [],
+    "contracts": [],
+    "currentContract": null,
+    "rewards": [],
+    "disciplines": [],
+    "trainingHistory": [],
+    "unitAssignments": [
+      {
+        "unitId": "unit-007",
+        "unitName": "Bộ môn Mạng máy tính",
+        "positionId": "pos-002",
+        "positionName": "Giảng viên",
+        "startDate": "2010-09-01",
+        "endDate": null,
+        "isPrimary": true,
+        "isConcurrent": false
+      }
+    ],
+    "currentUnit": {
+      "unitId": "unit-007",
+      "unitName": "Bộ môn Mạng máy tính",
+      "positionId": "pos-002",
+      "positionName": "Giảng viên",
+      "startDate": "2010-09-01",
+      "endDate": null,
+      "isPrimary": true,
+      "isConcurrent": false
+    },
+    "status": "active",
+    "joinDate": "2010-09-01",
+    "leaveDate": null,
+    "leaveReason": null,
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "createdBy": "user-001",
+    "updatedBy": "user-001",
+    "changeHistory": [],
+    "pendingUpdateRequest": null
+  },
+  {
+    "id": "pers-003",
+    "employeeCode": "CB003",
+    "fullName": "Lê Văn Cường",
+    "dateOfBirth": "1982-12-10",
+    "gender": "male",
+    "idCardNumber": "001082345678",
+    "placeOfBirth": "Nam Định",
+    "hometown": "Nam Định",
+    "ethnicity": "Kinh",
+    "religion": "Không",
+    "taxCode": "3456789012",
+    "socialInsuranceNumber": "SI003082",
+    "healthInsuranceNumber": "HI003082",
+    "permanentAddress": {
+      "country": "Việt Nam",
+      "province": "Hà Nội",
+      "district": "Hoàng Mai",
+      "ward": "Định Công",
+      "streetAddress": "789 Trương Định"
+    },
+    "temporaryAddress": null,
+    "phoneNumber": "0934567890",
+    "personalEmail": "levancuong@gmail.com",
+    "workEmail": "cuong.lv@tlu.edu.vn",
+    "portraitPhoto": null,
+    "maritalStatus": "married",
+    "spouse": {
+      "id": "fam-003",
+      "fullName": "Phạm Thị Dung",
+      "dateOfBirth": "1984-04-25",
+      "relationship": "Vợ",
+      "occupation": "Nhân viên văn phòng",
+      "phoneNumber": "0945678901"
+    },
+    "children": [
+      {
+        "id": "fam-004",
+        "fullName": "Lê Thị Em",
+        "dateOfBirth": "2012-08-15",
+        "relationship": "Con",
+        "occupation": "Học sinh",
+        "phoneNumber": null
+      },
+      {
+        "id": "fam-005",
+        "fullName": "Lê Văn Phúc",
+        "dateOfBirth": "2015-03-20",
+        "relationship": "Con",
+        "occupation": "Học sinh",
+        "phoneNumber": null
+      }
+    ],
+    "dependents": [],
+    "bankInfo": {
+      "bankName": "BIDV",
+      "accountNumber": "3456789012",
+      "branch": "Hà Nội"
+    },
+    "previousWorkExperience": [],
+    "partyInfo": {
+      "joinDate": "2003-12-20",
+      "officialDate": "2004-12-20",
+      "branch": "Chi bộ Khoa Kinh tế"
+    },
+    "unionInfo": {
+      "joinDate": "2000-09-01",
+      "cardNumber": "CD003",
+      "branch": "Công đoàn Trường"
+    },
+    "education": [
+      {
+        "id": "edu-004",
+        "level": "Đại học",
+        "degreeName": "Cử nhân Kinh tế",
+        "major": "Kinh tế học",
+        "school": "Đại học Kinh tế Quốc dân",
+        "graduationYear": 2004,
+        "grade": "Giỏi",
+        "documents": []
+      },
+      {
+        "id": "edu-005",
+        "level": "Thạc sĩ",
+        "degreeName": "Thạc sĩ Kinh tế",
+        "major": "Kinh tế phát triển",
+        "school": "Đại học Kinh tế Quốc dân",
+        "graduationYear": 2008,
+        "grade": "Xuất sắc",
+        "documents": []
+      },
+      {
+        "id": "edu-006",
+        "level": "Tiến sĩ",
+        "degreeName": "Tiến sĩ Kinh tế",
+        "major": "Kinh tế học",
+        "school": "Đại học Kinh tế Quốc dân",
+        "graduationYear": 2015,
+        "grade": "Xuất sắc",
+        "documents": []
+      }
+    ],
+    "academicTitle": "none",
+    "degree": "ts",
+    "civilServiceGrade": "Chuyên viên chính",
+    "title": "Trưởng khoa",
+    "honors": null,
+    "certificates": [],
+    "salaryScale": {
+      "id": "sal-003",
+      "scaleType": "specialist",
+      "grade": 6,
+      "coefficient": 4.98,
+      "effectiveDate": "2023-01-01",
+      "history": []
+    },
+    "allowances": [],
+    "contracts": [],
+    "currentContract": null,
+    "rewards": [],
+    "disciplines": [],
+    "trainingHistory": [],
+    "unitAssignments": [
+      {
+        "unitId": "unit-004",
+        "unitName": "Khoa Kinh tế",
+        "positionId": "pos-003",
+        "positionName": "Trưởng khoa",
+        "startDate": "2018-09-01",
+        "endDate": null,
+        "isPrimary": true,
+        "isConcurrent": false
+      }
+    ],
+    "currentUnit": {
+      "unitId": "unit-004",
+      "unitName": "Khoa Kinh tế",
+      "positionId": "pos-003",
+      "positionName": "Trưởng khoa",
+      "startDate": "2018-09-01",
+      "endDate": null,
+      "isPrimary": true,
+      "isConcurrent": false
+    },
+    "status": "active",
+    "joinDate": "2008-09-01",
+    "leaveDate": null,
+    "leaveReason": null,
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z",
+    "createdBy": "user-001",
+    "updatedBy": "user-001",
+    "changeHistory": [],
+    "pendingUpdateRequest": null
+  }
+]

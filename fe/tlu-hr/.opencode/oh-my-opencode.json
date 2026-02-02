@@ -1,0 +1,36 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  
+  "agents": {
+    "sisyphus": {
+      "model": "google/antigravity-gemini-3-pro"
+    },
+    "hephaestus": {
+      "model": "github-copilot/gpt-5.2-codex"
+    },
+    "prometheus": {
+      "model": "google/antigravity-gemini-3-pro"
+    },
+    "metis": {
+        "model": "google/antigravity-gemini-3-pro"
+    },
+    "momus": {
+        "model": "github-copilot/gpt-5.2"
+    },
+    "oracle": { "model": "github-copilot/gpt-5.2-codex" },      
+    "librarian": { "model": "opencode/kimi-k2.5-free" },
+    "explore": { "model": "opencode/kimi-k2.5-free" },
+    "atlas": {
+        "model": "google/antigravity-gemini-3-pro"
+    },
+    "multimodal-looker": {
+        "model": "google/antigravity-gemini-3-pro"
+    }
+  },
+
+  
+  "categories": {
+    "quick": { "model": "opencode/kimi-k2.5-free" },
+    "visual-engineering": { "model": "google/antigravity-gemini-3-pro" }
+  }
+}
