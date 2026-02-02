@@ -5,6 +5,7 @@ import LoginPage from "./pages/auth/LoginPage";
 import DashboardPage from "./pages/tccb/DashboardPage";
 import PersonnelListPage from "./pages/tccb/PersonnelListPage";
 import PersonnelCreatePage from "./pages/tccb/PersonnelCreatePage";
+import PersonnelEditPage from "./pages/tccb/PersonnelEditPage";
 import PersonnelDetailPage from "./pages/tccb/PersonnelDetailPage";
 import OrganizationPage from "./pages/tccb/OrganizationPage";
 import UnitDetailPage from "./pages/tccb/UnitDetailPage";
@@ -22,6 +23,7 @@ export default function AppRouter() {
           <Route path="/tccb/personnel" element={<PersonnelListPage />} />
           <Route path="/tccb/personnel/new" element={<PersonnelCreatePage />} />
           <Route path="/tccb/personnel/:id" element={<PersonnelDetailPage />} />
+          <Route path="/tccb/personnel/:id/edit" element={<PersonnelEditPage />} />
           <Route path="/tccb/organization" element={<OrganizationPage />} />
           <Route path="/tccb/organization/:id" element={<UnitDetailPage />} />
           <Route path="/tccb/contracts" element={<ContractListPage />} />
