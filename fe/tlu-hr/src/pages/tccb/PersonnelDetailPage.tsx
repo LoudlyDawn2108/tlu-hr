@@ -1,18 +1,60 @@
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ChevronLeft, Building2, GraduationCap, FileText, Wallet, Award, BookOpen, Users } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { useToast } from "@/hooks/use-toast";
+import { ChevronLeft, Building2, GraduationCap, FileText, Wallet, Award, BookOpen, Users, Pencil, UserX } from "lucide-react";
 import personnelData from "@/data/personnel.json";
 import organizationData from "@/data/organizations.json";
 
 export default function PersonnelDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { toast } = useToast();
   
   const person = personnelData.find((p) => p.id === id);
+  
+  const [isTerminateDialogOpen, setIsTerminateDialogOpen] = useState(false);
+  const [terminationDate, setTerminationDate] = useState("");
+  const [terminationReason, setTerminationReason] = useState("");
+  const [personStatus, setPersonStatus] = useState(person?.status || "active");
+
+  const handleTerminate = () => {
+    if (!terminationDate) {
+      toast({
+        title: "Lỗi",
+        description: "Vui lòng chọn ngày thôi việc",
+      });
+      return;
+    }
+
+    setPersonStatus("inactive");
+    
+    toast({
+      title: "Thành công",
+      description: `Đã đánh dấu thôi việc ngày ${terminationDate}`,
+    });
+    
+    setIsTerminateDialogOpen(false);
+    setTerminationDate("");
+    setTerminationReason("");
+  };
   
   if (!person) {
     return (
@@ -56,10 +98,26 @@ export default function PersonnelDetailPage() {
           <p className="text-muted-foreground">{person.employeeCode} • {getUnitName(person.currentUnit?.unitId)}</p>
         </div>
         <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            onClick={() => navigate(`/tccb/personnel/${id}/edit`)}
+          >
+            <Pencil className="mr-2 h-4 w-4" />
+            Sửa
+          </Button>
+          {personStatus !== "inactive" && personStatus !== "retired" && (
+            <Button
+              variant="destructive"
+              onClick={() => setIsTerminateDialogOpen(true)}
+            >
+              <UserX className="mr-2 h-4 w-4" />
+              Đánh dấu thôi việc
+            </Button>
+          )}
           <Avatar className="h-12 w-12">
             <AvatarFallback className="text-lg">{person.fullName.charAt(0)}</AvatarFallback>
           </Avatar>
-          {getStatusBadge(person.status)}
+          {getStatusBadge(personStatus)}
         </div>
       </div>
 
@@ -232,6 +290,48 @@ export default function PersonnelDetailPage() {
           </Card>
         </TabsContent>
       </Tabs>
+
+      <AlertDialog open={isTerminateDialogOpen} onOpenChange={setIsTerminateDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Đánh dấu thôi việc</AlertDialogTitle>
+            <AlertDialogDescription>
+              Bạn có chắc chắn muốn đánh dấu nhân sự này đã thôi việc? Hành động này không thể hoàn tác.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="termination-date">Ngày thôi việc</Label>
+              <Input
+                id="termination-date"
+                type="date"
+                value={terminationDate}
+                onChange={(e) => setTerminationDate(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="termination-reason">Lý do</Label>
+              <Textarea
+                id="termination-reason"
+                placeholder="Nhập lý do thôi việc..."
+                value={terminationReason}
+                onChange={(e) => setTerminationReason(e.target.value)}
+              />
+            </div>
+          </div>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => {
+              setTerminationDate("");
+              setTerminationReason("");
+            }}>
+              Hủy
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={handleTerminate}>
+              Xác nhận
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
