@@ -18,7 +18,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Plus, Search } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { Plus, Search, MoreHorizontal, Eye, Pencil, UserX } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import personnelData from "@/data/personnel.json";
 import organizationData from "@/data/organizations.json";
 
@@ -26,10 +43,15 @@ const ITEMS_PER_PAGE = 10;
 
 export default function PersonnelListPage() {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [unitFilter, setUnitFilter] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
+  const [isTerminateDialogOpen, setIsTerminateDialogOpen] = useState(false);
+  const [selectedPersonId, setSelectedPersonId] = useState<string | null>(null);
+  const [terminationDate, setTerminationDate] = useState("");
+  const [terminationReason, setTerminationReason] = useState("");
 
   const filteredData = useMemo(() => {
     return personnelData.filter((person) => {
@@ -67,6 +89,34 @@ export default function PersonnelListPage() {
     if (!unitId) return "-";
     const unit = organizationData.find((u) => u.id === unitId);
     return unit?.name || "-";
+  };
+
+  const handleTerminate = () => {
+    if (!terminationDate) {
+      toast({
+        title: "Lỗi",
+        description: "Vui lòng chọn ngày thôi việc",
+      });
+      return;
+    }
+
+    void selectedPersonId;
+
+    toast({
+      title: "Thành công",
+      description: `Đã đánh dấu thôi việc ngày ${terminationDate}`,
+    });
+
+    setIsTerminateDialogOpen(false);
+    setTerminationDate("");
+    setTerminationReason("");
+    setSelectedPersonId(null);
+  };
+
+  const openTerminateDialog = (personId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedPersonId(personId);
+    setIsTerminateDialogOpen(true);
   };
 
   return (
@@ -146,12 +196,13 @@ export default function PersonnelListPage() {
               <TableHead>Đơn vị</TableHead>
               <TableHead>Chức vụ</TableHead>
               <TableHead>Trạng thái</TableHead>
+              <TableHead className="w-[100px]">Thao tác</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {paginatedData.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
+                <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
                   Không tìm thấy nhân sự nào
                 </TableCell>
               </TableRow>
@@ -167,6 +218,44 @@ export default function PersonnelListPage() {
                   <TableCell>{getUnitName(person.currentUnit?.unitId)}</TableCell>
                   <TableCell>{person.currentUnit?.positionName || "-"}</TableCell>
                   <TableCell>{getStatusBadge(person.status)}</TableCell>
+                  <TableCell>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <MoreHorizontal className="h-4 w-4" />
+                          <span className="sr-only">Thao tác</span>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" onClick={(e) => e.stopPropagation()}>
+                        <DropdownMenuItem onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/tccb/personnel/${person.id}`);
+                        }}>
+                          <Eye className="mr-2 h-4 w-4" />
+                          Xem chi tiết
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/tccb/personnel/${person.id}/edit`);
+                        }}>
+                          <Pencil className="mr-2 h-4 w-4" />
+                          Sửa
+                        </DropdownMenuItem>
+                        <DropdownMenuItem
+                          onClick={(e) => openTerminateDialog(person.id, e)}
+                          className="text-destructive focus:text-destructive"
+                        >
+                          <UserX className="mr-2 h-4 w-4" />
+                          Đánh dấu thôi việc
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </TableCell>
                 </TableRow>
               ))
             )}
@@ -202,6 +291,49 @@ export default function PersonnelListPage() {
           </div>
         </div>
       )}
+
+      <AlertDialog open={isTerminateDialogOpen} onOpenChange={setIsTerminateDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Đánh dấu thôi việc</AlertDialogTitle>
+            <AlertDialogDescription>
+              Bạn có chắc chắn muốn đánh dấu nhân sự này đã thôi việc?
+              <div className="mt-4 space-y-4">
+                <div>
+                  <label className="text-sm font-medium">Ngày thôi việc *</label>
+                  <Input
+                    type="date"
+                    value={terminationDate}
+                    onChange={(e) => setTerminationDate(e.target.value)}
+                    className="mt-1"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Lý do</label>
+                  <Input
+                    value={terminationReason}
+                    onChange={(e) => setTerminationReason(e.target.value)}
+                    placeholder="Nhập lý do thôi việc"
+                    className="mt-1"
+                  />
+                </div>
+              </div>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => {
+              setTerminationDate("");
+              setTerminationReason("");
+              setSelectedPersonId(null);
+            }}>
+              Hủy
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={handleTerminate}>
+              Xác nhận
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
