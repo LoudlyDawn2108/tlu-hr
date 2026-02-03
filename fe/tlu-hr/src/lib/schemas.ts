@@ -73,6 +73,8 @@ export const step5Schema = z.object({
 // Step 6: Contract Information
 export const step6Schema = z.object({
   contractType: z.string().min(1, "Loại hợp đồng là bắt buộc"),
+  contractNumber: z.string().min(1, "Vui lòng nhập số hợp đồng"),
+  contractJobDescription: z.string().optional(),
   contractSignDate: z.string().min(1, "Ngày ký là bắt buộc"),
   contractEffectiveDate: z.string().min(1, "Ngày hiệu lực là bắt buộc"),
   contractExpiryDate: z.string().optional(),

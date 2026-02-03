@@ -51,6 +51,8 @@ export interface WizardData {
   unitId: string;
   positionId: string;
   contractType: string;
+  contractNumber: string;
+  contractJobDescription?: string;
   contractSignDate: string;
   contractEffectiveDate: string;
   contractExpiryDate: string;
