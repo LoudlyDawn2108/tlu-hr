@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -24,6 +25,19 @@ export function Step6Contract({ data, updateData, errors }: StepProps) {
 
   return (
     <div className="space-y-6">
+      <div className="space-y-2">
+        <Label htmlFor="contractNumber">Số hợp đồng/Quyết định *</Label>
+        <Input
+          id="contractNumber"
+          value={data.contractNumber}
+          onChange={(e) => updateData({ contractNumber: e.target.value })}
+          placeholder="Nhập số hợp đồng"
+        />
+        {getError("contractNumber") && (
+          <p className="text-red-500 text-sm mt-1">{getError("contractNumber")}</p>
+        )}
+      </div>
+
       <div className="space-y-2">
         <Label>Loại hợp đồng *</Label>
         <Select
@@ -86,6 +100,19 @@ export function Step6Contract({ data, updateData, errors }: StepProps) {
           )}
         </div>
       )}
+
+      <div className="space-y-2">
+        <Label htmlFor="contractJobDescription">Mô tả công việc</Label>
+        <Textarea
+          id="contractJobDescription"
+          value={data.contractJobDescription || ""}
+          onChange={(e) => updateData({ contractJobDescription: e.target.value })}
+          placeholder="Mô tả chi tiết công việc..."
+        />
+        {getError("contractJobDescription") && (
+          <p className="text-red-500 text-sm mt-1">{getError("contractJobDescription")}</p>
+        )}
+      </div>
     </div>
   );
 }
