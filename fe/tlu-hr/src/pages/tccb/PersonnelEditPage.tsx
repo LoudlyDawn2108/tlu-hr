@@ -53,6 +53,7 @@ const initialData: WizardData = {
   unitId: "",
   positionId: "",
   contractType: "definite",
+  contractNumber: "",
   contractSignDate: "",
   contractEffectiveDate: "",
   contractExpiryDate: "",
@@ -139,10 +140,6 @@ export default function PersonnelEditPage() {
             {originalPersonnel.employeeCode}
           </p>
         </div>
-        <Button onClick={handleSubmit}>
-          <Save className="mr-2 h-4 w-4" />
-          Lưu hồ sơ
-        </Button>
       </div>
 
       <Accordion type="multiple" defaultValue={["item-1"]} className="w-full">
@@ -166,6 +163,17 @@ export default function PersonnelEditPage() {
           );
         })}
       </Accordion>
+
+      <div className="flex justify-end pt-6 border-t sticky bottom-0 bg-background/95 backdrop-blur py-4 z-10">
+        <Button 
+          onClick={handleSubmit} 
+          size="lg"
+          className="min-w-[150px]"
+        >
+          <Save className="mr-2 h-4 w-4" />
+          Lưu hồ sơ
+        </Button>
+      </div>
     </div>
   );
 }

@@ -12,6 +12,9 @@ import UnitDetailPage from "./pages/tccb/UnitDetailPage";
 import ContractListPage from "./pages/tccb/ContractListPage";
 import ContractCreatePage from "./pages/tccb/ContractCreatePage";
 import TrainingListPage from "./pages/tccb/TrainingListPage";
+import TrainingCreatePage from "./pages/tccb/TrainingCreatePage";
+import TrainingDetailPage from "./pages/tccb/TrainingDetailPage";
+import TrainingEditPage from "./pages/tccb/TrainingEditPage";
 
 export default function AppRouter() {
   return (
@@ -30,6 +33,9 @@ export default function AppRouter() {
           <Route path="/tccb/contracts" element={<ContractListPage />} />
           <Route path="/tccb/contracts/new" element={<ContractCreatePage />} />
           <Route path="/tccb/training" element={<TrainingListPage />} />
+          <Route path="/tccb/training/new" element={<TrainingCreatePage />} />
+          <Route path="/tccb/training/:id" element={<TrainingDetailPage />} />
+          <Route path="/tccb/training/:id/edit" element={<TrainingEditPage />} />
         </Route>
       </Route>
       <Route path="/" element={<Navigate to="/tccb/dashboard" replace />} />

@@ -58,10 +58,10 @@ Complete Personnel CRUD by adding Edit and Mark Terminated functionality to the 
 6. Mock change history display in PersonnelDetailPage
 
 ### Definition of Done
-- [ ] Can edit any personnel record via /tccb/personnel/:id/edit
-- [ ] Can mark personnel as terminated via confirmation dialog
-- [ ] All action buttons visible and functional
-- [ ] `bun run build` passes with 0 errors
+- [x] Can edit any personnel record via /tccb/personnel/:id/edit
+- [x] Can mark personnel as terminated via confirmation dialog
+- [x] All action buttons visible and functional
+- [x] `bun run build` passes with 0 errors
 
 ### Must Have
 - Separate edit page (not inline editing)
@@ -210,7 +210,7 @@ Parallel Speedup: ~20% faster than sequential
 
 ---
 
-- [ ] 2. Create Personnel Mapping Utilities
+- [x] 2. Create Personnel Mapping Utilities
 
   **What to do**:
   - Create `src/utils/personnel-mapper.ts`
@@ -271,7 +271,7 @@ Parallel Speedup: ~20% faster than sequential
 
 ---
 
-- [ ] 3. Create PersonnelEditPage
+- [x] 3. Create PersonnelEditPage
 
   **What to do**:
   - Create `src/pages/tccb/PersonnelEditPage.tsx`
@@ -337,7 +337,7 @@ Parallel Speedup: ~20% faster than sequential
 
 ---
 
-- [ ] 4. Add Edit and Terminate Buttons to PersonnelDetailPage
+- [x] 4. Add Edit and Terminate Buttons to PersonnelDetailPage
 
   **What to do**:
   - Import AlertDialog components
@@ -406,7 +406,7 @@ Parallel Speedup: ~20% faster than sequential
 
 ---
 
-- [ ] 5. Add Row Actions to PersonnelListPage
+- [x] 5. Add Row Actions to PersonnelListPage
 
   **What to do**:
   - Add new "Thao tác" (Actions) column to table (last column)
@@ -469,7 +469,7 @@ Parallel Speedup: ~20% faster than sequential
 
 ---
 
-- [ ] 6. Add Change History Display to PersonnelDetailPage
+- [x] 6. Add Change History Display to PersonnelDetailPage
 
   **What to do**:
   - Add "Lịch sử thay đổi" section to personal info tab (or as new tab)

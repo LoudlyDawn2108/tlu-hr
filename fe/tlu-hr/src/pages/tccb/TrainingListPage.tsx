@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -9,6 +10,7 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -16,19 +18,38 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Search } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Search, Plus, MoreHorizontal, Eye, Pencil, Ban } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { getYearsFromCourses } from "@/utils/training-helpers";
 import trainingData from "@/data/training.json";
+import { TrainingStatus, type TrainingCourse } from "@/types";
 
 const ITEMS_PER_PAGE = 10;
 
 export default function TrainingListPage() {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  
+  // Local state for courses to support in-memory updates (cancellation)
+  const [courses, setCourses] = useState<TrainingCourse[]>(trainingData as unknown as TrainingCourse[]);
+  
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [typeFilter, setTypeFilter] = useState<string>("all");
+  const [yearFilter, setYearFilter] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Extract years for filter
+  const years = useMemo(() => getYearsFromCourses(courses), [courses]);
+
   const filteredData = useMemo(() => {
-    return trainingData.filter((course) => {
+    return courses.filter((course) => {
       const matchesSearch = course.name
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
@@ -36,15 +57,29 @@ export default function TrainingListPage() {
         statusFilter === "all" || course.status === statusFilter;
       const matchesType =
         typeFilter === "all" || course.type === typeFilter;
-      return matchesSearch && matchesStatus && matchesType;
+      
+      const courseYear = new Date(course.startDate).getFullYear();
+      const matchesYear = yearFilter === "all" || courseYear.toString() === yearFilter;
+
+      return matchesSearch && matchesStatus && matchesType && matchesYear;
     });
-  }, [searchQuery, statusFilter, typeFilter]);
+  }, [courses, searchQuery, statusFilter, typeFilter, yearFilter]);
 
   const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
   const paginatedData = filteredData.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
+
+  const handleCancel = (courseId: string) => {
+    setCourses(prev => prev.map(c => 
+      c.id === courseId ? { ...c, status: TrainingStatus.CANCELLED } : c
+    ));
+    toast({ 
+      title: "Đã hủy khóa học",
+      description: "Trạng thái khóa học đã được chuyển sang Đã hủy" 
+    });
+  };
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -80,11 +115,17 @@ export default function TrainingListPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Danh sách khóa đào tạo</h1>
-        <p className="text-muted-foreground">
-          Quản lý các khóa đào tạo và bồi dưỡng
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Danh sách khóa đào tạo</h1>
+          <p className="text-muted-foreground">
+            Quản lý các khóa đào tạo và bồi dưỡng
+          </p>
+        </div>
+        <Button onClick={() => navigate("/tccb/training/new")}>
+          <Plus className="mr-2 h-4 w-4" />
+          Tạo khóa đào tạo
+        </Button>
       </div>
 
       <div className="flex flex-col gap-4 sm:flex-row">
@@ -101,6 +142,25 @@ export default function TrainingListPage() {
           />
         </div>
         <Select
+          value={yearFilter}
+          onValueChange={(value) => {
+            setYearFilter(value);
+            setCurrentPage(1);
+          }}
+        >
+          <SelectTrigger className="w-[140px]">
+            <SelectValue placeholder="Năm" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Tất cả năm</SelectItem>
+            {years.map((year) => (
+              <SelectItem key={year} value={year.toString()}>
+                {year}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Select
           value={statusFilter}
           onValueChange={(value) => {
             setStatusFilter(value);
@@ -116,6 +176,7 @@ export default function TrainingListPage() {
             <SelectItem value="open">Đang mở đăng ký</SelectItem>
             <SelectItem value="in_progress">Đang diễn ra</SelectItem>
             <SelectItem value="completed">Đã kết thúc</SelectItem>
+            <SelectItem value="cancelled">Đã hủy</SelectItem>
           </SelectContent>
         </Select>
         <Select
@@ -148,26 +209,62 @@ export default function TrainingListPage() {
               <TableHead>Địa điểm</TableHead>
               <TableHead>Số học viên</TableHead>
               <TableHead>Trạng thái</TableHead>
+              <TableHead className="w-[50px]"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {paginatedData.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
                   Không tìm thấy khóa đào tạo nào
                 </TableCell>
               </TableRow>
             ) : (
               paginatedData.map((course) => (
                 <TableRow key={course.id}>
-                  <TableCell className="font-medium">{course.name}</TableCell>
+                  <TableCell className="font-medium">
+                    <Link 
+                      to={`/tccb/training/${course.id}`}
+                      className="hover:underline hover:text-primary transition-colors"
+                    >
+                      {course.name}
+                    </Link>
+                  </TableCell>
                   <TableCell>{getTypeLabel(course.type)}</TableCell>
                   <TableCell>
                     {course.startDate} - {course.endDate}
                   </TableCell>
                   <TableCell>{course.location}</TableCell>
-                  <TableCell>0</TableCell>
+                  <TableCell>{course.participants?.length || 0}</TableCell>
                   <TableCell>{getStatusBadge(course.status)}</TableCell>
+                  <TableCell>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="h-8 w-8 p-0">
+                          <span className="sr-only">Mở menu</span>
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem onClick={() => navigate(`/tccb/training/${course.id}`)}>
+                          <Eye className="mr-2 h-4 w-4" />
+                          Xem chi tiết
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => navigate(`/tccb/training/${course.id}/edit`)}>
+                          <Pencil className="mr-2 h-4 w-4" />
+                          Chỉnh sửa
+                        </DropdownMenuItem>
+                        <DropdownMenuItem 
+                          onClick={() => handleCancel(course.id)} 
+                          className="text-destructive focus:text-destructive"
+                          disabled={course.status === "cancelled" || course.status === "completed"}
+                        >
+                          <Ban className="mr-2 h-4 w-4" />
+                          Hủy khóa học
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </TableCell>
                 </TableRow>
               ))
             )}
@@ -181,23 +278,25 @@ export default function TrainingListPage() {
             Hiển thị {paginatedData.length} / {filteredData.length} khóa đào tạo
           </p>
           <div className="flex items-center gap-2">
-            <button
-              className="px-3 py-1 border rounded hover:bg-muted disabled:opacity-50"
+            <Button
+              variant="outline"
+              size="sm"
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={currentPage === 1}
             >
               Trước
-            </button>
+            </Button>
             <span className="text-sm">
               Trang {currentPage} / {totalPages}
             </span>
-            <button
-              className="px-3 py-1 border rounded hover:bg-muted disabled:opacity-50"
+            <Button
+              variant="outline"
+              size="sm"
               onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
             >
               Sau
-            </button>
+            </Button>
           </div>
         </div>
       )}
