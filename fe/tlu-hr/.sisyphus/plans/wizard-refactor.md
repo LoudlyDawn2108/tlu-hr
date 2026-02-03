@@ -54,9 +54,9 @@ Replace the linear "one-step-at-a-time" wizard with a vertical accordion flow th
 - `src/pages/tccb/PersonnelEditPage.tsx` (Refactored)
 
 ### Definition of Done
-- [ ] Create Page: Steps are accordions. "Next" button validates and opens next step.
-- [ ] Edit Page: Steps are accordions. No "Next" buttons. Save validates all.
-- [ ] Validation errors appear when validation fails.
+- [x] Create Page: Steps are accordions. "Next" button validates and opens next step.
+- [x] Edit Page: Steps are accordions. No "Next" buttons. Save validates all.
+- [x] Validation errors appear when validation fails.
 
 ### Must Have
 - Zod schemas for all 8 steps.
