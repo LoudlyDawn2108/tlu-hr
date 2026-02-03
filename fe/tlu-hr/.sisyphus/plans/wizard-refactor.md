@@ -232,8 +232,8 @@ Wave 2 (Page Implementation):
 ## Success Criteria
 
 ### Final Checklist
-- [ ] `PersonnelCreatePage` shows accordion.
-- [ ] `PersonnelCreatePage` enforces sequential completion (guided).
-- [ ] `PersonnelEditPage` shows accordion (free roaming).
-- [ ] Steps display validation errors.
-- [ ] Form submission works and saves data.
+- [x] `PersonnelCreatePage` shows accordion.
+- [x] `PersonnelCreatePage` enforces sequential completion (guided).
+- [x] `PersonnelEditPage` shows accordion (free roaming).
+- [x] Steps display validation errors.
+- [x] Form submission works and saves data.
