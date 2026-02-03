@@ -9,6 +9,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -19,7 +25,11 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronLeft, Building2, GraduationCap, FileText, Wallet, Award, BookOpen, Users, Pencil, UserX, History, Plus, FileSignature, Ban } from "lucide-react";
+import { ChevronLeft, Building2, GraduationCap, FileText, Wallet, Award, BookOpen, Users, Pencil, UserX, History, Plus, FileSignature, Ban, FilePlus } from "lucide-react";
+import { ContractExtensionDialog } from "@/components/contracts/ContractExtensionDialog";
+import { ContractTerminationDialog } from "@/components/contracts/ContractTerminationDialog";
+import { AddAppendixDialog } from "@/components/contracts/AddAppendixDialog";
+import type { Contract, ContractAppendix } from "@/types";
 import personnelData from "@/data/personnel.json";
 import organizationData from "@/data/organizations.json";
 import contractsData from "@/data/contracts.json";
@@ -30,12 +40,24 @@ export default function PersonnelDetailPage() {
   const { toast } = useToast();
   
   const person = personnelData.find((p) => p.id === id);
-  const contracts = contractsData.filter((c) => c.personnelId === id).sort((a, b) => new Date(b.signDate).getTime() - new Date(a.signDate).getTime());
+  
+  // State for contracts
+  const [contracts, setContracts] = useState<Contract[]>(() => 
+    (contractsData as any[])
+      .filter((c) => c.personnelId === id)
+      .sort((a, b) => new Date(b.signDate).getTime() - new Date(a.signDate).getTime()) as Contract[]
+  );
   
   const [isTerminateDialogOpen, setIsTerminateDialogOpen] = useState(false);
   const [terminationDate, setTerminationDate] = useState("");
   const [terminationReason, setTerminationReason] = useState("");
   const [personStatus, setPersonStatus] = useState(person?.status || "active");
+  
+  // Contract dialog states
+  const [isContractExtendDialogOpen, setIsContractExtendDialogOpen] = useState(false);
+  const [isContractTerminateDialogOpen, setIsContractTerminateDialogOpen] = useState(false);
+  const [isAddAppendixDialogOpen, setIsAddAppendixDialogOpen] = useState(false);
+  const [selectedContract, setSelectedContract] = useState<Contract | null>(null);
 
   const handleTerminate = () => {
     if (!terminationDate) {
@@ -58,6 +80,27 @@ export default function PersonnelDetailPage() {
     setTerminationReason("");
   };
   
+  const handleAddAppendixSuccess = (appendix: ContractAppendix) => {
+    if (!selectedContract) return;
+
+    const updatedContracts = contracts.map((c) => {
+      if (c.id === selectedContract.id) {
+        return {
+          ...c,
+          appendices: [...(c.appendices || []), appendix],
+        };
+      }
+      return c;
+    });
+
+    setContracts(updatedContracts);
+    
+    setSelectedContract({
+      ...selectedContract,
+      appendices: [...(selectedContract.appendices || []), appendix],
+    });
+  };
+
   if (!person) {
     return (
       <div className="text-center py-12">
@@ -318,19 +361,22 @@ export default function PersonnelDetailPage() {
                         {contract.status === "active" && (
                           <div className="flex gap-2">
                             <Button variant="outline" size="sm" onClick={() => {
-                              toast({
-                                title: "Thông báo",
-                                description: "Chức năng gia hạn hợp đồng đang được phát triển",
-                              });
+                              setSelectedContract(contract as Contract);
+                              setIsAddAppendixDialogOpen(true);
+                            }}>
+                              <FilePlus className="mr-2 h-4 w-4" />
+                              Thêm phụ lục
+                            </Button>
+                            <Button variant="outline" size="sm" onClick={() => {
+                              setSelectedContract(contract as Contract);
+                              setIsContractExtendDialogOpen(true);
                             }}>
                               <FileSignature className="mr-2 h-4 w-4" />
                               Gia hạn
                             </Button>
                             <Button variant="outline" size="sm" className="text-destructive hover:text-destructive" onClick={() => {
-                              toast({
-                                title: "Thông báo",
-                                description: "Chức năng chấm dứt hợp đồng đang được phát triển",
-                              });
+                              setSelectedContract(contract as Contract);
+                              setIsContractTerminateDialogOpen(true);
                             }}>
                               <Ban className="mr-2 h-4 w-4" />
                               Chấm dứt
@@ -358,6 +404,31 @@ export default function PersonnelDetailPage() {
                         <div className="text-sm bg-muted/50 p-2 rounded">
                           <span className="font-medium">Mô tả công việc:</span> {contract.jobDescription}
                         </div>
+                      )}
+
+                      {contract.appendices && contract.appendices.length > 0 && (
+                        <Accordion type="single" collapsible className="w-full">
+                          <AccordionItem value="appendices">
+                            <AccordionTrigger className="text-sm py-2">
+                              Danh sách phụ lục ({contract.appendices.length})
+                            </AccordionTrigger>
+                            <AccordionContent>
+                              <div className="space-y-2 pt-2">
+                                {contract.appendices.map((appendix) => (
+                                  <div key={appendix.id} className="border rounded p-3 text-sm bg-background">
+                                    <div className="flex justify-between items-center mb-1">
+                                      <span className="font-medium">{appendix.appendixNumber}</span>
+                                      <span className="text-muted-foreground text-xs">
+                                        Ngày ký: {new Date(appendix.signDate).toLocaleDateString("vi-VN")}
+                                      </span>
+                                    </div>
+                                    <div className="text-muted-foreground">{appendix.content}</div>
+                                  </div>
+                                ))}
+                              </div>
+                            </AccordionContent>
+                          </AccordionItem>
+                        </Accordion>
                       )}
                     </div>
                   ))}
@@ -486,6 +557,36 @@ export default function PersonnelDetailPage() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {selectedContract && (
+        <>
+          <ContractExtensionDialog
+            contract={selectedContract}
+            isOpen={isContractExtendDialogOpen}
+            onClose={() => {
+              setIsContractExtendDialogOpen(false);
+              setSelectedContract(null);
+            }}
+          />
+          <ContractTerminationDialog
+            contract={selectedContract}
+            isOpen={isContractTerminateDialogOpen}
+            onClose={() => {
+              setIsContractTerminateDialogOpen(false);
+              setSelectedContract(null);
+            }}
+          />
+          <AddAppendixDialog
+            contract={selectedContract}
+            isOpen={isAddAppendixDialogOpen}
+            onClose={() => {
+              setIsAddAppendixDialogOpen(false);
+              setSelectedContract(null);
+            }}
+            onSuccess={handleAddAppendixSuccess}
+          />
+        </>
+      )}
     </div>
   );
 }
