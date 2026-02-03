@@ -264,6 +264,13 @@ export interface PersonnelAllowance {
   isActive: boolean;
 }
 
+export interface ContractAppendix {
+  id: string;
+  appendixNumber: string;
+  content: string;
+  signDate: string;
+}
+
 export interface Contract {
   id: string;
   contractNumber: string;
@@ -284,6 +291,7 @@ export interface Contract {
   nationality?: string;
   passportNumber?: string;
   workPermitNumber?: string;
+  appendices?: ContractAppendix[];
   createdAt: string;
   updatedAt: string;
 }
