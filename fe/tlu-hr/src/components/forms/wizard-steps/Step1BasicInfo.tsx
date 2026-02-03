@@ -12,9 +12,16 @@ import type { WizardData } from "@/types/wizard";
 interface StepProps {
   data: WizardData;
   updateData: (updates: Partial<WizardData>) => void;
+  errors?: Record<string, string | string[] | undefined>;
 }
 
-export function Step1BasicInfo({ data, updateData }: StepProps) {
+export function Step1BasicInfo({ data, updateData, errors }: StepProps) {
+  const getError = (field: string) => {
+    if (!errors || !errors[field]) return null;
+    const error = errors[field];
+    return Array.isArray(error) ? error[0] : error;
+  };
+
   return (
     <div className="grid grid-cols-2 gap-4">
       <div className="space-y-2">
@@ -25,6 +32,9 @@ export function Step1BasicInfo({ data, updateData }: StepProps) {
           onChange={(e) => updateData({ fullName: e.target.value })}
           placeholder="Nguyễn Văn A"
         />
+        {getError("fullName") && (
+          <p className="text-red-500 text-sm mt-1">{getError("fullName")}</p>
+        )}
       </div>
       <div className="space-y-2">
         <Label htmlFor="dateOfBirth">Ngày sinh *</Label>
@@ -34,6 +44,9 @@ export function Step1BasicInfo({ data, updateData }: StepProps) {
           value={data.dateOfBirth}
           onChange={(e) => updateData({ dateOfBirth: e.target.value })}
         />
+        {getError("dateOfBirth") && (
+          <p className="text-red-500 text-sm mt-1">{getError("dateOfBirth")}</p>
+        )}
       </div>
       <div className="space-y-2">
         <Label htmlFor="gender">Giới tính *</Label>
@@ -49,6 +62,9 @@ export function Step1BasicInfo({ data, updateData }: StepProps) {
             <SelectItem value="female">Nữ</SelectItem>
           </SelectContent>
         </Select>
+        {getError("gender") && (
+          <p className="text-red-500 text-sm mt-1">{getError("gender")}</p>
+        )}
       </div>
       <div className="space-y-2">
         <Label htmlFor="idCardNumber">Số CCCD/CMND *</Label>
@@ -58,6 +74,9 @@ export function Step1BasicInfo({ data, updateData }: StepProps) {
           onChange={(e) => updateData({ idCardNumber: e.target.value })}
           placeholder="001085123456"
         />
+        {getError("idCardNumber") && (
+          <p className="text-red-500 text-sm mt-1">{getError("idCardNumber")}</p>
+        )}
       </div>
       <div className="space-y-2">
         <Label htmlFor="placeOfBirth">Nơi sinh</Label>
@@ -67,6 +86,9 @@ export function Step1BasicInfo({ data, updateData }: StepProps) {
           onChange={(e) => updateData({ placeOfBirth: e.target.value })}
           placeholder="Hà Nội"
         />
+        {getError("placeOfBirth") && (
+          <p className="text-red-500 text-sm mt-1">{getError("placeOfBirth")}</p>
+        )}
       </div>
       <div className="space-y-2">
         <Label htmlFor="hometown">Quê quán</Label>
@@ -76,6 +98,9 @@ export function Step1BasicInfo({ data, updateData }: StepProps) {
           onChange={(e) => updateData({ hometown: e.target.value })}
           placeholder="Hà Nội"
         />
+        {getError("hometown") && (
+          <p className="text-red-500 text-sm mt-1">{getError("hometown")}</p>
+        )}
       </div>
       <div className="space-y-2">
         <Label htmlFor="ethnicity">Dân tộc</Label>
@@ -84,6 +109,9 @@ export function Step1BasicInfo({ data, updateData }: StepProps) {
           value={data.ethnicity}
           onChange={(e) => updateData({ ethnicity: e.target.value })}
         />
+        {getError("ethnicity") && (
+          <p className="text-red-500 text-sm mt-1">{getError("ethnicity")}</p>
+        )}
       </div>
       <div className="space-y-2">
         <Label htmlFor="religion">Tôn giáo</Label>
@@ -92,6 +120,9 @@ export function Step1BasicInfo({ data, updateData }: StepProps) {
           value={data.religion}
           onChange={(e) => updateData({ religion: e.target.value })}
         />
+        {getError("religion") && (
+          <p className="text-red-500 text-sm mt-1">{getError("religion")}</p>
+        )}
       </div>
     </div>
   );

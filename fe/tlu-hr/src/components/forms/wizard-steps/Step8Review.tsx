@@ -5,6 +5,7 @@ import type { WizardData } from "@/types/wizard";
 interface StepProps {
   data: WizardData;
   updateData: (updates: Partial<WizardData>) => void;
+  errors?: Record<string, string | string[] | undefined>;
 }
 
 export function Step8Review({ data }: StepProps) {

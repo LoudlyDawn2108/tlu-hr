@@ -12,9 +12,16 @@ import type { WizardData } from "@/types/wizard";
 interface StepProps {
   data: WizardData;
   updateData: (updates: Partial<WizardData>) => void;
+  errors?: Record<string, string | string[] | undefined>;
 }
 
-export function Step6Contract({ data, updateData }: StepProps) {
+export function Step6Contract({ data, updateData, errors }: StepProps) {
+  const getError = (field: string) => {
+    if (!errors || !errors[field]) return null;
+    const error = errors[field];
+    return Array.isArray(error) ? error[0] : error;
+  };
+
   return (
     <div className="space-y-6">
       <div className="space-y-2">
@@ -33,6 +40,9 @@ export function Step6Contract({ data, updateData }: StepProps) {
             <SelectItem value="visiting">Thỉnh giảng</SelectItem>
           </SelectContent>
         </Select>
+        {getError("contractType") && (
+          <p className="text-red-500 text-sm mt-1">{getError("contractType")}</p>
+        )}
       </div>
 
       <div className="grid grid-cols-2 gap-4">
@@ -44,6 +54,9 @@ export function Step6Contract({ data, updateData }: StepProps) {
             value={data.contractSignDate}
             onChange={(e) => updateData({ contractSignDate: e.target.value })}
           />
+          {getError("contractSignDate") && (
+            <p className="text-red-500 text-sm mt-1">{getError("contractSignDate")}</p>
+          )}
         </div>
         <div className="space-y-2">
           <Label htmlFor="contractEffectiveDate">Ngày hiệu lực *</Label>
@@ -53,6 +66,9 @@ export function Step6Contract({ data, updateData }: StepProps) {
             value={data.contractEffectiveDate}
             onChange={(e) => updateData({ contractEffectiveDate: e.target.value })}
           />
+          {getError("contractEffectiveDate") && (
+            <p className="text-red-500 text-sm mt-1">{getError("contractEffectiveDate")}</p>
+          )}
         </div>
       </div>
 
@@ -65,6 +81,9 @@ export function Step6Contract({ data, updateData }: StepProps) {
             value={data.contractExpiryDate}
             onChange={(e) => updateData({ contractExpiryDate: e.target.value })}
           />
+          {getError("contractExpiryDate") && (
+            <p className="text-red-500 text-sm mt-1">{getError("contractExpiryDate")}</p>
+          )}
         </div>
       )}
     </div>

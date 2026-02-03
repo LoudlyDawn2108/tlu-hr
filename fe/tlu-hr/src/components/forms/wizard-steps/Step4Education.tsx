@@ -7,9 +7,16 @@ import type { WizardData } from "@/types/wizard";
 interface StepProps {
   data: WizardData;
   updateData: (updates: Partial<WizardData>) => void;
+  errors?: Record<string, string | string[] | undefined>;
 }
 
-export function Step4Education({ data, updateData }: StepProps) {
+export function Step4Education({ data, updateData, errors }: StepProps) {
+  const getError = (field: string) => {
+    if (!errors || !errors[field]) return null;
+    const error = errors[field];
+    return Array.isArray(error) ? error[0] : error;
+  };
+
   const addEducation = () => {
     updateData({
       education: [
@@ -50,6 +57,9 @@ export function Step4Education({ data, updateData }: StepProps) {
               onChange={(e) => updateEducation(index, "level", e.target.value)}
               placeholder="Đại học"
             />
+            {getError(`education.${index}.level`) && (
+              <p className="text-red-500 text-sm mt-1">{getError(`education.${index}.level`)}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label>Tên bằng cấp</Label>
@@ -58,6 +68,9 @@ export function Step4Education({ data, updateData }: StepProps) {
               onChange={(e) => updateEducation(index, "degreeName", e.target.value)}
               placeholder="Kỹ sư CNTT"
             />
+            {getError(`education.${index}.degreeName`) && (
+              <p className="text-red-500 text-sm mt-1">{getError(`education.${index}.degreeName`)}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label>Chuyên ngành</Label>
@@ -66,6 +79,9 @@ export function Step4Education({ data, updateData }: StepProps) {
               onChange={(e) => updateEducation(index, "major", e.target.value)}
               placeholder="Công nghệ phần mềm"
             />
+            {getError(`education.${index}.major`) && (
+              <p className="text-red-500 text-sm mt-1">{getError(`education.${index}.major`)}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label>Trường</Label>
@@ -74,6 +90,9 @@ export function Step4Education({ data, updateData }: StepProps) {
               onChange={(e) => updateEducation(index, "school", e.target.value)}
               placeholder="ĐHBK Hà Nội"
             />
+            {getError(`education.${index}.school`) && (
+              <p className="text-red-500 text-sm mt-1">{getError(`education.${index}.school`)}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label>Năm tốt nghiệp</Label>
@@ -82,6 +101,9 @@ export function Step4Education({ data, updateData }: StepProps) {
               value={edu.graduationYear}
               onChange={(e) => updateEducation(index, "graduationYear", parseInt(e.target.value))}
             />
+            {getError(`education.${index}.graduationYear`) && (
+              <p className="text-red-500 text-sm mt-1">{getError(`education.${index}.graduationYear`)}</p>
+            )}
           </div>
           <Button
             type="button"

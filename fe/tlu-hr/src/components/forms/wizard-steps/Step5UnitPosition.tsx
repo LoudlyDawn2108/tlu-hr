@@ -12,9 +12,16 @@ import type { WizardData } from "@/types/wizard";
 interface StepProps {
   data: WizardData;
   updateData: (updates: Partial<WizardData>) => void;
+  errors?: Record<string, string | string[] | undefined>;
 }
 
-export function Step5UnitPosition({ data, updateData }: StepProps) {
+export function Step5UnitPosition({ data, updateData, errors }: StepProps) {
+  const getError = (field: string) => {
+    if (!errors || !errors[field]) return null;
+    const error = errors[field];
+    return Array.isArray(error) ? error[0] : error;
+  };
+
   const units = organizationData.filter(
     (u) => u.type === "faculty" || u.type === "department" || u.type === "office"
   );
@@ -38,6 +45,9 @@ export function Step5UnitPosition({ data, updateData }: StepProps) {
             ))}
           </SelectContent>
         </Select>
+        {getError("unitId") && (
+          <p className="text-red-500 text-sm mt-1">{getError("unitId")}</p>
+        )}
       </div>
 
       <div className="space-y-2">
@@ -57,6 +67,9 @@ export function Step5UnitPosition({ data, updateData }: StepProps) {
             <SelectItem value="specialist">Chuyên viên</SelectItem>
           </SelectContent>
         </Select>
+        {getError("positionId") && (
+          <p className="text-red-500 text-sm mt-1">{getError("positionId")}</p>
+        )}
       </div>
     </div>
   );

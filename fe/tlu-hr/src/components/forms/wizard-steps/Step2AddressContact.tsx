@@ -5,9 +5,16 @@ import type { WizardData } from "@/types/wizard";
 interface StepProps {
   data: WizardData;
   updateData: (updates: Partial<WizardData>) => void;
+  errors?: Record<string, string | string[] | undefined>;
 }
 
-export function Step2AddressContact({ data, updateData }: StepProps) {
+export function Step2AddressContact({ data, updateData, errors }: StepProps) {
+  const getError = (field: string) => {
+    if (!errors || !errors[field]) return null;
+    const error = errors[field];
+    return Array.isArray(error) ? error[0] : error;
+  };
+
   const updatePermanentAddress = (field: string, value: string) => {
     updateData({
       permanentAddress: { ...data.permanentAddress, [field]: value },
@@ -26,6 +33,9 @@ export function Step2AddressContact({ data, updateData }: StepProps) {
               onChange={(e) => updatePermanentAddress("province", e.target.value)}
               placeholder="Hà Nội"
             />
+            {getError("permanentAddress.province") && (
+              <p className="text-red-500 text-sm mt-1">{getError("permanentAddress.province")}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label>Quận/Huyện</Label>
@@ -34,6 +44,9 @@ export function Step2AddressContact({ data, updateData }: StepProps) {
               onChange={(e) => updatePermanentAddress("district", e.target.value)}
               placeholder="Đống Đa"
             />
+            {getError("permanentAddress.district") && (
+              <p className="text-red-500 text-sm mt-1">{getError("permanentAddress.district")}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label>Phường/Xã</Label>
@@ -42,6 +55,9 @@ export function Step2AddressContact({ data, updateData }: StepProps) {
               onChange={(e) => updatePermanentAddress("ward", e.target.value)}
               placeholder="Trung Liệt"
             />
+            {getError("permanentAddress.ward") && (
+              <p className="text-red-500 text-sm mt-1">{getError("permanentAddress.ward")}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label>Số nhà, đường</Label>
@@ -50,6 +66,9 @@ export function Step2AddressContact({ data, updateData }: StepProps) {
               onChange={(e) => updatePermanentAddress("streetAddress", e.target.value)}
               placeholder="123 Tây Sơn"
             />
+            {getError("permanentAddress.streetAddress") && (
+              <p className="text-red-500 text-sm mt-1">{getError("permanentAddress.streetAddress")}</p>
+            )}
           </div>
         </div>
       </div>
@@ -65,6 +84,9 @@ export function Step2AddressContact({ data, updateData }: StepProps) {
               onChange={(e) => updateData({ phoneNumber: e.target.value })}
               placeholder="0912345678"
             />
+            {getError("phoneNumber") && (
+              <p className="text-red-500 text-sm mt-1">{getError("phoneNumber")}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label htmlFor="personalEmail">Email cá nhân</Label>
@@ -75,6 +97,9 @@ export function Step2AddressContact({ data, updateData }: StepProps) {
               onChange={(e) => updateData({ personalEmail: e.target.value })}
               placeholder="example@gmail.com"
             />
+            {getError("personalEmail") && (
+              <p className="text-red-500 text-sm mt-1">{getError("personalEmail")}</p>
+            )}
           </div>
           <div className="space-y-2">
             <Label htmlFor="workEmail">Email công việc</Label>
@@ -85,6 +110,9 @@ export function Step2AddressContact({ data, updateData }: StepProps) {
               onChange={(e) => updateData({ workEmail: e.target.value })}
               placeholder="name@tlu.edu.vn"
             />
+            {getError("workEmail") && (
+              <p className="text-red-500 text-sm mt-1">{getError("workEmail")}</p>
+            )}
           </div>
         </div>
       </div>

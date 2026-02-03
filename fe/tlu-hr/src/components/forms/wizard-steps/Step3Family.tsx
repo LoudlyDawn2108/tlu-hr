@@ -14,9 +14,16 @@ import type { WizardData } from "@/types/wizard";
 interface StepProps {
   data: WizardData;
   updateData: (updates: Partial<WizardData>) => void;
+  errors?: Record<string, string | string[] | undefined>;
 }
 
-export function Step3Family({ data, updateData }: StepProps) {
+export function Step3Family({ data, updateData, errors }: StepProps) {
+  const getError = (field: string) => {
+    if (!errors || !errors[field]) return null;
+    const error = errors[field];
+    return Array.isArray(error) ? error[0] : error;
+  };
+
   const addChild = () => {
     updateData({
       children: [
@@ -56,6 +63,9 @@ export function Step3Family({ data, updateData }: StepProps) {
             <SelectItem value="widowed">Góa</SelectItem>
           </SelectContent>
         </Select>
+        {getError("maritalStatus") && (
+          <p className="text-red-500 text-sm mt-1">{getError("maritalStatus")}</p>
+        )}
       </div>
 
       {data.maritalStatus === "married" && (
@@ -66,71 +76,83 @@ export function Step3Family({ data, updateData }: StepProps) {
               <Label>Họ và tên</Label>
               <Input
                 value={data.spouse?.fullName || ""}
-              onChange={(e) =>
-                updateData({
-                  spouse: { 
-                    fullName: e.target.value,
-                    dateOfBirth: data.spouse?.dateOfBirth || "",
-                    relationship: "Vợ",
-                    occupation: data.spouse?.occupation || "",
-                    phoneNumber: data.spouse?.phoneNumber || "",
-                  },
-                })
-              }
+                onChange={(e) =>
+                  updateData({
+                    spouse: { 
+                      fullName: e.target.value,
+                      dateOfBirth: data.spouse?.dateOfBirth || "",
+                      relationship: "Vợ",
+                      occupation: data.spouse?.occupation || "",
+                      phoneNumber: data.spouse?.phoneNumber || "",
+                    },
+                  })
+                }
                 placeholder="Trần Thị B"
               />
+              {getError("spouse.fullName") && (
+                <p className="text-red-500 text-sm mt-1">{getError("spouse.fullName")}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label>Ngày sinh</Label>
               <Input
                 type="date"
                 value={data.spouse?.dateOfBirth || ""}
-              onChange={(e) =>
-                updateData({
-                  spouse: { 
-                    fullName: data.spouse?.fullName || "",
-                    dateOfBirth: e.target.value,
-                    relationship: "Vợ",
-                    occupation: data.spouse?.occupation || "",
-                    phoneNumber: data.spouse?.phoneNumber || "",
-                  },
-                })
-              }
+                onChange={(e) =>
+                  updateData({
+                    spouse: { 
+                      fullName: data.spouse?.fullName || "",
+                      dateOfBirth: e.target.value,
+                      relationship: "Vợ",
+                      occupation: data.spouse?.occupation || "",
+                      phoneNumber: data.spouse?.phoneNumber || "",
+                    },
+                  })
+                }
               />
+              {getError("spouse.dateOfBirth") && (
+                <p className="text-red-500 text-sm mt-1">{getError("spouse.dateOfBirth")}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label>Nghề nghiệp</Label>
               <Input
                 value={data.spouse?.occupation || ""}
-              onChange={(e) =>
-                updateData({
-                  spouse: { 
-                    fullName: data.spouse?.fullName || "",
-                    dateOfBirth: data.spouse?.dateOfBirth || "",
-                    relationship: "Vợ",
-                    occupation: e.target.value,
-                    phoneNumber: data.spouse?.phoneNumber || "",
-                  },
-                })
-              }
+                onChange={(e) =>
+                  updateData({
+                    spouse: { 
+                      fullName: data.spouse?.fullName || "",
+                      dateOfBirth: data.spouse?.dateOfBirth || "",
+                      relationship: "Vợ",
+                      occupation: e.target.value,
+                      phoneNumber: data.spouse?.phoneNumber || "",
+                    },
+                  })
+                }
               />
+              {getError("spouse.occupation") && (
+                <p className="text-red-500 text-sm mt-1">{getError("spouse.occupation")}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label>Số điện thoại</Label>
               <Input
                 value={data.spouse?.phoneNumber || ""}
-              onChange={(e) =>
-                updateData({
-                  spouse: { 
-                    fullName: data.spouse?.fullName || "",
-                    dateOfBirth: data.spouse?.dateOfBirth || "",
-                    relationship: "Vợ",
-                    occupation: data.spouse?.occupation || "",
-                    phoneNumber: e.target.value,
-                  },
-                })
-              }
+                onChange={(e) =>
+                  updateData({
+                    spouse: { 
+                      fullName: data.spouse?.fullName || "",
+                      dateOfBirth: data.spouse?.dateOfBirth || "",
+                      relationship: "Vợ",
+                      occupation: data.spouse?.occupation || "",
+                      phoneNumber: e.target.value,
+                    },
+                  })
+                }
               />
+              {getError("spouse.phoneNumber") && (
+                <p className="text-red-500 text-sm mt-1">{getError("spouse.phoneNumber")}</p>
+              )}
             </div>
           </div>
         </div>
@@ -154,6 +176,9 @@ export function Step3Family({ data, updateData }: StepProps) {
                 onChange={(e) => updateChild(index, "fullName", e.target.value)}
                 placeholder="Nguyễn Văn C"
               />
+              {getError(`children.${index}.fullName`) && (
+                <p className="text-red-500 text-sm mt-1">{getError(`children.${index}.fullName`)}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label>Ngày sinh</Label>
@@ -162,6 +187,9 @@ export function Step3Family({ data, updateData }: StepProps) {
                 value={child.dateOfBirth}
                 onChange={(e) => updateChild(index, "dateOfBirth", e.target.value)}
               />
+              {getError(`children.${index}.dateOfBirth`) && (
+                <p className="text-red-500 text-sm mt-1">{getError(`children.${index}.dateOfBirth`)}</p>
+              )}
             </div>
             <Button
               type="button"
