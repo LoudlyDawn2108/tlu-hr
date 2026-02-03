@@ -10,6 +10,7 @@ import PersonnelDetailPage from "./pages/tccb/PersonnelDetailPage";
 import OrganizationPage from "./pages/tccb/OrganizationPage";
 import UnitDetailPage from "./pages/tccb/UnitDetailPage";
 import ContractListPage from "./pages/tccb/ContractListPage";
+import ContractCreatePage from "./pages/tccb/ContractCreatePage";
 import TrainingListPage from "./pages/tccb/TrainingListPage";
 
 export default function AppRouter() {
@@ -27,6 +28,7 @@ export default function AppRouter() {
           <Route path="/tccb/organization" element={<OrganizationPage />} />
           <Route path="/tccb/organization/:id" element={<UnitDetailPage />} />
           <Route path="/tccb/contracts" element={<ContractListPage />} />
+          <Route path="/tccb/contracts/new" element={<ContractCreatePage />} />
           <Route path="/tccb/training" element={<TrainingListPage />} />
         </Route>
       </Route>
