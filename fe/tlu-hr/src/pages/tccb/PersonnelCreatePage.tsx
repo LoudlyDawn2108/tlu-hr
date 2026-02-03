@@ -5,6 +5,9 @@ import { Save, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { z } from "zod";
+import { wizardDataToPersonnel } from "@/utils/personnel-mapper";
+import personnelData from "@/data/personnel.json";
+import contractsData from "@/data/contracts.json";
 import {
   Accordion,
   AccordionContent,
@@ -62,6 +65,7 @@ const initialData: WizardData = {
   unitId: "",
   positionId: "",
   contractType: "definite",
+  contractNumber: "",
   contractSignDate: "",
   contractEffectiveDate: "",
   contractExpiryDate: "",
@@ -154,6 +158,27 @@ export default function PersonnelCreatePage() {
         description: "Vui lòng kiểm tra lại thông tin.",
       });
       return;
+    }
+
+    const personnelPartial = wizardDataToPersonnel(data);
+    const newId = `pers-${Date.now()}`;
+    const newPersonnel = {
+      ...personnelPartial,
+      id: newId,
+      employeeCode: `CB${Date.now().toString().slice(-6)}`,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      createdBy: 'system',
+      updatedBy: 'system',
+      temporaryAddress: personnelPartial.temporaryAddress || null,
+    } as unknown as typeof personnelData[0];
+
+    personnelData.push(newPersonnel);
+
+    if (newPersonnel.contracts && newPersonnel.contracts.length > 0) {
+      const contract = newPersonnel.contracts[0];
+      (contract as unknown as Record<string, string>).personnelId = newId;
+      contractsData.push(contract as unknown as typeof contractsData[0]);
     }
 
     toast({
