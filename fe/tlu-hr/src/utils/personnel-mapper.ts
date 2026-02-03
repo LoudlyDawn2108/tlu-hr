@@ -1,5 +1,5 @@
-import { PersonnelStatus } from '@/types';
-import type { Personnel, FamilyMember, Education } from '@/types';
+import { PersonnelStatus, ContractStatus, ContractType } from '@/types';
+import type { Personnel, FamilyMember, Education, Contract } from '@/types';
 import type { WizardData } from '@/types/wizard';
 
 /**
@@ -22,8 +22,10 @@ export function personnelToWizardData(personnel: Personnel): WizardData {
     personnel.unitAssignments[0]?.positionId ||
     '';
 
-  // Extract contract fields from currentContract
+    // Extract contract fields from currentContract
   const contractType = personnel.currentContract?.type || '';
+  const contractNumber = personnel.currentContract?.contractNumber || '';
+  const contractJobDescription = personnel.currentContract?.jobDescription || '';
   const contractSignDate = personnel.currentContract?.signDate || '';
   const contractEffectiveDate = personnel.currentContract?.effectiveDate || '';
   const contractExpiryDate = personnel.currentContract?.expiryDate || '';
@@ -98,6 +100,8 @@ export function personnelToWizardData(personnel: Personnel): WizardData {
     unitId,
     positionId,
     contractType,
+    contractNumber,
+    contractJobDescription,
     contractSignDate,
     contractEffectiveDate,
     contractExpiryDate,
@@ -194,6 +198,24 @@ export function wizardDataToPersonnel(
     unitAssignments: [],
     changeHistory: [],
   };
+
+  const contract: Contract = {
+    id: `cont-${Date.now()}`,
+    contractNumber: data.contractNumber,
+    type: data.contractType as ContractType,
+    signDate: data.contractSignDate,
+    effectiveDate: data.contractEffectiveDate,
+    expiryDate: data.contractExpiryDate || undefined,
+    jobDescription: data.contractJobDescription || '',
+    documents: [],
+    status: ContractStatus.ACTIVE,
+    extensionCount: 0,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  };
+
+  result.contracts = [contract];
+  result.currentContract = contract;
 
   // If editing, include the original ID
   if (originalId) {
