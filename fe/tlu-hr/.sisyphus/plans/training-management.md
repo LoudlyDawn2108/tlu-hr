@@ -300,7 +300,7 @@ Wave 4 (Final):
 
 ### Task 3: Enhance TrainingListPage with Row Actions and Year Filter
 
-- [ ] 3. Enhance TrainingListPage with full functionality
+- [x] 3. Enhance TrainingListPage with full functionality
 
   **What to do**:
   - Add "Tạo khóa đào tạo" button linking to `/tccb/training/new`
@@ -363,7 +363,7 @@ Wave 4 (Final):
 
 ### Task 4: Create TrainingCreatePage
 
-- [ ] 4. Create training course creation page
+- [x] 4. Create training course creation page
 
   **What to do**:
   - Create `src/pages/tccb/TrainingCreatePage.tsx`
@@ -433,7 +433,7 @@ Wave 4 (Final):
 
 ### Task 5: Add Training Routes to Router
 
-- [ ] 5. Add new training routes
+- [x] 5. Add new training routes
 
   **What to do**:
   - Add route: `/tccb/training/new` → TrainingCreatePage

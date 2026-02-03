@@ -1,0 +1,3 @@
+- When working with `TrainingCourse` status, use the `TrainingStatus` enum from `@/types` instead of string literals to avoid type errors.
+- `TrainingStatus` enum values are: `PLANNED`, `OPEN`, `IN_PROGRESS`, `COMPLETED`, `CANCELLED`.
+- Local state updates for `TrainingCourse` should respect the `TrainingStatus` type.
