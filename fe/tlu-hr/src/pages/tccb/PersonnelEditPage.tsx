@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { ChevronLeft, ChevronRight, Save } from "lucide-react";
+import { Save } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Step1BasicInfo } from "@/components/forms/wizard-steps/Step1BasicInfo";
 import { Step2AddressContact } from "@/components/forms/wizard-steps/Step2AddressContact";
 import { Step3Family } from "@/components/forms/wizard-steps/Step3Family";
@@ -17,6 +21,7 @@ import type { WizardData } from "@/types/wizard";
 import { personnelToWizardData } from "@/utils/personnel-mapper";
 import personnelData from "@/data/personnel.json";
 import type { Personnel } from "@/types";
+import { fullWizardSchema } from "@/lib/schemas";
 
 const initialData: WizardData = {
   fullName: "",
@@ -69,9 +74,9 @@ export default function PersonnelEditPage() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { toast } = useToast();
-  const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState<WizardData>(initialData);
   const [originalPersonnel, setOriginalPersonnel] = useState<Personnel | null>(null);
+  const [errors, setErrors] = useState<Record<string, string | string[] | undefined>>({});
 
   useEffect(() => {
     if (id) {
@@ -91,26 +96,23 @@ export default function PersonnelEditPage() {
     }
   }, [id, navigate, toast]);
 
-  const progress = (currentStep / steps.length) * 100;
-  const CurrentStepComponent = steps[currentStep - 1].component;
-
   const updateData = (updates: Partial<WizardData>) => {
     setData((prev) => ({ ...prev, ...updates }));
   };
 
-  const handleNext = () => {
-    if (currentStep < steps.length) {
-      setCurrentStep((prev) => prev + 1);
-    }
-  };
-
-  const handlePrevious = () => {
-    if (currentStep > 1) {
-      setCurrentStep((prev) => prev - 1);
-    }
-  };
-
   const handleSubmit = () => {
+    const result = fullWizardSchema.safeParse(data);
+    if (!result.success) {
+      const fieldErrors = result.error.flatten().fieldErrors;
+      setErrors(fieldErrors);
+      toast({
+        title: "Lỗi",
+        description: "Vui lòng kiểm tra các trường báo đỏ",
+      });
+      return;
+    }
+
+    setErrors({});
     toast({
       title: "Thành công",
       description: "Cập nhật hồ sơ thành công",
@@ -127,49 +129,43 @@ export default function PersonnelEditPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">
-          Chỉnh sửa nhân sự: {originalPersonnel.employeeCode} - {originalPersonnel.fullName}
-        </h1>
-        <p className="text-muted-foreground">
-          Bước {currentStep} / {steps.length}: {steps[currentStep - 1].title}
-        </p>
-      </div>
-
-      <Progress value={progress} className="h-2" />
-
-      <Card>
-        <CardHeader>
-          <CardTitle>{steps[currentStep - 1].title}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <CurrentStepComponent data={data} updateData={updateData} />
-        </CardContent>
-      </Card>
-
-      <div className="flex justify-between">
-        <Button
-          variant="outline"
-          onClick={handlePrevious}
-          disabled={currentStep === 1}
-        >
-          <ChevronLeft className="mr-2 h-4 w-4" />
-          Quay lại
+    <div className="max-w-4xl mx-auto space-y-6 pb-10">
+      <div className="flex items-center justify-between sticky top-0 bg-background/95 backdrop-blur z-10 py-4 border-b">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight">
+            Chỉnh sửa: {originalPersonnel.fullName}
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            {originalPersonnel.employeeCode}
+          </p>
+        </div>
+        <Button onClick={handleSubmit}>
+          <Save className="mr-2 h-4 w-4" />
+          Lưu hồ sơ
         </Button>
-
-        {currentStep === steps.length ? (
-          <Button onClick={handleSubmit}>
-            <Save className="mr-2 h-4 w-4" />
-            Lưu hồ sơ
-          </Button>
-        ) : (
-          <Button onClick={handleNext}>
-            Tiếp theo
-            <ChevronRight className="ml-2 h-4 w-4" />
-          </Button>
-        )}
       </div>
+
+      <Accordion type="multiple" defaultValue={["item-1"]} className="w-full">
+        {steps.map((step) => {
+          const StepComponent = step.component;
+          return (
+            <AccordionItem key={step.id} value={`item-${step.id}`}>
+              <AccordionTrigger className="text-lg font-semibold px-1">
+                {step.title}
+              </AccordionTrigger>
+              <AccordionContent className="p-1">
+                <div className="pt-2 pb-4">
+                  <StepComponent 
+                    data={data} 
+                    updateData={updateData} 
+                    errors={errors} 
+                  />
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          );
+        })}
+      </Accordion>
     </div>
   );
 }
