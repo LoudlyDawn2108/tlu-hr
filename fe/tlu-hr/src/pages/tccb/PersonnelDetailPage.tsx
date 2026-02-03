@@ -19,9 +19,10 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronLeft, Building2, GraduationCap, FileText, Wallet, Award, BookOpen, Users, Pencil, UserX, History } from "lucide-react";
+import { ChevronLeft, Building2, GraduationCap, FileText, Wallet, Award, BookOpen, Users, Pencil, UserX, History, Plus, FileSignature, Ban } from "lucide-react";
 import personnelData from "@/data/personnel.json";
 import organizationData from "@/data/organizations.json";
+import contractsData from "@/data/contracts.json";
 
 export default function PersonnelDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -29,6 +30,7 @@ export default function PersonnelDetailPage() {
   const { toast } = useToast();
   
   const person = personnelData.find((p) => p.id === id);
+  const contracts = contractsData.filter((c) => c.personnelId === id).sort((a, b) => new Date(b.signDate).getTime() - new Date(a.signDate).getTime());
   
   const [isTerminateDialogOpen, setIsTerminateDialogOpen] = useState(false);
   const [terminationDate, setTerminationDate] = useState("");
@@ -82,6 +84,36 @@ export default function PersonnelDetailPage() {
         return <Badge variant="secondary">Không hoạt động</Badge>;
       case "retired":
         return <Badge variant="outline">Đã nghỉ hưu</Badge>;
+      default:
+        return <Badge variant="outline">{status}</Badge>;
+    }
+  };
+
+  const getContractTypeLabel = (type: string) => {
+    switch (type) {
+      case "indefinite":
+        return "Không xác định thời hạn";
+      case "definite":
+        return "Xác định thời hạn";
+      case "probation":
+        return "Thử việc";
+      case "visiting":
+        return "Thỉnh giảng";
+      default:
+        return type;
+    }
+  };
+
+  const getContractStatusBadge = (status: string) => {
+    switch (status) {
+      case "active":
+        return <Badge className="bg-green-500 hover:bg-green-600">Đang hiệu lực</Badge>;
+      case "expired":
+        return <Badge variant="secondary">Đã hết hạn</Badge>;
+      case "extended":
+        return <Badge className="bg-blue-500 hover:bg-blue-600">Đã gia hạn</Badge>;
+      case "terminated":
+        return <Badge variant="destructive">Đã chấm dứt</Badge>;
       default:
         return <Badge variant="outline">{status}</Badge>;
     }
@@ -261,11 +293,80 @@ export default function PersonnelDetailPage() {
 
         <TabsContent value="contracts">
           <Card>
-            <CardHeader>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle>Hợp đồng lao động</CardTitle>
+              <Button onClick={() => navigate(`/tccb/contracts/new?personnelId=${id}`)}>
+                <Plus className="mr-2 h-4 w-4" />
+                Thêm hợp đồng
+              </Button>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">Thông tin hợp đồng sẽ được hiển thị tại đây</p>
+              {contracts.length > 0 ? (
+                <div className="space-y-4 pt-4">
+                  {contracts.map((contract) => (
+                    <div key={contract.id} className="border rounded-lg p-4 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold text-lg">{contract.contractNumber}</span>
+                            {getContractStatusBadge(contract.status)}
+                          </div>
+                          <p className="text-sm text-muted-foreground font-medium">
+                            {getContractTypeLabel(contract.type)}
+                          </p>
+                        </div>
+                        {contract.status === "active" && (
+                          <div className="flex gap-2">
+                            <Button variant="outline" size="sm" onClick={() => {
+                              toast({
+                                title: "Thông báo",
+                                description: "Chức năng gia hạn hợp đồng đang được phát triển",
+                              });
+                            }}>
+                              <FileSignature className="mr-2 h-4 w-4" />
+                              Gia hạn
+                            </Button>
+                            <Button variant="outline" size="sm" className="text-destructive hover:text-destructive" onClick={() => {
+                              toast({
+                                title: "Thông báo",
+                                description: "Chức năng chấm dứt hợp đồng đang được phát triển",
+                              });
+                            }}>
+                              <Ban className="mr-2 h-4 w-4" />
+                              Chấm dứt
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                        <div>
+                          <span className="text-muted-foreground">Ngày ký:</span> {new Date(contract.signDate).toLocaleDateString("vi-VN")}
+                        </div>
+                        <div>
+                          <span className="text-muted-foreground">Ngày hiệu lực:</span> {new Date(contract.effectiveDate).toLocaleDateString("vi-VN")}
+                        </div>
+                        <div>
+                          <span className="text-muted-foreground">Ngày hết hạn:</span> {contract.expiryDate ? new Date(contract.expiryDate).toLocaleDateString("vi-VN") : "Không xác định"}
+                        </div>
+                        <div>
+                          <span className="text-muted-foreground">Số lần gia hạn:</span> {contract.extensionCount || 0}
+                        </div>
+                      </div>
+                      
+                      {contract.jobDescription && (
+                        <div className="text-sm bg-muted/50 p-2 rounded">
+                          <span className="font-medium">Mô tả công việc:</span> {contract.jobDescription}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8 text-muted-foreground">
+                  Chưa có thông tin hợp đồng
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
