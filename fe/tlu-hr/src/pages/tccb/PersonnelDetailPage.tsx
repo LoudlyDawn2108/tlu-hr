@@ -19,7 +19,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronLeft, Building2, GraduationCap, FileText, Wallet, Award, BookOpen, Users, Pencil, UserX } from "lucide-react";
+import { ChevronLeft, Building2, GraduationCap, FileText, Wallet, Award, BookOpen, Users, Pencil, UserX, History } from "lucide-react";
 import personnelData from "@/data/personnel.json";
 import organizationData from "@/data/organizations.json";
 
@@ -179,6 +179,59 @@ export default function PersonnelDetailPage() {
               <div><span className="text-muted-foreground">Email cá nhân:</span> {person.personalEmail}</div>
               <div><span className="text-muted-foreground">Email công việc:</span> {person.workEmail}</div>
               <div className="col-span-2"><span className="text-muted-foreground">Địa chỉ:</span> {person.permanentAddress?.streetAddress}, {person.permanentAddress?.ward}, {person.permanentAddress?.district}, {person.permanentAddress?.province}</div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <History className="h-5 w-5" />
+                Lịch sử thay đổi
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {person.changeHistory && person.changeHistory.length > 0 ? (
+                <div className="space-y-4">
+                  {person.changeHistory.map((change, index) => (
+                    <div key={change.id} className="flex gap-4">
+                      <div className="flex flex-col items-center">
+                        <div className="w-2 h-2 rounded-full bg-primary" />
+                        {index < person.changeHistory.length - 1 && (
+                          <div className="w-0.5 h-full bg-border mt-2" />
+                        )}
+                      </div>
+                      <div className="flex-1 pb-4">
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium">
+                            {change.action === 'create' && 'Tạo mới'}
+                            {change.action === 'update' && 'Cập nhật'}
+                            {change.action === 'delete' && 'Xóa'}
+                            {change.action === 'status_change' && 'Thay đổi trạng thái'}
+                          </span>
+                          <span className="text-sm text-muted-foreground">
+                            {new Date(change.performedAt).toLocaleDateString('vi-VN')}
+                          </span>
+                        </div>
+                        <div className="text-sm text-muted-foreground mt-1">
+                          Bởi: {change.performedBy}
+                        </div>
+                        {change.reason && (
+                          <div className="text-sm mt-1">
+                            <span className="text-muted-foreground">Lý do:</span> {change.reason}
+                          </div>
+                        )}
+                        {change.fieldName && (
+                          <div className="text-sm mt-1 text-muted-foreground">
+                            Trường: {change.fieldName}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-muted-foreground">Chưa có lịch sử thay đổi</p>
+              )}
             </CardContent>
           </Card>
         </TabsContent>

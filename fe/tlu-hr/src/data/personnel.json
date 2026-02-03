@@ -133,7 +133,41 @@
     "updatedAt": "2024-01-01T00:00:00Z",
     "createdBy": "user-001",
     "updatedBy": "user-001",
-    "changeHistory": [],
+    "changeHistory": [
+      {
+        "id": "ch-001",
+        "entityType": "personnel",
+        "entityId": "pers-001",
+        "action": "create",
+        "performedBy": "admin",
+        "performedAt": "2024-01-01T08:00:00Z",
+        "reason": "Tạo mới hồ sơ nhân sự"
+      },
+      {
+        "id": "ch-002",
+        "entityType": "personnel",
+        "entityId": "pers-001",
+        "action": "update",
+        "fieldName": "phoneNumber",
+        "oldValue": "0912345670",
+        "newValue": "0912345678",
+        "performedBy": "tccb_officer",
+        "performedAt": "2024-03-15T10:30:00Z",
+        "reason": "Cập nhật số điện thoại mới"
+      },
+      {
+        "id": "ch-003",
+        "entityType": "personnel",
+        "entityId": "pers-001",
+        "action": "update",
+        "fieldName": "title",
+        "oldValue": "Giảng viên",
+        "newValue": "Trưởng bộ môn",
+        "performedBy": "tccb_officer",
+        "performedAt": "2024-06-20T14:00:00Z",
+        "reason": "Bổ nhiệm chức vụ mới"
+      }
+    ],
     "pendingUpdateRequest": null
   },
   {
