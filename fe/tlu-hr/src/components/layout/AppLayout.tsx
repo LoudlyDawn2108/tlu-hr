@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ChevronRight, LogOut, Users, Building2, FileText, GraduationCap, LayoutDashboard, UserPlus, Briefcase } from "lucide-react";
+import { ChevronRight, LogOut, Users, Building2, FileText, GraduationCap, LayoutDashboard, UserPlus, Briefcase, Plus } from "lucide-react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 
 const navigationGroups = [
@@ -58,6 +58,7 @@ const navigationGroups = [
     title: "Đào tạo & Phát triển",
     items: [
       { title: "Khóa đào tạo", url: "/tccb/training", icon: GraduationCap },
+      { title: "Tạo khóa đào tạo", url: "/tccb/training/new", icon: Plus },
     ],
   },
   {
