@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
 import { AppLayout } from "./components/layout/AppLayout";
 import LoginPage from "./pages/auth/LoginPage";
 import DashboardPage from "./pages/tccb/DashboardPage";
@@ -36,6 +37,18 @@ export default function AppRouter() {
           <Route path="/tccb/training/new" element={<TrainingCreatePage />} />
           <Route path="/tccb/training/:id" element={<TrainingDetailPage />} />
           <Route path="/tccb/training/:id/edit" element={<TrainingEditPage />} />
+          <Route element={<AdminRoute />}>
+            <Route path="/admin" element={<Navigate to="/admin/users" replace />} />
+            <Route path="/admin/users" element={<div>Quản lý người dùng</div>} />
+            <Route path="/admin/users/new" element={<div>Thêm người dùng</div>} />
+            <Route path="/admin/users/:id/edit" element={<div>Sửa người dùng</div>} />
+            <Route path="/admin/config/salary" element={<div>Cấu hình lương</div>} />
+            <Route path="/admin/config/allowances" element={<div>Cấu hình phụ cấp</div>} />
+            <Route path="/admin/config/contracts" element={<div>Cấu hình hợp đồng</div>} />
+            <Route path="/admin/config/evaluations" element={<div>Cấu hình đánh giá</div>} />
+            <Route path="/admin/config/training-types" element={<div>Loại đào tạo</div>} />
+            <Route path="/admin/config/catalogs" element={<div>Danh mục nghiệp vụ</div>} />
+          </Route>
         </Route>
       </Route>
       <Route path="/" element={<Navigate to="/tccb/dashboard" replace />} />

@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ChevronRight, LogOut, Users, Building2, FileText, GraduationCap, LayoutDashboard, UserPlus, Briefcase, Plus } from "lucide-react";
+import { ChevronRight, LogOut, Users, Building2, FileText, GraduationCap, LayoutDashboard, UserPlus, Briefcase, Plus, DollarSign, Gift, Medal, FolderTree } from "lucide-react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 
 const navigationGroups = [
@@ -69,6 +69,19 @@ const navigationGroups = [
     ],
   },
 ];
+
+const adminNavigationGroup = {
+  title: "Quản trị hệ thống",
+  items: [
+    { title: "Người dùng", url: "/admin/users", icon: Users },
+    { title: "Cấu hình lương", url: "/admin/config/salary", icon: DollarSign },
+    { title: "Phụ cấp", url: "/admin/config/allowances", icon: Gift },
+    { title: "Hợp đồng", url: "/admin/config/contracts", icon: FileText },
+    { title: "Đánh giá", url: "/admin/config/evaluations", icon: Medal },
+    { title: "Loại đào tạo", url: "/admin/config/training-types", icon: GraduationCap },
+    { title: "Danh mục nghiệp vụ", url: "/admin/config/catalogs", icon: FolderTree },
+  ],
+};
 
 function NavItem({ item, isActive }: { item: typeof navigationGroups[0]["items"][0]; isActive: boolean }) {
   return (
@@ -135,6 +148,9 @@ function AppSidebar() {
         {navigationGroups.map((group) => (
           <NavGroup key={group.title} group={group} pathname={location.pathname} />
         ))}
+        {user?.role === "system_admin" ? (
+          <NavGroup group={adminNavigationGroup} pathname={location.pathname} />
+        ) : null}
       </SidebarContent>
 
       <SidebarFooter className="border-t p-4">

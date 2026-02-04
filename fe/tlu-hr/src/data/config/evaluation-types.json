@@ -1,0 +1,69 @@
+{
+  "rewards": [
+    {
+      "id": "rw-001",
+      "code": "DH",
+      "name": "Danh hiệu",
+      "category": "reward",
+      "description": "Các danh hiệu thi đua",
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": "rw-002",
+      "code": "BK",
+      "name": "Bằng khen",
+      "category": "reward",
+      "description": "Bằng khen các cấp",
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": "rw-003",
+      "code": "GK",
+      "name": "Giấy khen",
+      "category": "reward",
+      "description": "Giấy khen các cấp",
+      "isActive": true,
+      "order": 3
+    }
+  ],
+  "disciplines": [
+    {
+      "id": "dc-001",
+      "code": "KT",
+      "name": "Khiển trách",
+      "category": "discipline",
+      "description": "Hình thức kỷ luật khiển trách",
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": "dc-002",
+      "code": "CC",
+      "name": "Cảnh cáo",
+      "category": "discipline",
+      "description": "Hình thức kỷ luật cảnh cáo",
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": "dc-003",
+      "code": "HB",
+      "name": "Hạ bậc lương",
+      "category": "discipline",
+      "description": "Hình thức kỷ luật hạ bậc lương",
+      "isActive": true,
+      "order": 3
+    },
+    {
+      "id": "dc-004",
+      "code": "BTV",
+      "name": "Buộc thôi việc",
+      "category": "discipline",
+      "description": "Hình thức kỷ luật buộc thôi việc",
+      "isActive": true,
+      "order": 4
+    }
+  ]
+}

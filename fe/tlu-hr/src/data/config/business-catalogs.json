@@ -1,0 +1,254 @@
+{
+  "education_level": [
+    {
+      "id": "el-001",
+      "type": "education_level",
+      "code": "TS",
+      "name": "Tiến sĩ",
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": "el-002",
+      "type": "education_level",
+      "code": "THS",
+      "name": "Thạc sĩ",
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": "el-003",
+      "type": "education_level",
+      "code": "CN",
+      "name": "Cử nhân",
+      "isActive": true,
+      "order": 3
+    },
+    {
+      "id": "el-004",
+      "type": "education_level",
+      "code": "KS",
+      "name": "Kỹ sư",
+      "isActive": true,
+      "order": 4
+    },
+    {
+      "id": "el-005",
+      "type": "education_level",
+      "code": "CD",
+      "name": "Cao đẳng",
+      "isActive": true,
+      "order": 5
+    },
+    {
+      "id": "el-006",
+      "type": "education_level",
+      "code": "TC",
+      "name": "Trung cấp",
+      "isActive": true,
+      "order": 6
+    }
+  ],
+  "academic_title": [
+    {
+      "id": "at-001",
+      "type": "academic_title",
+      "code": "GS",
+      "name": "Giáo sư",
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": "at-002",
+      "type": "academic_title",
+      "code": "PGS",
+      "name": "Phó Giáo sư",
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": "at-003",
+      "type": "academic_title",
+      "code": "NONE",
+      "name": "Không",
+      "isActive": true,
+      "order": 3
+    }
+  ],
+  "civil_service_grade": [
+    {
+      "id": "csg-001",
+      "type": "civil_service_grade",
+      "code": "GV3",
+      "name": "Giảng viên hạng III",
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": "csg-002",
+      "type": "civil_service_grade",
+      "code": "GV2",
+      "name": "Giảng viên hạng II",
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": "csg-003",
+      "type": "civil_service_grade",
+      "code": "GV1",
+      "name": "Giảng viên hạng I",
+      "isActive": true,
+      "order": 3
+    },
+    {
+      "id": "csg-004",
+      "type": "civil_service_grade",
+      "code": "CV",
+      "name": "Chuyên viên",
+      "isActive": true,
+      "order": 4
+    }
+  ],
+  "position": [
+    {
+      "id": "pos-001",
+      "type": "position",
+      "code": "TK",
+      "name": "Trưởng khoa",
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": "pos-002",
+      "type": "position",
+      "code": "PTK",
+      "name": "Phó trưởng khoa",
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": "pos-003",
+      "type": "position",
+      "code": "TBM",
+      "name": "Trưởng bộ môn",
+      "isActive": true,
+      "order": 3
+    },
+    {
+      "id": "pos-004",
+      "type": "position",
+      "code": "PTBM",
+      "name": "Phó trưởng bộ môn",
+      "isActive": true,
+      "order": 4
+    },
+    {
+      "id": "pos-005",
+      "type": "position",
+      "code": "TP",
+      "name": "Trưởng phòng",
+      "isActive": true,
+      "order": 5
+    },
+    {
+      "id": "pos-006",
+      "type": "position",
+      "code": "PTP",
+      "name": "Phó trưởng phòng",
+      "isActive": true,
+      "order": 6
+    }
+  ],
+  "honor": [
+    {
+      "id": "hn-001",
+      "type": "honor",
+      "code": "NGND",
+      "name": "Nhà giáo nhân dân",
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": "hn-002",
+      "type": "honor",
+      "code": "NGUT",
+      "name": "Nhà giáo ưu tú",
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": "hn-003",
+      "type": "honor",
+      "code": "CSTDB",
+      "name": "Chiến sĩ thi đua cấp Bộ",
+      "isActive": true,
+      "order": 3
+    },
+    {
+      "id": "hn-004",
+      "type": "honor",
+      "code": "CSTDCS",
+      "name": "Chiến sĩ thi đua cơ sở",
+      "isActive": true,
+      "order": 4
+    }
+  ],
+  "unit_type": [
+    {
+      "id": "ut-001",
+      "type": "unit_type",
+      "code": "KHOA",
+      "name": "Khoa",
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "id": "ut-002",
+      "type": "unit_type",
+      "code": "VIEN",
+      "name": "Viện",
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "id": "ut-003",
+      "type": "unit_type",
+      "code": "TT",
+      "name": "Trung tâm",
+      "isActive": true,
+      "order": 3
+    },
+    {
+      "id": "ut-004",
+      "type": "unit_type",
+      "code": "BM",
+      "name": "Bộ môn",
+      "isActive": true,
+      "order": 4
+    },
+    {
+      "id": "ut-005",
+      "type": "unit_type",
+      "code": "PHONG",
+      "name": "Phòng",
+      "isActive": true,
+      "order": 5
+    },
+    {
+      "id": "ut-006",
+      "type": "unit_type",
+      "code": "BAN",
+      "name": "Ban",
+      "isActive": true,
+      "order": 6
+    },
+    {
+      "id": "ut-007",
+      "type": "unit_type",
+      "code": "DU",
+      "name": "Đảng ủy",
+      "isActive": true,
+      "order": 7
+    }
+  ]
+}

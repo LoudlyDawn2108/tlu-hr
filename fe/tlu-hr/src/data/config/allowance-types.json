@@ -1,0 +1,62 @@
+[
+  {
+    "id": "at-001",
+    "code": "PHC-001",
+    "name": "Phụ cấp chức vụ",
+    "type": "position",
+    "calculationType": "coefficient",
+    "formula": "baseSalary * coefficient",
+    "isActive": true,
+    "order": 1
+  },
+  {
+    "id": "at-002",
+    "code": "PHC-002",
+    "name": "Phụ cấp thâm niên",
+    "type": "seniority",
+    "calculationType": "coefficient",
+    "formula": "baseSalary * yearsOfService * 0.01",
+    "isActive": true,
+    "order": 2
+  },
+  {
+    "id": "at-003",
+    "code": "PHC-003",
+    "name": "Phụ cấp ưu đãi ngành",
+    "type": "industry",
+    "calculationType": "coefficient",
+    "formula": "baseSalary * 0.25",
+    "isActive": true,
+    "order": 3
+  },
+  {
+    "id": "at-004",
+    "code": "PHC-004",
+    "name": "Phụ cấp trách nhiệm",
+    "type": "responsibility",
+    "calculationType": "coefficient",
+    "formula": "baseSalary * 0.2",
+    "isActive": true,
+    "order": 4
+  },
+  {
+    "id": "at-005",
+    "code": "PHC-005",
+    "name": "Phụ cấp độc hại",
+    "type": "hazardous",
+    "calculationType": "fixed_amount",
+    "formula": "500000",
+    "isActive": true,
+    "order": 5
+  },
+  {
+    "id": "at-006",
+    "code": "PHC-006",
+    "name": "Phụ cấp khu vực",
+    "type": "regional",
+    "calculationType": "coefficient",
+    "formula": "baseSalary * 0.1",
+    "isActive": true,
+    "order": 6
+  }
+]

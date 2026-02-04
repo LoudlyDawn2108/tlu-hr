@@ -1,0 +1,46 @@
+[
+  {
+    "id": "ct-001",
+    "type": "indefinite",
+    "name": "Không xác định thời hạn",
+    "minDuration": null,
+    "maxDuration": null,
+    "maxExtensions": 0,
+    "maxConversionTime": null,
+    "warningDays": 0,
+    "isActive": true
+  },
+  {
+    "id": "ct-002",
+    "type": "definite",
+    "name": "Xác định thời hạn",
+    "minDuration": 12,
+    "maxDuration": 36,
+    "maxExtensions": 2,
+    "maxConversionTime": 60,
+    "warningDays": 30,
+    "isActive": true
+  },
+  {
+    "id": "ct-003",
+    "type": "probation",
+    "name": "Thử việc",
+    "minDuration": 1,
+    "maxDuration": 6,
+    "maxExtensions": 0,
+    "maxConversionTime": null,
+    "warningDays": 7,
+    "isActive": true
+  },
+  {
+    "id": "ct-004",
+    "type": "visiting",
+    "name": "Thỉnh giảng",
+    "minDuration": 1,
+    "maxDuration": 12,
+    "maxExtensions": null,
+    "maxConversionTime": null,
+    "warningDays": 14,
+    "isActive": true
+  }
+]

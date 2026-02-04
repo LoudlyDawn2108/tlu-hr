@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ss-001",
+    "type": "lecturer",
+    "name": "Giảng viên",
+    "grades": [
+      { "grade": 1, "coefficient": 2.34 },
+      { "grade": 2, "coefficient": 2.67 },
+      { "grade": 3, "coefficient": 3.0 },
+      { "grade": 4, "coefficient": 3.33 },
+      { "grade": 5, "coefficient": 3.66 },
+      { "grade": 6, "coefficient": 3.99 }
+    ],
+    "isActive": true,
+    "history": []
+  },
+  {
+    "id": "ss-002",
+    "type": "senior_lecturer",
+    "name": "Giảng viên chính",
+    "grades": [
+      { "grade": 1, "coefficient": 4.4 },
+      { "grade": 2, "coefficient": 4.74 },
+      { "grade": 3, "coefficient": 5.08 },
+      { "grade": 4, "coefficient": 5.42 },
+      { "grade": 5, "coefficient": 5.76 },
+      { "grade": 6, "coefficient": 6.1 }
+    ],
+    "isActive": true,
+    "history": []
+  },
+  {
+    "id": "ss-003",
+    "type": "principal_lecturer",
+    "name": "Giảng viên cao cấp",
+    "grades": [
+      { "grade": 1, "coefficient": 6.2 },
+      { "grade": 2, "coefficient": 6.56 },
+      { "grade": 3, "coefficient": 6.92 },
+      { "grade": 4, "coefficient": 7.28 },
+      { "grade": 5, "coefficient": 7.64 },
+      { "grade": 6, "coefficient": 8.0 }
+    ],
+    "isActive": true,
+    "history": []
+  },
+  {
+    "id": "ss-004",
+    "type": "specialist",
+    "name": "Chuyên viên",
+    "grades": [
+      { "grade": 1, "coefficient": 2.34 },
+      { "grade": 2, "coefficient": 2.67 },
+      { "grade": 3, "coefficient": 3.0 },
+      { "grade": 4, "coefficient": 3.33 },
+      { "grade": 5, "coefficient": 3.66 },
+      { "grade": 6, "coefficient": 3.99 }
+    ],
+    "isActive": true,
+    "history": []
+  }
+]

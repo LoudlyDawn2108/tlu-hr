@@ -1,0 +1,34 @@
+[
+  {
+    "id": "tt-001",
+    "code": "DTN",
+    "name": "Đào tạo trong nước",
+    "description": "Các khóa đào tạo trong nước",
+    "isActive": true,
+    "order": 1
+  },
+  {
+    "id": "tt-002",
+    "code": "DTNN",
+    "name": "Đào tạo nước ngoài",
+    "description": "Các khóa đào tạo tại nước ngoài",
+    "isActive": true,
+    "order": 2
+  },
+  {
+    "id": "tt-003",
+    "code": "NH",
+    "name": "Đào tạo ngắn hạn",
+    "description": "Các khóa đào tạo dưới 6 tháng",
+    "isActive": true,
+    "order": 3
+  },
+  {
+    "id": "tt-004",
+    "code": "DH",
+    "name": "Đào tạo dài hạn",
+    "description": "Các khóa đào tạo trên 6 tháng",
+    "isActive": true,
+    "order": 4
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "bs-001",
+    "amount": 1800000,
+    "effectiveDate": "2023-07-01",
+    "isActive": true,
+    "createdAt": "2023-07-01T00:00:00Z"
+  },
+  {
+    "id": "bs-002",
+    "amount": 1490000,
+    "effectiveDate": "2019-07-01",
+    "isActive": false,
+    "createdAt": "2019-07-01T00:00:00Z"
+  }
+]
