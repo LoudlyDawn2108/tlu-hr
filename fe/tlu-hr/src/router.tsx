@@ -16,6 +16,9 @@ import TrainingListPage from "./pages/tccb/TrainingListPage";
 import TrainingCreatePage from "./pages/tccb/TrainingCreatePage";
 import TrainingDetailPage from "./pages/tccb/TrainingDetailPage";
 import TrainingEditPage from "./pages/tccb/TrainingEditPage";
+import UserListPage from "./pages/admin/UserListPage";
+import UserCreatePage from "./pages/admin/UserCreatePage";
+import UserEditPage from "./pages/admin/UserEditPage";
 
 export default function AppRouter() {
   return (
@@ -39,9 +42,9 @@ export default function AppRouter() {
           <Route path="/tccb/training/:id/edit" element={<TrainingEditPage />} />
           <Route element={<AdminRoute />}>
             <Route path="/admin" element={<Navigate to="/admin/users" replace />} />
-            <Route path="/admin/users" element={<div>Quản lý người dùng</div>} />
-            <Route path="/admin/users/new" element={<div>Thêm người dùng</div>} />
-            <Route path="/admin/users/:id/edit" element={<div>Sửa người dùng</div>} />
+            <Route path="/admin/users" element={<UserListPage />} />
+            <Route path="/admin/users/new" element={<UserCreatePage />} />
+            <Route path="/admin/users/:id/edit" element={<UserEditPage />} />
             <Route path="/admin/config/salary" element={<div>Cấu hình lương</div>} />
             <Route path="/admin/config/allowances" element={<div>Cấu hình phụ cấp</div>} />
             <Route path="/admin/config/contracts" element={<div>Cấu hình hợp đồng</div>} />
