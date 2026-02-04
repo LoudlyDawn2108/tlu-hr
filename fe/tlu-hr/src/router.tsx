@@ -19,6 +19,12 @@ import TrainingEditPage from "./pages/tccb/TrainingEditPage";
 import UserListPage from "./pages/admin/UserListPage";
 import UserCreatePage from "./pages/admin/UserCreatePage";
 import UserEditPage from "./pages/admin/UserEditPage";
+import SalaryConfigPage from "./pages/admin/config/SalaryConfigPage";
+import BusinessCatalogsPage from "./pages/admin/config/BusinessCatalogsPage";
+import EvaluationConfigPage from "./pages/admin/config/EvaluationConfigPage";
+import TrainingTypesPage from "./pages/admin/config/TrainingTypesPage";
+import AllowanceConfigPage from "./pages/admin/config/AllowanceConfigPage";
+import ContractConfigPage from "./pages/admin/config/ContractConfigPage";
 
 export default function AppRouter() {
   return (
@@ -45,12 +51,15 @@ export default function AppRouter() {
             <Route path="/admin/users" element={<UserListPage />} />
             <Route path="/admin/users/new" element={<UserCreatePage />} />
             <Route path="/admin/users/:id/edit" element={<UserEditPage />} />
-            <Route path="/admin/config/salary" element={<div>Cấu hình lương</div>} />
-            <Route path="/admin/config/allowances" element={<div>Cấu hình phụ cấp</div>} />
-            <Route path="/admin/config/contracts" element={<div>Cấu hình hợp đồng</div>} />
-            <Route path="/admin/config/evaluations" element={<div>Cấu hình đánh giá</div>} />
-            <Route path="/admin/config/training-types" element={<div>Loại đào tạo</div>} />
-            <Route path="/admin/config/catalogs" element={<div>Danh mục nghiệp vụ</div>} />
+            <Route path="/admin/config/salary" element={<SalaryConfigPage />} />
+            <Route path="/admin/config/allowances" element={<AllowanceConfigPage />} />
+            <Route
+              path="/admin/config/contracts"
+              element={<ContractConfigPage />}
+            />
+            <Route path="/admin/config/evaluations" element={<EvaluationConfigPage />} />
+            <Route path="/admin/config/training-types" element={<TrainingTypesPage />} />
+            <Route path="/admin/config/catalogs" element={<BusinessCatalogsPage />} />
           </Route>
         </Route>
       </Route>
