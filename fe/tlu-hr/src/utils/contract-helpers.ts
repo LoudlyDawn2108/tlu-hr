@@ -1,9 +1,13 @@
-import type { Contract } from '@/types';
+import contractTypesConfig from '@/data/config/contract-types.json';
+import type { Contract, ContractTypeConfig } from '@/types';
 import { ContractStatus, ContractType } from '@/types';
 
-export const DEFAULT_MAX_EXTENSIONS = 2;
+function getMaxExtensionsForType(contractType: ContractType): number {
+  const config = (contractTypesConfig as ContractTypeConfig[]).find((c) => c.type === contractType);
+  return config?.maxExtensions ?? 0;
+}
 
-export function canExtend(contract: Contract, maxExtensions: number = DEFAULT_MAX_EXTENSIONS): boolean {
+export function canExtend(contract: Contract): boolean {
   if (contract.status !== ContractStatus.ACTIVE) {
     return false;
   }
@@ -12,6 +16,7 @@ export function canExtend(contract: Contract, maxExtensions: number = DEFAULT_MA
     return false;
   }
 
+  const maxExtensions = getMaxExtensionsForType(contract.type);
   return contract.extensionCount < maxExtensions;
 }
 
@@ -59,7 +64,9 @@ export function validateContractDates(startDate: string, endDate?: string | null
   return null;
 }
 
-export function getExtensionStatusText(extensionCount: number, maxExtensions: number = DEFAULT_MAX_EXTENSIONS): string {
+export function getExtensionStatusText(contract: Contract): string {
+  const maxExtensions = getMaxExtensionsForType(contract.type);
+  const { extensionCount } = contract;
   if (extensionCount === 0) {
     return 'Chưa gia hạn';
   }
