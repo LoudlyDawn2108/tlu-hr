@@ -67,16 +67,16 @@ Hệ thống tập trung vào việc quản lý toàn diện vòng đời nhân 
 
 Phần này liệt kê các yêu cầu cấp cao (High-level Needs) được thu thập từ các bên liên quan. Đây là đáy của "Kim tự tháp yêu cầu" (Requirements Pyramid).
 
-| ID      | Stakeholder   | Request Description                                                                             | Priority | Use Cases                             |
-| ------- | ------------- | ----------------------------------------------------------------------------------------------- | -------- | ------------------------------------- |
-| STRQ-01 | Ban Giám hiệu | Cần báo cáo thống kê tức thời (Real-time Dashboard) về biến động nhân sự và chất lượng đội ngũ. | High     | UC-RPT-001                            |
-| STRQ-02 | Phòng TCCB    | Phải số hóa toàn bộ hồ sơ nhân sự, thay thế lưu trữ giấy tờ và Excel rời rạc.                   | High     | UC-HRM-001, UC-HRM-008, UC-ADM-001    |
-| STRQ-03 | Phòng TCCB    | Tự động cảnh báo các mốc thời gian: Hết hạn hợp đồng, đến hạn nâng lương.                       | High     | UC-HRM-003                            |
-| STRQ-04 | Phòng TCCB    | Quản lý được cấu trúc tổ chức phức tạp (Trường/Khoa/Bộ môn) và kiêm nhiệm chức vụ.              | Medium   | UC-HRM-006, UC-HRM-009, UC-HRM-010    |
-| STRQ-05 | Phòng TCKT    | Cung cấp chính xác dữ liệu ngạch, bậc, hệ số và phụ cấp để tính lương trên phần mềm kế toán.    | High     | UC-FIN-001, UC-FIN-002, UC-CFG-001    |
-| STRQ-06 | Giảng viên    | Cần cổng thông tin (Portal) để tự tra cứu hồ sơ, lịch sử hợp đồng và gửi yêu cầu cập nhật.      | Medium   | UC-SSP-001 đến UC-SSP-004             |
-| STRQ-07 | Admin         | Cho phép cấu hình động các tham số (lương cơ sở, định mức) khi luật thay đổi mà không sửa code. | High     | UC-CFG-001 đến UC-CFG-003, UC-CFG-007 |
-| STRQ-08 | Bộ Chủ quản   | Xuất được các biểu mẫu báo cáo thống kê theo quy định Nhà nước.                                 | High     | UC-RPT-001                            |
+| ID      | Stakeholder   | Request Description                                                                             | Priority |
+| ------- | ------------- | ----------------------------------------------------------------------------------------------- | -------- |
+| STRQ-01 | Ban Giám hiệu | Cần báo cáo thống kê tức thời (Real-time Dashboard) về biến động nhân sự và chất lượng đội ngũ. | High     |
+| STRQ-02 | Phòng TCCB    | Phải số hóa toàn bộ hồ sơ nhân sự, thay thế lưu trữ giấy tờ và Excel rời rạc.                   | High     |
+| STRQ-03 | Phòng TCCB    | Tự động cảnh báo các mốc thời gian: Hết hạn hợp đồng, đến hạn nâng lương.                       | High     |
+| STRQ-04 | Phòng TCCB    | Quản lý được cấu trúc tổ chức phức tạp (Trường/Khoa/Bộ môn) và kiêm nhiệm chức vụ.              | Medium   |
+| STRQ-05 | Phòng TCKT    | Cung cấp chính xác dữ liệu ngạch, bậc, hệ số và phụ cấp để tính lương trên phần mềm kế toán.    | High     |
+| STRQ-06 | Giảng viên    | Cần cổng thông tin (Portal) để tự tra cứu hồ sơ, lịch sử hợp đồng và gửi yêu cầu cập nhật.      | Medium   |
+| STRQ-07 | Admin         | Cho phép cấu hình động các tham số (lương cơ sở, định mức) khi luật thay đổi mà không sửa code. | High     |
+| STRQ-08 | Bộ Chủ quản   | Xuất được các biểu mẫu báo cáo thống kê theo quy định Nhà nước.                                 | High     |
 
 ### 4. Product Overview (Features)
 
@@ -84,80 +84,51 @@ Các đặc trưng (Features) của hệ thống, được ánh xạ từ STRQ.
 
 - FEAT-001: Quản lý Hồ sơ Nhân sự Tập trung
     - Trace to: STRQ-02, STRQ-04
-    - Related Use Cases: UC-HRM-001, UC-HRM-002, UC-HRM-008, UC-ADM-001
-    - Lưu trữ toàn diện hồ sơ nhân sự (Sơ yếu lý lịch, Quá trình công tác, Bằng cấp, Chứng chỉ, Gia đình, Thông tin ngân hàng).
-    - Hỗ trợ audit trail cơ bản (UC-HRM-008), tìm kiếm nâng cao, xuất trích ngang hồ sơ, in hồ sơ nhân sự,
-    - và phê duyệt cập nhật thông tin từ nhân sự (UC-ADM-001).
+    - 001.1 Lưu trữ toàn diện hồ sơ nhân sự (Sơ yếu lý lịch, Quá trình công tác, Bằng cấp, Chứng chỉ, Gia đình, Thông tin ngân hàng).
+    - 001.2 Hỗ trợ audit trail cơ bản (UC-HRM-008), tìm kiếm nâng cao, xuất trích ngang hồ sơ, in hồ sơ nhân sự, và phê duyệt cập nhật thông tin từ nhân sự (UC-ADM-001).
 
 - FEAT-002: Quản lý Cơ cấu Tổ chức Phân cấp
     - Trace to: STRQ-04
-    - Related Use Cases: UC-HRM-006, UC-HRM-009, UC-HRM-010
-    - Quản lý sơ đồ tổ chức đa cấp (Trường -> Khoa/Viện -> Bộ môn).
-    - Hỗ trợ quản lý nhân sự kiêm nhiệm nhiều chức vụ, chức vụ bộ môn (Trưởng/Phó BM) (UC-HRM-009),
-    - lịch sử thành lập/sáp nhập/giải thể đơn vị cơ bản (UC-HRM-010).
+    - 002.1 Quản lý sơ đồ tổ chức đa cấp (Trường -> Khoa/Viện -> Bộ môn).
+    - 002.2 Hỗ trợ quản lý nhân sự kiêm nhiệm nhiều chức vụ, chức vụ bộ môn (Trưởng/Phó BM) (UC-HRM-009), lịch sử thành lập/sáp nhập/giải thể đơn vị cơ bản (UC-HRM-010).
 
 - FEAT-003: Quản lý và Cảnh báo Hợp đồng
     - Trace to: STRQ-03
-    - Related Use Cases: UC-HRM-003, UC-CFG-002
-    - Quản lý vòng đời hợp đồng lao động (tạo mới, gia hạn, chấm dứt).
-    - Tự động cảnh báo trước khi hợp đồng hết hạn, đề xuất loại hợp đồng tiếp theo theo quy tắc cấu hình,
-    - validate thời hạn min/max, upload file hợp đồng PDF.
+    - 003.1 Quản lý vòng đời hợp đồng lao động (tạo mới, gia hạn, chấm dứt).
+    - 003.2 Tự động cảnh báo trước khi hợp đồng hết hạn, đề xuất loại hợp đồng tiếp theo theo quy tắc cấu hình, validate thời hạn min/max, upload file hợp đồng PDF.
 
-- FEAT-004: Engine Cấu hình Tham số Linh hoạt
+- FEAT-004: Cấu hình Tham số Linh hoạt
     - Trace to: STRQ-07
-    - Related Use Cases: UC-CFG-001, UC-CFG-002, UC-CFG-003, UC-CFG-004, UC-CFG-007
-    - Cho phép Quản trị viên cấu hình động các tham số nghiệp vụ cần thiết:
-
-    - Lương: Mức lương cơ sở, Hệ số ngạch/bậc, Danh mục phụ cấp (UC-CFG-001)
-    - Hợp đồng: Loại HĐ, thời hạn min/max, số lần ký tối đa, quy tắc chuyển đổi (UC-CFG-002)
-    - Danh mục dùng chung: Trình độ, chức danh, ngạch viên chức, loại đơn vị (UC-CFG-003)
-    - Khen thưởng/Kỷ luật: Danh mục hình thức, cấp quyết định (UC-CFG-004)
-    - Loại đào tạo: Trong nước, ngoài nước, ngắn hạn, dài hạn (UC-CFG-007)
-    - Lưu lịch sử thay đổi cấu hình với lý do sửa theo quy định.
+    - 004.1 Cho phép Quản trị viên cấu hình động các tham số nghiệp vụ cần thiết:
+    - 004.2 Lương: Mức lương cơ sở, Hệ số ngạch/bậc, Danh mục phụ cấp
+    - 004.3 Hợp đồng: Loại HĐ, thời hạn min/max, số lần ký tối đa, quy tắc chuyển đổi
+    - 004.4 Danh mục dùng chung: Trình độ, chức danh, ngạch viên chức, loại đơn vị
+    - 004.5 Khen thưởng/Kỷ luật: Danh mục hình thức, cấp quyết định
+    - 004.6 Loại đào tạo: Trong nước, ngoài nước, ngắn hạn, dài hạn
+    - 004.7 Lưu lịch sử thay đổi cấu hình với lý do sửa theo quy định.
 
 - FEAT-005: Báo cáo & Thống kê Nhân sự
     - Trace to: STRQ-01, STRQ-08
-    - Related Use Cases: UC-RPT-001
-    - Cung cấp Dashboard tổng quan (tổng nhân sự, biến động, cơ cấu trình độ) và
-    - các báo cáo định kỳ: biến động nhân sự, dữ liệu lương/phụ cấp, BHXH, thuế TNCN theo mẫu quy định.
-    - Hỗ trợ xuất Excel, PDF, Word theo biểu mẫu Nhà nước và Bộ chủ quản.
+    - 005.1 Cung cấp Dashboard tổng quan (tổng nhân sự, biến động, cơ cấu trình độ) và các báo cáo định kỳ: biến động nhân sự, dữ liệu lương/phụ cấp, BHXH, thuế TNCN theo mẫu quy định.
+    - 005.2 Hỗ trợ xuất Excel, PDF, Word theo biểu mẫu Nhà nước và Bộ chủ quản.
 
-- FEAT-006: Cổng Tự phục vụ Nhân viên (Self-Service)
+- FEAT-006: Cổng Tự phục vụ Nhân viên
     - Trace to: STRQ-06
-    - Related Use Cases: UC-SSP-001 đến UC-SSP-004
-    - Cho phép Cán bộ/Giảng viên:
-
-    - Xem và tra cứu thông tin cá nhân (hồ sơ, hợp đồng, khen thưởng/kỷ luật)
-    - Gửi yêu cầu cập nhật thông tin (chờ Phòng TCCB phê duyệt - UC-ADM-001)
-    - Đăng ký tham gia khóa đào tạo (UC-SSP-004)
+    - 006.1 Related Use Cases: UC-SSP-001 đến UC-SSP-004
+    - 006.2 Cho phép Cán bộ/Giảng viên:
+    - 006.3 Xem và tra cứu thông tin cá nhân (hồ sơ, hợp đồng, khen thưởng/kỷ luật)
+    - 006.4 Gửi yêu cầu cập nhật thông tin (chờ Phòng TCCB phê duyệt - UC-ADM-001)
+    - 006.5 Đăng ký tham gia khóa đào tạo (UC-SSP-004)
 
 - FEAT-007: Quản lý Đào tạo và Phát triển
     - Trace to: STRQ-02 (extended)
-    - Related Use Cases: UC-HRM-007, UC-CFG-007
-    - Quản lý hoạt động đào tạo và phát triển nhân sự:
-    - Lập kế hoạch và tổ chức khóa đào tạo (trong/ngoài nước, ngắn hạn, dài hạn) (UC-HRM-007)
-    - Theo dõi tiến trình và kết quả đào tạo của nhân sự
-    - Cấu hình loại đào tạo (UC-CFG-007)
-    - Cập nhật chứng chỉ tự động sau khi hoàn thành đào tạo
+    - 007.1 Quản lý hoạt động đào tạo và phát triển nhân sự:
+    - 007.2 Lập kế hoạch và tổ chức khóa đào tạo (trong/ngoài nước, ngắn hạn, dài hạn)
+    - 007.3 Theo dõi tiến trình và kết quả đào tạo của nhân sự
+    - 007.4 Cấu hình loại đào tạo
+    - 007.5 Cập nhật chứng chỉ tự động sau khi hoàn thành đào tạo
 
 ---
-
-### 4.1 Feature-to-Use Case Mapping Summary
-
-| Feature   | Use Cases                                                              | Module               |
-| --------- | ---------------------------------------------------------------------- | -------------------- |
-| FEAT-001  | UC-HRM-001, UC-HRM-002, UC-HRM-008, UC-ADM-001                         | Hồ sơ nhân sự        |
-| FEAT-002  | UC-HRM-006, UC-HRM-009, UC-HRM-010                                     | Cơ cấu tổ chức       |
-| FEAT-003  | UC-HRM-003, UC-CFG-002                                                 | Hợp đồng             |
-| FEAT-004  | UC-CFG-001, UC-CFG-002, UC-CFG-003, UC-CFG-004, UC-CFG-007             | Cấu hình hệ thống    |
-| FEAT-005  | UC-RPT-001                                                             | Báo cáo & Thống kê   |
-| FEAT-006  | UC-SSP-001 đến UC-SSP-004                                              | Self-Service         |
-| FEAT-007  | UC-HRM-007, UC-CFG-007                                                 | Đào tạo & Phát triển |
-| _Admin_   | UC-ADM-001                                                             | Phê duyệt & Quản lý  |
-| _System_  | UC-SYS-001, UC-SYS-002, UC-SYS-003, UC-SYS-004                         | Quản trị hệ thống    |
-| _Finance_ | UC-FIN-001, UC-FIN-002                                                 | Tài chính - Kế toán  |
-
-**Tổng số Use Cases:** 27 use cases đã được định nghĩa chi tiết trong tài liệu Use Case Specifications.
 
 ## Section 5: Constraints & Quality Ranges
 

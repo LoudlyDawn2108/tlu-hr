@@ -10,6 +10,7 @@ import { formatTrainingType, formatParticipantStatus } from "@/utils/training-he
 import trainingData from "@/data/training.json";
 import personnelData from "@/data/personnel.json";
 import { EnrollPersonnelDialog } from "@/components/training/EnrollPersonnelDialog";
+import { UpdateProgressDialog } from "@/components/training/UpdateProgressDialog";
 import type { TrainingCourse, TrainingParticipation } from "@/types";
 import { TrainingStatus, ParticipantStatus } from "@/types";
 
@@ -252,8 +253,24 @@ export default function TrainingDetailPage() {
           />
         )}
         {progressDialogOpen && selectedParticipant && (
-            // Placeholder for UpdateProgressDialog
-            <div />
+            <UpdateProgressDialog
+              course={course}
+              participation={selectedParticipant}
+              personnelName={getPersonnelName(selectedParticipant.personnelId)}
+              isOpen={progressDialogOpen}
+              onClose={() => {
+                setProgressDialogOpen(false);
+                setSelectedParticipant(null);
+              }}
+              onSuccess={(updatedParticipation, _certificate) => {
+                const updatedParticipants = course.participants.map(p =>
+                  p.id === updatedParticipation.id ? updatedParticipation : p
+                );
+                setCourse({ ...course, participants: updatedParticipants });
+                setProgressDialogOpen(false);
+                setSelectedParticipant(null);
+              }}
+            />
         )}
     </div>
   );

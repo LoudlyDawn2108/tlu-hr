@@ -63,7 +63,7 @@ export default function TrainingCreatePage() {
         startDate,
         endDate,
         location,
-        status: "planned",
+        status: "open",
         participants: [],
         budget: budget ? Number(budget) : undefined,
         commitmentPeriod: commitmentPeriod ? Number(commitmentPeriod) : undefined,

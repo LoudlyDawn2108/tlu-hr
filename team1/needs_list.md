@@ -6,7 +6,7 @@
 
 | STT | Need |
 |:---:|:---|
-Quản lý tài khoản
+| Quản lý tài khoản | |
 | 1 | Quản trị viên hệ thống phải "Đăng nhập" để sử dụng hệ thống, muốn đăng nhập phải sử dụng tên đăng nhập và mật khẩu. |
 | 2 | Mật khẩu phải tối thiểu 8 ký tự, bao gồm chữ hoa, chữ thường và số. |
 | 4 | Khi không hoạt động quá 30 phút, hệ thống sẽ tự động đăng xuất. |
@@ -15,9 +15,8 @@ Quản lý tài khoản
 | 7 | Chức năng sửa cho phép quản trị viên chỉnh sửa thông tin tài khoản, reset mật khẩu. |
 | 8 | Chức năng thêm mới tài khoản cho phép quản trị viên nhập các thông tin như tên đăng nhập, mật khẩu, họ tên nhân sự, email, vai trò sau đó xác nhận thêm. |
 | 9 | Quản trị viên có thể phân quyền cho người dùng dựa trên vai trò (Nhân sự phòng tổ chức cán bộ, nhân sự phòng tài chính, nhân sự khác). |
-
-Quản lý cấu hình
-1. Cấu hình lương, phụ cấp
+| Quản lý cấu hình | |
+| 1. Cấu hình lương, phụ cấp | |
 | 11 | Khi quản trị viên chọn vào chức năng "Quản lý cấu hình lương", hệ thống hiển thị danh sách các mức lương cơ sở theo ngày hiệu lực. |
 | 12 | Quản trị viên có thể thêm mới mức lương cơ sở với ngày hiệu lực. |
 | 13 | Quản trị viên có thể quản lý bảng hệ số lương theo ngạch/bậc gồm Giảng viên, Giảng viên chính, Giảng viên cao cấp, Chuyên viên. |
@@ -27,26 +26,22 @@ Quản lý cấu hình
 | 17 | Khi quản trị viên chọn vào chức năng "Quản lý danh mục phụ cấp", hệ thống hiển thị danh sách các loại phụ cấp gồm chức vụ, thâm niên, ưu đãi ngành, trách nhiệm, độc hại, khu vực. |
 | 18 | Quản trị viên có thể thêm mới loại phụ cấp với các thông tin mã phụ cấp tạo tự động, tên phụ cấp, loại tính (hệ số/số tiền), công thức tính. |
 | 19 | Quản trị viên có thể sửa, đánh dấu inactive/active các loại phụ cấp. |
-
-2. Cấu hình hợp đồng
+| 2. Cấu hình hợp đồng |
 | 20 | Khi quản trị viên chọn vào chức năng "Quản lý cấu hình hợp đồng", hệ thống hiển thị danh sách các loại hợp đồng gồm không xác định thời hạn, xác định thời hạn, thử việc, thỉnh giảng. |
 | 21 | Quản trị viên có thể cấu hình thời hạn tối thiểu/tối đa cho từng loại hợp đồng xác định thời hạn, thử việc, thỉnh giảng . |
 | 22 | Quản trị viên có thể cấu hình số lần ký hợp đồng tối đa 1 lần với hợp đồng thử việc trước khi chuyển đổi sang xác định thời hạn hoặc không xác định thời hạn. |
 | 22 | Quản trị viên có thể cấu hình số lần ký hợp đồng tối đa với hợp đồng xác định thời hạn trước khi chuyển đổi sang xác định thời hạn thoe quy định. |
 | 24 | Quản trị viên có thể cấu hình thời gian tối đa cho chuyển đổi loại hợp đồng/ký tiếp hợp đồng. |
-
-3. Cấu hình đánh giá khen thưởng, kỷ luật
+| 3. Cấu hình đánh giá khen thưởng, kỷ luật |
 | 25 | Khi quản trị viên chọn vào chức năng "Quản lý cấu hình đánh giá", hệ thống cho phép định nghĩa danh sách các loại đánh giá để khen thưởng, loại đánh giá để kỷ luật. |
 | 27 | Quản trị viên có thể thêm/sửa mục trong danh mục, đánh dấu active/inactive, sắp xếp thứ tự hiển thị. |
 | 30 | Hệ thống lưu đầy đủ lịch sử thay đổi cấu hình, có viết lý do sửa. |
-
-4. Cấu hình loại khóa đào tạo
+| 4. Cấu hình loại khóa đào tạo |
 | 25 | Khi quản trị viên chọn vào chức năng "Quản lý cấu hình loại khóa đào tạo", hệ thống cho phép định nghĩa danh sách các khóa đào tạo. |
 | 27 | Quản trị viên có thể thêm/sửa mục trong danh mục, đánh dấu active/inactive, sắp xếp thứ tự hiển thị. |
 | 30 | Hệ thống lưu đầy đủ lịch sử thay đổi cấu hình, có viết lý do sửa. |
-
-5. Cấu hình cho thông tin hồ sơ chung
-| 26 | Khi quản trị viên chọn vào chức năng "Quản lý danh mục dùng chung", hệ thống hiển thị các danh mục gồm quốc gia->thành phố->xã/phường (cần được phân cấp), dân tộc, tôn giáo, trình độ học vấn, chức danh khoa học, ngạch viên chức, chức vụ, danh hiệu, loại đơn vị. |
+| 5. Cấu hình cho thông tin hồ sơ chung |
+| 26 | Khi quản trị viên chọn vào chức năng "Quản lý danh mục dùng chung", hệ thống hiển thị các danh mục gồm trình độ học vấn, chức danh khoa học, ngạch viên chức, chức vụ, danh hiệu, loại đơn vị. |
 | 27 | Quản trị viên có thể thêm/sửa mục trong danh mục, đánh dấu active/inactive, sắp xếp thứ tự hiển thị. |
 | 28 | Hệ thống không cho phép xóa mục danh mục đang được sử dụng, chỉ cho phép đánh dấu inactive. |
 | 30 | Hệ thống lưu đầy đủ lịch sử thay đổi cấu hình, có viết lý do sửa. |
@@ -59,8 +54,7 @@ Quản lý cấu hình
 |:---:|:---|
 | 32 | Cán bộ Phòng TCCB phải "Đăng nhập" để sử dụng hệ thống, muốn đăng nhập phải sử dụng tên đăng nhập và mật khẩu. |
 | 33 | Khi không muốn sử dụng cán bộ Phòng TCCB có thể chọn "Đăng xuất" để thoát khỏi hệ thống. |
-
-1. Quản lý hồ sơ nhân sự
+| 1. Quản lý hồ sơ nhân sự | |
 | 34 | Khi cán bộ Phòng TCCB chọn vào chức năng "Quản lý hồ sơ nhân sự", hệ thống sẽ hiển thị danh sách hồ sơ nhân sự bao gồm các chức năng tìm kiếm, lọc, xem chi tiết, sửa, đánh dấu yêu cầu chỉnh sửa, đánh dấu thôi việc tương ứng mỗi nhân sự ở cuối mỗi hồ sơ. |
 | 35 | Chức năng lưu hồ sơ mới ở đầu danh sách cho phép cán bộ TCCB nhập các thông tin chi tiết gồm: họ tên, ngày sinh, giới tính, CCCD/CMT, nơi sinh, quê quán, dân tộc, tôn giáo, mã số thuế TNCN, số BHXH, số BHYT, địa chỉ thường trú, địa chỉ tạm trú, số điện thoại, email cá nhân, email công việc sau đó xác nhận thêm. |
 | 36 | Cán bộ TCCB có thể nhập thông tin tình trạng hôn nhân, thông tin vợ/chồng, con cái, người phụ thuộc. |
@@ -77,16 +71,14 @@ Quản lý cấu hình
 | 46 | Nếu nhân sự đang có yêu cầu chỉnh sửa thông tin khi xem chi tiết sẽ thấy lý do chỉnh sửa có nêu các mục nhân sự muốn chỉnh sửa. |
 | 47 | Khi muốn tìm kiếm hồ sơ, cán bộ TCCB nhập từ khóa vào ô tìm kiếm và ô lọc theo nhiều tiêu chí (đơn vị, trình độ, chức danh) sau đó nhấn "Tìm kiếm" sẽ hiển thị kết quả. |
 | 48 | Cán bộ TCCB có thể xuất hồ sơ ra file PDF, Excel, Word theo mẫu. |
-
-1.1 Mục trình độ học vấn, chức danh, chứng chỉ
+| 1.1 Mục trình độ học vấn, chức danh, chứng chỉ |
 | 55 | Trong quá trình lưu hồ sơ, cán bộ Phòng TCCB chọn đi tới mục trình độ học vấn, chức danh. |
 | 56 | Cán bộ TCCB có thể nhập thông tin trình độ học vấn theo danh mục cấu hình. |
 | 57 | Cán bộ TCCB có thể lưu trữ chi tiết bằng cấp và tải lên ảnh pdf gồm: tên bằng, chuyên ngành, trường cấp, năm tốt nghiệp, xếp loại. |
 | 58 | Cán bộ TCCB có thể nhập chức danh khoa học (GS, PGS), ngạch viên chức, danh hiệu theo danh mục cấu hình, . |
 | 60 | Cán bộ TCCB có thể lưu chứng chỉ gồm: loại chứng chỉ, tên chứng chỉ, nơi cấp, ngày cấp, ngày hết hạn(nếu có), file ảnh chụp chứng chỉ các mặt. |
 | 61 | Hệ thống tự động cảnh báo chứng chỉ hết hạn và đánh dấu hết hạn (nếu có) |
-
-1.2 Mục hợp đồng lao động
+| 1.2 Mục hợp đồng lao động |
 | 75 | Trong quá trình lưu hồ sơ, cán bộ Phòng TCCB chọn đi tới mục hợp đồng lao động. | 
 | 76 | Cán bộ TCCB có thể lưu trữ thông tin hợp đồng gồm: số HĐ, ngày ký, ngày hiệu lực, ngày hết hạn, nội dung công việc, loại hợp đồng (theo danh mục cấu hình), phụ lục hợp đồng, ảnh pdf cho hợp đồng. |
 | 77 | Cán bộ TCCB có thể gia hạn hợp đồng. |
@@ -97,36 +89,31 @@ Quản lý cấu hình
 | 87 | Hệ thống cảnh báo và không cho tạo thêm khi số lần ký/gia hạn HĐ xác định thời hạn/ hợp đồng thử việc đạt giới hạn. |
 | 83 | Cán bộ TCCB có thể quản lý hợp đồng với giảng viên/chuyên gia nước ngoài. |
 | 82 | Cán bộ TCCB có thể in hợp đồng theo mẫu chuẩn của trường. |
-
-1.3 Mục lương, phụ cấp
+| 1.3 Mục lương, phụ cấp |
 | 75 | Trong quá trình lưu hồ sơ, cán bộ Phòng TCCB chọn đi tới mục lương, phụ cấp. | 
 | 110 | Cán bộ TCCB có thể lưu trữ ngạch lương hiện tại của nhân sự. |
 | 111 | Cán bộ TCCB có thể lưu trữ bậc lương và hệ số hiện tại của nhân sự. |
 | 112 | Cán bộ TCCB có thể lưu trữ lịch sử thay đổi ngạch/bậc lương với ngày hiệu lực. |
 | 112 | Cán bộ TCCB có thể thêm/sửa các phụ cấp của nhân sự dựa trên loại phụ cấp được cấu hình. |
 | 113 | Hệ thống tự động tính số năm thâm niên từ ngày vào ngành. |
-
-1.4 Mục khen thưởng, kỷ luật
+| 1.4 Mục khen thưởng, kỷ luật |
 | 75 | Trong quá trình lưu hồ sơ, cán bộ Phòng TCCB chọn đi tới mục khen thưởng và kỷ luật. | 
 | 93 | Cán bộ TCCB có thể thêm/xóa/sửa cho loại khen thưởng, ghi thêm/xóa/sửa các thông tin chi tiết khen thưởng và kèm thêm minh chừng gồm danh hiệu hoặc bằng khen hoặc giấy khen dưới dạng pdf. |
 | 94 | Cán bộ TCCB có thể có thể thêm/xóa/sửa cho loại kỷ luật, ghi thêm/xóa/sửa các thông tin chi tiết kỷ luật. |
-
-2. Quản lý nhân sự theo cơ cấu tổ chức
+| 2. Quản lý nhân sự theo cơ cấu tổ chức |
 | 65 | Khi cán bộ Phòng TCCB chọn vào chức năng "Quản lý cơ cấu tổ chức", hệ thống hiển thị sơ đồ tổ chức dạng cây phân cấp (Hội đồng trường/Đảng ủy --> Ban giám hiệu/Hội đòng khoa học và đào tạo --> Khoa đào tạo/Phòng ban chức năng --> Bộ môn). |
 | 66 | Cán bộ TCCB có thể quản lý loại đơn vị (Khoa, Viện, Trung tâm, Bộ môn, Phòng,...) theo danh mục cấu hình. |
 | 67 | Hệ thống hỗ trợ cấu trúc phân cấp linh hoạt với số cấp và quan hệ cha-con có thể cấu hình. |
 | 69 | Cán bộ TCCB có thể lưu trữ thêm/sửa thông tin đơn vị gồm: tên, mã, địa chỉ văn phòng, email, điện thoại, website. |
 | 70 | Cán bộ TCCB có thể lưu trữ thêm/sửa thông tin lịch sử thành lập, sáp nhập(nếu có), giải thể đơn vị(nếu có). |
 | 70 | Cán bộ TCCB có thể đánh dấu giải thể đơn vị và có xác nhận trước. |
-
 | 72 | Cán bộ TCCB có thể phân công nhân viên vào đơn vị. |
 | 73 | Hệ thống hỗ trợ chức vụ kiêm nhiệm (một người có thể giữ nhiều chức vụ ở nhiều đơn vị khác nhau). |
 | 62 | Cán bộ TCCB có thể quản lý chức vụ quản lý, lưu trữ quá trình bổ nhiệm, miễn nhiệm chức vụ, lưu lịch sự của mỗi chức vụ, thông báo thêm nhân sự cho chức vụ khi trống. |
 | 51 | Cán bộ TCCB có thể phân công giảng viên vào Bộ môn (một giảng viên chỉ thuộc 1 bộ môn).|
 | 52 | Cán bộ TCCB có thể quản lý chức vụ trong Bộ môn theo danh mục cấu hình. |
 | 53 | Hệ thống hỗ trợ hiển thị thông tin nhân sự theo định dạng: Học hàm + Học vị + Họ tên (VD: PGS.TS. Nguyễn Văn A). |
-
-3. Quản lý các khóa đào tạo và phát triển
+| 3. Quản lý các khóa đào tạo và phát triển |
 | 97 | Khi cán bộ Phòng TCCB chọn vào chức năng "Quản lý đào tạo và phát triển", hệ thống hiển thị danh sách kế hoạch đào tạo và các khóa đào tạo. |
 | 98 | Cán bộ TCCB có thể hiển thị danh sách kế hoạch đào tạo theo năm. |
 | 99 | Cán bộ TCCB có thể quản lý các loại đào tạo (trong nước, ngoài nước, ngắn hạn, dài hạn,...) theo danh mục cấu hình. |
@@ -135,8 +122,7 @@ Quản lý cấu hình
 | 102 | Cán bộ TCCB có thể đưa nhân sự vào khóa đào tạo. |
 | 102 | Cán bộ TCCB có thể theo dõi tiến trình đào tạo của nhân sự (đang học, hoàn thành, bỏ dở). |
 | 104 | Hệ thống tự động cập nhật chứng chỉ cho nhân sự sau khi hoàn thành đào tạo. |
-
-4. Báo cáo và thống kê
+| 4. Báo cáo và thống kê |
 | 64 | Cán bộ TCCB có thể thống kê trình độ theo đơn vị, toàn trường. |
 | 105 | Cán bộ TCCB có thể xuất báo cáo tình hình đào tạo theo đơn vị, cá nhân. |
 | 119 | Khi lãnh đạo trường chọn vào chức năng "Báo cáo và thống kê", hệ thống hiển thị dashboard tổng quan nhân sự. |
@@ -166,7 +152,6 @@ Quản lý cấu hình
 |:---:|:---|
 | 137 | Cán bộ/Giảng viên phải "Đăng nhập" để sử dụng hệ thống, muốn đăng nhập phải sử dụng tên đăng nhập và mật khẩu. |
 | 138 | Khi không muốn sử dụng cán bộ/giảng viên có thể chọn "Đăng xuất" để thoát khỏi hệ thống. |
-
 | 139 | Khi cán bộ/giảng viên chọn vào chức năng "Xem thông tin cá nhân", hệ thống hiển thị đầy đủ thông tin hồ sơ cá nhân của cán bộ/giảng viên đó. |
 | 140 | Cán bộ/giảng viên có thể đề nghị cập nhật thông tin cá nhân khi có thay đổi, yêu cầu sẽ được gửi về Phòng TCCB duyệt. |
 | 144 | Khi cán bộ/giảng viên chọn vào chức năng "Xem lịch sử hợp đồng", hệ thống hiển thị danh sách các hợp đồng đã ký với thông tin: loại HĐ, thời hạn, ngày hiệu lực. |

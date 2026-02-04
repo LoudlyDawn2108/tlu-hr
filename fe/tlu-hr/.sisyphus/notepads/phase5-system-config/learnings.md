@@ -1,0 +1,1 @@
+- Task 8 (Contract helpers): contract maxExtensions now sourced from contract-types.json via helper; canExtend/getExtensionStatusText updated accordingly; build succeeded (bun run build).
