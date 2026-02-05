@@ -1,1 +1,3 @@
 - Task 8 (Contract helpers): contract maxExtensions now sourced from contract-types.json via helper; canExtend/getExtensionStatusText updated accordingly; build succeeded (bun run build).
+- **Prototype Data Pattern**: Modifying imported JSON objects directly (e.g., `initialUser.personnelId = ...`) works for local state persistence in a session because the module export is a reference. This is a useful pattern for rapid prototyping before backend integration.
+- **Type Casting JSON**: When importing JSON data that has `null` values where the interface expects `undefined`, casting through `unknown` (`data as unknown as Type[]`) is necessary to bypass strict type checks.

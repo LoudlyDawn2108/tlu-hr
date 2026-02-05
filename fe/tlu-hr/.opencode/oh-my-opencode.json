@@ -1,39 +1,75 @@
 {
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
-  
   "agents": {
     "sisyphus": {
-      "model": "google/antigravity-claude-opus-4-5-thinking"
+      "model": "github-copilot/claude-opus-4.5",
+      "variant": "max"
     },
     "hephaestus": {
-      "model": "github-copilot/gpt-5.2-codex"
+      "model": "github-copilot/gpt-5.2-codex",
+      "variant": "xhigh"
     },
-    "prometheus": {
-      "model": "google/antigravity-claude-opus-4-5-thinking"
+    "oracle": {
+      "model": "github-copilot/gpt-5.2",
+      "variant": "xhigh"
     },
-    "metis": {
-        "model": "github-copilot/gpt-5.2"
+    "librarian": {
+      "model": "github-copilot/gpt-5.2"
     },
-    "momus": {
-        "model": "github-copilot/gpt-5.2"
-    },
-    "oracle": { "model": "github-copilot/gpt-5.2-codex" },      
-    "librarian": { "model": "google/antigravity-gemini-3-flash" },
-    "explore": { "model": "github-copilot/grok-code-fast-1" },
-    "atlas": {
-        "model": "google/antigravity-claude-opus-4-5-thinking"
+    "explore": {
+      "model": "github-copilot/claude-haiku-4-5"
     },
     "multimodal-looker": {
-        "model": "google/antigravity-gemini-3-pro"
+      "model": "google/antigravity-gemini-3-pro"
     },
-    "sisyphus-junior": {
-        "model": "github-copilot/gpt-5.2-codex"
+    "prometheus": {
+      "model": "github-copilot/claude-opus-4.5",
+      "variant": "max"
+    },
+    "metis": {
+      "model": "github-copilot/claude-opus-4.5",
+      "variant": "max"
+    },
+    "momus": {
+      "model": "github-copilot/gpt-5.2",
+      "variant": "high"
+    },
+    "atlas": {
+      "model": "google/antigravity-claude-opus-4-5-thinking",
+      "variant": "max"
     }
   },
-
   "categories": {
-    "quick": { "model": "google/antigravity-claude-sonnet-4-5" },
-    "visual-engineering": { "model": "google/antigravity-gemini-3-pro" }
+    "visual-engineering": {
+      "model": "google/antigravity-gemini-3-pro"
+    },
+    "ultrabrain": {
+      "model": "github-copilot/gpt-5.2-codex",
+      "variant": "xhigh"
+    },
+    "deep": {
+      "model": "github-copilot/gpt-5.2-codex",
+      "variant": "medium"
+    },
+    "artistry": {
+      "model": "google/antigravity-gemini-3-pro",
+      "variant": "high"
+    },
+    "quick": {
+      "model": "github-copilot/gpt-5.2",
+      "variant": "medium"
+    },
+    "unspecified-low": {
+      "model": "github-copilot/claude-sonnet-4.5"
+    },
+    "unspecified-high": {
+      "model": "google/antigravity-claude-opus-4-5-thinking",
+      "variant": "max"
+    },
+    "writing": {
+      "model": "google/antigravity-gemini-3-flash",
+      "variant": "high"
+    }
   },
   "tmux": {
     "enabled": true,

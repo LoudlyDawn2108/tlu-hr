@@ -75,6 +75,20 @@
 - Year filter on list page
 - Capacity enforcement
 
+### Phase 5 (System Configuration)
+**Completed Tasks:**
+- Admin route guard (SYSTEM_ADMIN role check)
+- Session timeout (30 min with 29 min warning)
+- User management CRUD (create, edit, lock/unlock, password reset)
+- 6 config pages: Salary, Allowance, Contract, Evaluation, Training Types, Business Catalogs
+- 7 config JSON files with TLU sample data
+- Contract helper refactored to use config values
+**Key Files to Know:**
+- Admin routes: `/admin/users`, `/admin/config/*`
+- Config data: `src/data/config/*.json`
+- Route guard: `src/components/AdminRoute.tsx`
+- Session timeout: `src/hooks/useSessionTimeout.ts` + `src/components/SessionTimeoutProvider.tsx`
+
 ---
 
 ## Current File Structure
