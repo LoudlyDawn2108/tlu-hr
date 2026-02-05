@@ -7,6 +7,7 @@
     "email": "admin@tlu.edu.vn",
     "role": "system_admin",
     "status": "active",
+    "personnelId": null,
     "createdAt": "2024-01-01T00:00:00Z",
     "updatedAt": "2024-01-01T00:00:00Z"
   },
@@ -14,10 +15,35 @@
     "id": "user-002",
     "username": "tccb",
     "password": "Tccb1234",
-    "fullName": "Cán bộ Phòng TCCB",
-    "email": "tccb@tlu.edu.vn",
+    "fullName": "Nguyễn Văn An",
+    "email": "an.nv@tlu.edu.vn",
     "role": "tccb_officer",
     "status": "active",
+    "personnelId": "pers-001",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "user-003",
+    "username": "binh.tt",
+    "password": "Binh1234",
+    "fullName": "Trần Thị Bình",
+    "email": "binh.tt@tlu.edu.vn",
+    "role": "employee",
+    "status": "active",
+    "personnelId": "pers-002",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "user-004",
+    "username": "cuong.lv",
+    "password": "Cuong1234",
+    "fullName": "Lê Văn Cường",
+    "email": "cuong.lv@tlu.edu.vn",
+    "role": "employee",
+    "status": "active",
+    "personnelId": "pers-003",
     "createdAt": "2024-01-01T00:00:00Z",
     "updatedAt": "2024-01-01T00:00:00Z"
   }

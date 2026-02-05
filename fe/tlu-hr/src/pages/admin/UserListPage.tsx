@@ -1,7 +1,9 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import usersData from "@/data/users.json";
+import personnelData from "@/data/personnel.json";
 import type { User } from "@/types";
+import type { Personnel } from "@/types";
 import { AccountStatus, UserRole } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -59,6 +61,11 @@ export default function UserListPage() {
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [users, setUsers] = useState<User[]>(usersData as User[]);
+
+  const getPersonnelInfo = (personnelId: string | null | undefined) => {
+    if (!personnelId) return null;
+    return (personnelData as unknown as Personnel[]).find((p) => p.id === personnelId);
+  };
 
   const filteredUsers = useMemo(() => {
     return users.filter((user) => {
@@ -169,6 +176,7 @@ export default function UserListPage() {
               <TableHead>Họ tên</TableHead>
               <TableHead>Email</TableHead>
               <TableHead>Vai trò</TableHead>
+              <TableHead>Cán bộ liên kết</TableHead>
               <TableHead>Trạng thái</TableHead>
               <TableHead className="w-[80px]">Thao tác</TableHead>
             </TableRow>
@@ -176,7 +184,7 @@ export default function UserListPage() {
           <TableBody>
             {paginatedUsers.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="py-8 text-center text-muted-foreground">
+                <TableCell colSpan={7} className="py-8 text-center text-muted-foreground">
                   Không tìm thấy người dùng phù hợp
                 </TableCell>
               </TableRow>
@@ -187,6 +195,16 @@ export default function UserListPage() {
                   <TableCell>{user.fullName}</TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell>{roleLabels[user.role]}</TableCell>
+                  <TableCell>
+                    {(() => {
+                      const personnel = getPersonnelInfo(user.personnelId);
+                      return personnel ? (
+                        `${personnel.employeeCode} - ${personnel.fullName}`
+                      ) : (
+                        <span className="text-muted-foreground">-</span>
+                      );
+                    })()}
+                  </TableCell>
                   <TableCell>
                     <Badge variant={statusBadgeVariant[user.status]}>
                       {statusLabels[user.status]}

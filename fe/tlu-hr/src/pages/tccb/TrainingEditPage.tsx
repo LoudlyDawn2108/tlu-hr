@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 import trainingData from "@/data/training.json";
+import trainingTypesConfig from "@/data/config/training-types.json";
 
 // Define types based on the JSON structure
 interface Participant {
@@ -43,11 +44,23 @@ interface TrainingCourse {
   updatedAt: string;
 }
 
+interface TrainingTypeConfig {
+  id: string;
+  code: string;
+  name: string;
+  isActive: boolean;
+  order: number;
+}
+
 export default function TrainingEditPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [course, setCourse] = useState<TrainingCourse | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
+
+  const activeTrainingTypes = (trainingTypesConfig as TrainingTypeConfig[])
+    .filter((t) => t.isActive)
+    .sort((a, b) => a.order - b.order);
 
   // Form state
   const [name, setName] = useState("");
@@ -200,10 +213,11 @@ export default function TrainingEditPage() {
                     <SelectValue placeholder="Chọn loại hình" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="domestic">Trong nước</SelectItem>
-                    <SelectItem value="international">Quốc tế</SelectItem>
-                    <SelectItem value="short_term">Ngắn hạn</SelectItem>
-                    <SelectItem value="long_term">Dài hạn</SelectItem>
+                    {activeTrainingTypes.map((t) => (
+                      <SelectItem key={t.id} value={t.code}>
+                        {t.name}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 {errors.type && <p className="text-sm text-red-500">{errors.type}</p>}

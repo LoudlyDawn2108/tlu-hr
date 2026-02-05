@@ -14,7 +14,8 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import usersData from "@/data/users.json";
 import { UserRole, AccountStatus } from "@/types";
-import type { User } from "@/types";
+import type { User, Personnel } from "@/types";
+import personnelData from "@/data/personnel.json";
 
 const passwordSchema = z
   .string()
@@ -34,12 +35,19 @@ const userSchema = z.object({
 export default function UserCreatePage() {
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  const availablePersonnel = useMemo(() => {
+    const linkedIds = new Set((usersData as User[]).map((u) => u.personnelId).filter(Boolean));
+    return (personnelData as unknown as Personnel[]).filter((p) => !linkedIds.has(p.id));
+  }, []);
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     fullName: "",
     email: "",
     role: UserRole.TCCB_OFFICER,
+    personnelId: "" as string | null,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -47,7 +55,7 @@ export default function UserCreatePage() {
     return (usersData as User[]).some((user) => user.username === formData.username);
   }, [formData.username]);
 
-  const handleChange = (field: string, value: string) => {
+  const handleChange = (field: string, value: string | null) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: "" }));
   };
@@ -81,6 +89,7 @@ export default function UserCreatePage() {
       fullName: formData.fullName,
       email: formData.email,
       role: formData.role,
+      personnelId: formData.personnelId || null,
       status: AccountStatus.ACTIVE,
       createdAt: now,
       updatedAt: now,
@@ -172,6 +181,26 @@ export default function UserCreatePage() {
               </SelectContent>
             </Select>
             {errors.role ? <p className="text-sm text-destructive">{errors.role}</p> : null}
+          </div>
+
+          <div className="space-y-2">
+            <Label>Cán bộ liên kết (tùy chọn)</Label>
+            <Select
+              value={formData.personnelId || ""}
+              onValueChange={(v) => handleChange("personnelId", v || null)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Chọn cán bộ..." />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">Không liên kết</SelectItem>
+                {availablePersonnel.map((p) => (
+                  <SelectItem key={p.id} value={p.id}>
+                    {p.employeeCode} - {p.fullName}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
         </div>
 

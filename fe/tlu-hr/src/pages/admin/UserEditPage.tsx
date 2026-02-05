@@ -4,6 +4,8 @@ import { z } from "zod";
 import usersData from "@/data/users.json";
 import type { User } from "@/types";
 import { AccountStatus, UserRole } from "@/types";
+import personnelData from "@/data/personnel.json";
+import type { Personnel } from "@/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -63,6 +65,7 @@ export default function UserEditPage() {
     fullName: initialUser?.fullName ?? "",
     email: initialUser?.email ?? "",
     role: initialUser?.role ?? UserRole.TCCB_OFFICER,
+    personnelId: initialUser?.personnelId ?? null,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<AccountStatus>(
@@ -74,11 +77,23 @@ export default function UserEditPage() {
 
   const isLocked = status === AccountStatus.LOCKED;
 
+  const availablePersonnel = useMemo(() => {
+    const linkedIds = new Set(
+      users
+        .filter((u) => u.id !== id)
+        .map((u) => u.personnelId)
+        .filter(Boolean)
+    );
+    return (personnelData as unknown as Personnel[]).filter(
+      (p) => p.id === initialUser?.personnelId || !linkedIds.has(p.id)
+    );
+  }, [id, initialUser]);
+
   const title = useMemo(() => {
     return initialUser ? `Chỉnh sửa: ${initialUser.fullName}` : "Không tìm thấy người dùng";
   }, [initialUser]);
 
-  const handleChange = (field: string, value: string) => {
+  const handleChange = (field: string, value: string | null) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: "" }));
   };
@@ -102,6 +117,7 @@ export default function UserEditPage() {
     initialUser.fullName = formData.fullName;
     initialUser.email = formData.email;
     initialUser.role = formData.role;
+    initialUser.personnelId = formData.personnelId || undefined;
     initialUser.status = status;
     initialUser.updatedAt = new Date().toISOString();
 
@@ -206,6 +222,25 @@ export default function UserEditPage() {
               </SelectContent>
             </Select>
             {errors.role ? <p className="text-sm text-destructive">{errors.role}</p> : null}
+          </div>
+          <div className="space-y-2">
+            <Label>Cán bộ liên kết</Label>
+            <Select
+              value={formData.personnelId || ""}
+              onValueChange={(v) => handleChange("personnelId", v || null)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Chọn cán bộ..." />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">Không liên kết</SelectItem>
+                {availablePersonnel.map((p) => (
+                  <SelectItem key={p.id} value={p.id}>
+                    {p.employeeCode} - {p.fullName}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
