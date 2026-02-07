@@ -2,8 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
   "agents": {
     "sisyphus": {
-      "model": "github-copilot/claude-opus-4.5",
-      "variant": "max"
+      "model": "google/antigravity-gemini-3-pro",
+      "variant": "high"
     },
     "hephaestus": {
       "model": "github-copilot/gpt-5.2-codex",
@@ -17,31 +17,31 @@
       "model": "github-copilot/gpt-5.2"
     },
     "explore": {
-      "model": "github-copilot/claude-haiku-4-5"
+      "model": "github-copilot/claude-sonnet-4.5"
     },
     "multimodal-looker": {
-      "model": "google/antigravity-gemini-3-pro"
+      "model": "github-copilot/claude-opus-4.6"
     },
     "prometheus": {
-      "model": "github-copilot/claude-opus-4.5",
+      "model": "github-copilot/claude-opus-4.6",
       "variant": "max"
     },
     "metis": {
-      "model": "github-copilot/claude-opus-4.5",
+      "model": "github-copilot/claude-opus-4.6",
       "variant": "max"
     },
     "momus": {
       "model": "github-copilot/gpt-5.2",
-      "variant": "high"
+      "variant": "xhigh"
     },
     "atlas": {
-      "model": "google/antigravity-claude-opus-4-5-thinking",
-      "variant": "max"
+      "model": "google/antigravity-gemini-3-pro",
+      "variant": "high"
     }
   },
   "categories": {
     "visual-engineering": {
-      "model": "google/antigravity-gemini-3-pro"
+      "model": "github-copilot/claude-opus-4.6"
     },
     "ultrabrain": {
       "model": "github-copilot/gpt-5.2-codex",
@@ -49,26 +49,29 @@
     },
     "deep": {
       "model": "github-copilot/gpt-5.2-codex",
-      "variant": "medium"
+      "variant": "high"
     },
     "artistry": {
       "model": "google/antigravity-gemini-3-pro",
       "variant": "high"
     },
     "quick": {
-      "model": "github-copilot/gpt-5.2",
-      "variant": "medium"
+      "model": "github-copilot/claude-sonnet-4.5"
     },
     "unspecified-low": {
       "model": "github-copilot/claude-sonnet-4.5"
     },
     "unspecified-high": {
-      "model": "google/antigravity-claude-opus-4-5-thinking",
+      "model": "github-copilot/claude-opus-4.6",
       "variant": "max"
     },
     "writing": {
       "model": "google/antigravity-gemini-3-flash",
       "variant": "high"
+    },
+    "plan": {
+      "model": "github-copilot/claude-opus-4.6",
+      "variant": "max"
     }
   },
   "tmux": {
@@ -77,5 +80,9 @@
     "main_pane_size": 60,
     "main_pane_min_width": 120,
     "agent_pane_min_width": 40
+  },
+  "git_master": {
+    "commit_footer": false,
+    "include_co_authored_by": false
   }
 }
