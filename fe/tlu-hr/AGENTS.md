@@ -2,69 +2,63 @@
 
 **Generated:** 2026-02-07
 **Framework:** React 19 + TypeScript + Vite + Shadcn/ui
-**State:** Zustand + TanStack Query
+**State:** Zustand + TanStack Query + React Hook Form (Zod)
+**Styling:** Tailwind CSS v4 + Lucide Icons
 
 ## OVERVIEW
-TLU HRMS is a Human Resource Management System for Thuyloi University, built with React 19, TypeScript, and Vite. It features a comprehensive dashboard for personnel management, including contracts, training, and organizational structure. The application uses a hybrid architecture with domain-driven feature modules and standard React patterns.
+TLU HRMS is a Human Resource Management System for Thuyloi University. It uses a hybrid architecture combining domain-driven modules (`tccb`, `tckt`) with technical layers (`components`, `hooks`). Key features include personnel management, contract workflows, and training records.
 
 ## STRUCTURE
 ```
-tlu-hr/
-├── src/
-│   ├── components/
-│   │   ├── ui/              # Shadcn/ui primitives (Radix UI based)
-│   │   ├── forms/           # Form components (React Hook Form + Zod)
-│   │   ├── tables/          # Data tables (TanStack Table)
-│   │   ├── charts/          # Recharts visualizations
-│   │   ├── contracts/       # Contract management specific components
-│   │   └── training/        # Training management specific components
-│   ├── pages/
-│   │   ├── admin/           # Administration & Configuration
-│   │   ├── auth/            # Authentication
-│   │   ├── tccb/            # "Tổ chức cán bộ" (Personnel) - Core Domain
-│   │   └── self-service/    # Employee self-service features
-│   ├── hooks/               # Custom hooks (e.g., use-toast, useSessionTimeout)
-│   ├── stores/              # Zustand state stores (auth, etc.)
-│   ├── lib/                 # Utilities & libraries (cn, fetchers)
-│   ├── types/               # TypeScript definitions
-│   └── data/                # Static data & mocks
-└── test-screenshots/        # UI verification artifacts
+src/
+├── components/      # Shared UI & Feature Components
+│   ├── ui/          # Atomic Shadcn/ui primitives (30+ files)
+│   ├── forms/       # Complex forms & Wizard steps
+│   ├── contracts/   # Domain: Contract specific UI
+│   └── training/    # Domain: Training specific UI
+├── pages/           # Route-level Views
+│   ├── tccb/        # Core Domain: Personnel (Tổ chức cán bộ)
+│   ├── admin/       # System Config & User Mgmt
+│   └── auth/        # Authentication
+├── hooks/           # Shared Logic (Session, Toasts)
+├── lib/             # Utilities (cn, utils)
+└── types/           # Global Type Definitions
 ```
 
 ## WHERE TO LOOK
 | Task | Location | Notes |
 |------|----------|-------|
-| **Routes** | `src/router.tsx` | Centralized route definitions |
-| **Auth Logic** | `src/stores/auth.ts` | Zustand store for user state |
-| **API Types** | `src/types/index.ts` | Shared type definitions |
-| **UI Config** | `components.json` | Shadcn/ui configuration |
-| **Constants** | `src/lib/utils.ts` | Common utilities (cn) |
-| **Forms** | `src/components/forms` | Reusable form components |
+| **Entry Point** | `src/main.tsx` | Vite entry, React Root |
+| **Routing** | `src/router.tsx` | App-wide route definitions |
+| **Global State** | `src/stores/` | Zustand stores (Auth, etc.) |
+| **API Types** | `src/types/index.ts` | Shared domain models |
+| **Theme Config** | `src/index.css` | Tailwind v4 CSS variables |
+| **UI Components** | `src/components/ui` | Base building blocks |
 
 ## CONVENTIONS
-- **Imports**: Always use `@/` alias for `src/` (e.g., `@/components/ui/button`)
-- **Styling**: Tailwind CSS v4 with `cn()` utility for class merging
-- **State**: global (Zustand) vs server (TanStack Query) vs local (React state)
-- **Forms**: React Hook Form + Zod for validation
-- **Icons**: Lucide React (`lucide-react`)
-- **Strictness**: No `any`, no unused vars, strict null checks enabled
+- **Imports**: `@/` alias for `src/`.
+- **Strictness**: `strict: true`, no `any`, no unused vars.
+- **Naming**: `PascalCase` for components/types, `camelCase` for functions/hooks.
+- **Styling**: Tailwind utility classes via `cn()`. No inline styles.
+- **Icons**: Lucide React exclusively.
 
 ## ANTI-PATTERNS (THIS PROJECT)
-- **Magic Numbers**: Avoid hardcoding IDs/timeouts (use constants)
-- **Weak IDs**: Do NOT use `Date.now()` or `Math.random()` for IDs (use UUID)
-- **Inline Styles**: Avoid `style={{}}` prop (use Tailwind classes)
-- **Direct Fetch**: Do not use `fetch()` directly in components (use Query hooks)
-- **Props Drilling**: Avoid >2 levels (use Composition or Context/Zustand)
+- **Direct Fetch**: Use TanStack Query hooks, never `fetch`/`axios` directly in components.
+- **Magic Strings**: Avoid hardcoded Vietnamese labels; use constants/config.
+- **Mixed Grouping**: Don't mix domain logic in `src/components/ui`.
+- **Deep Drilling**: Max 2 levels of prop drilling; use Context/Zustand otherwise.
+- **Weak IDs**: Use UUIDs, never `Date.now()`.
 
 ## COMMANDS
 ```bash
-npm run dev      # Start dev server
-npm run build    # Type-check & build
-npm run lint     # Run ESLint
-npm run preview  # Preview build locally
+npm run dev        # Start dev server
+npm run build      # Type-check & build
+npm run lint       # Run ESLint
+npm run preview    # Preview production build
+# Testing: Manual verification via Playwright (test-contract-dialogs.ts)
 ```
 
 ## NOTES
-- **"TCCB"**: Acronym for "Tổ chức cán bộ" (Personnel Department)
-- **Session**: Aggressive auto-logout implemented in `SessionTimeoutProvider`
-- **Testing**: Currently manual verification via `test-contract-dialogs.ts` (Playwright)
+- **Hybrid Structure**: Note that `components/` contains both generic (`ui`, `forms`) and domain (`contracts`, `training`) folders.
+- **Acronyms**: `TCCB` = Personnel Dept, `TCKT` = Finance/Accounting.
+- **Testing**: Test artifacts located in `test-screenshots/` and `qa_screenshots/`.
