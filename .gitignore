@@ -85,7 +85,6 @@ dist/
 
 # Stores VS Code state extensions, etc
 .vscode/*
-!.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
@@ -105,3 +104,4 @@ desktop.ini
 *.tmp
 *.bak
 gigi.docx
+.vscode/
