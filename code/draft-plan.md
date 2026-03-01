@@ -13,8 +13,6 @@
 > - VS Code workspace settings
 >
 > **Estimated Effort**: Medium-Large (6-10 hours)
-> **Parallel Execution**: YES — 3 waves
-> **Critical Path**: Task 1 (root infra) → Tasks 2,3,4 (parallel packages) → Task 5 (integration)
 
 ---
 
@@ -47,7 +45,7 @@ Build the base monorepo structure for an HRMS application serving Thuy Loi Unive
 ### Metis Review
 **Identified Gaps** (addressed):
 - UI framework → **Decision**: Shadcn UI + Tailwind CSS v4 (user's explicit choice)
-- Drizzle schema scope → **Decision**: Full conversion of ALL tables (user's explicit choice)
+- Drizzle schema scope → **Decision**: Full conversion of ALL 30 tables (user's explicit choice)
 - Test infrastructure → **Decision**: Not included in scaffold scope
 - `.env` handling → **Decision**: Include `.env.example` with documented variables, no actual `.env`
 - Git strategy → **Decision**: Build monorepo structure within existing `code/` git repo
