@@ -1,29 +1,33 @@
 # TYPES KNOWLEDGE BASE
 
 ## OVERVIEW
-Single source of truth for application-wide type definitions, domain models, and API contracts.
+The `src/types` directory serves as the centralized source of truth for all TypeScript definitions within the TLU HRMS. It encompasses domain models, API request/response contracts, and application-level state structures to ensure end-to-end type safety across the frontend.
 
 ## STRUCTURE
-- `index.ts`: Central registry for core domain entities (Personnel, Unit, Training) and shared API response types.
-- `wizard.ts`: Specialized data structures for multi-step form state and onboarding flows.
-- `*.ts`: Domain-specific type modules should be added here if they exceed 200 lines in `index.ts`.
+- `index.ts`: The primary registry. Contains shared enums (roles, statuses), core domain entities (Personnel, Contract, Unit), and generic API helpers.
+- `wizard.ts`: Dedicated types for the complex, multi-step personnel onboarding forms and wizard state.
+- **Scalability**: If a specific domain module (e.g., Training, Salary) grows significantly, it should be extracted from `index.ts` into a dedicated file.
 
 ## WHERE TO LOOK
-| Category | Location | Notes |
-|----------|----------|-------|
-| **Enums** | `index.ts` (Top) | Statuses, Types, Roles, and Categories |
-| **Domain Models** | `index.ts` (Middle) | `Personnel`, `Contract`, `OrganizationUnit` |
-| **API Helpers** | `index.ts` (Bottom) | `ApiResponse<T>`, `PaginatedResponse<T>` |
-| **Feature Types** | `wizard.ts` etc. | Localized but complex feature state |
+| Category | File | Description |
+|----------|------|-------------|
+| **Enums** | `index.ts` | All categorical constants (UserRole, ContractStatus, etc.) |
+| **Domain Models** | `index.ts` | Primary business entities: `Personnel`, `OrganizationUnit`, `Contract` |
+| **API Responses** | `index.ts` | Generic wrappers like `ApiResponse<T>` and `PaginatedResponse<T>` |
+| **Feature State** | `wizard.ts` | UI-specific state models like `WizardData` |
 
 ## CONVENTIONS
-- **Naming**: Use `PascalCase` for all Types, Interfaces, and Enums.
-- **Enums**: Always use `enum` for fixed string sets (e.g., `UserRole`) to ensure runtime/type-time alignment.
-- **Interfaces**: Prefer `interface` over `type` for domain models to allow for declaration merging/extension.
-- **Centralization**: All types used in >1 component or across different layers (hook/store/view) MUST live here.
+- **Naming**: Use `PascalCase` for all interfaces, types, and enums.
+- **Enums**: Use string-based enums exclusively for fixed domain sets (e.g., `PersonnelStatus`) to ensure runtime/type-time alignment.
+- **Interfaces vs Types**:
+  - Use `interface` for domain models and objects to allow for future extension/merging.
+  - Use `type` for unions, intersections, or complex utility transformations.
+- **Strictness**: No `any`. Use `unknown` with narrowing or Zod validation at boundaries.
+- **Centralization**: All types used across different layers (hooks, stores, views) MUST be defined here.
 
 ## ANTI-PATTERNS
-- **Inline Types**: Do not define complex models directly in components or hooks.
-- **Any-Leak**: Avoid `any` or `unknown` without explicit narrowing; use Zod for validation at boundaries.
-- **Redundant Defs**: Do not redefine backend entities; keep this in sync with API specifications.
-- **Local Enums**: Avoid defining enums inside component files.
+- **Any-Leak**: Using `any` or `unknown` without narrowing. This degrades the safety of the entire system.
+- **Inline Types**: Defining complex structures directly in components, hooks, or function signatures.
+- **Duplicate Enums**: Defining enums locally that mirror or compete with those in the central registry.
+- **Mixed Domain**: Mixing UI-only state types with persistence-level domain models without clear separation.
+- **Loose Exports**: Exporting internal implementation details that aren't needed globally.

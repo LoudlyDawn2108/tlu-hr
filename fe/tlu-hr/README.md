@@ -71,3 +71,16 @@ export default defineConfig([
   },
 ])
 ```
+
+When you ask me to invoke Atlas or Prometheus (e.g., "Ask Atlas to orchestrate X" or "Have Prometheus plan Y"):
+1.  I will call get_agent_prompts(agent="...") to retrieve the official system instructions/templates.
+2.  I will inject these instructions into the task() prompt.
+3.  I will execute the task with the full context, ensuring they behave exactly as if you had run /start-work or invoked them natively.
+I am ready to do this. Just give the command.
+
+1. The "Big Feature" Request (Zeus → Prometheus → Atlas)
+> "Zeus, I need to implement a new multi-tenant auth system. Have Prometheus plan the architecture first, then get Atlas to orchestrate the implementation. Make sure they follow the official protocols."
+2. The "Deep Problem" Request (Zeus → Hephaestus)
+> "Zeus, we have a race condition in the payment processing module. It's subtle. Delegate this to Hephaestus to investigate deeply and fix it autonomously."
+3. The "Ultrawork" Request (Zeus → Sisyphus Ultrawork)
+> "Zeus, I have a complex refactoring task that requires extreme precision. Wake up Sisyphus in Ultrawork Mode and have him refactor the src/hooks directory to use the new pattern."

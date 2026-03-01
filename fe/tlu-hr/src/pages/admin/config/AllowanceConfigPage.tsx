@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import allowanceData from "@/data/config/allowance-types.json";
+import { useMemo, useState, useEffect } from "react";
+import { useConfigStore } from "@/stores/config.store";
 import type { AllowanceConfig } from "@/types";
 import { AllowanceCalculationType, AllowanceType } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -76,17 +76,21 @@ const buildNewAllowance = (items: AllowanceConfig[]): AllowanceConfig => ({
 });
 
 export default function AllowanceConfigPage() {
-  const [allowances, setAllowances] = useState<AllowanceConfig[]>(
-    allowanceData as AllowanceConfig[]
-  );
+  const { allowances, fetchAllowances, updateAllowances } = useConfigStore();
+  
+  useEffect(() => {
+    fetchAllowances();
+  }, [fetchAllowances]);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [calculationFilter, setCalculationFilter] = useState<string>("all");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<AllowanceConfig | null>(null);
+  // Re-calculate new item default state when dialog opens instead of initial state
   const [formState, setFormState] = useState<AllowanceConfig>(() =>
-    buildNewAllowance(allowances)
+    buildNewAllowance([])
   );
 
   const filteredAllowances = useMemo(() => {
@@ -120,28 +124,29 @@ export default function AllowanceConfigPage() {
     setIsDialogOpen(true);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!formState.name.trim()) return;
 
-    setAllowances((prev) => {
-      if (editingItem) {
-        return prev.map((item) =>
-          item.id === editingItem.id ? { ...formState, id: editingItem.id } : item
-        );
-      }
-      return [...prev, formState];
-    });
+    let newAllowances = [...allowances];
+    if (editingItem) {
+      newAllowances = newAllowances.map((item) =>
+        item.id === editingItem.id ? { ...formState, id: editingItem.id } : item
+      );
+    } else {
+      newAllowances.push(formState);
+    }
+    
+    await updateAllowances(newAllowances);
 
     setIsDialogOpen(false);
     setEditingItem(null);
   };
 
-  const handleToggleActive = (id: string) => {
-    setAllowances((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, isActive: !item.isActive } : item
-      )
+  const handleToggleActive = async (id: string) => {
+    const newAllowances = allowances.map((item) =>
+      item.id === id ? { ...item, isActive: !item.isActive } : item
     );
+    await updateAllowances(newAllowances);
   };
 
   return (

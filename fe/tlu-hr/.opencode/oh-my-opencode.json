@@ -35,8 +35,11 @@
       "variant": "xhigh"
     },
     "atlas": {
-      "model": "google/antigravity-gemini-3-pro",
-      "variant": "high"
+      "model": "github-copilot/claude-opus-4.6",
+      "variant": "max",
+      "tools": {
+        "task": true
+      }
     }
   },
   "categories": {
@@ -66,7 +69,7 @@
       "variant": "max"
     },
     "writing": {
-      "model": "google/antigravity-gemini-3-flash",
+      "model": "github-copilot/gpt-5.2",
       "variant": "high"
     },
     "plan": {

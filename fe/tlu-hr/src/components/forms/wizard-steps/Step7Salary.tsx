@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from "react";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -7,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import type { WizardData } from "@/types/wizard";
+import { useConfigStore } from "@/stores/config.store";
 
 interface StepProps {
   data: WizardData;
@@ -15,6 +17,21 @@ interface StepProps {
 }
 
 export function Step7Salary({ data, updateData, errors }: StepProps) {
+  const { salaryScales, fetchSalaryScales } = useConfigStore();
+
+  useEffect(() => {
+    fetchSalaryScales();
+  }, [fetchSalaryScales]);
+
+  const salaryOptions = useMemo(() => {
+    return salaryScales.flatMap((scale) =>
+      scale.grades.map((grade) => ({
+        value: `${scale.type}_${grade.grade}`,
+        label: `${scale.name} - Bậc ${grade.grade} (Hệ số: ${grade.coefficient})`,
+      }))
+    );
+  }, [salaryScales]);
+
   const getError = (field: string) => {
     if (!errors || !errors[field]) return null;
     const error = errors[field];
@@ -33,12 +50,17 @@ export function Step7Salary({ data, updateData, errors }: StepProps) {
             <SelectValue placeholder="Chọn ngạch lương" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="lecturer_1">Giảng viên - Bậc 1</SelectItem>
-            <SelectItem value="lecturer_2">Giảng viên - Bậc 2</SelectItem>
-            <SelectItem value="lecturer_3">Giảng viên - Bậc 3</SelectItem>
-            <SelectItem value="specialist_1">Chuyên viên - Bậc 1</SelectItem>
-            <SelectItem value="specialist_2">Chuyên viên - Bậc 2</SelectItem>
-            <SelectItem value="specialist_3">Chuyên viên - Bậc 3</SelectItem>
+            {salaryOptions.length === 0 ? (
+              <SelectItem value="loading" disabled>
+                Đang tải dữ liệu...
+              </SelectItem>
+            ) : (
+              salaryOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))
+            )}
           </SelectContent>
         </Select>
         {getError("salaryScaleId") && (
